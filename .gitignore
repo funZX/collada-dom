@@ -11,4 +11,5 @@
 *.user
 *.opendb
 build/
+bin/
 .vs/

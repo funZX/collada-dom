@@ -1,9 +1,12 @@
 [submodule "external/pcre"]
 	path = external/pcre
 	url = git@github.com:funZX/pcre.git
+	ignore=dirty
 [submodule "external/tinyxml2"]
 	path = external/tinyxml2
 	url = git@github.com:funZX/tinyxml2.git
+	ignore=dirty
 [submodule "external/minizip"]
 	path = external/minizip
 	url = git@github.com:funZX/minizip.git
+	ignore=dirty
