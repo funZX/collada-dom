@@ -1,0 +1,14 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Compiled Static libraries
+*.la
+*.a
+
+*.sdf
+*.db
+*.user
+*.opendb
+build/
+.vs/
