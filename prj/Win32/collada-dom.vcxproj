@@ -615,7 +615,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>../../external/tinyxml2/bin/Win32/Debug;../../external/minizip/bin/Win32/Debug;../../external/pcre/bin/Win32/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>pcrecpp.lib;minizip.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>pcre.lib;pcrecpp.lib;minizip.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -637,7 +637,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>../../external/minizip/bin/Win32/Release;../../external/pcre/bin/Win32/Release;../../external/tinyxml2/bin/Win32/Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>pcrecpp.lib;minizip.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>pcre.lib;pcrecpp.lib;minizip.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
