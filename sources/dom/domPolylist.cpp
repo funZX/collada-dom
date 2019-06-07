@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domPolylist.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domPolylist::create(DAE& dae)
 {
@@ -36,7 +44,7 @@ domPolylist::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domPolylist,elemInput_array) );
-	mea->setElementType( domInput_local_offset::registerElement(dae) );
+	mea->setElementType( domInputLocalOffset::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
@@ -64,7 +72,7 @@ domPolylist::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPolylist , attrName ));
 		ma->setContainer( meta );
 	
@@ -124,7 +132,7 @@ domPolylist::domVcount::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("List_of_uints"));
+		ma->setType( dae.getAtomicTypes().get("ListOfUInts"));
 		ma->setOffset( daeOffsetOf( domPolylist::domVcount , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -136,4 +144,4 @@ domPolylist::domVcount::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

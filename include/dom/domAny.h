@@ -5,8 +5,8 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-#ifndef __dom150Any_h__
-#define __dom150Any_h__
+#ifndef __dom141Any_h__
+#define __dom141Any_h__
 
 #include <dae/daeElement.h>
 #include <dae/daeMetaElement.h>
@@ -16,7 +16,7 @@
 #include <dom/domTypes.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The domAny class allows for weakly typed xml elements.  This class is used anywhere in the
@@ -165,7 +165,7 @@ public: // STATIC METHODS
 typedef daeSmartRef<domAny> domAnyRef;
 typedef daeTArray<domAnyRef> domAny_Array;
 
-} // ColladaDOM150
+} // ColladaDOM141
 
 #endif
 

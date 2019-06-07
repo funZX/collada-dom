@@ -1,23 +1,29 @@
-#ifndef __dom150Source_h__
-#define __dom150Source_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Source_h__
+#define __dom141Source_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domAsset.h>
-#include <dom/domToken_array.h>
-#include <dom/domIdref_array.h>
+#include <dom/domIDREF_array.h>
 #include <dom/domName_array.h>
 #include <dom/domBool_array.h>
 #include <dom/domFloat_array.h>
 #include <dom/domInt_array.h>
-#include <dom/domSidref_array.h>
-#include <dom/domAccessor.h>
 #include <dom/domTechnique.h>
+#include <dom/domAccessor.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The source element declares a data repository that provides values according
@@ -27,7 +33,7 @@ class domSource : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE; }
-	static daeInt ID() { return 325; }
+	static daeInt ID() { return 611; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_common;
@@ -43,12 +49,12 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static daeInt ID() { return 326; }
+		static daeInt ID() { return 612; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Element
 /**
- * The source's technique_common must have one and only one accessor. @see
+ *  The source's technique_common must have one and only one accessor.  @see
  * domAccessor
  */
 		domAccessorRef elemAccessor;
@@ -98,46 +104,41 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The source element may contain an asset element. @see domAsset
+ *  The source element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
- * The source element may contain a token_array. @see domToken_array
+ *  The source element may contain an IDREF_array.  @see domIDREF_array
  */
-	domToken_arrayRef elemToken_array;
+	domIDREF_arrayRef elemIDREF_array;
 /**
- * The source element may contain an IDREF_array. @see domIDREF_array
- */
-	domIdref_arrayRef elemIDREF_array;
-/**
- * The source element may contain a Name_array. @see domName_array
+ *  The source element may contain a Name_array.  @see domName_array
  */
 	domName_arrayRef elemName_array;
 /**
- * The source element may contain a bool_array. @see domBool_array
+ *  The source element may contain a bool_array.  @see domBool_array
  */
 	domBool_arrayRef elemBool_array;
 /**
- * The source element may contain a float_array. @see domFloat_array
+ *  The source element may contain a float_array.  @see domFloat_array
  */
 	domFloat_arrayRef elemFloat_array;
 /**
- * The source element may contain an int_array. @see domInt_array
+ *  The source element may contain an int_array.  @see domInt_array
  */
 	domInt_arrayRef elemInt_array;
-	domSidref_arrayRef elemSIDREF_array;
 /**
  * The technique common specifies the common method for accessing this source
  * element's data. @see domTechnique_common
  */
 	domTechnique_commonRef elemTechnique_common;
 /**
- * This element may contain any number of non-common profile techniques. @see
- * domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
 	/**
@@ -165,20 +166,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -186,15 +187,10 @@ public:	//Accessors and Mutators
 	 */
 	const domAssetRef getAsset() const { return elemAsset; }
 	/**
-	 * Gets the token_array element.
-	 * @return a daeSmartRef to the token_array element.
-	 */
-	const domToken_arrayRef getToken_array() const { return elemToken_array; }
-	/**
 	 * Gets the IDREF_array element.
 	 * @return a daeSmartRef to the IDREF_array element.
 	 */
-	const domIdref_arrayRef getIDREF_array() const { return elemIDREF_array; }
+	const domIDREF_arrayRef getIDREF_array() const { return elemIDREF_array; }
 	/**
 	 * Gets the Name_array element.
 	 * @return a daeSmartRef to the Name_array element.
@@ -215,11 +211,6 @@ public:	//Accessors and Mutators
 	 * @return a daeSmartRef to the int_array element.
 	 */
 	const domInt_arrayRef getInt_array() const { return elemInt_array; }
-	/**
-	 * Gets the SIDREF_array element.
-	 * @return a daeSmartRef to the SIDREF_array element.
-	 */
-	const domSidref_arrayRef getSIDREF_array() const { return elemSIDREF_array; }
 	/**
 	 * Gets the technique_common element.
 	 * @return a daeSmartRef to the technique_common element.
@@ -250,7 +241,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSource(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemToken_array(), elemIDREF_array(), elemName_array(), elemBool_array(), elemFloat_array(), elemInt_array(), elemSIDREF_array(), elemTechnique_common(), elemTechnique_array() {}
+	domSource(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemIDREF_array(), elemName_array(), elemBool_array(), elemFloat_array(), elemInt_array(), elemTechnique_common(), elemTechnique_array() {}
 	/**
 	 * Destructor
 	 */
@@ -275,5 +266,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domP.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domP::create(DAE& dae)
 {
@@ -33,7 +41,7 @@ domP::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("List_of_uints"));
+		ma->setType( dae.getAtomicTypes().get("ListOfUInts"));
 		ma->setOffset( daeOffsetOf( domP , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -45,4 +53,4 @@ domP::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

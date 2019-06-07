@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domInstance_material.h>
@@ -9,12 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domInstance_material::create(DAE& dae)
 {
 	domInstance_materialRef ref = new domInstance_material(dae);
-	ref->attrTarget.setContainer( (domInstance_material*)ref );
 	return ref;
 }
 
@@ -83,7 +90,7 @@ domInstance_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_material , attrSid ));
 		ma->setContainer( meta );
 	
@@ -94,7 +101,7 @@ domInstance_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_material , attrName ));
 		ma->setContainer( meta );
 	
@@ -220,4 +227,4 @@ domInstance_material::domBind_vertex_input::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

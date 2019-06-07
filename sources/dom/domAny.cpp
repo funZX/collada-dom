@@ -18,7 +18,8 @@
 #include <dae/daeMetaElementAttribute.h>
 #include <dae/daeErrorHandler.h>
 
-namespace ColladaDOM150 {
+
+namespace ColladaDOM141 {
 daeElementRef
 domAny::create(DAE& dae)
 {
@@ -105,4 +106,4 @@ daeBool domAny::setAttribute(daeString attrName, daeString attrValue) {
 }
 
 
-} // ColladaDOM150
+} // ColladaDOM141

@@ -1,5 +1,13 @@
-#ifndef __dom150Visual_scene_h__
-#define __dom150Visual_scene_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Visual_scene_h__
+#define __dom141Visual_scene_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -8,9 +16,10 @@
 #include <dom/domAsset.h>
 #include <dom/domNode.h>
 #include <dom/domExtra.h>
+#include <dom/domInstance_effect.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The visual_scene element declares the base of the visual_scene hierarchy
@@ -22,7 +31,7 @@ class domVisual_scene : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VISUAL_SCENE; }
-	static daeInt ID() { return 388; }
+	static daeInt ID() { return 682; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domEvaluate_scene;
@@ -31,16 +40,15 @@ public:
 	typedef daeTArray<domEvaluate_sceneRef> domEvaluate_scene_Array;
 
 /**
- * The evaluate_scene element declares information specifying how to evaluate
- * this visual_scene. There may be any number of evaluate_scene elements.
- * They are evaluated in order and particular one may be disabled via setting
- * enabled=false.
+ * The evaluate_scene element declares information specifying a specific way
+ * to evaluate this  visual_scene. There may be any number of evaluate_scene
+ * elements.
  */
 	class domEvaluate_scene : public daeElement
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EVALUATE_SCENE; }
-		static daeInt ID() { return 389; }
+		static daeInt ID() { return 683; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domRender;
@@ -56,7 +64,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RENDER; }
-			static daeInt ID() { return 390; }
+			static daeInt ID() { return 684; }
 			virtual daeInt typeID() const { return ID(); }
 		public:
 			class domLayer;
@@ -66,16 +74,20 @@ public:
 
 /**
  * The layer element specifies which layer to render in this compositing step
- * while evaluating the scene. You may specify any number of layers.  No layers
- * mans that the entire scene will be used.
+ * while evaluating the scene. You may specify any number of layers.
  */
 			class domLayer : public daeElement
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LAYER; }
-				static daeInt ID() { return 391; }
+				static daeInt ID() { return 685; }
 				virtual daeInt typeID() const { return ID(); }
 
+			protected:  // Value
+				/**
+				 * The xsNCName value of the text data of this element. 
+				 */
+				xsNCName _value;
 
 			public:	//Accessors and Mutators
 				/**
@@ -89,11 +101,6 @@ public:
 				 */
 				void setValue( xsNCName val ) { *(daeStringRef*)&_value = val; }
 
-			protected:  // Value
-				/**
-				 * The xsNCName value of the text data of this element. 
-				 */
-				xsNCName _value;
 			protected:
 				/**
 				 * Constructor
@@ -122,320 +129,28 @@ public:
 				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 			};
 
-			class domInstance_material;
 
-			typedef daeSmartRef<domInstance_material> domInstance_materialRef;
-			typedef daeTArray<domInstance_materialRef> domInstance_material_Array;
-
+		protected:  // Attribute
 /**
- * The instance_material element specifies which effect to render in this
- * compositing step  while evaluating the scene.
- */
-			class domInstance_material : public daeElement
-			{
-			public:
-				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_MATERIAL; }
-				static daeInt ID() { return 392; }
-				virtual daeInt typeID() const { return ID(); }
-			public:
-				class domTechnique_override;
-
-				typedef daeSmartRef<domTechnique_override> domTechnique_overrideRef;
-				typedef daeTArray<domTechnique_overrideRef> domTechnique_override_Array;
-
-				class domTechnique_override : public daeElement
-				{
-				public:
-					virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_OVERRIDE; }
-					static daeInt ID() { return 393; }
-					virtual daeInt typeID() const { return ID(); }
-				protected:  // Attributes
-/**
- * technique
- */
-					xsNCName attrRef;
-/**
- * Explicitly select one pass.  If empty then use all passes of the technique.
- */
-					xsNCName attrPass;
-
-
-				public:	//Accessors and Mutators
-					/**
-					 * Gets the ref attribute.
-					 * @return Returns a xsNCName of the ref attribute.
-					 */
-					xsNCName getRef() const { return attrRef; }
-					/**
-					 * Sets the ref attribute.
-					 * @param atRef The new value for the ref attribute.
-					 */
-					void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[0] = true; }
-
-					/**
-					 * Gets the pass attribute.
-					 * @return Returns a xsNCName of the pass attribute.
-					 */
-					xsNCName getPass() const { return attrPass; }
-					/**
-					 * Sets the pass attribute.
-					 * @param atPass The new value for the pass attribute.
-					 */
-					void setPass( xsNCName atPass ) { *(daeStringRef*)&attrPass = atPass; _validAttributeArray[1] = true; }
-
-				protected:
-					/**
-					 * Constructor
-					 */
-					domTechnique_override(DAE& dae) : daeElement(dae), attrRef(), attrPass() {}
-					/**
-					 * Destructor
-					 */
-					virtual ~domTechnique_override() {}
-					/**
-					 * Overloaded assignment operator
-					 */
-					virtual domTechnique_override &operator=( const domTechnique_override &cpy ) { (void)cpy; return *this; }
-
-				public: // STATIC METHODS
-					/**
-					 * Creates an instance of this class and returns a daeElementRef referencing it.
-					 * @return a daeElementRef referencing an instance of this object.
-					 */
-					static DLLSPEC daeElementRef create(DAE& dae);
-					/**
-					 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-					 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-					 * @return A daeMetaElement describing this COLLADA element.
-					 */
-					static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-				};
-
-				class domBind;
-
-				typedef daeSmartRef<domBind> domBindRef;
-				typedef daeTArray<domBindRef> domBind_Array;
-
-/**
- * The bind element binds values to effect parameters upon instantiation.
- */
-				class domBind : public daeElement
-				{
-				public:
-					virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND; }
-					static daeInt ID() { return 394; }
-					virtual daeInt typeID() const { return ID(); }
-				protected:  // Attributes
-/**
- *  The semantic attribute specifies which effect parameter to bind. 
- */
-					xsNCName attrSemantic;
-/**
- *  The target attribute specifies the location of the value to bind to the
- * specified semantic.  This text string is a path-name following a simple
- * syntax described in the ?Addressing Syntax?  section. 
- */
-					xsToken attrTarget;
-
-
-				public:	//Accessors and Mutators
-					/**
-					 * Gets the semantic attribute.
-					 * @return Returns a xsNCName of the semantic attribute.
-					 */
-					xsNCName getSemantic() const { return attrSemantic; }
-					/**
-					 * Sets the semantic attribute.
-					 * @param atSemantic The new value for the semantic attribute.
-					 */
-					void setSemantic( xsNCName atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[0] = true; }
-
-					/**
-					 * Gets the target attribute.
-					 * @return Returns a xsToken of the target attribute.
-					 */
-					xsToken getTarget() const { return attrTarget; }
-					/**
-					 * Sets the target attribute.
-					 * @param atTarget The new value for the target attribute.
-					 */
-					void setTarget( xsToken atTarget ) { *(daeStringRef*)&attrTarget = atTarget; _validAttributeArray[1] = true; }
-
-				protected:
-					/**
-					 * Constructor
-					 */
-					domBind(DAE& dae) : daeElement(dae), attrSemantic(), attrTarget() {}
-					/**
-					 * Destructor
-					 */
-					virtual ~domBind() {}
-					/**
-					 * Overloaded assignment operator
-					 */
-					virtual domBind &operator=( const domBind &cpy ) { (void)cpy; return *this; }
-
-				public: // STATIC METHODS
-					/**
-					 * Creates an instance of this class and returns a daeElementRef referencing it.
-					 * @return a daeElementRef referencing an instance of this object.
-					 */
-					static DLLSPEC daeElementRef create(DAE& dae);
-					/**
-					 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-					 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-					 * @return A daeMetaElement describing this COLLADA element.
-					 */
-					static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-				};
-
-
-			protected:  // Attribute
-/**
- * URL to a material
- */
-				xsAnyURI attrUrl;
-
-			protected:  // Elements
-				domTechnique_overrideRef elemTechnique_override;
-/**
- * The bind element binds values to effect parameters upon instantiation.
- * @see domBind
- */
-				domBind_Array elemBind_array;
-/**
- * The extra element may appear any number of times. @see domExtra
- */
-				domExtra_Array elemExtra_array;
-
-			public:	//Accessors and Mutators
-				/**
-				 * Gets the url attribute.
-				 * @return Returns a xsAnyURI reference of the url attribute.
-				 */
-				xsAnyURI &getUrl() { return attrUrl; }
-				/**
-				 * Gets the url attribute.
-				 * @return Returns a constant xsAnyURI reference of the url attribute.
-				 */
-				const xsAnyURI &getUrl() const { return attrUrl; }
-				/**
-				 * Sets the url attribute.
-				 * @param atUrl The new value for the url attribute.
-				 */
-				void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
-				/**
-				 * Sets the url attribute.
-				 * @param atUrl The new value for the url attribute.
-				 */
-				void setUrl( xsString atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
-
-				/**
-				 * Gets the technique_override element.
-				 * @return a daeSmartRef to the technique_override element.
-				 */
-				const domTechnique_overrideRef getTechnique_override() const { return elemTechnique_override; }
-				/**
-				 * Gets the bind element array.
-				 * @return Returns a reference to the array of bind elements.
-				 */
-				domBind_Array &getBind_array() { return elemBind_array; }
-				/**
-				 * Gets the bind element array.
-				 * @return Returns a constant reference to the array of bind elements.
-				 */
-				const domBind_Array &getBind_array() const { return elemBind_array; }
-				/**
-				 * Gets the extra element array.
-				 * @return Returns a reference to the array of extra elements.
-				 */
-				domExtra_Array &getExtra_array() { return elemExtra_array; }
-				/**
-				 * Gets the extra element array.
-				 * @return Returns a constant reference to the array of extra elements.
-				 */
-				const domExtra_Array &getExtra_array() const { return elemExtra_array; }
-			protected:
-				/**
-				 * Constructor
-				 */
-				domInstance_material(DAE& dae) : daeElement(dae), attrUrl(dae, *this), elemTechnique_override(), elemBind_array(), elemExtra_array() {}
-				/**
-				 * Destructor
-				 */
-				virtual ~domInstance_material() {}
-				/**
-				 * Overloaded assignment operator
-				 */
-				virtual domInstance_material &operator=( const domInstance_material &cpy ) { (void)cpy; return *this; }
-
-			public: // STATIC METHODS
-				/**
-				 * Creates an instance of this class and returns a daeElementRef referencing it.
-				 * @return a daeElementRef referencing an instance of this object.
-				 */
-				static DLLSPEC daeElementRef create(DAE& dae);
-				/**
-				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-				 * @return A daeMetaElement describing this COLLADA element.
-				 */
-				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-			};
-
-
-		protected:  // Attributes
-			domSid attrSid;
-/**
- *  The name attribute is the text string name of this element. Optional attribute.
- */
-			xsToken attrName;
-/**
- * The camera_node attribute refers to a node that contains a camera describing
- * the viewpoint to render this compositing step from.
+ *  The camera_node attribute refers to a node that contains a camera describing
+ * the viewpoint to  render this compositing step from. 
  */
 			xsAnyURI attrCamera_node;
 
 		protected:  // Elements
 /**
  * The layer element specifies which layer to render in this compositing step
- * while evaluating the scene. You may specify any number of layers.  No layers
- * mans that the entire scene will be used. @see domLayer
+ * while evaluating the scene. You may specify any number of layers. @see
+ * domLayer
  */
 			domLayer_Array elemLayer_array;
 /**
- * The instance_material element specifies which effect to render in this
- * compositing step  while evaluating the scene. @see domInstance_material
+ *  The instance_effect element specifies which effect to render in this compositing
+ * step  while evaluating the scene.  @see domInstance_effect
  */
-			domInstance_materialRef elemInstance_material;
-/**
- * The extra element may appear any number of times. @see domExtra
- */
-			domExtra_Array elemExtra_array;
+			domInstance_effectRef elemInstance_effect;
 
 		public:	//Accessors and Mutators
-			/**
-			 * Gets the sid attribute.
-			 * @return Returns a domSid of the sid attribute.
-			 */
-			domSid getSid() const { return attrSid; }
-			/**
-			 * Sets the sid attribute.
-			 * @param atSid The new value for the sid attribute.
-			 */
-			void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
-
-			/**
-			 * Gets the name attribute.
-			 * @return Returns a xsToken of the name attribute.
-			 */
-			xsToken getName() const { return attrName; }
-			/**
-			 * Sets the name attribute.
-			 * @param atName The new value for the name attribute.
-			 */
-			void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
-
 			/**
 			 * Gets the camera_node attribute.
 			 * @return Returns a xsAnyURI reference of the camera_node attribute.
@@ -450,12 +165,12 @@ public:
 			 * Sets the camera_node attribute.
 			 * @param atCamera_node The new value for the camera_node attribute.
 			 */
-			void setCamera_node( const xsAnyURI &atCamera_node ) { attrCamera_node = atCamera_node; _validAttributeArray[2] = true; }
+			void setCamera_node( const xsAnyURI &atCamera_node ) { attrCamera_node = atCamera_node; _validAttributeArray[0] = true; }
 			/**
 			 * Sets the camera_node attribute.
 			 * @param atCamera_node The new value for the camera_node attribute.
 			 */
-			void setCamera_node( xsString atCamera_node ) { attrCamera_node = atCamera_node; _validAttributeArray[2] = true; }
+			void setCamera_node( xsString atCamera_node ) { attrCamera_node = atCamera_node; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the layer element array.
@@ -468,25 +183,15 @@ public:
 			 */
 			const domLayer_Array &getLayer_array() const { return elemLayer_array; }
 			/**
-			 * Gets the instance_material element.
-			 * @return a daeSmartRef to the instance_material element.
+			 * Gets the instance_effect element.
+			 * @return a daeSmartRef to the instance_effect element.
 			 */
-			const domInstance_materialRef getInstance_material() const { return elemInstance_material; }
-			/**
-			 * Gets the extra element array.
-			 * @return Returns a reference to the array of extra elements.
-			 */
-			domExtra_Array &getExtra_array() { return elemExtra_array; }
-			/**
-			 * Gets the extra element array.
-			 * @return Returns a constant reference to the array of extra elements.
-			 */
-			const domExtra_Array &getExtra_array() const { return elemExtra_array; }
+			const domInstance_effectRef getInstance_effect() const { return elemInstance_effect; }
 		protected:
 			/**
 			 * Constructor
 			 */
-			domRender(DAE& dae) : daeElement(dae), attrSid(), attrName(), attrCamera_node(dae, *this), elemLayer_array(), elemInstance_material(), elemExtra_array() {}
+			domRender(DAE& dae) : daeElement(dae), attrCamera_node(dae, *this), elemLayer_array(), elemInstance_effect() {}
 			/**
 			 * Destructor
 			 */
@@ -511,80 +216,31 @@ public:
 		};
 
 
-	protected:  // Attributes
-		xsID attrId;
-		domSid attrSid;
-		xsToken attrName;
+	protected:  // Attribute
 /**
- * allow this to be disabled and hense skipped durring evaluation.  This is
- * useful for debug.
+ *  The name attribute is the text string name of this element. Optional attribute.
  */
-		xsBoolean attrEnable;
+		xsNCName attrName;
 
-	protected:  // Elements
-		domAssetRef elemAsset;
+	protected:  // Element
 /**
  * The render element describes one effect pass to evaluate the scene. There
  * must be at least one render element. @see domRender
  */
 		domRender_Array elemRender_array;
-/**
- * The extra element may appear any number of times. @see domExtra
- */
-		domExtra_Array elemExtra_array;
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the id attribute.
-		 * @return Returns a xsID of the id attribute.
-		 */
-		xsID getId() const { return attrId; }
-		/**
-		 * Sets the id attribute.
-		 * @param atId The new value for the id attribute.
-		 */
-		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
-			if( _document != NULL ) _document->changeElementID( this, attrId );
-		}
-
-		/**
-		 * Gets the sid attribute.
-		 * @return Returns a domSid of the sid attribute.
-		 */
-		domSid getSid() const { return attrSid; }
-		/**
-		 * Sets the sid attribute.
-		 * @param atSid The new value for the sid attribute.
-		 */
-		void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
-
-		/**
 		 * Gets the name attribute.
-		 * @return Returns a xsToken of the name attribute.
+		 * @return Returns a xsNCName of the name attribute.
 		 */
-		xsToken getName() const { return attrName; }
+		xsNCName getName() const { return attrName; }
 		/**
 		 * Sets the name attribute.
 		 * @param atName The new value for the name attribute.
 		 */
-		void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
+		void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[0] = true; }
 
-		/**
-		 * Gets the enable attribute.
-		 * @return Returns a xsBoolean of the enable attribute.
-		 */
-		xsBoolean getEnable() const { return attrEnable; }
-		/**
-		 * Sets the enable attribute.
-		 * @param atEnable The new value for the enable attribute.
-		 */
-		void setEnable( xsBoolean atEnable ) { attrEnable = atEnable; _validAttributeArray[3] = true; }
-
-		/**
-		 * Gets the asset element.
-		 * @return a daeSmartRef to the asset element.
-		 */
-		const domAssetRef getAsset() const { return elemAsset; }
 		/**
 		 * Gets the render element array.
 		 * @return Returns a reference to the array of render elements.
@@ -595,21 +251,11 @@ public:
 		 * @return Returns a constant reference to the array of render elements.
 		 */
 		const domRender_Array &getRender_array() const { return elemRender_array; }
-		/**
-		 * Gets the extra element array.
-		 * @return Returns a reference to the array of extra elements.
-		 */
-		domExtra_Array &getExtra_array() { return elemExtra_array; }
-		/**
-		 * Gets the extra element array.
-		 * @return Returns a constant reference to the array of extra elements.
-		 */
-		const domExtra_Array &getExtra_array() const { return elemExtra_array; }
 	protected:
 		/**
 		 * Constructor
 		 */
-		domEvaluate_scene(DAE& dae) : daeElement(dae), attrId(), attrSid(), attrName(), attrEnable(), elemAsset(), elemRender_array(), elemExtra_array() {}
+		domEvaluate_scene(DAE& dae) : daeElement(dae), attrName(), elemRender_array() {}
 		/**
 		 * Destructor
 		 */
@@ -644,26 +290,25 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The visual_scene element may contain an asset element. @see domAsset
+ *  The visual_scene element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
- * The visual_scene element must have at least one node element. @see domNode
+ *  The visual_scene element must have at least one node element.  @see domNode
  */
 	domNode_Array elemNode_array;
 /**
- * The evaluate_scene element declares information specifying how to evaluate
- * this visual_scene. There may be any number of evaluate_scene elements.
- * They are evaluated in order and particular one may be disabled via setting
- * enabled=false. @see domEvaluate_scene
+ * The evaluate_scene element declares information specifying a specific way
+ * to evaluate this  visual_scene. There may be any number of evaluate_scene
+ * elements. @see domEvaluate_scene
  */
 	domEvaluate_scene_Array elemEvaluate_scene_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -677,20 +322,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -756,5 +401,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

@@ -1,5 +1,13 @@
-#ifndef __dom150Convex_mesh_h__
-#define __dom150Convex_mesh_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Convex_mesh_h__
+#define __dom141Convex_mesh_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -17,20 +25,20 @@
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The definition of the convex_mesh element is identical to the mesh element
  * with the exception that  instead of a complete description (source, vertices,
  * polygons etc.), it may simply point to another  geometry to derive its
  * shape. The latter case means that the convex hull of that geometry should
- * be computed and is indicated by the optional "convex_hull_of" attribute.
+ * be computed and is indicated by the optional “convex_hull_of” attribute.
  */
 class domConvex_mesh : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONVEX_MESH; }
-	static daeInt ID() { return 335; }
+	static daeInt ID() { return 789; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attribute
 /**
@@ -50,7 +58,7 @@ protected:  // Elements
 	domTrifans_Array elemTrifans_array;
 	domTristrips_Array elemTristrips_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 	/**
@@ -83,12 +91,12 @@ public:	//Accessors and Mutators
 	 * Sets the convex_hull_of attribute.
 	 * @param atConvex_hull_of The new value for the convex_hull_of attribute.
 	 */
-	void setConvex_hull_of( const xsAnyURI &atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of; }
+	void setConvex_hull_of( const xsAnyURI &atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of; _validAttributeArray[0] = true; }
 	/**
 	 * Sets the convex_hull_of attribute.
 	 * @param atConvex_hull_of The new value for the convex_hull_of attribute.
 	 */
-	void setConvex_hull_of( xsString atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of; }
+	void setConvex_hull_of( xsString atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the source element array.
@@ -225,5 +233,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

@@ -1,5 +1,13 @@
-#ifndef __dom150Instance_physics_model_h__
-#define __dom150Instance_physics_model_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Instance_physics_model_h__
+#define __dom141Instance_physics_model_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -11,7 +19,7 @@
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * This element allows instancing physics model within another physics model,
@@ -21,14 +29,14 @@ class domInstance_physics_model : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_PHYSICS_MODEL; }
-	static daeInt ID() { return 410; }
+	static daeInt ID() { return 702; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The url attribute refers to resource.  This may refer to a local resource
- * using a relative URL  fragment identifier that begins with the "#" character.
- * The url attribute may refer to an external  resource using an absolute
- * or relative URL. 
+ * using a relative URL  fragment identifier that begins with the “#”
+ * character. The url attribute may refer to an external  resource using an
+ * absolute or relative URL. 
  */
 	xsAnyURI attrUrl;
 /**
@@ -36,11 +44,11 @@ protected:  // Attributes
  * of this element. This  value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-	domSid attrSid;
+	xsNCName attrSid;
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The parent attribute points to the id of a node in the visual scene. This
  * allows a physics model  to be instantiated under a specific transform node,
@@ -51,22 +59,22 @@ protected:  // Attributes
 
 protected:  // Elements
 /**
- * The instance_physics_model element may instance any number of force_field
- * elements. @see domInstance_force_field
+ *  The instance_physics_model element may instance any number of force_field
+ * elements.  @see domInstance_force_field
  */
 	domInstance_force_field_Array elemInstance_force_field_array;
 /**
- * The instance_physics_model element may instance any number of rigid_body
- * elements. @see domInstance_rigid_body
+ *  The instance_physics_model element may instance any number of rigid_body
+ * elements.  @see domInstance_rigid_body
  */
 	domInstance_rigid_body_Array elemInstance_rigid_body_array;
 /**
- * The instance_physics_model element may instance any number of rigid_constraint
- * elements. @see domInstance_rigid_constraint
+ *  The instance_physics_model element may instance any number of rigid_constraint
+ * elements.  @see domInstance_rigid_constraint
  */
 	domInstance_rigid_constraint_Array elemInstance_rigid_constraint_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -85,34 +93,34 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 	/**
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( xsString atUrl ) { attrUrl = atUrl; }
+	void setUrl( xsString atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the parent attribute.
@@ -128,12 +136,12 @@ public:	//Accessors and Mutators
 	 * Sets the parent attribute.
 	 * @param atParent The new value for the parent attribute.
 	 */
-	void setParent( const xsAnyURI &atParent ) { attrParent = atParent; }
+	void setParent( const xsAnyURI &atParent ) { attrParent = atParent; _validAttributeArray[3] = true; }
 	/**
 	 * Sets the parent attribute.
 	 * @param atParent The new value for the parent attribute.
 	 */
-	void setParent( xsString atParent ) { attrParent = atParent; }
+	void setParent( xsString atParent ) { attrParent = atParent; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the instance_force_field element array.
@@ -204,5 +212,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

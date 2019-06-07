@@ -1,14 +1,44 @@
+/*
+ * Copyright 2006 Sony Computer Entertainment Inc.
+ *
+ * Licensed under the MIT Open Source License, for details please see license.txt or the website
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ */
+
 #include <dae.h>
 #include <dom/domTypes.h>
 #include <dae/daeDom.h>
 #include <dom/domCOLLADA.h>
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 void registerDomTypes(DAE& dae)
 {
     daeAtomicType* type = NULL;
     daeAtomicTypeList& atomicTypes = dae.getAtomicTypes();
+
+    // TYPEDEF: Bool	//check if this type has an existing base
+    type = atomicTypes.get("xsBoolean");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Bool");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Bool");
+    }
+
+    // TYPEDEF: DateTime	//check if this type has an existing base
+    type = atomicTypes.get("xsDateTime");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("DateTime");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("DateTime");
+    }
 
     // TYPEDEF: Float	//check if this type has an existing base
     type = atomicTypes.get("xsDouble");
@@ -32,6 +62,39 @@ void registerDomTypes(DAE& dae)
         type->_nameBindings.append("Int");
     }
 
+    // TYPEDEF: Name	//check if this type has an existing base
+    type = atomicTypes.get("xsName");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Name");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Name");
+    }
+
+    // TYPEDEF: String	//check if this type has an existing base
+    type = atomicTypes.get("xsString");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("String");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("String");
+    }
+
+    // TYPEDEF: Token	//check if this type has an existing base
+    type = atomicTypes.get("xsToken");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Token");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Token");
+    }
+
     // TYPEDEF: Uint	//check if this type has an existing base
     type = atomicTypes.get("xsUnsignedLong");
     if ( type == NULL ) { //register as a raw type
@@ -43,129 +106,85 @@ void registerDomTypes(DAE& dae)
         type->_nameBindings.append("Uint");
     }
 
-    // TYPEDEF: Sidref	//check if this type has an existing base
-    type = atomicTypes.get("xsString");
+    // TYPEDEF: ListOfBools	//check if this type has an existing base
+    type = atomicTypes.get("Bool");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Sidref");
+        type->_nameBindings.append("ListOfBools");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Sidref");
+        type->_nameBindings.append("ListOfBools");
     }
 
-    // TYPEDEF: Sid	//check if this type has an existing base
-    type = atomicTypes.get("xsNCName");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Sid");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Sid");
-    }
-
-    // TYPEDEF: List_of_bools	//check if this type has an existing base
-    type = atomicTypes.get("xsBoolean");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_bools");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("List_of_bools");
-    }
-
-    // TYPEDEF: List_of_floats	//check if this type has an existing base
+    // TYPEDEF: ListOfFloats	//check if this type has an existing base
     type = atomicTypes.get("Float");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_floats");
+        type->_nameBindings.append("ListOfFloats");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("List_of_floats");
+        type->_nameBindings.append("ListOfFloats");
     }
 
-    // TYPEDEF: List_of_hex_binary	//check if this type has an existing base
+    // TYPEDEF: ListOfHexBinary	//check if this type has an existing base
     type = atomicTypes.get("xsHexBinary");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_hex_binary");
+        type->_nameBindings.append("ListOfHexBinary");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("List_of_hex_binary");
+        type->_nameBindings.append("ListOfHexBinary");
     }
 
-    // TYPEDEF: List_of_ints	//check if this type has an existing base
+    // TYPEDEF: ListOfInts	//check if this type has an existing base
     type = atomicTypes.get("Int");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_ints");
+        type->_nameBindings.append("ListOfInts");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("List_of_ints");
+        type->_nameBindings.append("ListOfInts");
     }
 
-    // TYPEDEF: List_of_names	//check if this type has an existing base
-    type = atomicTypes.get("xsName");
+    // TYPEDEF: ListOfNames	//check if this type has an existing base
+    type = atomicTypes.get("Name");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_names");
+        type->_nameBindings.append("ListOfNames");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("List_of_names");
+        type->_nameBindings.append("ListOfNames");
     }
 
-    // TYPEDEF: List_of_idrefs	//check if this type has an existing base
-    type = atomicTypes.get("xsName");
+    // TYPEDEF: ListOfTokens	//check if this type has an existing base
+    type = atomicTypes.get("Token");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_idrefs");
+        type->_nameBindings.append("ListOfTokens");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("List_of_idrefs");
+        type->_nameBindings.append("ListOfTokens");
     }
 
-    // TYPEDEF: List_of_sidrefs	//check if this type has an existing base
-    type = atomicTypes.get("Sidref");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_sidrefs");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("List_of_sidrefs");
-    }
-
-    // TYPEDEF: List_of_tokens	//check if this type has an existing base
-    type = atomicTypes.get("xsToken");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_tokens");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("List_of_tokens");
-    }
-
-    // TYPEDEF: List_of_uints	//check if this type has an existing base
+    // TYPEDEF: ListOfUInts	//check if this type has an existing base
     type = atomicTypes.get("Uint");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("List_of_uints");
+        type->_nameBindings.append("ListOfUInts");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("List_of_uints");
+        type->_nameBindings.append("ListOfUInts");
     }
 
     // TYPEDEF: Bool2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
+    type = atomicTypes.get("ListOfBools");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Bool2");
@@ -176,7 +195,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Bool3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
+    type = atomicTypes.get("ListOfBools");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Bool3");
@@ -187,7 +206,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Bool4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
+    type = atomicTypes.get("ListOfBools");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Bool4");
@@ -195,109 +214,10 @@ void registerDomTypes(DAE& dae)
     }
     else { //add binding to existing type
         type->_nameBindings.append("Bool4");
-    }
-
-    // TYPEDEF: Bool2x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool2x2");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool2x2");
-    }
-
-    // TYPEDEF: Bool2x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool2x3");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool2x3");
-    }
-
-    // TYPEDEF: Bool2x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool2x4");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool2x4");
-    }
-
-    // TYPEDEF: Bool3x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool3x2");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool3x2");
-    }
-
-    // TYPEDEF: Bool3x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool3x3");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool3x3");
-    }
-
-    // TYPEDEF: Bool3x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool3x4");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool3x4");
-    }
-
-    // TYPEDEF: Bool4x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool4x2");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool4x2");
-    }
-
-    // TYPEDEF: Bool4x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool4x3");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool4x3");
-    }
-
-    // TYPEDEF: Bool4x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_bools");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Bool4x4");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Bool4x4");
     }
 
     // TYPEDEF: Float2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float2");
@@ -308,7 +228,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Float3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float3");
@@ -319,7 +239,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Float4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float4");
@@ -330,7 +250,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Float7	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float7");
@@ -341,7 +261,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Float2x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float2x2");
@@ -351,8 +271,30 @@ void registerDomTypes(DAE& dae)
         type->_nameBindings.append("Float2x2");
     }
 
+    // TYPEDEF: Float3x3	//check if this type has an existing base
+    type = atomicTypes.get("ListOfFloats");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Float3x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Float3x3");
+    }
+
+    // TYPEDEF: Float4x4	//check if this type has an existing base
+    type = atomicTypes.get("ListOfFloats");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Float4x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Float4x4");
+    }
+
     // TYPEDEF: Float2x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float2x3");
@@ -363,7 +305,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Float2x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float2x4");
@@ -374,7 +316,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Float3x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float3x2");
@@ -382,21 +324,10 @@ void registerDomTypes(DAE& dae)
     }
     else { //add binding to existing type
         type->_nameBindings.append("Float3x2");
-    }
-
-    // TYPEDEF: Float3x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Float3x3");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Float3x3");
     }
 
     // TYPEDEF: Float3x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float3x4");
@@ -407,7 +338,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Float4x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float4x2");
@@ -418,7 +349,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Float4x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
+    type = atomicTypes.get("ListOfFloats");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Float4x3");
@@ -426,21 +357,10 @@ void registerDomTypes(DAE& dae)
     }
     else { //add binding to existing type
         type->_nameBindings.append("Float4x3");
-    }
-
-    // TYPEDEF: Float4x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_floats");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Float4x4");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Float4x4");
     }
 
     // TYPEDEF: Int2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
+    type = atomicTypes.get("ListOfInts");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Int2");
@@ -451,7 +371,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Int3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
+    type = atomicTypes.get("ListOfInts");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Int3");
@@ -462,7 +382,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Int4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
+    type = atomicTypes.get("ListOfInts");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Int4");
@@ -473,7 +393,7 @@ void registerDomTypes(DAE& dae)
     }
 
     // TYPEDEF: Int2x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
+    type = atomicTypes.get("ListOfInts");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Int2x2");
@@ -481,43 +401,10 @@ void registerDomTypes(DAE& dae)
     }
     else { //add binding to existing type
         type->_nameBindings.append("Int2x2");
-    }
-
-    // TYPEDEF: Int2x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Int2x3");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Int2x3");
-    }
-
-    // TYPEDEF: Int2x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Int2x4");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Int2x4");
-    }
-
-    // TYPEDEF: Int3x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Int3x2");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Int3x2");
     }
 
     // TYPEDEF: Int3x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
+    type = atomicTypes.get("ListOfInts");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Int3x3");
@@ -525,43 +412,10 @@ void registerDomTypes(DAE& dae)
     }
     else { //add binding to existing type
         type->_nameBindings.append("Int3x3");
-    }
-
-    // TYPEDEF: Int3x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Int3x4");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Int3x4");
-    }
-
-    // TYPEDEF: Int4x2	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Int4x2");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Int4x2");
-    }
-
-    // TYPEDEF: Int4x3	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Int4x3");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Int4x3");
     }
 
     // TYPEDEF: Int4x4	//check if this type has an existing base
-    type = atomicTypes.get("List_of_ints");
+    type = atomicTypes.get("ListOfInts");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
         type->_nameBindings.append("Int4x4");
@@ -571,591 +425,555 @@ void registerDomTypes(DAE& dae)
         type->_nameBindings.append("Int4x4");
     }
 
-    // TYPEDEF: Digits	//check if this type has an existing base
-    type = atomicTypes.get("xsUnsignedByte");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Digits");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Digits");
-    }
-
-    // TYPEDEF: Magnitude	//check if this type has an existing base
-    type = atomicTypes.get("xsShort");
-    if ( type == NULL ) { //register as a raw type
-        type = new daeRawRefType(dae);
-        type->_nameBindings.append("Magnitude");
-        atomicTypes.append( type );
-    }
-    else { //add binding to existing type
-        type->_nameBindings.append("Magnitude");
-    }
-
-    // ENUM: Morph_method
+    // ENUM: MorphMethodType
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Morph_method");
+    type->_nameBindings.append("MorphMethodType");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("NORMALIZED");
-    ((daeEnumType*)type)->_values->append(MORPH_METHOD_NORMALIZED);
+    ((daeEnumType*)type)->_values->append(MORPHMETHODTYPE_NORMALIZED);
     ((daeEnumType*)type)->_strings->append("RELATIVE");
-    ((daeEnumType*)type)->_values->append(MORPH_METHOD_RELATIVE);
+    ((daeEnumType*)type)->_values->append(MORPHMETHODTYPE_RELATIVE);
     atomicTypes.append( type );
 
-    // ENUM: Node_enum
+    // ENUM: NodeType
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Node_enum");
+    type->_nameBindings.append("NodeType");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("JOINT");
-    ((daeEnumType*)type)->_values->append(NODE_ENUM_JOINT);
+    ((daeEnumType*)type)->_values->append(NODETYPE_JOINT);
     ((daeEnumType*)type)->_strings->append("NODE");
-    ((daeEnumType*)type)->_values->append(NODE_ENUM_NODE);
+    ((daeEnumType*)type)->_values->append(NODETYPE_NODE);
     atomicTypes.append( type );
 
-    // ENUM: Sampler_behavior
-    type = new daeEnumType(dae);
-    type->_nameBindings.append("Sampler_behavior");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("CONSTANT");
-    ((daeEnumType*)type)->_values->append(SAMPLER_BEHAVIOR_CONSTANT);
-    ((daeEnumType*)type)->_strings->append("CYCLE");
-    ((daeEnumType*)type)->_values->append(SAMPLER_BEHAVIOR_CYCLE);
-    ((daeEnumType*)type)->_strings->append("CYCLE_RELATIVE");
-    ((daeEnumType*)type)->_values->append(SAMPLER_BEHAVIOR_CYCLE_RELATIVE);
-    ((daeEnumType*)type)->_strings->append("GRADIENT");
-    ((daeEnumType*)type)->_values->append(SAMPLER_BEHAVIOR_GRADIENT);
-    ((daeEnumType*)type)->_strings->append("OSCILLATE");
-    ((daeEnumType*)type)->_values->append(SAMPLER_BEHAVIOR_OSCILLATE);
-    ((daeEnumType*)type)->_strings->append("UNDEFINED");
-    ((daeEnumType*)type)->_values->append(SAMPLER_BEHAVIOR_UNDEFINED);
-    atomicTypes.append( type );
-
-    // TYPEDEF: Urifragment	//check if this type has an existing base
+    // TYPEDEF: URIFragmentType	//check if this type has an existing base
     type = atomicTypes.get("xsAnyURI");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Urifragment");
+        type->_nameBindings.append("URIFragmentType");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Urifragment");
+        type->_nameBindings.append("URIFragmentType");
     }
 
-    // ENUM: Up_axis
+    // ENUM: UpAxisType
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Up_axis");
+    type->_nameBindings.append("UpAxisType");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("X_UP");
-    ((daeEnumType*)type)->_values->append(UP_AXIS_X_UP);
+    ((daeEnumType*)type)->_values->append(UPAXISTYPE_X_UP);
     ((daeEnumType*)type)->_strings->append("Y_UP");
-    ((daeEnumType*)type)->_values->append(UP_AXIS_Y_UP);
+    ((daeEnumType*)type)->_values->append(UPAXISTYPE_Y_UP);
     ((daeEnumType*)type)->_strings->append("Z_UP");
-    ((daeEnumType*)type)->_values->append(UP_AXIS_Z_UP);
+    ((daeEnumType*)type)->_values->append(UPAXISTYPE_Z_UP);
     atomicTypes.append( type );
 
-    // ENUM: Version
+    // ENUM: VersionType
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Version");
+    type->_nameBindings.append("VersionType");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("1.5.0");
-    ((daeEnumType*)type)->_values->append(VERSION_1_5_0);
+    ((daeEnumType*)type)->_strings->append("1.4.0");
+    ((daeEnumType*)type)->_values->append(VERSIONTYPE_1_4_0);
+    ((daeEnumType*)type)->_strings->append("1.4.1");
+    ((daeEnumType*)type)->_values->append(VERSIONTYPE_1_4_1);
     atomicTypes.append( type );
 
-    // ENUM: Image_face
-    type = new daeEnumType(dae);
-    type->_nameBindings.append("Image_face");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("POSITIVE_X");
-    ((daeEnumType*)type)->_values->append(IMAGE_FACE_POSITIVE_X);
-    ((daeEnumType*)type)->_strings->append("NEGATIVE_X");
-    ((daeEnumType*)type)->_values->append(IMAGE_FACE_NEGATIVE_X);
-    ((daeEnumType*)type)->_strings->append("POSITIVE_Y");
-    ((daeEnumType*)type)->_values->append(IMAGE_FACE_POSITIVE_Y);
-    ((daeEnumType*)type)->_strings->append("NEGATIVE_Y");
-    ((daeEnumType*)type)->_values->append(IMAGE_FACE_NEGATIVE_Y);
-    ((daeEnumType*)type)->_strings->append("POSITIVE_Z");
-    ((daeEnumType*)type)->_values->append(IMAGE_FACE_POSITIVE_Z);
-    ((daeEnumType*)type)->_strings->append("NEGATIVE_Z");
-    ((daeEnumType*)type)->_values->append(IMAGE_FACE_NEGATIVE_Z);
-    atomicTypes.append( type );
-
-    // ENUM: Image_format_hint_channels
-    type = new daeEnumType(dae);
-    type->_nameBindings.append("Image_format_hint_channels");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("RGB");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_CHANNELS_RGB);
-    ((daeEnumType*)type)->_strings->append("RGBA");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_CHANNELS_RGBA);
-    ((daeEnumType*)type)->_strings->append("RGBE");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_CHANNELS_RGBE);
-    ((daeEnumType*)type)->_strings->append("L");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_CHANNELS_L);
-    ((daeEnumType*)type)->_strings->append("LA");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_CHANNELS_LA);
-    ((daeEnumType*)type)->_strings->append("D");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_CHANNELS_D);
-    atomicTypes.append( type );
-
-    // ENUM: Image_format_hint_precision
-    type = new daeEnumType(dae);
-    type->_nameBindings.append("Image_format_hint_precision");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("DEFAULT");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_PRECISION_DEFAULT);
-    ((daeEnumType*)type)->_strings->append("LOW");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_PRECISION_LOW);
-    ((daeEnumType*)type)->_strings->append("MID");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_PRECISION_MID);
-    ((daeEnumType*)type)->_strings->append("HIGH");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_PRECISION_HIGH);
-    ((daeEnumType*)type)->_strings->append("MAX");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_PRECISION_MAX);
-    atomicTypes.append( type );
-
-    // ENUM: Image_format_hint_range
-    type = new daeEnumType(dae);
-    type->_nameBindings.append("Image_format_hint_range");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("SNORM");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_RANGE_SNORM);
-    ((daeEnumType*)type)->_strings->append("UNORM");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_RANGE_UNORM);
-    ((daeEnumType*)type)->_strings->append("SINT");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_RANGE_SINT);
-    ((daeEnumType*)type)->_strings->append("UINT");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_RANGE_UINT);
-    ((daeEnumType*)type)->_strings->append("FLOAT");
-    ((daeEnumType*)type)->_values->append(IMAGE_FORMAT_HINT_RANGE_FLOAT);
-    atomicTypes.append( type );
-
-    // ENUM: Altitude_mode
-    type = new daeEnumType(dae);
-    type->_nameBindings.append("Altitude_mode");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("absolute");
-    ((daeEnumType*)type)->_values->append(ALTITUDE_MODE_absolute);
-    ((daeEnumType*)type)->_strings->append("relativeToGround");
-    ((daeEnumType*)type)->_values->append(ALTITUDE_MODE_relativeToGround);
-    atomicTypes.append( type );
-
-    // TYPEDEF: Fx_color	//check if this type has an existing base
+    // TYPEDEF: Fx_color_common	//check if this type has an existing base
     type = atomicTypes.get("Float4");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Fx_color");
+        type->_nameBindings.append("Fx_color_common");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Fx_color");
+        type->_nameBindings.append("Fx_color_common");
     }
 
-    // ENUM: Fx_opaque
+    // ENUM: Fx_opaque_enum
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Fx_opaque");
+    type->_nameBindings.append("Fx_opaque_enum");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("A_ONE");
-    ((daeEnumType*)type)->_values->append(FX_OPAQUE_A_ONE);
-    ((daeEnumType*)type)->_strings->append("A_ZERO");
-    ((daeEnumType*)type)->_values->append(FX_OPAQUE_A_ZERO);
-    ((daeEnumType*)type)->_strings->append("RGB_ONE");
-    ((daeEnumType*)type)->_values->append(FX_OPAQUE_RGB_ONE);
+    ((daeEnumType*)type)->_values->append(FX_OPAQUE_ENUM_A_ONE);
     ((daeEnumType*)type)->_strings->append("RGB_ZERO");
-    ((daeEnumType*)type)->_values->append(FX_OPAQUE_RGB_ZERO);
+    ((daeEnumType*)type)->_values->append(FX_OPAQUE_ENUM_RGB_ZERO);
     atomicTypes.append( type );
 
-    // ENUM: Fx_sampler_wrap
+    // ENUM: Fx_surface_type_enum
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Fx_sampler_wrap");
+    type->_nameBindings.append("Fx_surface_type_enum");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("WRAP");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_WRAP);
-    ((daeEnumType*)type)->_strings->append("CLAMP");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_CLAMP);
-    ((daeEnumType*)type)->_strings->append("BORDER");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_BORDER);
-    ((daeEnumType*)type)->_strings->append("MIRROR");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_MIRROR);
-    ((daeEnumType*)type)->_strings->append("MIRROR_ONCE");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_MIRROR_ONCE);
+    ((daeEnumType*)type)->_strings->append("UNTYPED");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_TYPE_ENUM_UNTYPED);
+    ((daeEnumType*)type)->_strings->append("1D");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_TYPE_ENUM_1D);
+    ((daeEnumType*)type)->_strings->append("2D");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_TYPE_ENUM_2D);
+    ((daeEnumType*)type)->_strings->append("3D");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_TYPE_ENUM_3D);
+    ((daeEnumType*)type)->_strings->append("RECT");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_TYPE_ENUM_RECT);
+    ((daeEnumType*)type)->_strings->append("CUBE");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_TYPE_ENUM_CUBE);
+    ((daeEnumType*)type)->_strings->append("DEPTH");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_TYPE_ENUM_DEPTH);
     atomicTypes.append( type );
 
-    // ENUM: Fx_sampler_min_filter
+    // ENUM: Fx_surface_face_enum
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Fx_sampler_min_filter");
+    type->_nameBindings.append("Fx_surface_face_enum");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("NEAREST");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_MIN_FILTER_NEAREST);
-    ((daeEnumType*)type)->_strings->append("LINEAR");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_MIN_FILTER_LINEAR);
-    ((daeEnumType*)type)->_strings->append("ANISOTROPIC");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_MIN_FILTER_ANISOTROPIC);
+    ((daeEnumType*)type)->_strings->append("POSITIVE_X");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FACE_ENUM_POSITIVE_X);
+    ((daeEnumType*)type)->_strings->append("NEGATIVE_X");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FACE_ENUM_NEGATIVE_X);
+    ((daeEnumType*)type)->_strings->append("POSITIVE_Y");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FACE_ENUM_POSITIVE_Y);
+    ((daeEnumType*)type)->_strings->append("NEGATIVE_Y");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FACE_ENUM_NEGATIVE_Y);
+    ((daeEnumType*)type)->_strings->append("POSITIVE_Z");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FACE_ENUM_POSITIVE_Z);
+    ((daeEnumType*)type)->_strings->append("NEGATIVE_Z");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FACE_ENUM_NEGATIVE_Z);
     atomicTypes.append( type );
 
-    // ENUM: Fx_sampler_mag_filter
+    // ENUM: Fx_surface_format_hint_channels_enum
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Fx_sampler_mag_filter");
+    type->_nameBindings.append("Fx_surface_format_hint_channels_enum");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("NEAREST");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_MAG_FILTER_NEAREST);
-    ((daeEnumType*)type)->_strings->append("LINEAR");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_MAG_FILTER_LINEAR);
+    ((daeEnumType*)type)->_strings->append("RGB");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_CHANNELS_ENUM_RGB);
+    ((daeEnumType*)type)->_strings->append("RGBA");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_CHANNELS_ENUM_RGBA);
+    ((daeEnumType*)type)->_strings->append("L");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_CHANNELS_ENUM_L);
+    ((daeEnumType*)type)->_strings->append("LA");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_CHANNELS_ENUM_LA);
+    ((daeEnumType*)type)->_strings->append("D");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_CHANNELS_ENUM_D);
+    ((daeEnumType*)type)->_strings->append("XYZ");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_CHANNELS_ENUM_XYZ);
+    ((daeEnumType*)type)->_strings->append("XYZW");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_CHANNELS_ENUM_XYZW);
     atomicTypes.append( type );
 
-    // ENUM: Fx_sampler_mip_filter
+    // ENUM: Fx_surface_format_hint_precision_enum
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Fx_sampler_mip_filter");
+    type->_nameBindings.append("Fx_surface_format_hint_precision_enum");
+    ((daeEnumType*)type)->_strings = new daeStringRefArray;
+    ((daeEnumType*)type)->_values = new daeEnumArray;
+    ((daeEnumType*)type)->_strings->append("LOW");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_PRECISION_ENUM_LOW);
+    ((daeEnumType*)type)->_strings->append("MID");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_PRECISION_ENUM_MID);
+    ((daeEnumType*)type)->_strings->append("HIGH");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_PRECISION_ENUM_HIGH);
+    atomicTypes.append( type );
+
+    // ENUM: Fx_surface_format_hint_range_enum
+    type = new daeEnumType(dae);
+    type->_nameBindings.append("Fx_surface_format_hint_range_enum");
+    ((daeEnumType*)type)->_strings = new daeStringRefArray;
+    ((daeEnumType*)type)->_values = new daeEnumArray;
+    ((daeEnumType*)type)->_strings->append("SNORM");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_RANGE_ENUM_SNORM);
+    ((daeEnumType*)type)->_strings->append("UNORM");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_RANGE_ENUM_UNORM);
+    ((daeEnumType*)type)->_strings->append("SINT");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_RANGE_ENUM_SINT);
+    ((daeEnumType*)type)->_strings->append("UINT");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_RANGE_ENUM_UINT);
+    ((daeEnumType*)type)->_strings->append("FLOAT");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_RANGE_ENUM_FLOAT);
+    atomicTypes.append( type );
+
+    // ENUM: Fx_surface_format_hint_option_enum
+    type = new daeEnumType(dae);
+    type->_nameBindings.append("Fx_surface_format_hint_option_enum");
+    ((daeEnumType*)type)->_strings = new daeStringRefArray;
+    ((daeEnumType*)type)->_values = new daeEnumArray;
+    ((daeEnumType*)type)->_strings->append("SRGB_GAMMA");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_OPTION_ENUM_SRGB_GAMMA);
+    ((daeEnumType*)type)->_strings->append("NORMALIZED3");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_OPTION_ENUM_NORMALIZED3);
+    ((daeEnumType*)type)->_strings->append("NORMALIZED4");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_OPTION_ENUM_NORMALIZED4);
+    ((daeEnumType*)type)->_strings->append("COMPRESSABLE");
+    ((daeEnumType*)type)->_values->append(FX_SURFACE_FORMAT_HINT_OPTION_ENUM_COMPRESSABLE);
+    atomicTypes.append( type );
+
+    // ENUM: Fx_sampler_wrap_common
+    type = new daeEnumType(dae);
+    type->_nameBindings.append("Fx_sampler_wrap_common");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("NONE");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_MIP_FILTER_NONE);
-    ((daeEnumType*)type)->_strings->append("NEAREST");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_MIP_FILTER_NEAREST);
-    ((daeEnumType*)type)->_strings->append("LINEAR");
-    ((daeEnumType*)type)->_values->append(FX_SAMPLER_MIP_FILTER_LINEAR);
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_COMMON_NONE);
+    ((daeEnumType*)type)->_strings->append("WRAP");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_COMMON_WRAP);
+    ((daeEnumType*)type)->_strings->append("MIRROR");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_COMMON_MIRROR);
+    ((daeEnumType*)type)->_strings->append("CLAMP");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_COMMON_CLAMP);
+    ((daeEnumType*)type)->_strings->append("BORDER");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_WRAP_COMMON_BORDER);
     atomicTypes.append( type );
 
-    // ENUM: Fx_modifier
+    // ENUM: Fx_sampler_filter_common
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Fx_modifier");
+    type->_nameBindings.append("Fx_sampler_filter_common");
+    ((daeEnumType*)type)->_strings = new daeStringRefArray;
+    ((daeEnumType*)type)->_values = new daeEnumArray;
+    ((daeEnumType*)type)->_strings->append("NONE");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_FILTER_COMMON_NONE);
+    ((daeEnumType*)type)->_strings->append("NEAREST");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_FILTER_COMMON_NEAREST);
+    ((daeEnumType*)type)->_strings->append("LINEAR");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_FILTER_COMMON_LINEAR);
+    ((daeEnumType*)type)->_strings->append("NEAREST_MIPMAP_NEAREST");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_FILTER_COMMON_NEAREST_MIPMAP_NEAREST);
+    ((daeEnumType*)type)->_strings->append("LINEAR_MIPMAP_NEAREST");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_FILTER_COMMON_LINEAR_MIPMAP_NEAREST);
+    ((daeEnumType*)type)->_strings->append("NEAREST_MIPMAP_LINEAR");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_FILTER_COMMON_NEAREST_MIPMAP_LINEAR);
+    ((daeEnumType*)type)->_strings->append("LINEAR_MIPMAP_LINEAR");
+    ((daeEnumType*)type)->_values->append(FX_SAMPLER_FILTER_COMMON_LINEAR_MIPMAP_LINEAR);
+    atomicTypes.append( type );
+
+    // ENUM: Fx_modifier_enum_common
+    type = new daeEnumType(dae);
+    type->_nameBindings.append("Fx_modifier_enum_common");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("CONST");
-    ((daeEnumType*)type)->_values->append(FX_MODIFIER_CONST);
+    ((daeEnumType*)type)->_values->append(FX_MODIFIER_ENUM_COMMON_CONST);
     ((daeEnumType*)type)->_strings->append("UNIFORM");
-    ((daeEnumType*)type)->_values->append(FX_MODIFIER_UNIFORM);
+    ((daeEnumType*)type)->_values->append(FX_MODIFIER_ENUM_COMMON_UNIFORM);
     ((daeEnumType*)type)->_strings->append("VARYING");
-    ((daeEnumType*)type)->_values->append(FX_MODIFIER_VARYING);
+    ((daeEnumType*)type)->_values->append(FX_MODIFIER_ENUM_COMMON_VARYING);
     ((daeEnumType*)type)->_strings->append("STATIC");
-    ((daeEnumType*)type)->_values->append(FX_MODIFIER_STATIC);
+    ((daeEnumType*)type)->_values->append(FX_MODIFIER_ENUM_COMMON_STATIC);
     ((daeEnumType*)type)->_strings->append("VOLATILE");
-    ((daeEnumType*)type)->_values->append(FX_MODIFIER_VOLATILE);
+    ((daeEnumType*)type)->_values->append(FX_MODIFIER_ENUM_COMMON_VOLATILE);
     ((daeEnumType*)type)->_strings->append("EXTERN");
-    ((daeEnumType*)type)->_values->append(FX_MODIFIER_EXTERN);
+    ((daeEnumType*)type)->_values->append(FX_MODIFIER_ENUM_COMMON_EXTERN);
     ((daeEnumType*)type)->_strings->append("SHARED");
-    ((daeEnumType*)type)->_values->append(FX_MODIFIER_SHARED);
+    ((daeEnumType*)type)->_values->append(FX_MODIFIER_ENUM_COMMON_SHARED);
     atomicTypes.append( type );
 
-    // TYPEDEF: Fx_draw	//check if this type has an existing base
+    // TYPEDEF: Fx_draw_common	//check if this type has an existing base
     type = atomicTypes.get("xsString");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Fx_draw");
+        type->_nameBindings.append("Fx_draw_common");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Fx_draw");
+        type->_nameBindings.append("Fx_draw_common");
     }
 
-    // ENUM: Fx_pipeline_stage
+    // ENUM: Fx_pipeline_stage_common
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Fx_pipeline_stage");
+    type->_nameBindings.append("Fx_pipeline_stage_common");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("TESSELLATION");
-    ((daeEnumType*)type)->_values->append(FX_PIPELINE_STAGE_TESSELLATION);
-    ((daeEnumType*)type)->_strings->append("VERTEX");
-    ((daeEnumType*)type)->_values->append(FX_PIPELINE_STAGE_VERTEX);
-    ((daeEnumType*)type)->_strings->append("GEOMETRY");
-    ((daeEnumType*)type)->_values->append(FX_PIPELINE_STAGE_GEOMETRY);
-    ((daeEnumType*)type)->_strings->append("FRAGMENT");
-    ((daeEnumType*)type)->_values->append(FX_PIPELINE_STAGE_FRAGMENT);
+    ((daeEnumType*)type)->_strings->append("VERTEXPROGRAM");
+    ((daeEnumType*)type)->_values->append(FX_PIPELINE_STAGE_COMMON_VERTEXPROGRAM);
+    ((daeEnumType*)type)->_strings->append("FRAGMENTPROGRAM");
+    ((daeEnumType*)type)->_values->append(FX_PIPELINE_STAGE_COMMON_FRAGMENTPROGRAM);
+    ((daeEnumType*)type)->_strings->append("VERTEXSHADER");
+    ((daeEnumType*)type)->_values->append(FX_PIPELINE_STAGE_COMMON_VERTEXSHADER);
+    ((daeEnumType*)type)->_strings->append("PIXELSHADER");
+    ((daeEnumType*)type)->_values->append(FX_PIPELINE_STAGE_COMMON_PIXELSHADER);
     atomicTypes.append( type );
 
-    // TYPEDEF: Gl_max_lights_index	//check if this type has an existing base
+    // TYPEDEF: GL_MAX_LIGHTS_index	//check if this type has an existing base
     type = atomicTypes.get("xsNonNegativeInteger");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gl_max_lights_index");
+        type->_nameBindings.append("GL_MAX_LIGHTS_index");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gl_max_lights_index");
+        type->_nameBindings.append("GL_MAX_LIGHTS_index");
     }
 
-    // TYPEDEF: Gl_max_clip_planes_index	//check if this type has an existing base
+    // TYPEDEF: GL_MAX_CLIP_PLANES_index	//check if this type has an existing base
     type = atomicTypes.get("xsNonNegativeInteger");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gl_max_clip_planes_index");
+        type->_nameBindings.append("GL_MAX_CLIP_PLANES_index");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gl_max_clip_planes_index");
+        type->_nameBindings.append("GL_MAX_CLIP_PLANES_index");
     }
 
-    // TYPEDEF: Gl_max_texture_image_units_index	//check if this type has an existing base
+    // TYPEDEF: GL_MAX_TEXTURE_IMAGE_UNITS_index	//check if this type has an existing base
     type = atomicTypes.get("xsNonNegativeInteger");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gl_max_texture_image_units_index");
+        type->_nameBindings.append("GL_MAX_TEXTURE_IMAGE_UNITS_index");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gl_max_texture_image_units_index");
+        type->_nameBindings.append("GL_MAX_TEXTURE_IMAGE_UNITS_index");
     }
 
-    // ENUM: Gl_blend
+    // ENUM: Gl_blend_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_blend");
+    type->_nameBindings.append("Gl_blend_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("ZERO");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_ZERO);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_ZERO);
     ((daeEnumType*)type)->_strings->append("ONE");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_ONE);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_ONE);
     ((daeEnumType*)type)->_strings->append("SRC_COLOR");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_SRC_COLOR);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_SRC_COLOR);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_SRC_COLOR");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_ONE_MINUS_SRC_COLOR);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_ONE_MINUS_SRC_COLOR);
     ((daeEnumType*)type)->_strings->append("DEST_COLOR");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_DEST_COLOR);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_DEST_COLOR);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_DEST_COLOR");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_ONE_MINUS_DEST_COLOR);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_ONE_MINUS_DEST_COLOR);
     ((daeEnumType*)type)->_strings->append("SRC_ALPHA");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_SRC_ALPHA);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_SRC_ALPHA);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_SRC_ALPHA");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_ONE_MINUS_SRC_ALPHA);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_ONE_MINUS_SRC_ALPHA);
     ((daeEnumType*)type)->_strings->append("DST_ALPHA");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_DST_ALPHA);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_DST_ALPHA);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_DST_ALPHA");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_ONE_MINUS_DST_ALPHA);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_ONE_MINUS_DST_ALPHA);
     ((daeEnumType*)type)->_strings->append("CONSTANT_COLOR");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_CONSTANT_COLOR);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_CONSTANT_COLOR);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_CONSTANT_COLOR");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_ONE_MINUS_CONSTANT_COLOR);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_ONE_MINUS_CONSTANT_COLOR);
     ((daeEnumType*)type)->_strings->append("CONSTANT_ALPHA");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_CONSTANT_ALPHA);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_CONSTANT_ALPHA);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_CONSTANT_ALPHA");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_ONE_MINUS_CONSTANT_ALPHA);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_ONE_MINUS_CONSTANT_ALPHA);
     ((daeEnumType*)type)->_strings->append("SRC_ALPHA_SATURATE");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_SRC_ALPHA_SATURATE);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_TYPE_SRC_ALPHA_SATURATE);
     atomicTypes.append( type );
 
-    // ENUM: Gl_face
+    // ENUM: Gl_face_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_face");
+    type->_nameBindings.append("Gl_face_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("FRONT");
-    ((daeEnumType*)type)->_values->append(GL_FACE_FRONT);
+    ((daeEnumType*)type)->_values->append(GL_FACE_TYPE_FRONT);
     ((daeEnumType*)type)->_strings->append("BACK");
-    ((daeEnumType*)type)->_values->append(GL_FACE_BACK);
+    ((daeEnumType*)type)->_values->append(GL_FACE_TYPE_BACK);
     ((daeEnumType*)type)->_strings->append("FRONT_AND_BACK");
-    ((daeEnumType*)type)->_values->append(GL_FACE_FRONT_AND_BACK);
+    ((daeEnumType*)type)->_values->append(GL_FACE_TYPE_FRONT_AND_BACK);
     atomicTypes.append( type );
 
-    // ENUM: Gl_blend_equation
+    // ENUM: Gl_blend_equation_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_blend_equation");
+    type->_nameBindings.append("Gl_blend_equation_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("FUNC_ADD");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_FUNC_ADD);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_TYPE_FUNC_ADD);
     ((daeEnumType*)type)->_strings->append("FUNC_SUBTRACT");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_FUNC_SUBTRACT);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_TYPE_FUNC_SUBTRACT);
     ((daeEnumType*)type)->_strings->append("FUNC_REVERSE_SUBTRACT");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_FUNC_REVERSE_SUBTRACT);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_TYPE_FUNC_REVERSE_SUBTRACT);
     ((daeEnumType*)type)->_strings->append("MIN");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_MIN);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_TYPE_MIN);
     ((daeEnumType*)type)->_strings->append("MAX");
-    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_MAX);
+    ((daeEnumType*)type)->_values->append(GL_BLEND_EQUATION_TYPE_MAX);
     atomicTypes.append( type );
 
-    // ENUM: Gl_func
+    // ENUM: Gl_func_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_func");
+    type->_nameBindings.append("Gl_func_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("NEVER");
-    ((daeEnumType*)type)->_values->append(GL_FUNC_NEVER);
+    ((daeEnumType*)type)->_values->append(GL_FUNC_TYPE_NEVER);
     ((daeEnumType*)type)->_strings->append("LESS");
-    ((daeEnumType*)type)->_values->append(GL_FUNC_LESS);
+    ((daeEnumType*)type)->_values->append(GL_FUNC_TYPE_LESS);
     ((daeEnumType*)type)->_strings->append("LEQUAL");
-    ((daeEnumType*)type)->_values->append(GL_FUNC_LEQUAL);
+    ((daeEnumType*)type)->_values->append(GL_FUNC_TYPE_LEQUAL);
     ((daeEnumType*)type)->_strings->append("EQUAL");
-    ((daeEnumType*)type)->_values->append(GL_FUNC_EQUAL);
+    ((daeEnumType*)type)->_values->append(GL_FUNC_TYPE_EQUAL);
     ((daeEnumType*)type)->_strings->append("GREATER");
-    ((daeEnumType*)type)->_values->append(GL_FUNC_GREATER);
+    ((daeEnumType*)type)->_values->append(GL_FUNC_TYPE_GREATER);
     ((daeEnumType*)type)->_strings->append("NOTEQUAL");
-    ((daeEnumType*)type)->_values->append(GL_FUNC_NOTEQUAL);
+    ((daeEnumType*)type)->_values->append(GL_FUNC_TYPE_NOTEQUAL);
     ((daeEnumType*)type)->_strings->append("GEQUAL");
-    ((daeEnumType*)type)->_values->append(GL_FUNC_GEQUAL);
+    ((daeEnumType*)type)->_values->append(GL_FUNC_TYPE_GEQUAL);
     ((daeEnumType*)type)->_strings->append("ALWAYS");
-    ((daeEnumType*)type)->_values->append(GL_FUNC_ALWAYS);
+    ((daeEnumType*)type)->_values->append(GL_FUNC_TYPE_ALWAYS);
     atomicTypes.append( type );
 
-    // ENUM: Gl_stencil_op
+    // ENUM: Gl_stencil_op_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_stencil_op");
+    type->_nameBindings.append("Gl_stencil_op_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("KEEP");
-    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_KEEP);
+    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_TYPE_KEEP);
     ((daeEnumType*)type)->_strings->append("ZERO");
-    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_ZERO);
+    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_TYPE_ZERO);
     ((daeEnumType*)type)->_strings->append("REPLACE");
-    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_REPLACE);
+    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_TYPE_REPLACE);
     ((daeEnumType*)type)->_strings->append("INCR");
-    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_INCR);
+    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_TYPE_INCR);
     ((daeEnumType*)type)->_strings->append("DECR");
-    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_DECR);
+    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_TYPE_DECR);
     ((daeEnumType*)type)->_strings->append("INVERT");
-    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_INVERT);
+    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_TYPE_INVERT);
     ((daeEnumType*)type)->_strings->append("INCR_WRAP");
-    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_INCR_WRAP);
+    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_TYPE_INCR_WRAP);
     ((daeEnumType*)type)->_strings->append("DECR_WRAP");
-    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_DECR_WRAP);
+    ((daeEnumType*)type)->_values->append(GL_STENCIL_OP_TYPE_DECR_WRAP);
     atomicTypes.append( type );
 
-    // ENUM: Gl_material
+    // ENUM: Gl_material_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_material");
+    type->_nameBindings.append("Gl_material_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("EMISSION");
-    ((daeEnumType*)type)->_values->append(GL_MATERIAL_EMISSION);
+    ((daeEnumType*)type)->_values->append(GL_MATERIAL_TYPE_EMISSION);
     ((daeEnumType*)type)->_strings->append("AMBIENT");
-    ((daeEnumType*)type)->_values->append(GL_MATERIAL_AMBIENT);
+    ((daeEnumType*)type)->_values->append(GL_MATERIAL_TYPE_AMBIENT);
     ((daeEnumType*)type)->_strings->append("DIFFUSE");
-    ((daeEnumType*)type)->_values->append(GL_MATERIAL_DIFFUSE);
+    ((daeEnumType*)type)->_values->append(GL_MATERIAL_TYPE_DIFFUSE);
     ((daeEnumType*)type)->_strings->append("SPECULAR");
-    ((daeEnumType*)type)->_values->append(GL_MATERIAL_SPECULAR);
+    ((daeEnumType*)type)->_values->append(GL_MATERIAL_TYPE_SPECULAR);
     ((daeEnumType*)type)->_strings->append("AMBIENT_AND_DIFFUSE");
-    ((daeEnumType*)type)->_values->append(GL_MATERIAL_AMBIENT_AND_DIFFUSE);
+    ((daeEnumType*)type)->_values->append(GL_MATERIAL_TYPE_AMBIENT_AND_DIFFUSE);
     atomicTypes.append( type );
 
-    // ENUM: Gl_fog
+    // ENUM: Gl_fog_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_fog");
+    type->_nameBindings.append("Gl_fog_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("LINEAR");
-    ((daeEnumType*)type)->_values->append(GL_FOG_LINEAR);
+    ((daeEnumType*)type)->_values->append(GL_FOG_TYPE_LINEAR);
     ((daeEnumType*)type)->_strings->append("EXP");
-    ((daeEnumType*)type)->_values->append(GL_FOG_EXP);
+    ((daeEnumType*)type)->_values->append(GL_FOG_TYPE_EXP);
     ((daeEnumType*)type)->_strings->append("EXP2");
-    ((daeEnumType*)type)->_values->append(GL_FOG_EXP2);
+    ((daeEnumType*)type)->_values->append(GL_FOG_TYPE_EXP2);
     atomicTypes.append( type );
 
-    // ENUM: Gl_fog_coord_src
+    // ENUM: Gl_fog_coord_src_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_fog_coord_src");
+    type->_nameBindings.append("Gl_fog_coord_src_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("FOG_COORDINATE");
-    ((daeEnumType*)type)->_values->append(GL_FOG_COORD_SRC_FOG_COORDINATE);
+    ((daeEnumType*)type)->_values->append(GL_FOG_COORD_SRC_TYPE_FOG_COORDINATE);
     ((daeEnumType*)type)->_strings->append("FRAGMENT_DEPTH");
-    ((daeEnumType*)type)->_values->append(GL_FOG_COORD_SRC_FRAGMENT_DEPTH);
+    ((daeEnumType*)type)->_values->append(GL_FOG_COORD_SRC_TYPE_FRAGMENT_DEPTH);
     atomicTypes.append( type );
 
-    // ENUM: Gl_front_face
+    // ENUM: Gl_front_face_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_front_face");
+    type->_nameBindings.append("Gl_front_face_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("CW");
-    ((daeEnumType*)type)->_values->append(GL_FRONT_FACE_CW);
+    ((daeEnumType*)type)->_values->append(GL_FRONT_FACE_TYPE_CW);
     ((daeEnumType*)type)->_strings->append("CCW");
-    ((daeEnumType*)type)->_values->append(GL_FRONT_FACE_CCW);
+    ((daeEnumType*)type)->_values->append(GL_FRONT_FACE_TYPE_CCW);
     atomicTypes.append( type );
 
-    // ENUM: Gl_light_model_color_control
+    // ENUM: Gl_light_model_color_control_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_light_model_color_control");
+    type->_nameBindings.append("Gl_light_model_color_control_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("SINGLE_COLOR");
-    ((daeEnumType*)type)->_values->append(GL_LIGHT_MODEL_COLOR_CONTROL_SINGLE_COLOR);
+    ((daeEnumType*)type)->_values->append(GL_LIGHT_MODEL_COLOR_CONTROL_TYPE_SINGLE_COLOR);
     ((daeEnumType*)type)->_strings->append("SEPARATE_SPECULAR_COLOR");
-    ((daeEnumType*)type)->_values->append(GL_LIGHT_MODEL_COLOR_CONTROL_SEPARATE_SPECULAR_COLOR);
+    ((daeEnumType*)type)->_values->append(GL_LIGHT_MODEL_COLOR_CONTROL_TYPE_SEPARATE_SPECULAR_COLOR);
     atomicTypes.append( type );
 
-    // ENUM: Gl_logic_op
+    // ENUM: Gl_logic_op_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_logic_op");
+    type->_nameBindings.append("Gl_logic_op_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("CLEAR");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_CLEAR);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_CLEAR);
     ((daeEnumType*)type)->_strings->append("AND");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_AND);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_AND);
     ((daeEnumType*)type)->_strings->append("AND_REVERSE");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_AND_REVERSE);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_AND_REVERSE);
     ((daeEnumType*)type)->_strings->append("COPY");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_COPY);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_COPY);
     ((daeEnumType*)type)->_strings->append("AND_INVERTED");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_AND_INVERTED);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_AND_INVERTED);
     ((daeEnumType*)type)->_strings->append("NOOP");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_NOOP);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_NOOP);
     ((daeEnumType*)type)->_strings->append("XOR");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_XOR);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_XOR);
     ((daeEnumType*)type)->_strings->append("OR");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_OR);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_OR);
     ((daeEnumType*)type)->_strings->append("NOR");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_NOR);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_NOR);
     ((daeEnumType*)type)->_strings->append("EQUIV");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_EQUIV);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_EQUIV);
     ((daeEnumType*)type)->_strings->append("INVERT");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_INVERT);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_INVERT);
     ((daeEnumType*)type)->_strings->append("OR_REVERSE");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_OR_REVERSE);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_OR_REVERSE);
     ((daeEnumType*)type)->_strings->append("COPY_INVERTED");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_COPY_INVERTED);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_COPY_INVERTED);
     ((daeEnumType*)type)->_strings->append("NAND");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_NAND);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_NAND);
     ((daeEnumType*)type)->_strings->append("SET");
-    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_SET);
+    ((daeEnumType*)type)->_values->append(GL_LOGIC_OP_TYPE_SET);
     atomicTypes.append( type );
 
-    // ENUM: Gl_polygon_mode
+    // ENUM: Gl_polygon_mode_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_polygon_mode");
+    type->_nameBindings.append("Gl_polygon_mode_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("POINT");
-    ((daeEnumType*)type)->_values->append(GL_POLYGON_MODE_POINT);
+    ((daeEnumType*)type)->_values->append(GL_POLYGON_MODE_TYPE_POINT);
     ((daeEnumType*)type)->_strings->append("LINE");
-    ((daeEnumType*)type)->_values->append(GL_POLYGON_MODE_LINE);
+    ((daeEnumType*)type)->_values->append(GL_POLYGON_MODE_TYPE_LINE);
     ((daeEnumType*)type)->_strings->append("FILL");
-    ((daeEnumType*)type)->_values->append(GL_POLYGON_MODE_FILL);
+    ((daeEnumType*)type)->_values->append(GL_POLYGON_MODE_TYPE_FILL);
     atomicTypes.append( type );
 
-    // ENUM: Gl_shade_model
+    // ENUM: Gl_shade_model_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gl_shade_model");
+    type->_nameBindings.append("Gl_shade_model_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("FLAT");
-    ((daeEnumType*)type)->_values->append(GL_SHADE_MODEL_FLAT);
+    ((daeEnumType*)type)->_values->append(GL_SHADE_MODEL_TYPE_FLAT);
     ((daeEnumType*)type)->_strings->append("SMOOTH");
-    ((daeEnumType*)type)->_values->append(GL_SHADE_MODEL_SMOOTH);
+    ((daeEnumType*)type)->_values->append(GL_SHADE_MODEL_TYPE_SMOOTH);
     atomicTypes.append( type );
 
-    // TYPEDEF: Gl_alpha_value	//check if this type has an existing base
+    // TYPEDEF: Gl_alpha_value_type	//check if this type has an existing base
     type = atomicTypes.get("xsFloat");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gl_alpha_value");
+        type->_nameBindings.append("Gl_alpha_value_type");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gl_alpha_value");
+        type->_nameBindings.append("Gl_alpha_value_type");
     }
 
     // ENUM: Gl_enumeration
@@ -1307,159 +1125,1611 @@ void registerDomTypes(DAE& dae)
     ((daeEnumType*)type)->_values->append(GL_ENUMERATION_SMOOTH);
     atomicTypes.append( type );
 
-    // TYPEDEF: Gles_max_lights_index	//check if this type has an existing base
-    type = atomicTypes.get("xsNonNegativeInteger");
+    // TYPEDEF: Glsl_float	//check if this type has an existing base
+    type = atomicTypes.get("xsFloat");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gles_max_lights_index");
+        type->_nameBindings.append("Glsl_float");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gles_max_lights_index");
+        type->_nameBindings.append("Glsl_float");
     }
 
-    // TYPEDEF: Gles_max_clip_planes_index	//check if this type has an existing base
-    type = atomicTypes.get("xsNonNegativeInteger");
+    // TYPEDEF: Glsl_int	//check if this type has an existing base
+    type = atomicTypes.get("xsInt");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gles_max_clip_planes_index");
+        type->_nameBindings.append("Glsl_int");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gles_max_clip_planes_index");
+        type->_nameBindings.append("Glsl_int");
     }
 
-    // TYPEDEF: Gles_max_texture_coords_index	//check if this type has an existing base
-    type = atomicTypes.get("xsNonNegativeInteger");
+    // TYPEDEF: Glsl_bool	//check if this type has an existing base
+    type = atomicTypes.get("xsBoolean");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gles_max_texture_coords_index");
+        type->_nameBindings.append("Glsl_bool");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gles_max_texture_coords_index");
+        type->_nameBindings.append("Glsl_bool");
     }
 
-    // TYPEDEF: Gles_max_texture_image_units_index	//check if this type has an existing base
-    type = atomicTypes.get("xsNonNegativeInteger");
+    // TYPEDEF: Glsl_ListOfBool	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_bool");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gles_max_texture_image_units_index");
+        type->_nameBindings.append("Glsl_ListOfBool");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gles_max_texture_image_units_index");
+        type->_nameBindings.append("Glsl_ListOfBool");
     }
 
-    // ENUM: Gles_texenv_mode
+    // TYPEDEF: Glsl_ListOfFloat	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_float");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_ListOfFloat");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_ListOfFloat");
+    }
+
+    // TYPEDEF: Glsl_ListOfInt	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_int");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_ListOfInt");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_ListOfInt");
+    }
+
+    // TYPEDEF: Glsl_bool2	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_bool2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_bool2");
+    }
+
+    // TYPEDEF: Glsl_bool3	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_bool3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_bool3");
+    }
+
+    // TYPEDEF: Glsl_bool4	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_bool4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_bool4");
+    }
+
+    // TYPEDEF: Glsl_float2	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_float2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_float2");
+    }
+
+    // TYPEDEF: Glsl_float3	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_float3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_float3");
+    }
+
+    // TYPEDEF: Glsl_float4	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_float4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_float4");
+    }
+
+    // TYPEDEF: Glsl_float2x2	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_float2x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_float2x2");
+    }
+
+    // TYPEDEF: Glsl_float3x3	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_float3x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_float3x3");
+    }
+
+    // TYPEDEF: Glsl_float4x4	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_float4x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_float4x4");
+    }
+
+    // TYPEDEF: Glsl_int2	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_int2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_int2");
+    }
+
+    // TYPEDEF: Glsl_int3	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_int3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_int3");
+    }
+
+    // TYPEDEF: Glsl_int4	//check if this type has an existing base
+    type = atomicTypes.get("Glsl_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_int4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_int4");
+    }
+
+    // ENUM: Glsl_pipeline_stage
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gles_texenv_mode");
+    type->_nameBindings.append("Glsl_pipeline_stage");
+    ((daeEnumType*)type)->_strings = new daeStringRefArray;
+    ((daeEnumType*)type)->_values = new daeEnumArray;
+    ((daeEnumType*)type)->_strings->append("VERTEXPROGRAM");
+    ((daeEnumType*)type)->_values->append(GLSL_PIPELINE_STAGE_VERTEXPROGRAM);
+    ((daeEnumType*)type)->_strings->append("FRAGMENTPROGRAM");
+    ((daeEnumType*)type)->_values->append(GLSL_PIPELINE_STAGE_FRAGMENTPROGRAM);
+    atomicTypes.append( type );
+
+    // TYPEDEF: Glsl_identifier	//check if this type has an existing base
+    type = atomicTypes.get("xsToken");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Glsl_identifier");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Glsl_identifier");
+    }
+
+    // TYPEDEF: Cg_bool	//check if this type has an existing base
+    type = atomicTypes.get("xsBoolean");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool");
+    }
+
+    // TYPEDEF: Cg_float	//check if this type has an existing base
+    type = atomicTypes.get("xsFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float");
+    }
+
+    // TYPEDEF: Cg_int	//check if this type has an existing base
+    type = atomicTypes.get("xsInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int");
+    }
+
+    // TYPEDEF: Cg_half	//check if this type has an existing base
+    type = atomicTypes.get("xsFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half");
+    }
+
+    // TYPEDEF: Cg_fixed	//check if this type has an existing base
+    type = atomicTypes.get("xsFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed");
+    }
+
+    // TYPEDEF: Cg_bool1	//check if this type has an existing base
+    type = atomicTypes.get("xsBoolean");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool1");
+    }
+
+    // TYPEDEF: Cg_float1	//check if this type has an existing base
+    type = atomicTypes.get("xsFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float1");
+    }
+
+    // TYPEDEF: Cg_int1	//check if this type has an existing base
+    type = atomicTypes.get("xsInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int1");
+    }
+
+    // TYPEDEF: Cg_half1	//check if this type has an existing base
+    type = atomicTypes.get("xsFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half1");
+    }
+
+    // TYPEDEF: Cg_fixed1	//check if this type has an existing base
+    type = atomicTypes.get("xsFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed1");
+    }
+
+    // TYPEDEF: Cg_ListOfBool	//check if this type has an existing base
+    type = atomicTypes.get("Cg_bool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_ListOfBool");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_ListOfBool");
+    }
+
+    // TYPEDEF: Cg_ListOfFloat	//check if this type has an existing base
+    type = atomicTypes.get("Cg_float");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_ListOfFloat");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_ListOfFloat");
+    }
+
+    // TYPEDEF: Cg_ListOfInt	//check if this type has an existing base
+    type = atomicTypes.get("Cg_int");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_ListOfInt");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_ListOfInt");
+    }
+
+    // TYPEDEF: Cg_ListOfHalf	//check if this type has an existing base
+    type = atomicTypes.get("Cg_half");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_ListOfHalf");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_ListOfHalf");
+    }
+
+    // TYPEDEF: Cg_ListOfFixed	//check if this type has an existing base
+    type = atomicTypes.get("Cg_fixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_ListOfFixed");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_ListOfFixed");
+    }
+
+    // TYPEDEF: Cg_bool2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool2");
+    }
+
+    // TYPEDEF: Cg_bool3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool3");
+    }
+
+    // TYPEDEF: Cg_bool4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool4");
+    }
+
+    // TYPEDEF: Cg_bool1x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool1x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool1x1");
+    }
+
+    // TYPEDEF: Cg_bool1x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool1x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool1x2");
+    }
+
+    // TYPEDEF: Cg_bool1x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool1x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool1x3");
+    }
+
+    // TYPEDEF: Cg_bool1x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool1x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool1x4");
+    }
+
+    // TYPEDEF: Cg_bool2x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool2x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool2x1");
+    }
+
+    // TYPEDEF: Cg_bool2x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool2x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool2x2");
+    }
+
+    // TYPEDEF: Cg_bool2x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool2x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool2x3");
+    }
+
+    // TYPEDEF: Cg_bool2x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool2x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool2x4");
+    }
+
+    // TYPEDEF: Cg_bool3x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool3x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool3x1");
+    }
+
+    // TYPEDEF: Cg_bool3x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool3x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool3x2");
+    }
+
+    // TYPEDEF: Cg_bool3x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool3x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool3x3");
+    }
+
+    // TYPEDEF: Cg_bool3x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool3x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool3x4");
+    }
+
+    // TYPEDEF: Cg_bool4x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool4x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool4x1");
+    }
+
+    // TYPEDEF: Cg_bool4x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool4x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool4x2");
+    }
+
+    // TYPEDEF: Cg_bool4x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool4x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool4x3");
+    }
+
+    // TYPEDEF: Cg_bool4x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfBool");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_bool4x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_bool4x4");
+    }
+
+    // TYPEDEF: Cg_float2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float2");
+    }
+
+    // TYPEDEF: Cg_float3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float3");
+    }
+
+    // TYPEDEF: Cg_float4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float4");
+    }
+
+    // TYPEDEF: Cg_float1x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float1x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float1x1");
+    }
+
+    // TYPEDEF: Cg_float1x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float1x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float1x2");
+    }
+
+    // TYPEDEF: Cg_float1x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float1x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float1x3");
+    }
+
+    // TYPEDEF: Cg_float1x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float1x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float1x4");
+    }
+
+    // TYPEDEF: Cg_float2x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float2x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float2x1");
+    }
+
+    // TYPEDEF: Cg_float2x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float2x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float2x2");
+    }
+
+    // TYPEDEF: Cg_float2x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float2x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float2x3");
+    }
+
+    // TYPEDEF: Cg_float2x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float2x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float2x4");
+    }
+
+    // TYPEDEF: Cg_float3x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float3x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float3x1");
+    }
+
+    // TYPEDEF: Cg_float3x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float3x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float3x2");
+    }
+
+    // TYPEDEF: Cg_float3x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float3x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float3x3");
+    }
+
+    // TYPEDEF: Cg_float3x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float3x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float3x4");
+    }
+
+    // TYPEDEF: Cg_float4x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float4x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float4x1");
+    }
+
+    // TYPEDEF: Cg_float4x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float4x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float4x2");
+    }
+
+    // TYPEDEF: Cg_float4x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float4x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float4x3");
+    }
+
+    // TYPEDEF: Cg_float4x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFloat");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_float4x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_float4x4");
+    }
+
+    // TYPEDEF: Cg_int2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int2");
+    }
+
+    // TYPEDEF: Cg_int3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int3");
+    }
+
+    // TYPEDEF: Cg_int4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int4");
+    }
+
+    // TYPEDEF: Cg_int1x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int1x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int1x1");
+    }
+
+    // TYPEDEF: Cg_int1x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int1x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int1x2");
+    }
+
+    // TYPEDEF: Cg_int1x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int1x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int1x3");
+    }
+
+    // TYPEDEF: Cg_int1x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int1x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int1x4");
+    }
+
+    // TYPEDEF: Cg_int2x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int2x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int2x1");
+    }
+
+    // TYPEDEF: Cg_int2x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int2x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int2x2");
+    }
+
+    // TYPEDEF: Cg_int2x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int2x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int2x3");
+    }
+
+    // TYPEDEF: Cg_int2x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int2x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int2x4");
+    }
+
+    // TYPEDEF: Cg_int3x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int3x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int3x1");
+    }
+
+    // TYPEDEF: Cg_int3x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int3x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int3x2");
+    }
+
+    // TYPEDEF: Cg_int3x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int3x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int3x3");
+    }
+
+    // TYPEDEF: Cg_int3x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int3x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int3x4");
+    }
+
+    // TYPEDEF: Cg_int4x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int4x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int4x1");
+    }
+
+    // TYPEDEF: Cg_int4x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int4x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int4x2");
+    }
+
+    // TYPEDEF: Cg_int4x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int4x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int4x3");
+    }
+
+    // TYPEDEF: Cg_int4x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfInt");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_int4x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_int4x4");
+    }
+
+    // TYPEDEF: Cg_half2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half2");
+    }
+
+    // TYPEDEF: Cg_half3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half3");
+    }
+
+    // TYPEDEF: Cg_half4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half4");
+    }
+
+    // TYPEDEF: Cg_half1x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half1x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half1x1");
+    }
+
+    // TYPEDEF: Cg_half1x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half1x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half1x2");
+    }
+
+    // TYPEDEF: Cg_half1x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half1x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half1x3");
+    }
+
+    // TYPEDEF: Cg_half1x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half1x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half1x4");
+    }
+
+    // TYPEDEF: Cg_half2x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half2x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half2x1");
+    }
+
+    // TYPEDEF: Cg_half2x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half2x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half2x2");
+    }
+
+    // TYPEDEF: Cg_half2x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half2x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half2x3");
+    }
+
+    // TYPEDEF: Cg_half2x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half2x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half2x4");
+    }
+
+    // TYPEDEF: Cg_half3x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half3x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half3x1");
+    }
+
+    // TYPEDEF: Cg_half3x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half3x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half3x2");
+    }
+
+    // TYPEDEF: Cg_half3x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half3x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half3x3");
+    }
+
+    // TYPEDEF: Cg_half3x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half3x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half3x4");
+    }
+
+    // TYPEDEF: Cg_half4x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half4x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half4x1");
+    }
+
+    // TYPEDEF: Cg_half4x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half4x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half4x2");
+    }
+
+    // TYPEDEF: Cg_half4x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half4x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half4x3");
+    }
+
+    // TYPEDEF: Cg_half4x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfHalf");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_half4x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_half4x4");
+    }
+
+    // TYPEDEF: Cg_fixed2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed2");
+    }
+
+    // TYPEDEF: Cg_fixed3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed3");
+    }
+
+    // TYPEDEF: Cg_fixed4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed4");
+    }
+
+    // TYPEDEF: Cg_fixed1x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed1x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed1x1");
+    }
+
+    // TYPEDEF: Cg_fixed1x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed1x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed1x2");
+    }
+
+    // TYPEDEF: Cg_fixed1x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed1x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed1x3");
+    }
+
+    // TYPEDEF: Cg_fixed1x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed1x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed1x4");
+    }
+
+    // TYPEDEF: Cg_fixed2x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed2x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed2x1");
+    }
+
+    // TYPEDEF: Cg_fixed2x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed2x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed2x2");
+    }
+
+    // TYPEDEF: Cg_fixed2x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed2x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed2x3");
+    }
+
+    // TYPEDEF: Cg_fixed2x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed2x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed2x4");
+    }
+
+    // TYPEDEF: Cg_fixed3x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed3x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed3x1");
+    }
+
+    // TYPEDEF: Cg_fixed3x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed3x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed3x2");
+    }
+
+    // TYPEDEF: Cg_fixed3x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed3x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed3x3");
+    }
+
+    // TYPEDEF: Cg_fixed3x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed3x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed3x4");
+    }
+
+    // TYPEDEF: Cg_fixed4x1	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed4x1");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed4x1");
+    }
+
+    // TYPEDEF: Cg_fixed4x2	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed4x2");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed4x2");
+    }
+
+    // TYPEDEF: Cg_fixed4x3	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed4x3");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed4x3");
+    }
+
+    // TYPEDEF: Cg_fixed4x4	//check if this type has an existing base
+    type = atomicTypes.get("Cg_ListOfFixed");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_fixed4x4");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_fixed4x4");
+    }
+
+    // ENUM: Cg_pipeline_stage
+    type = new daeEnumType(dae);
+    type->_nameBindings.append("Cg_pipeline_stage");
+    ((daeEnumType*)type)->_strings = new daeStringRefArray;
+    ((daeEnumType*)type)->_values = new daeEnumArray;
+    ((daeEnumType*)type)->_strings->append("VERTEX");
+    ((daeEnumType*)type)->_values->append(CG_PIPELINE_STAGE_VERTEX);
+    ((daeEnumType*)type)->_strings->append("FRAGMENT");
+    ((daeEnumType*)type)->_values->append(CG_PIPELINE_STAGE_FRAGMENT);
+    atomicTypes.append( type );
+
+    // TYPEDEF: Cg_identifier	//check if this type has an existing base
+    type = atomicTypes.get("xsToken");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("Cg_identifier");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("Cg_identifier");
+    }
+
+    // TYPEDEF: GLES_MAX_LIGHTS_index	//check if this type has an existing base
+    type = atomicTypes.get("xsNonNegativeInteger");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("GLES_MAX_LIGHTS_index");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("GLES_MAX_LIGHTS_index");
+    }
+
+    // TYPEDEF: GLES_MAX_CLIP_PLANES_index	//check if this type has an existing base
+    type = atomicTypes.get("xsNonNegativeInteger");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("GLES_MAX_CLIP_PLANES_index");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("GLES_MAX_CLIP_PLANES_index");
+    }
+
+    // TYPEDEF: GLES_MAX_TEXTURE_COORDS_index	//check if this type has an existing base
+    type = atomicTypes.get("xsNonNegativeInteger");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("GLES_MAX_TEXTURE_COORDS_index");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("GLES_MAX_TEXTURE_COORDS_index");
+    }
+
+    // TYPEDEF: GLES_MAX_TEXTURE_IMAGE_UNITS_index	//check if this type has an existing base
+    type = atomicTypes.get("xsNonNegativeInteger");
+    if ( type == NULL ) { //register as a raw type
+        type = new daeRawRefType(dae);
+        type->_nameBindings.append("GLES_MAX_TEXTURE_IMAGE_UNITS_index");
+        atomicTypes.append( type );
+    }
+    else { //add binding to existing type
+        type->_nameBindings.append("GLES_MAX_TEXTURE_IMAGE_UNITS_index");
+    }
+
+    // ENUM: Gles_texenv_mode_enums
+    type = new daeEnumType(dae);
+    type->_nameBindings.append("Gles_texenv_mode_enums");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("REPLACE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_REPLACE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_ENUMS_REPLACE);
     ((daeEnumType*)type)->_strings->append("MODULATE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_MODULATE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_ENUMS_MODULATE);
     ((daeEnumType*)type)->_strings->append("DECAL");
-    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_DECAL);
+    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_ENUMS_DECAL);
     ((daeEnumType*)type)->_strings->append("BLEND");
-    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_BLEND);
+    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_ENUMS_BLEND);
     ((daeEnumType*)type)->_strings->append("ADD");
-    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_ADD);
+    ((daeEnumType*)type)->_values->append(GLES_TEXENV_MODE_ENUMS_ADD);
     atomicTypes.append( type );
 
-    // ENUM: Gles_texcombiner_operator_rgb
+    // ENUM: Gles_texcombiner_operatorRGB_enums
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gles_texcombiner_operator_rgb");
+    type->_nameBindings.append("Gles_texcombiner_operatorRGB_enums");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("REPLACE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_RGB_REPLACE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORRGB_ENUMS_REPLACE);
     ((daeEnumType*)type)->_strings->append("MODULATE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_RGB_MODULATE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORRGB_ENUMS_MODULATE);
     ((daeEnumType*)type)->_strings->append("ADD");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_RGB_ADD);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORRGB_ENUMS_ADD);
     ((daeEnumType*)type)->_strings->append("ADD_SIGNED");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_RGB_ADD_SIGNED);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORRGB_ENUMS_ADD_SIGNED);
     ((daeEnumType*)type)->_strings->append("INTERPOLATE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_RGB_INTERPOLATE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORRGB_ENUMS_INTERPOLATE);
     ((daeEnumType*)type)->_strings->append("SUBTRACT");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_RGB_SUBTRACT);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORRGB_ENUMS_SUBTRACT);
     ((daeEnumType*)type)->_strings->append("DOT3_RGB");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_RGB_DOT3_RGB);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORRGB_ENUMS_DOT3_RGB);
     ((daeEnumType*)type)->_strings->append("DOT3_RGBA");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_RGB_DOT3_RGBA);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORRGB_ENUMS_DOT3_RGBA);
     atomicTypes.append( type );
 
-    // ENUM: Gles_texcombiner_operator_alpha
+    // ENUM: Gles_texcombiner_operatorAlpha_enums
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gles_texcombiner_operator_alpha");
+    type->_nameBindings.append("Gles_texcombiner_operatorAlpha_enums");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("REPLACE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_ALPHA_REPLACE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORALPHA_ENUMS_REPLACE);
     ((daeEnumType*)type)->_strings->append("MODULATE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_ALPHA_MODULATE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORALPHA_ENUMS_MODULATE);
     ((daeEnumType*)type)->_strings->append("ADD");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_ALPHA_ADD);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORALPHA_ENUMS_ADD);
     ((daeEnumType*)type)->_strings->append("ADD_SIGNED");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_ALPHA_ADD_SIGNED);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORALPHA_ENUMS_ADD_SIGNED);
     ((daeEnumType*)type)->_strings->append("INTERPOLATE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_ALPHA_INTERPOLATE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORALPHA_ENUMS_INTERPOLATE);
     ((daeEnumType*)type)->_strings->append("SUBTRACT");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATOR_ALPHA_SUBTRACT);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERATORALPHA_ENUMS_SUBTRACT);
     atomicTypes.append( type );
 
-    // ENUM: Gles_texcombiner_source
+    // ENUM: Gles_texcombiner_source_enums
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gles_texcombiner_source");
+    type->_nameBindings.append("Gles_texcombiner_source_enums");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("TEXTURE");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_SOURCE_TEXTURE);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_SOURCE_ENUMS_TEXTURE);
     ((daeEnumType*)type)->_strings->append("CONSTANT");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_SOURCE_CONSTANT);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_SOURCE_ENUMS_CONSTANT);
     ((daeEnumType*)type)->_strings->append("PRIMARY");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_SOURCE_PRIMARY);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_SOURCE_ENUMS_PRIMARY);
     ((daeEnumType*)type)->_strings->append("PREVIOUS");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_SOURCE_PREVIOUS);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_SOURCE_ENUMS_PREVIOUS);
     atomicTypes.append( type );
 
-    // ENUM: Gles_texcombiner_operand_rgb
+    // ENUM: Gles_texcombiner_operandRGB_enums
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gles_texcombiner_operand_rgb");
+    type->_nameBindings.append("Gles_texcombiner_operandRGB_enums");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("SRC_COLOR");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERAND_RGB_SRC_COLOR);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERANDRGB_ENUMS_SRC_COLOR);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_SRC_COLOR");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERAND_RGB_ONE_MINUS_SRC_COLOR);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERANDRGB_ENUMS_ONE_MINUS_SRC_COLOR);
     ((daeEnumType*)type)->_strings->append("SRC_ALPHA");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERAND_RGB_SRC_ALPHA);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERANDRGB_ENUMS_SRC_ALPHA);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_SRC_ALPHA");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERAND_RGB_ONE_MINUS_SRC_ALPHA);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERANDRGB_ENUMS_ONE_MINUS_SRC_ALPHA);
     atomicTypes.append( type );
 
-    // ENUM: Gles_texcombiner_operand_alpha
+    // ENUM: Gles_texcombiner_operandAlpha_enums
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gles_texcombiner_operand_alpha");
+    type->_nameBindings.append("Gles_texcombiner_operandAlpha_enums");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("SRC_ALPHA");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERAND_ALPHA_SRC_ALPHA);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERANDALPHA_ENUMS_SRC_ALPHA);
     ((daeEnumType*)type)->_strings->append("ONE_MINUS_SRC_ALPHA");
-    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERAND_ALPHA_ONE_MINUS_SRC_ALPHA);
+    ((daeEnumType*)type)->_values->append(GLES_TEXCOMBINER_OPERANDALPHA_ENUMS_ONE_MINUS_SRC_ALPHA);
     atomicTypes.append( type );
 
-    // TYPEDEF: Gles_texcombiner_argument_index	//check if this type has an existing base
+    // TYPEDEF: Gles_texcombiner_argument_index_type	//check if this type has an existing base
     type = atomicTypes.get("xsNonNegativeInteger");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Gles_texcombiner_argument_index");
+        type->_nameBindings.append("Gles_texcombiner_argument_index_type");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Gles_texcombiner_argument_index");
+        type->_nameBindings.append("Gles_texcombiner_argument_index_type");
     }
 
     // ENUM: Gles_sampler_wrap
@@ -1477,23 +2747,23 @@ void registerDomTypes(DAE& dae)
     ((daeEnumType*)type)->_values->append(GLES_SAMPLER_WRAP_MIRRORED_REPEAT);
     atomicTypes.append( type );
 
-    // ENUM: Gles_stencil_op
+    // ENUM: Gles_stencil_op_type
     type = new daeEnumType(dae);
-    type->_nameBindings.append("Gles_stencil_op");
+    type->_nameBindings.append("Gles_stencil_op_type");
     ((daeEnumType*)type)->_strings = new daeStringRefArray;
     ((daeEnumType*)type)->_values = new daeEnumArray;
     ((daeEnumType*)type)->_strings->append("KEEP");
-    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_KEEP);
+    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_TYPE_KEEP);
     ((daeEnumType*)type)->_strings->append("ZERO");
-    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_ZERO);
+    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_TYPE_ZERO);
     ((daeEnumType*)type)->_strings->append("REPLACE");
-    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_REPLACE);
+    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_TYPE_REPLACE);
     ((daeEnumType*)type)->_strings->append("INCR");
-    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_INCR);
+    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_TYPE_INCR);
     ((daeEnumType*)type)->_strings->append("DECR");
-    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_DECR);
+    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_TYPE_DECR);
     ((daeEnumType*)type)->_strings->append("INVERT");
-    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_INVERT);
+    ((daeEnumType*)type)->_values->append(GLES_STENCIL_OP_TYPE_INVERT);
     atomicTypes.append( type );
 
     // ENUM: Gles_enumeration
@@ -1631,27 +2901,27 @@ void registerDomTypes(DAE& dae)
     ((daeEnumType*)type)->_values->append(GLES_ENUMERATION_SMOOTH);
     atomicTypes.append( type );
 
-    // ENUM: Spring
-    type = new daeEnumType(dae);
-    type->_nameBindings.append("Spring");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
-    ((daeEnumType*)type)->_strings->append("LINEAR");
-    ((daeEnumType*)type)->_values->append(SPRING_LINEAR);
-    ((daeEnumType*)type)->_strings->append("ANGULAR");
-    ((daeEnumType*)type)->_values->append(SPRING_ANGULAR);
-    atomicTypes.append( type );
-
-    // TYPEDEF: Dynamic_limit	//check if this type has an existing base
-    type = atomicTypes.get("Float2");
+    // TYPEDEF: Gles_rendertarget_common	//check if this type has an existing base
+    type = atomicTypes.get("xsNCName");
     if ( type == NULL ) { //register as a raw type
         type = new daeRawRefType(dae);
-        type->_nameBindings.append("Dynamic_limit");
+        type->_nameBindings.append("Gles_rendertarget_common");
         atomicTypes.append( type );
     }
     else { //add binding to existing type
-        type->_nameBindings.append("Dynamic_limit");
+        type->_nameBindings.append("Gles_rendertarget_common");
     }
+
+    // ENUM: SpringType
+    type = new daeEnumType(dae);
+    type->_nameBindings.append("SpringType");
+    ((daeEnumType*)type)->_strings = new daeStringRefArray;
+    ((daeEnumType*)type)->_values = new daeEnumArray;
+    ((daeEnumType*)type)->_strings->append("LINEAR");
+    ((daeEnumType*)type)->_values->append(SPRINGTYPE_LINEAR);
+    ((daeEnumType*)type)->_strings->append("ANGULAR");
+    ((daeEnumType*)type)->_values->append(SPRINGTYPE_ANGULAR);
+    atomicTypes.append( type );
 
 }
 
@@ -1664,7 +2934,7 @@ daeMetaElement* registerDomElements(DAE& dae)
 }
 
 daeInt colladaTypeCount() {
-    return 969;
+    return 815;
 }
 
-} // ColladaDOM150
+}

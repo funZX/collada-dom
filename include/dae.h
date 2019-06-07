@@ -44,7 +44,7 @@
 #include <dae/daeSIDResolver.h>
 
 // needed for backward compatibility
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 class domCOLLADA;
 typedef daeSmartRef<domCOLLADA> domCOLLADARef;
 }
@@ -104,17 +104,17 @@ public:
     // Opens a document from memory, returning null on failure. Cast to ColladaDOMXXX::domCOLLADA
     virtual domCOLLADAProxy* openFromMemory(const std::string& path, daeString buffer);
 
-
-    virtual ColladaDOM150::domCOLLADA* add150(const std::string& path) {
-        return (ColladaDOM150::domCOLLADA*)add(path);
+    virtual ColladaDOM141::domCOLLADA* add141(const std::string& path) {
+        return (ColladaDOM141::domCOLLADA*)add(path);
     }
-    virtual ColladaDOM150::domCOLLADA* open150(const std::string& path) {
-        return (ColladaDOM150::domCOLLADA*)open(path);
+    virtual ColladaDOM141::domCOLLADA* open141(const std::string& path) {
+        return (ColladaDOM141::domCOLLADA*)open(path);
     }
     // Opens a document from memory, returning null on failure.
-    virtual ColladaDOM150::domCOLLADA* openFromMemory150(const std::string& path, daeString buffer) {
-        return (ColladaDOM150::domCOLLADA*)openFromMemory(path,buffer);
+    virtual ColladaDOM141::domCOLLADA* openFromMemory141(const std::string& path, daeString buffer) {
+        return (ColladaDOM141::domCOLLADA*)openFromMemory(path,buffer);
     }
+
 
 
     // Write a document to the path specified by the document's URI, returning false on failure.
@@ -143,13 +143,13 @@ public:
     // Set the root daeElement object corresponding to a particular document, returning false on failure.
     virtual bool        setRoot(const std::string& path, domCOLLADAProxy* root);
 
-
-    virtual ColladaDOM150::domCOLLADA* getRoot150(const std::string& path) {
-        return (ColladaDOM150::domCOLLADA*)getRoot(path);
+    virtual ColladaDOM141::domCOLLADA* getRoot141(const std::string& path) {
+        return (ColladaDOM141::domCOLLADA*)getRoot(path);
     }
-    virtual bool        setRoot150(const std::string& path, ColladaDOM150::domCOLLADA* root) {
+    virtual bool        setRoot141(const std::string& path, ColladaDOM141::domCOLLADA* root) {
         return setRoot(path,(domCOLLADAProxy*)root);
     }
+
 
 
     // Returns the Collada version, i.e. 1.4, 1.5, etc. Note that this _isn't_ the
@@ -226,13 +226,13 @@ public:
     virtual domCOLLADAProxy* getDom(daeString uri); // use getRoot, Cast to ColladaDOMXXX::domCOLLADA
     virtual daeInt      setDom(daeString uri, domCOLLADAProxy* dom); // use setRoot,
 
-
-    virtual ColladaDOM150::domCOLLADA* getDom150(daeString uri) {
-        return (ColladaDOM150::domCOLLADA*)getDom(uri);
+    virtual ColladaDOM141::domCOLLADA* getDom141(daeString uri) {
+        return (ColladaDOM141::domCOLLADA*)getDom(uri);
     }
-    virtual daeInt      setDom150(daeString uri, ColladaDOM150::domCOLLADA* dom) {
+    virtual daeInt      setDom141(daeString uri, ColladaDOM141::domCOLLADA* dom) {
         return setDom(uri,(domCOLLADAProxy*)dom);
     }
+
 
     virtual daeString getColladaNamespace();
 

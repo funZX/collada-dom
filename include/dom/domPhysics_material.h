@@ -1,17 +1,25 @@
-#ifndef __dom150Physics_material_h__
-#define __dom150Physics_material_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Physics_material_h__
+#define __dom141Physics_material_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domAsset.h>
-#include <dom/domTargetable_float.h>
 #include <dom/domTechnique.h>
 #include <dom/domExtra.h>
+#include <dom/domTargetableFloat.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * This element defines the physical properties of an object. It contains
@@ -22,7 +30,7 @@ class domPhysics_material : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHYSICS_MATERIAL; }
-	static daeInt ID() { return 297; }
+	static daeInt ID() { return 791; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_common;
@@ -38,40 +46,40 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static daeInt ID() { return 298; }
+		static daeInt ID() { return 792; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
 /**
  * Dynamic friction coefficient @see domDynamic_friction
  */
-		domTargetable_floatRef elemDynamic_friction;
+		domTargetableFloatRef elemDynamic_friction;
 /**
  * The proportion of the kinetic energy preserved in the impact (typically
  * ranges from 0.0 to 1.0) @see domRestitution
  */
-		domTargetable_floatRef elemRestitution;
+		domTargetableFloatRef elemRestitution;
 /**
  * Static friction coefficient @see domStatic_friction
  */
-		domTargetable_floatRef elemStatic_friction;
+		domTargetableFloatRef elemStatic_friction;
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the dynamic_friction element.
 		 * @return a daeSmartRef to the dynamic_friction element.
 		 */
-		const domTargetable_floatRef getDynamic_friction() const { return elemDynamic_friction; }
+		const domTargetableFloatRef getDynamic_friction() const { return elemDynamic_friction; }
 		/**
 		 * Gets the restitution element.
 		 * @return a daeSmartRef to the restitution element.
 		 */
-		const domTargetable_floatRef getRestitution() const { return elemRestitution; }
+		const domTargetableFloatRef getRestitution() const { return elemRestitution; }
 		/**
 		 * Gets the static_friction element.
 		 * @return a daeSmartRef to the static_friction element.
 		 */
-		const domTargetable_floatRef getStatic_friction() const { return elemStatic_friction; }
+		const domTargetableFloatRef getStatic_friction() const { return elemStatic_friction; }
 	protected:
 		/**
 		 * Constructor
@@ -111,11 +119,11 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The physics_material element may contain an asset element. @see domAsset
+ *  The physics_material element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
@@ -125,12 +133,12 @@ protected:  // Elements
  */
 	domTechnique_commonRef elemTechnique_common;
 /**
- * This element may contain any number of non-common profile techniques. @see
- * domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -144,20 +152,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -218,5 +226,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

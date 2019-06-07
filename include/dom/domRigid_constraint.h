@@ -1,19 +1,27 @@
-#ifndef __dom150Rigid_constraint_h__
-#define __dom150Rigid_constraint_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Rigid_constraint_h__
+#define __dom141Rigid_constraint_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
+#include <dom/domTechnique.h>
+#include <dom/domExtra.h>
 #include <dom/domTranslate.h>
 #include <dom/domRotate.h>
-#include <dom/domExtra.h>
-#include <dom/domTargetable_float3.h>
-#include <dom/domTargetable_float.h>
-#include <dom/domTechnique.h>
+#include <dom/domTargetableFloat3.h>
+#include <dom/domTargetableFloat.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * This element allows for connecting components, such as rigid_body into
@@ -23,7 +31,7 @@ class domRigid_constraint : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RIGID_CONSTRAINT; }
-	static daeInt ID() { return 374; }
+	static daeInt ID() { return 801; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domRef_attachment;
@@ -38,26 +46,26 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF_ATTACHMENT; }
-		static daeInt ID() { return 375; }
+		static daeInt ID() { return 802; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 /**
- *  The "rigid_body" attribute is a relative reference to a rigid-body within
- * the same  physics_model. 
+ *  The “rigid_body” attribute is a relative reference to a rigid-body
+ * within the same  physics_model. 
  */
 		xsAnyURI attrRigid_body;
 
 	protected:  // Elements
 /**
- * Allows you to "position" the attachment point. @see domTranslate
+ *  Allows you to "position" the attachment point.  @see domTranslate
  */
 		domTranslate_Array elemTranslate_array;
 /**
- * Allows you to "position" the attachment point. @see domRotate
+ *  Allows you to "position" the attachment point.  @see domRotate
  */
 		domRotate_Array elemRotate_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 		/**
@@ -178,26 +186,26 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT; }
-		static daeInt ID() { return 376; }
+		static daeInt ID() { return 803; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 /**
- *  The "rigid_body" attribute is a relative reference to a rigid-body within
- * the same physics_model. 
+ *  The “rigid_body” attribute is a relative reference to a rigid-body
+ * within the same physics_model. 
  */
 		xsAnyURI attrRigid_body;
 
 	protected:  // Elements
 /**
- * Allows you to "position" the attachment point. @see domTranslate
+ *  Allows you to "position" the attachment point.  @see domTranslate
  */
 		domTranslate_Array elemTranslate_array;
 /**
- * Allows you to "position" the attachment point. @see domRotate
+ *  Allows you to "position" the attachment point.  @see domRotate
  */
 		domRotate_Array elemRotate_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 		/**
@@ -319,7 +327,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static daeInt ID() { return 377; }
+		static daeInt ID() { return 804; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domEnabled;
@@ -328,14 +336,14 @@ public:
 		typedef daeTArray<domEnabledRef> domEnabled_Array;
 
 /**
- * If false, the constraint doesn't exert any force or influence on the rigid
- * bodies.
+ * If false, the constraint doesn’t exert any force or influence on the
+ * rigid bodies.
  */
 		class domEnabled : public daeElement
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ENABLED; }
-			static daeInt ID() { return 378; }
+			static daeInt ID() { return 805; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attribute
 /**
@@ -343,37 +351,37 @@ public:
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-			domSid attrSid;
+			xsNCName attrSid;
 
+		protected:  // Value
+			/**
+			 * The domBool value of the text data of this element. 
+			 */
+			domBool _value;
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the sid attribute.
-			 * @return Returns a domSid of the sid attribute.
+			 * @return Returns a xsNCName of the sid attribute.
 			 */
-			domSid getSid() const { return attrSid; }
+			xsNCName getSid() const { return attrSid; }
 			/**
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
-			 * @return a xsBoolean of the value.
+			 * @return a domBool of the value.
 			 */
-			xsBoolean& getValue() { return _value; }
+			domBool getValue() const { return _value; }
 			/**
 			 * Sets the _value of this element.
 			 * @param val The new value for this element.
 			 */
-			void setValue( const xsBoolean& val ) { _value = val; }
+			void setValue( domBool val ) { _value = val; }
 
-		protected:  // Value
-			/**
-			 * The xsBoolean value of the text data of this element. 
-			 */
-			xsBoolean _value;
 		protected:
 			/**
 			 * Constructor
@@ -414,7 +422,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INTERPENETRATE; }
-			static daeInt ID() { return 379; }
+			static daeInt ID() { return 806; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attribute
 /**
@@ -422,37 +430,37 @@ public:
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-			domSid attrSid;
+			xsNCName attrSid;
 
+		protected:  // Value
+			/**
+			 * The domBool value of the text data of this element. 
+			 */
+			domBool _value;
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the sid attribute.
-			 * @return Returns a domSid of the sid attribute.
+			 * @return Returns a xsNCName of the sid attribute.
 			 */
-			domSid getSid() const { return attrSid; }
+			xsNCName getSid() const { return attrSid; }
 			/**
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
-			 * @return a xsBoolean of the value.
+			 * @return a domBool of the value.
 			 */
-			xsBoolean& getValue() { return _value; }
+			domBool getValue() const { return _value; }
 			/**
 			 * Sets the _value of this element.
 			 * @param val The new value for this element.
 			 */
-			void setValue( const xsBoolean& val ) { _value = val; }
+			void setValue( domBool val ) { _value = val; }
 
-		protected:  // Value
-			/**
-			 * The xsBoolean value of the text data of this element. 
-			 */
-			xsBoolean _value;
 		protected:
 			/**
 			 * Constructor
@@ -494,7 +502,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIMITS; }
-			static daeInt ID() { return 380; }
+			static daeInt ID() { return 807; }
 			virtual daeInt typeID() const { return ID(); }
 		public:
 			class domSwing_cone_and_twist;
@@ -504,37 +512,37 @@ public:
 
 /**
  * The swing_cone_and_twist element describes the angular limits along each
- * rotation axis in degrees. The the X and Y limits describe a "swing cone"
- * and the Z limits describe the "twist angle" range
+ * rotation axis in degrees. The the X and Y limits describe a “swing cone”
+ * and the Z limits describe the “twist angle” range
  */
 			class domSwing_cone_and_twist : public daeElement
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SWING_CONE_AND_TWIST; }
-				static daeInt ID() { return 381; }
+				static daeInt ID() { return 808; }
 				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Elements
 /**
  * The minimum values for the limit. @see domMin
  */
-				domTargetable_float3Ref elemMin;
+				domTargetableFloat3Ref elemMin;
 /**
  * The maximum values for the limit. @see domMax
  */
-				domTargetable_float3Ref elemMax;
+				domTargetableFloat3Ref elemMax;
 
 			public:	//Accessors and Mutators
 				/**
 				 * Gets the min element.
 				 * @return a daeSmartRef to the min element.
 				 */
-				const domTargetable_float3Ref getMin() const { return elemMin; }
+				const domTargetableFloat3Ref getMin() const { return elemMin; }
 				/**
 				 * Gets the max element.
 				 * @return a daeSmartRef to the max element.
 				 */
-				const domTargetable_float3Ref getMax() const { return elemMax; }
+				const domTargetableFloat3Ref getMax() const { return elemMax; }
 			protected:
 				/**
 				 * Constructor
@@ -575,30 +583,30 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
-				static daeInt ID() { return 382; }
+				static daeInt ID() { return 809; }
 				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Elements
 /**
  * The minimum values for the limit. @see domMin
  */
-				domTargetable_float3Ref elemMin;
+				domTargetableFloat3Ref elemMin;
 /**
  * The maximum values for the limit. @see domMax
  */
-				domTargetable_float3Ref elemMax;
+				domTargetableFloat3Ref elemMax;
 
 			public:	//Accessors and Mutators
 				/**
 				 * Gets the min element.
 				 * @return a daeSmartRef to the min element.
 				 */
-				const domTargetable_float3Ref getMin() const { return elemMin; }
+				const domTargetableFloat3Ref getMin() const { return elemMin; }
 				/**
 				 * Gets the max element.
 				 * @return a daeSmartRef to the max element.
 				 */
-				const domTargetable_float3Ref getMax() const { return elemMax; }
+				const domTargetableFloat3Ref getMax() const { return elemMax; }
 			protected:
 				/**
 				 * Constructor
@@ -632,8 +640,8 @@ public:
 		protected:  // Elements
 /**
  * The swing_cone_and_twist element describes the angular limits along each
- * rotation axis in degrees. The the X and Y limits describe a "swing cone"
- * and the Z limits describe the "twist angle" range @see domSwing_cone_and_twist
+ * rotation axis in degrees. The the X and Y limits describe a “swing cone”
+ * and the Z limits describe the “twist angle” range @see domSwing_cone_and_twist
  */
 			domSwing_cone_and_twistRef elemSwing_cone_and_twist;
 /**
@@ -687,13 +695,13 @@ public:
 		typedef daeTArray<domSpringRef> domSpring_Array;
 
 /**
- * Spring, based on distance ("LINEAR") or angle ("ANGULAR").
+ * Spring, based on distance (“LINEAR”) or angle (“ANGULAR”).
  */
 		class domSpring : public daeElement
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPRING; }
-			static daeInt ID() { return 383; }
+			static daeInt ID() { return 810; }
 			virtual daeInt typeID() const { return ID(); }
 		public:
 			class domAngular;
@@ -708,7 +716,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANGULAR; }
-				static daeInt ID() { return 384; }
+				static daeInt ID() { return 811; }
 				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Elements
@@ -716,32 +724,32 @@ public:
  * The stiffness (also called spring coefficient) has units of force/angle
  * in degrees. @see domStiffness
  */
-				domTargetable_floatRef elemStiffness;
+				domTargetableFloatRef elemStiffness;
 /**
  * The spring damping coefficient. @see domDamping
  */
-				domTargetable_floatRef elemDamping;
+				domTargetableFloatRef elemDamping;
 /**
  * The spring's target or resting distance. @see domTarget_value
  */
-				domTargetable_floatRef elemTarget_value;
+				domTargetableFloatRef elemTarget_value;
 
 			public:	//Accessors and Mutators
 				/**
 				 * Gets the stiffness element.
 				 * @return a daeSmartRef to the stiffness element.
 				 */
-				const domTargetable_floatRef getStiffness() const { return elemStiffness; }
+				const domTargetableFloatRef getStiffness() const { return elemStiffness; }
 				/**
 				 * Gets the damping element.
 				 * @return a daeSmartRef to the damping element.
 				 */
-				const domTargetable_floatRef getDamping() const { return elemDamping; }
+				const domTargetableFloatRef getDamping() const { return elemDamping; }
 				/**
 				 * Gets the target_value element.
 				 * @return a daeSmartRef to the target_value element.
 				 */
-				const domTargetable_floatRef getTarget_value() const { return elemTarget_value; }
+				const domTargetableFloatRef getTarget_value() const { return elemTarget_value; }
 			protected:
 				/**
 				 * Constructor
@@ -782,7 +790,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
-				static daeInt ID() { return 385; }
+				static daeInt ID() { return 812; }
 				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Elements
@@ -790,32 +798,32 @@ public:
  * The stiffness (also called spring coefficient) has units of force/distance.
  * @see domStiffness
  */
-				domTargetable_floatRef elemStiffness;
+				domTargetableFloatRef elemStiffness;
 /**
  * The spring damping coefficient. @see domDamping
  */
-				domTargetable_floatRef elemDamping;
+				domTargetableFloatRef elemDamping;
 /**
  * The spring's target or resting distance. @see domTarget_value
  */
-				domTargetable_floatRef elemTarget_value;
+				domTargetableFloatRef elemTarget_value;
 
 			public:	//Accessors and Mutators
 				/**
 				 * Gets the stiffness element.
 				 * @return a daeSmartRef to the stiffness element.
 				 */
-				const domTargetable_floatRef getStiffness() const { return elemStiffness; }
+				const domTargetableFloatRef getStiffness() const { return elemStiffness; }
 				/**
 				 * Gets the damping element.
 				 * @return a daeSmartRef to the damping element.
 				 */
-				const domTargetable_floatRef getDamping() const { return elemDamping; }
+				const domTargetableFloatRef getDamping() const { return elemDamping; }
 				/**
 				 * Gets the target_value element.
 				 * @return a daeSmartRef to the target_value element.
 				 */
-				const domTargetable_floatRef getTarget_value() const { return elemTarget_value; }
+				const domTargetableFloatRef getTarget_value() const { return elemTarget_value; }
 			protected:
 				/**
 				 * Constructor
@@ -899,8 +907,8 @@ public:
 
 	protected:  // Elements
 /**
- * If false, the constraint doesn't exert any force or influence on the rigid
- * bodies. @see domEnabled
+ * If false, the constraint doesn’t exert any force or influence on the
+ * rigid bodies. @see domEnabled
  */
 		domEnabledRef elemEnabled;
 /**
@@ -913,7 +921,8 @@ public:
  */
 		domLimitsRef elemLimits;
 /**
- * Spring, based on distance ("LINEAR") or angle ("ANGULAR"). @see domSpring
+ * Spring, based on distance (“LINEAR”) or angle (“ANGULAR”). @see
+ * domSpring
  */
 		domSpringRef elemSpring;
 
@@ -973,11 +982,11 @@ protected:  // Attributes
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-	domSid attrSid;
+	xsNCName attrSid;
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
@@ -996,37 +1005,37 @@ protected:  // Elements
  */
 	domTechnique_commonRef elemTechnique_common;
 /**
- * This element may contain any number of non-common profile techniques. @see
- * domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
 public:	//Accessors and Mutators
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the ref_attachment element.
@@ -1092,5 +1101,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

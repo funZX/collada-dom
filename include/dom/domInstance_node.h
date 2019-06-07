@@ -1,30 +1,34 @@
-#ifndef __dom150Instance_node_h__
-#define __dom150Instance_node_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Instance_node_h__
+#define __dom141Instance_node_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domInstance_with_extra.h>
+#include <dom/domInstanceWithExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The instance_node element declares the instantiation of a COLLADA node
  * resource.
  */
-class domInstance_node : public domInstance_with_extra
+class domInstance_node : public daeElement, public domInstanceWithExtra_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_NODE; }
-	static daeInt ID() { return 111; }
+	static daeInt ID() { return 700; }
 	virtual daeInt typeID() const { return ID(); }
-protected:  // Attribute
-	xsAnyURI attrProxy;
 
-
-public:	//Accessors and Mutators
 	/**
 	 * Gets the url attribute.
 	 * @return Returns a xsAnyURI reference of the url attribute.
@@ -39,61 +43,40 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 	/**
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( xsString atUrl ) { attrUrl = atUrl; }
+	void setUrl( xsString atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
-
-	/**
-	 * Gets the proxy attribute.
-	 * @return Returns a xsAnyURI reference of the proxy attribute.
-	 */
-	xsAnyURI &getProxy() { return attrProxy; }
-	/**
-	 * Gets the proxy attribute.
-	 * @return Returns a constant xsAnyURI reference of the proxy attribute.
-	 */
-	const xsAnyURI &getProxy() const { return attrProxy; }
-	/**
-	 * Sets the proxy attribute.
-	 * @param atProxy The new value for the proxy attribute.
-	 */
-	void setProxy( const xsAnyURI &atProxy ) { attrProxy = atProxy; }
-	/**
-	 * Sets the proxy attribute.
-	 * @param atProxy The new value for the proxy attribute.
-	 */
-	void setProxy( xsString atProxy ) { attrProxy = atProxy; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_node(DAE& dae) : domInstance_with_extra(dae), attrProxy(dae, *this) {}
+	domInstance_node(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */
@@ -118,5 +101,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

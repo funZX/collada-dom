@@ -17,74 +17,74 @@
 
 daeMetaElement* initializeDomMeta(DAE& dae, const char* specversion)
 {
-    if( specversion == NULL || strcmp(specversion,"1.5.0") == 0 ) {
-        ColladaDOM150::registerDomTypes(dae);
-        return ColladaDOM150::registerDomElements(dae);
+    if( specversion == NULL || strcmp(specversion,"1.4.1") == 0 ) {
+        ColladaDOM141::registerDomTypes(dae);
+        return ColladaDOM141::registerDomElements(dae);
     }
     return NULL;
 }
 
 daeInt GetColladaTypeCount(const char* specversion)
 {
-    if( specversion == NULL || strcmp(specversion,"1.5.0") == 0 ) {
-        return ColladaDOM150::colladaTypeCount();
+    if( specversion == NULL || strcmp(specversion,"1.4.1") == 0 ) {
+        return ColladaDOM141::colladaTypeCount();
     }
     return 0;
 }
 
 daeString GetCOLLADA_VERSION(const char* specversion)
 {
-    if( specversion == NULL || strcmp(specversion,"1.5.0") == 0 ) {
-        return ColladaDOM150::COLLADA_VERSION;
+    if( specversion == NULL || strcmp(specversion,"1.4.1") == 0 ) {
+        return ColladaDOM141::COLLADA_VERSION;
     }
     return "";
 }
 
 daeString GetCOLLADA_NAMESPACE(const char* specversion)
 {
-    if( specversion == NULL || strcmp(specversion,"1.5.0") == 0 ) {
-        return ColladaDOM150::COLLADA_NAMESPACE;
+    if( specversion == NULL || strcmp(specversion,"1.4.1") == 0 ) {
+        return ColladaDOM141::COLLADA_NAMESPACE;
     }
     return "";
 }
 
 daeMetaElement * registerElementAny(DAE& dae)
 {
-    if( strcmp(dae.getDomVersion(),"1.5.0") == 0 ) {
-        return ColladaDOM150::domAny::registerElement(dae);
+    if( strcmp(dae.getDomVersion(),"1.4.1") == 0 ) {
+        return ColladaDOM141::domAny::registerElement(dae);
     }
     return NULL;
 }
 
 daeInt getDomAnyID(DAE& dae)
 {
-    if( strcmp(dae.getDomVersion(),"1.5.0") == 0 ) {
-        return ColladaDOM150::domAny::ID();
+    if( strcmp(dae.getDomVersion(),"1.4.1") == 0 ) {
+        return ColladaDOM141::domAny::ID();
     }
     return NULL;
 }
 
 daeInt getDomSourceID(DAE& dae)
 {
-    if( strcmp(dae.getDomVersion(),"1.5.0") == 0 ) {
-        return ColladaDOM150::domSource::ID();
+    if( strcmp(dae.getDomVersion(),"1.4.1") == 0 ) {
+        return ColladaDOM141::domSource::ID();
     }
     return NULL;
 }
 
 daeInt getDomCOLLADAID(const char* specversion)
 {
-    if( specversion == NULL || strcmp(specversion,"1.5.0") == 0 ) {
-        return ColladaDOM150::domCOLLADA::ID();
+    if( specversion == NULL || strcmp(specversion,"1.4.1") == 0 ) {
+        return ColladaDOM141::domCOLLADA::ID();
     }
     return NULL;
 }
 
 void copyElementAny(daeElementRef dstAny, daeElement* srcAny)
 {
-    if( strcmp(srcAny->getDAE()->getDomVersion(),"1.5.0") == 0 ) {
-        ColladaDOM150::domAny* thisAny = (ColladaDOM150::domAny*)srcAny;
-        ColladaDOM150::domAny* retAny = (ColladaDOM150::domAny*)dstAny.cast();
+    if( strcmp(srcAny->getDAE()->getDomVersion(),"1.4.1") == 0 ) {
+        ColladaDOM141::domAny* thisAny = (ColladaDOM141::domAny*)srcAny;
+        ColladaDOM141::domAny* retAny = (ColladaDOM141::domAny*)dstAny.cast();
         for (daeUInt i = 0; i < (daeUInt)thisAny->getAttributeCount(); i++)
             retAny->setAttribute(thisAny->getAttributeName(i), thisAny->getAttributeValue(i));
         retAny->setValue(thisAny->getValue());
@@ -93,31 +93,30 @@ void copyElementAny(daeElementRef dstAny, daeElement* srcAny)
 
 daeString COLLADA_ELEMENT_TECHNIQUE_COMMON(DAE& dae)
 {
-    if( strcmp(dae.getDomVersion(),"1.5.0") == 0 ) {
-        return ColladaDOM150::COLLADA_ELEMENT_TECHNIQUE_COMMON;
+    if( strcmp(dae.getDomVersion(),"1.4.1") == 0 ) {
+        return ColladaDOM141::COLLADA_ELEMENT_TECHNIQUE_COMMON;
     }
     return daeString();
 }
 
 daeString COLLADA_ELEMENT_TECHNIQUE(DAE& dae)
 {
-    if( strcmp(dae.getDomVersion(),"1.5.0") == 0 ) {
-        return ColladaDOM150::COLLADA_ELEMENT_TECHNIQUE;
+    if( strcmp(dae.getDomVersion(),"1.4.1") == 0 ) {
+        return ColladaDOM141::COLLADA_ELEMENT_TECHNIQUE;
     }
     return daeString();
 }
 
 daeDoubleArray* getDomSourceFloatArray(daeElement* elt)
 {
-    if( strcmp(elt->getDAE()->getDomVersion(),"1.5.0") == 0 ) {
-        if( elt->typeID() == ColladaDOM150::domSource::ID() ) {
-            ColladaDOM150::domFloat_array* floatArray = ((ColladaDOM150::domSource*)elt)->getFloat_array();
+    if( strcmp(elt->getDAE()->getDomVersion(),"1.4.1") == 0 ) {
+        if( elt->typeID() == ColladaDOM141::domSource::ID() ) {
+            ColladaDOM141::domFloat_array* floatArray = ((ColladaDOM141::domSource*)elt)->getFloat_array();
             if( floatArray != NULL ) {
                 return (daeDoubleArray*)floatArray->getCharDataObject()->get(floatArray);
             }
         }
         return NULL;
     }
-
     return NULL;
 }

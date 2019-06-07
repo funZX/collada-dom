@@ -1,16 +1,24 @@
-#ifndef __dom150Polygons_h__
-#define __dom150Polygons_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Polygons_h__
+#define __dom141Polygons_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domInput_local_offset.h>
 #include <dom/domP.h>
 #include <dom/domExtra.h>
+#include <dom/domInputLocalOffset.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The polygons element provides the information needed to bind vertex attributes
@@ -22,7 +30,7 @@ class domPolygons : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGONS; }
-	static daeInt ID() { return 29; }
+	static daeInt ID() { return 620; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domPh;
@@ -31,14 +39,13 @@ public:
 	typedef daeTArray<domPhRef> domPh_Array;
 
 /**
- * The ph element may occur any number of times. It describes a polygon with
- * holes.
+ * The ph element descripes a polygon with holes.
  */
 	class domPh : public daeElement
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PH; }
-		static daeInt ID() { return 30; }
+		static daeInt ID() { return 621; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domH;
@@ -54,27 +61,32 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::H; }
-			static daeInt ID() { return 31; }
+			static daeInt ID() { return 622; }
 			virtual daeInt typeID() const { return ID(); }
-
-
-		public:	//Accessors and Mutators
-			/**
-			 * Gets the value of this element.
-			 * @return a domList_of_uints of the value.
-			 */
-			domList_of_uints& getValue() { return _value; }
-			/**
-			 * Sets the _value of this element.
-			 * @param val The new value for this element.
-			 */
-			void setValue( const domList_of_uints& val ) { _value = val; }
 
 		protected:  // Value
 			/**
-			 * The domList_of_uints value of the text data of this element. 
+			 * The domListOfUInts value of the text data of this element. 
 			 */
-			domList_of_uints _value;
+			domListOfUInts _value;
+
+		public:	//Accessors and Mutators
+			/**
+			 * Gets the _value array.
+			 * @return Returns a domListOfUInts reference of the _value array.
+			 */
+			domListOfUInts &getValue() { return _value; }
+			/**
+			 * Gets the _value array.
+			 * @return Returns a constant domListOfUInts reference of the _value array.
+			 */
+			const domListOfUInts &getValue() const { return _value; }
+			/**
+			 * Sets the _value array.
+			 * @param val The new value for the _value array.
+			 */
+			void setValue( const domListOfUInts &val ) { _value = val; }
+
 		protected:
 			/**
 			 * Constructor
@@ -107,7 +119,7 @@ public:
 
 	protected:  // Elements
 /**
- * There may only be one p element. @see domP
+ *  Theere may only be one p element.  @see domP
  */
 		domPRef elemP;
 /**
@@ -165,7 +177,7 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The count attribute indicates the number of polygon primitives. Required
  * attribute. 
@@ -184,18 +196,17 @@ protected:  // Elements
  * The input element may occur any number of times. This input is a local
  * input with the  offset and set attributes. @see domInput
  */
-	domInput_local_offset_Array elemInput_array;
+	domInputLocalOffset_Array elemInput_array;
 /**
- * The p element may occur any number of times. @see domP
+ *  The p element may occur any number of times.  @see domP
  */
 	domP_Array elemP_array;
 /**
- * The ph element may occur any number of times. It describes a polygon with
- * holes. @see domPh
+ * The ph element descripes a polygon with holes. @see domPh
  */
 	domPh_Array elemPh_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 	/**
@@ -216,14 +227,14 @@ protected:  // Elements
 public:	//Accessors and Mutators
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the count attribute.
@@ -234,7 +245,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( domUint atCount ) { attrCount = atCount; }
+	void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the material attribute.
@@ -245,18 +256,18 @@ public:	//Accessors and Mutators
 	 * Sets the material attribute.
 	 * @param atMaterial The new value for the material attribute.
 	 */
-	void setMaterial( xsNCName atMaterial ) { *(daeStringRef*)&attrMaterial = atMaterial;}
+	void setMaterial( xsNCName atMaterial ) { *(daeStringRef*)&attrMaterial = atMaterial; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the input element array.
 	 * @return Returns a reference to the array of input elements.
 	 */
-	domInput_local_offset_Array &getInput_array() { return elemInput_array; }
+	domInputLocalOffset_Array &getInput_array() { return elemInput_array; }
 	/**
 	 * Gets the input element array.
 	 * @return Returns a constant reference to the array of input elements.
 	 */
-	const domInput_local_offset_Array &getInput_array() const { return elemInput_array; }
+	const domInputLocalOffset_Array &getInput_array() const { return elemInput_array; }
 	/**
 	 * Gets the p element array.
 	 * @return Returns a reference to the array of p elements.
@@ -327,5 +338,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

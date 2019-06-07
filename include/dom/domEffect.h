@@ -1,18 +1,27 @@
-#ifndef __dom150Effect_h__
-#define __dom150Effect_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Effect_h__
+#define __dom141Effect_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domFx_profile.h>
 #include <dom/domAsset.h>
-#include <dom/domFx_annotate.h>
-#include <dom/domFx_newparam.h>
+#include <dom/domImage.h>
+#include <dom/domFx_profile_abstract.h>
 #include <dom/domExtra.h>
+#include <dom/domFx_annotate_common.h>
+#include <dom/domFx_newparam_common.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * A self contained description of a shader effect.
@@ -21,7 +30,7 @@ class domEffect : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EFFECT; }
-	static daeInt ID() { return 279; }
+	static daeInt ID() { return 728; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -33,28 +42,46 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The effect element may contain an asset element. @see domAsset
+ *  The effect element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
  * The annotate element allows you to specify an annotation on this effect.
  * @see domAnnotate
  */
-	domFx_annotate_Array elemAnnotate_array;
+	domFx_annotate_common_Array elemAnnotate_array;
+/**
+ *  The image element allows you to create image resources which can be shared
+ * by multipe profiles.  @see domImage
+ */
+	domImage_Array elemImage_array;
 /**
  * The newparam element allows you to create new effect parameters which can
  * be shared by multipe profiles. @see domNewparam
  */
-	domFx_newparam_Array elemNewparam_array;
-	domFx_profile_Array elemFx_profile_array;
+	domFx_newparam_common_Array elemNewparam_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  This is the substituion group hook which allows you to swap in other COLLADA
+ * FX profiles.  @see domFx_profile_abstract
+ */
+	domFx_profile_abstract_Array elemFx_profile_abstract_array;
+/**
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
+	/**
+	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
+	 */
+	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
+
 
 public:	//Accessors and Mutators
 	/**
@@ -66,20 +93,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -90,32 +117,42 @@ public:	//Accessors and Mutators
 	 * Gets the annotate element array.
 	 * @return Returns a reference to the array of annotate elements.
 	 */
-	domFx_annotate_Array &getAnnotate_array() { return elemAnnotate_array; }
+	domFx_annotate_common_Array &getAnnotate_array() { return elemAnnotate_array; }
 	/**
 	 * Gets the annotate element array.
 	 * @return Returns a constant reference to the array of annotate elements.
 	 */
-	const domFx_annotate_Array &getAnnotate_array() const { return elemAnnotate_array; }
+	const domFx_annotate_common_Array &getAnnotate_array() const { return elemAnnotate_array; }
+	/**
+	 * Gets the image element array.
+	 * @return Returns a reference to the array of image elements.
+	 */
+	domImage_Array &getImage_array() { return elemImage_array; }
+	/**
+	 * Gets the image element array.
+	 * @return Returns a constant reference to the array of image elements.
+	 */
+	const domImage_Array &getImage_array() const { return elemImage_array; }
 	/**
 	 * Gets the newparam element array.
 	 * @return Returns a reference to the array of newparam elements.
 	 */
-	domFx_newparam_Array &getNewparam_array() { return elemNewparam_array; }
+	domFx_newparam_common_Array &getNewparam_array() { return elemNewparam_array; }
 	/**
 	 * Gets the newparam element array.
 	 * @return Returns a constant reference to the array of newparam elements.
 	 */
-	const domFx_newparam_Array &getNewparam_array() const { return elemNewparam_array; }
+	const domFx_newparam_common_Array &getNewparam_array() const { return elemNewparam_array; }
 	/**
-	 * Gets the fx_profile element array.
-	 * @return Returns a reference to the array of fx_profile elements.
+	 * Gets the fx_profile_abstract element array.
+	 * @return Returns a reference to the array of fx_profile_abstract elements.
 	 */
-	domFx_profile_Array &getFx_profile_array() { return elemFx_profile_array; }
+	domFx_profile_abstract_Array &getFx_profile_abstract_array() { return elemFx_profile_abstract_array; }
 	/**
-	 * Gets the fx_profile element array.
-	 * @return Returns a constant reference to the array of fx_profile elements.
+	 * Gets the fx_profile_abstract element array.
+	 * @return Returns a constant reference to the array of fx_profile_abstract elements.
 	 */
-	const domFx_profile_Array &getFx_profile_array() const { return elemFx_profile_array; }
+	const domFx_profile_abstract_Array &getFx_profile_abstract_array() const { return elemFx_profile_abstract_array; }
 	/**
 	 * Gets the extra element array.
 	 * @return Returns a reference to the array of extra elements.
@@ -126,11 +163,22 @@ public:	//Accessors and Mutators
 	 * @return Returns a constant reference to the array of extra elements.
 	 */
 	const domExtra_Array &getExtra_array() const { return elemExtra_array; }
+	/**
+	 * Gets the _contents array.
+	 * @return Returns a reference to the _contents element array.
+	 */
+	daeElementRefArray &getContents() { return _contents; }
+	/**
+	 * Gets the _contents array.
+	 * @return Returns a constant reference to the _contents element array.
+	 */
+	const daeElementRefArray &getContents() const { return _contents; }
+
 protected:
 	/**
 	 * Constructor
 	 */
-	domEffect(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemAnnotate_array(), elemNewparam_array(), elemFx_profile_array(), elemExtra_array() {}
+	domEffect(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemAnnotate_array(), elemImage_array(), elemNewparam_array(), elemFx_profile_abstract_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -155,5 +203,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

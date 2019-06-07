@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domAnimation_clip.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domAnimation_clip::create(DAE& dae)
 {
@@ -42,22 +50,16 @@ domAnimation_clip::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 1, -1 );
 	mea->setName( "instance_animation" );
 	mea->setOffset( daeOffsetOf(domAnimation_clip,elemInstance_animation_array) );
-	mea->setElementType( domInstance_with_extra::registerElement(dae) );
+	mea->setElementType( domInstanceWithExtra::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
-	mea->setName( "instance_formula" );
-	mea->setOffset( daeOffsetOf(domAnimation_clip,elemInstance_formula_array) );
-	mea->setElementType( domInstance_formula::registerElement(dae) );
-	cm->appendChild( mea );
-
-	mea = new daeMetaElementArrayAttribute( meta, cm, 3, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domAnimation_clip,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
 
-	cm->setMaxOrdinal( 3 );
+	cm->setMaxOrdinal( 2 );
 	meta->setCMRoot( cm );	
 
 	//	Add attribute: id
@@ -75,7 +77,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domAnimation_clip , attrName ));
 		ma->setContainer( meta );
 	
@@ -86,7 +88,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "start" );
-		ma->setType( dae.getAtomicTypes().get("Float"));
+		ma->setType( dae.getAtomicTypes().get("xsDouble"));
 		ma->setOffset( daeOffsetOf( domAnimation_clip , attrStart ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0.0");
@@ -98,7 +100,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "end" );
-		ma->setType( dae.getAtomicTypes().get("Float"));
+		ma->setType( dae.getAtomicTypes().get("xsDouble"));
 		ma->setOffset( daeOffsetOf( domAnimation_clip , attrEnd ));
 		ma->setContainer( meta );
 	
@@ -111,4 +113,4 @@ domAnimation_clip::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

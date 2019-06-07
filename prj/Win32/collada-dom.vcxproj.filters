@@ -143,6 +143,12 @@
     <ClInclude Include="..\..\include\dae\domAny.h">
       <Filter>Header Files\dae</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\modules\daeSTLDatabase.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\modules\stdErrPlugin.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\dom\domAccessor.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
@@ -155,22 +161,7 @@
     <ClInclude Include="..\..\include\dom\domAny.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domArticulated_system.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domAsset.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domAxis.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domAxis_constraint.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domBind_joint_axis.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domBind_kinematics_model.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domBind_material.h">
@@ -182,61 +173,73 @@
     <ClInclude Include="..\..\include\dom\domBox.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domBrep.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domCamera.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domCapsule.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCg_array.h">
+    <ClInclude Include="..\..\include\dom\domCg_connect_param.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_newarray_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domCg_newparam.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCg_param.h">
+    <ClInclude Include="..\..\include\dom\domCg_param_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCg_pass.h">
+    <ClInclude Include="..\..\include\dom\domCg_sampler1D.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_sampler2D.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_sampler3D.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_samplerCUBE.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_samplerDEPTH.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_samplerRECT.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_setarray_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domCg_setparam.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCg_user.h">
+    <ClInclude Include="..\..\include\dom\domCg_setparam_simple.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_setuser_type.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domCg_surface_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domChannel.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCircle.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domCOLLADA.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCommon_bool_or_param.h">
+    <ClInclude Include="..\..\include\dom\domCommon_color_or_texture_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCommon_float_or_param.h">
+    <ClInclude Include="..\..\include\dom\domCommon_float_or_param_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCommon_float2_or_param.h">
+    <ClInclude Include="..\..\include\dom\domCommon_newparam_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCommon_int_or_param.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCommon_param.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCommon_sidref_or_param.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCone.h">
+    <ClInclude Include="..\..\include\dom\domCommon_transparent_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domConstants.h">
@@ -248,16 +251,7 @@
     <ClInclude Include="..\..\include\dom\domConvex_mesh.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCurve.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domCurves.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domCylinder.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domEdges.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domEffect.h">
@@ -266,16 +260,10 @@
     <ClInclude Include="..\..\include\dom\domElements.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domEllipse.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domEllipsoid.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domExtra.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFaces.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domFloat_array.h">
@@ -284,202 +272,184 @@
     <ClInclude Include="..\..\include\dom\domForce_field.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFormula.h">
+    <ClInclude Include="..\..\include\dom\domFx_annotate_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFormula_newparam.h">
+    <ClInclude Include="..\..\include\dom\domFx_annotate_type_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFormula_setparam.h">
+    <ClInclude Include="..\..\include\dom\domFx_basic_type_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFormula_technique.h">
+    <ClInclude Include="..\..\include\dom\domFx_clearcolor_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_annotate.h">
+    <ClInclude Include="..\..\include\dom\domFx_cleardepth_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_clearcolor.h">
+    <ClInclude Include="..\..\include\dom\domFx_clearstencil_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_cleardepth.h">
+    <ClInclude Include="..\..\include\dom\domFx_code_profile.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_clearstencil.h">
+    <ClInclude Include="..\..\include\dom\domFx_colortarget_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_code.h">
+    <ClInclude Include="..\..\include\dom\domFx_depthtarget_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_colortarget.h">
+    <ClInclude Include="..\..\include\dom\domFx_include_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_common_color_or_texture.h">
+    <ClInclude Include="..\..\include\dom\domFx_newparam_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_common_float_or_param.h">
+    <ClInclude Include="..\..\include\dom\domFx_profile_abstract.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_common_newparam.h">
+    <ClInclude Include="..\..\include\dom\domFx_sampler1D_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_common_transparent.h">
+    <ClInclude Include="..\..\include\dom\domFx_sampler2D_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_depthtarget.h">
+    <ClInclude Include="..\..\include\dom\domFx_sampler3D_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_include.h">
+    <ClInclude Include="..\..\include\dom\domFx_samplerCUBE_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_newparam.h">
+    <ClInclude Include="..\..\include\dom\domFx_samplerDEPTH_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_profile.h">
+    <ClInclude Include="..\..\include\dom\domFx_samplerRECT_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_rendertarget.h">
+    <ClInclude Include="..\..\include\dom\domFx_stenciltarget_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_sampler.h">
+    <ClInclude Include="..\..\include\dom\domFx_surface_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_sampler_states.h">
+    <ClInclude Include="..\..\include\dom\domFx_surface_format_hint_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_sampler1D.h">
+    <ClInclude Include="..\..\include\dom\domFx_surface_init_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_sampler2D.h">
+    <ClInclude Include="..\..\include\dom\domFx_surface_init_cube_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_sampler3D.h">
+    <ClInclude Include="..\..\include\dom\domFx_surface_init_from_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_samplerCUBE.h">
+    <ClInclude Include="..\..\include\dom\domFx_surface_init_planar_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_samplerDEPTH.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_samplerRECT.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_setparam.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_sources.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_stenciltarget.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domFx_target.h">
+    <ClInclude Include="..\..\include\dom\domFx_surface_init_volume_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domGeometry.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\dom\domGl_hook_abstract.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\dom\domGl_pipeline_settings.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domGl_sampler1D.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domGl_sampler2D.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domGl_sampler3D.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domGl_samplerCUBE.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domGl_samplerDEPTH.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domGl_samplerRECT.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domGles_basic_type_common.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domGles_newparam.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_param.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domGles_pipeline_settings.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_sampler.h">
+    <ClInclude Include="..\..\include\dom\domGles_sampler_state.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_sampler_states.h">
+    <ClInclude Include="..\..\include\dom\domGles_texcombiner_argumentAlpha_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_texcombiner_argument_alpha.h">
+    <ClInclude Include="..\..\include\dom\domGles_texcombiner_argumentRGB_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_texcombiner_argument_rgb.h">
+    <ClInclude Include="..\..\include\dom\domGles_texcombiner_command_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_texcombiner_command.h">
+    <ClInclude Include="..\..\include\dom\domGles_texcombiner_commandAlpha_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_texcombiner_command_alpha.h">
+    <ClInclude Include="..\..\include\dom\domGles_texcombiner_commandRGB_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_texcombiner_command_rgb.h">
+    <ClInclude Include="..\..\include\dom\domGles_texenv_command_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_texenv_command.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles_texture_constant.h">
+    <ClInclude Include="..\..\include\dom\domGles_texture_constant_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domGles_texture_pipeline.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles2_newparam.h">
+    <ClInclude Include="..\..\include\dom\domGles_texture_unit.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles2_pass.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles2_pipeline_settings.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles2_program.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles2_shader.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGles2_value.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGlsl_array.h">
+    <ClInclude Include="..\..\include\dom\domGlsl_newarray_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domGlsl_newparam.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGlsl_program.h">
+    <ClInclude Include="..\..\include\dom\domGlsl_param_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGlsl_shader.h">
+    <ClInclude Include="..\..\include\dom\domGlsl_setarray_type.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domGlsl_value.h">
+    <ClInclude Include="..\..\include\dom\domGlsl_setparam.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domHyperbola.h">
+    <ClInclude Include="..\..\include\dom\domGlsl_setparam_simple.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domIdref_array.h">
+    <ClInclude Include="..\..\include\dom\domGlsl_surface_type.h">
+      <Filter>Header Files\dom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\dom\domIDREF_array.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domImage.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domImage_mips.h">
+    <ClInclude Include="..\..\include\dom\domInputGlobal.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domImage_source.h">
+    <ClInclude Include="..\..\include\dom\domInputLocal.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInput_global.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInput_local.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInput_local_offset.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInstance_articulated_system.h">
+    <ClInclude Include="..\..\include\dom\domInputLocalOffset.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domInstance_camera.h">
@@ -494,22 +464,7 @@
     <ClInclude Include="..\..\include\dom\domInstance_force_field.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInstance_formula.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domInstance_geometry.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInstance_image.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInstance_joint.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInstance_kinematics_model.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInstance_kinematics_scene.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domInstance_light.h">
@@ -533,67 +488,16 @@
     <ClInclude Include="..\..\include\dom\domInstance_rigid_constraint.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domInstance_with_extra.h">
+    <ClInclude Include="..\..\include\dom\domInstanceWithExtra.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domInt_array.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domJoint.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domJoint_limits.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_axis_info.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_bind.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_connect_param.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_frame.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_index.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_limits.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_model.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_model_technique.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_newparam.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_param.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_scene.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_setparam.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domKinematics_technique.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domLibrary_animation_clips.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domLibrary_animations.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domLibrary_articulated_systems.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domLibrary_cameras.h">
@@ -608,22 +512,10 @@
     <ClInclude Include="..\..\include\dom\domLibrary_force_fields.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domLibrary_formulas.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domLibrary_geometries.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domLibrary_images.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domLibrary_joints.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domLibrary_kinematics_models.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domLibrary_kinematics_scenes.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domLibrary_lights.h">
@@ -650,19 +542,10 @@
     <ClInclude Include="..\..\include\dom\domLight.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domLimits_sub.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domLine.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domLines.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domLinestrips.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domLink.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domLookat.h">
@@ -677,22 +560,7 @@
     <ClInclude Include="..\..\include\dom\domMesh.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domMinmax.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domMorph.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domMotion.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domMotion_axis_info.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domMotion_effector_info.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domMotion_technique.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domName_array.h">
@@ -701,28 +569,10 @@
     <ClInclude Include="..\..\include\dom\domNode.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domNurbs.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domNurbs_surface.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domOrient.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domOrigin.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domP.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domParabola.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domParam.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domPcurves.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domPhysics_material.h">
@@ -743,22 +593,16 @@
     <ClInclude Include="..\..\include\dom\domPolylist.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domProfile_bridge.h">
+    <ClInclude Include="..\..\include\dom\domProfile_CG.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domProfile_cg.h">
+    <ClInclude Include="..\..\include\dom\domProfile_COMMON.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domProfile_common.h">
+    <ClInclude Include="..\..\include\dom\domProfile_GLES.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domProfile_gles.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domProfile_gles2.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domProfile_glsl.h">
+    <ClInclude Include="..\..\include\dom\domProfile_GLSL.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domRigid_body.h">
@@ -776,19 +620,10 @@
     <ClInclude Include="..\..\include\dom\domScale.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domShells.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domSidref_array.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\dom\domSkew.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domSkin.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domSolids.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domSource.h">
@@ -800,34 +635,19 @@
     <ClInclude Include="..\..\include\dom\domSpline.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domSurface.h">
+    <ClInclude Include="..\..\include\dom\domTapered_capsule.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domSurface_curves.h">
+    <ClInclude Include="..\..\include\dom\domTapered_cylinder.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domSurfaces.h">
+    <ClInclude Include="..\..\include\dom\domTargetableFloat.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\dom\domSwept_surface.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domTargetable_float.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domTargetable_float3.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domTargetable_float4.h">
+    <ClInclude Include="..\..\include\dom\domTargetableFloat3.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domTechnique.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domToken_array.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domTorus.h">
       <Filter>Header Files\dom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domTranslate.h">
@@ -850,15 +670,6 @@
     </ClInclude>
     <ClInclude Include="..\..\include\dom\domVisual_scene.h">
       <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\dom\domWires.h">
-      <Filter>Header Files\dom</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\modules\daeSTLDatabase.h">
-      <Filter>Header Files\modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\modules\stdErrPlugin.h">
-      <Filter>Header Files\modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -952,6 +763,12 @@
     <ClCompile Include="..\..\sources\dae\daeZAEUncompressHandler.cpp">
       <Filter>Source Files\dae</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sources\modules\stdErrPlugin\stdErrPlugin.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\modules\STLDatabase\daeSTLDatabase.cpp">
+      <Filter>Source Files\modules</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domAccessor.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
@@ -964,22 +781,7 @@
     <ClCompile Include="..\..\sources\dom\domAny.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domArticulated_system.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domAsset.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domAxis.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domAxis_constraint.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domBind_joint_axis.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domBind_kinematics_model.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domBind_material.cpp">
@@ -991,61 +793,73 @@
     <ClCompile Include="..\..\sources\dom\domBox.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domBrep.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domCamera.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domCapsule.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCg_array.cpp">
+    <ClCompile Include="..\..\sources\dom\domCg_connect_param.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_newarray_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domCg_newparam.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCg_param.cpp">
+    <ClCompile Include="..\..\sources\dom\domCg_param_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCg_pass.cpp">
+    <ClCompile Include="..\..\sources\dom\domCg_sampler1D.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_sampler2D.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_sampler3D.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_samplerCUBE.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_samplerDEPTH.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_samplerRECT.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_setarray_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domCg_setparam.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCg_user.cpp">
+    <ClCompile Include="..\..\sources\dom\domCg_setparam_simple.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_setuser_type.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domCg_surface_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domChannel.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCircle.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domCOLLADA.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCommon_bool_or_param.cpp">
+    <ClCompile Include="..\..\sources\dom\domCommon_color_or_texture_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCommon_float_or_param.cpp">
+    <ClCompile Include="..\..\sources\dom\domCommon_float_or_param_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCommon_float2_or_param.cpp">
+    <ClCompile Include="..\..\sources\dom\domCommon_newparam_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCommon_int_or_param.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCommon_param.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCommon_sidref_or_param.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCone.cpp">
+    <ClCompile Include="..\..\sources\dom\domCommon_transparent_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domConstants.cpp">
@@ -1057,22 +871,10 @@
     <ClCompile Include="..\..\sources\dom\domConvex_mesh.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCurve.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domCurves.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domCylinder.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domEdges.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domEffect.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domEllipse.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domEllipsoid.cpp">
@@ -1081,211 +883,190 @@
     <ClCompile Include="..\..\sources\dom\domExtra.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFaces.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domFloat_array.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domForce_field.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFormula.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_annotate_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFormula_newparam.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_annotate_type_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFormula_setparam.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_basic_type_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFormula_technique.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_clearcolor_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_annotate.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_cleardepth_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_clearcolor.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_clearstencil_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_cleardepth.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_code_profile.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_clearstencil.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_colortarget_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_code.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_depthtarget_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_colortarget.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_include_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_common_color_or_texture.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_newparam_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_common_float_or_param.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_profile_abstract.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_common_newparam.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_sampler1D_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_common_transparent.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_sampler2D_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_depthtarget.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_sampler3D_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_include.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_samplerCUBE_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_newparam.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_samplerDEPTH_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_profile.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_samplerRECT_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_rendertarget.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_stenciltarget_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_sampler.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_surface_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_sampler_states.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_surface_format_hint_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_sampler1D.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_surface_init_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_sampler2D.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_surface_init_cube_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_sampler3D.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_surface_init_from_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_samplerCUBE.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_surface_init_planar_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_samplerDEPTH.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_samplerRECT.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_setparam.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_sources.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_stenciltarget.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domFx_target.cpp">
+    <ClCompile Include="..\..\sources\dom\domFx_surface_init_volume_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domGeometry.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domGl_hook_abstract.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domGl_pipeline_settings.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domGl_sampler1D.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domGl_sampler2D.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domGl_sampler3D.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domGl_samplerCUBE.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domGl_samplerDEPTH.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domGl_samplerRECT.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domGles_basic_type_common.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domGles_newparam.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_param.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domGles_pipeline_settings.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_sampler.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_sampler_state.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_sampler_states.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_argumentAlpha_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_argument_alpha.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_argumentRGB_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_argument_rgb.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_command_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_command.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_commandAlpha_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_command_alpha.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_commandRGB_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_texcombiner_command_rgb.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_texenv_command_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_texenv_command.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles_texture_constant.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_texture_constant_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domGles_texture_pipeline.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles2_newparam.cpp">
+    <ClCompile Include="..\..\sources\dom\domGles_texture_unit.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles2_pass.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles2_pipeline_settings.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles2_program.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles2_shader.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGles2_value.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGlsl_array.cpp">
+    <ClCompile Include="..\..\sources\dom\domGlsl_newarray_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domGlsl_newparam.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGlsl_program.cpp">
+    <ClCompile Include="..\..\sources\dom\domGlsl_param_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGlsl_shader.cpp">
+    <ClCompile Include="..\..\sources\dom\domGlsl_setarray_type.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domGlsl_value.cpp">
+    <ClCompile Include="..\..\sources\dom\domGlsl_setparam.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domHyperbola.cpp">
+    <ClCompile Include="..\..\sources\dom\domGlsl_setparam_simple.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domIdref_array.cpp">
+    <ClCompile Include="..\..\sources\dom\domGlsl_surface_type.cpp">
+      <Filter>Source Files\dom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\dom\domIDREF_array.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domImage.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domImage_mips.cpp">
+    <ClCompile Include="..\..\sources\dom\domInputGlobal.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domImage_source.cpp">
+    <ClCompile Include="..\..\sources\dom\domInputLocal.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInput_global.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInput_local.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInput_local_offset.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInstance_articulated_system.cpp">
+    <ClCompile Include="..\..\sources\dom\domInputLocalOffset.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domInstance_camera.cpp">
@@ -1300,22 +1081,7 @@
     <ClCompile Include="..\..\sources\dom\domInstance_force_field.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInstance_formula.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domInstance_geometry.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInstance_image.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInstance_joint.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInstance_kinematics_model.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInstance_kinematics_scene.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domInstance_light.cpp">
@@ -1339,67 +1105,16 @@
     <ClCompile Include="..\..\sources\dom\domInstance_rigid_constraint.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domInstance_with_extra.cpp">
+    <ClCompile Include="..\..\sources\dom\domInstanceWithExtra.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domInt_array.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domJoint.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domJoint_limits.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_axis_info.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_bind.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_connect_param.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_frame.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_index.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_limits.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_model.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_model_technique.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_newparam.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_param.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_scene.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_setparam.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domKinematics_technique.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLibrary_animation_clips.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLibrary_animations.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domLibrary_articulated_systems.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLibrary_cameras.cpp">
@@ -1414,22 +1129,10 @@
     <ClCompile Include="..\..\sources\dom\domLibrary_force_fields.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domLibrary_formulas.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLibrary_geometries.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLibrary_images.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domLibrary_joints.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domLibrary_kinematics_models.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domLibrary_kinematics_scenes.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLibrary_lights.cpp">
@@ -1456,19 +1159,10 @@
     <ClCompile Include="..\..\sources\dom\domLight.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domLimits_sub.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domLine.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLines.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLinestrips.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domLink.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domLookat.cpp">
@@ -1483,22 +1177,7 @@
     <ClCompile Include="..\..\sources\dom\domMesh.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domMinmax.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domMorph.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domMotion.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domMotion_axis_info.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domMotion_effector_info.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domMotion_technique.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domName_array.cpp">
@@ -1507,28 +1186,10 @@
     <ClCompile Include="..\..\sources\dom\domNode.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domNurbs.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domNurbs_surface.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domOrient.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domOrigin.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domP.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domParabola.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domParam.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domPcurves.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domPhysics_material.cpp">
@@ -1549,22 +1210,16 @@
     <ClCompile Include="..\..\sources\dom\domPolylist.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domProfile_bridge.cpp">
+    <ClCompile Include="..\..\sources\dom\domProfile_CG.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domProfile_cg.cpp">
+    <ClCompile Include="..\..\sources\dom\domProfile_COMMON.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domProfile_common.cpp">
+    <ClCompile Include="..\..\sources\dom\domProfile_GLES.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domProfile_gles.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domProfile_gles2.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domProfile_glsl.cpp">
+    <ClCompile Include="..\..\sources\dom\domProfile_GLSL.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domRigid_body.cpp">
@@ -1582,19 +1237,10 @@
     <ClCompile Include="..\..\sources\dom\domScale.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domShells.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domSidref_array.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sources\dom\domSkew.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domSkin.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domSolids.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domSource.cpp">
@@ -1606,34 +1252,19 @@
     <ClCompile Include="..\..\sources\dom\domSpline.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domSurface.cpp">
+    <ClCompile Include="..\..\sources\dom\domTapered_capsule.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domSurface_curves.cpp">
+    <ClCompile Include="..\..\sources\dom\domTapered_cylinder.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domSurfaces.cpp">
+    <ClCompile Include="..\..\sources\dom\domTargetableFloat.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domSwept_surface.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domTargetable_float.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domTargetable_float3.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domTargetable_float4.cpp">
+    <ClCompile Include="..\..\sources\dom\domTargetableFloat3.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domTechnique.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domToken_array.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domTorus.cpp">
       <Filter>Source Files\dom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domTranslate.cpp">
@@ -1656,15 +1287,6 @@
     </ClCompile>
     <ClCompile Include="..\..\sources\dom\domVisual_scene.cpp">
       <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\dom\domWires.cpp">
-      <Filter>Source Files\dom</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\modules\stdErrPlugin\stdErrPlugin.cpp">
-      <Filter>Source Files\modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sources\modules\STLDatabase\daeSTLDatabase.cpp">
-      <Filter>Source Files\modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

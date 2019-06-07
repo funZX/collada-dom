@@ -1,5 +1,13 @@
-#ifndef __dom150P_h__
-#define __dom150P_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141P_h__
+#define __dom141P_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -7,7 +15,7 @@
 
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The p element represents primitive data for the primitive types (lines,
@@ -19,27 +27,32 @@ class domP : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::P; }
-	static daeInt ID() { return 13; }
+	static daeInt ID() { return 617; }
 	virtual daeInt typeID() const { return ID(); }
-
-
-public:	//Accessors and Mutators
-	/**
-	 * Gets the value of this element.
-	 * @return a domList_of_uints of the value.
-	 */
-	domList_of_uints& getValue() { return _value; }
-	/**
-	 * Sets the _value of this element.
-	 * @param val The new value for this element.
-	 */
-	void setValue( const domList_of_uints& val ) { _value = val; }
 
 protected:  // Value
 	/**
-	 * The domList_of_uints value of the text data of this element. 
+	 * The domListOfUInts value of the text data of this element. 
 	 */
-	domList_of_uints _value;
+	domListOfUInts _value;
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the _value array.
+	 * @return Returns a domListOfUInts reference of the _value array.
+	 */
+	domListOfUInts &getValue() { return _value; }
+	/**
+	 * Gets the _value array.
+	 * @return Returns a constant domListOfUInts reference of the _value array.
+	 */
+	const domListOfUInts &getValue() const { return _value; }
+	/**
+	 * Sets the _value array.
+	 * @param val The new value for the _value array.
+	 */
+	void setValue( const domListOfUInts &val ) { _value = val; }
+
 protected:
 	/**
 	 * Constructor
@@ -69,5 +82,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

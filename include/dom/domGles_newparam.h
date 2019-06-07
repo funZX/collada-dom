@@ -1,26 +1,30 @@
-#ifndef __dom150Gles_newparam_h__
-#define __dom150Gles_newparam_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Gles_newparam_h__
+#define __dom141Gles_newparam_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domGles_param.h>
-#include <dom/domFx_annotate.h>
+#include <dom/domGles_basic_type_common.h>
+#include <dom/domFx_annotate_common.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * Create a new, named param object in the GLES Runtime, assign it a type,
  * an initial value, and additional attributes at declaration time.
  */
-class domGles_newparam : public daeElement
+class domGles_newparam_complexType 
 {
-public:
-	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_NEWPARAM; }
-	static daeInt ID() { return 270; }
-	virtual daeInt typeID() const { return ID(); }
 public:
 	class domSemantic;
 
@@ -34,9 +38,14 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
-		static daeInt ID() { return 271; }
+		static daeInt ID() { return 165; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The xsNCName value of the text data of this element. 
+		 */
+		xsNCName _value;
 
 	public:	//Accessors and Mutators
 		/**
@@ -50,11 +59,6 @@ public:
 		 */
 		void setValue( xsNCName val ) { *(daeStringRef*)&_value = val; }
 
-	protected:  // Value
-		/**
-		 * The xsNCName value of the text data of this element. 
-		 */
-		xsNCName _value;
 	protected:
 		/**
 		 * Constructor
@@ -95,27 +99,27 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIER; }
-		static daeInt ID() { return 272; }
+		static daeInt ID() { return 166; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The domFx_modifier_enum_common value of the text data of this element. 
+		 */
+		domFx_modifier_enum_common _value;
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value of this element.
-		 * @return a domFx_modifier of the value.
+		 * @return a domFx_modifier_enum_common of the value.
 		 */
-		domFx_modifier& getValue() { return _value; }
+		domFx_modifier_enum_common getValue() const { return _value; }
 		/**
 		 * Sets the _value of this element.
 		 * @param val The new value for this element.
 		 */
-		void setValue( const domFx_modifier& val ) { _value = val; }
+		void setValue( domFx_modifier_enum_common val ) { _value = val; }
 
-	protected:  // Value
-		/**
-		 * The domFx_modifier value of the text data of this element. 
-		 */
-		domFx_modifier _value;
 	protected:
 		/**
 		 * Constructor
@@ -151,14 +155,14 @@ protected:  // Attribute
  * of this element.  This value must be unique within the scope of the parent
  * element. 
  */
-	domSid attrSid;
+	xsNCName attrSid;
 
 protected:  // Elements
 /**
  * The annotate element allows you to specify an annotation for this new param.
  * @see domAnnotate
  */
-	domFx_annotate_Array elemAnnotate_array;
+	domFx_annotate_common_Array elemAnnotate_array;
 /**
  * The semantic element allows you to specify a semantic for this new param.
  * @see domSemantic
@@ -169,30 +173,30 @@ protected:  // Elements
  * @see domModifier
  */
 	domModifierRef elemModifier;
-	domGles_paramRef elemGles_param;
+	domGles_basic_type_commonRef elemGles_basic_type_common;
 
 public:	//Accessors and Mutators
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;}
 
 	/**
 	 * Gets the annotate element array.
 	 * @return Returns a reference to the array of annotate elements.
 	 */
-	domFx_annotate_Array &getAnnotate_array() { return elemAnnotate_array; }
+	domFx_annotate_common_Array &getAnnotate_array() { return elemAnnotate_array; }
 	/**
 	 * Gets the annotate element array.
 	 * @return Returns a constant reference to the array of annotate elements.
 	 */
-	const domFx_annotate_Array &getAnnotate_array() const { return elemAnnotate_array; }
+	const domFx_annotate_common_Array &getAnnotate_array() const { return elemAnnotate_array; }
 	/**
 	 * Gets the semantic element.
 	 * @return a daeSmartRef to the semantic element.
@@ -204,15 +208,52 @@ public:	//Accessors and Mutators
 	 */
 	const domModifierRef getModifier() const { return elemModifier; }
 	/**
-	 * Gets the gles_param element.
-	 * @return a daeSmartRef to the gles_param element.
+	 * Gets the gles_basic_type_common element.
+	 * @return a daeSmartRef to the gles_basic_type_common element.
 	 */
-	const domGles_paramRef getGles_param() const { return elemGles_param; }
+	const domGles_basic_type_commonRef getGles_basic_type_common() const { return elemGles_basic_type_common; }
 protected:
 	/**
 	 * Constructor
 	 */
-	domGles_newparam(DAE& dae) : daeElement(dae), attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemGles_param() {}
+	domGles_newparam_complexType(DAE& dae, daeElement* elt) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemGles_basic_type_common() {}
+	/**
+	 * Destructor
+	 */
+	virtual ~domGles_newparam_complexType() {}
+	/**
+	 * Overloaded assignment operator
+	 */
+	virtual domGles_newparam_complexType &operator=( const domGles_newparam_complexType &cpy ) { (void)cpy; return *this; }
+};
+
+/**
+ * An element of type domGles_newparam_complexType.
+ */
+class domGles_newparam : public daeElement, public domGles_newparam_complexType
+{
+public:
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_NEWPARAM; }
+	static daeInt ID() { return 167; }
+	virtual daeInt typeID() const { return ID(); }
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
+
+protected:
+	/**
+	 * Constructor
+	 */
+	domGles_newparam(DAE& dae) : daeElement(dae), domGles_newparam_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */
@@ -237,5 +278,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domMorph.h>
@@ -9,12 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domMorph::create(DAE& dae)
 {
 	domMorphRef ref = new domMorph(dae);
-	ref->attrSource.setContainer( (domMorph*)ref );
 	return ref;
 }
 
@@ -59,7 +66,7 @@ domMorph::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "method" );
-		ma->setType( dae.getAtomicTypes().get("Morph_method"));
+		ma->setType( dae.getAtomicTypes().get("MorphMethodType"));
 		ma->setOffset( daeOffsetOf( domMorph , attrMethod ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "NORMALIZED");
@@ -112,7 +119,7 @@ domMorph::domTargets::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 2, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domMorph::domTargets,elemInput_array) );
-	mea->setElementType( domInput_local::registerElement(dae) );
+	mea->setElementType( domInputLocal::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
@@ -130,4 +137,4 @@ domMorph::domTargets::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

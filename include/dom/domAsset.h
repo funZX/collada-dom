@@ -1,14 +1,21 @@
-#ifndef __dom150Asset_h__
-#define __dom150Asset_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Asset_h__
+#define __dom141Asset_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The asset element defines asset management information regarding its parent
@@ -18,7 +25,7 @@ class domAsset : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ASSET; }
-	static daeInt ID() { return 38; }
+	static daeInt ID() { return 664; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domContributor;
@@ -33,7 +40,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONTRIBUTOR; }
-		static daeInt ID() { return 39; }
+		static daeInt ID() { return 665; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domAuthor;
@@ -49,9 +56,14 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTHOR; }
-			static daeInt ID() { return 40; }
+			static daeInt ID() { return 666; }
 			virtual daeInt typeID() const { return ID(); }
 
+		protected:  // Value
+			/**
+			 * The xsString value of the text data of this element. 
+			 */
+			xsString _value;
 
 		public:	//Accessors and Mutators
 			/**
@@ -65,11 +77,6 @@ public:
 			 */
 			void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-		protected:  // Value
-			/**
-			 * The xsString value of the text data of this element. 
-			 */
-			xsString _value;
 		protected:
 			/**
 			 * Constructor
@@ -98,141 +105,6 @@ public:
 			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 		};
 
-		class domAuthor_email;
-
-		typedef daeSmartRef<domAuthor_email> domAuthor_emailRef;
-		typedef daeTArray<domAuthor_emailRef> domAuthor_email_Array;
-
-/**
- * Contains a string with author's email address. String that compliant with
- * RFC 2822 section 3.4. This element has no attributes. There may be only
- * one author email address.
- */
-		class domAuthor_email : public daeElement
-		{
-		public:
-			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTHOR_EMAIL; }
-			static daeInt ID() { return 41; }
-			virtual daeInt typeID() const { return ID(); }
-
-
-		public:	//Accessors and Mutators
-			/**
-			 * Gets the value of this element.
-			 * @return Returns a xsString of the value.
-			 */
-			xsString getValue() const { return _value; }
-			/**
-			 * Sets the _value of this element.
-			 * @param val The new value for this element.
-			 */
-			void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
-
-		protected:  // Value
-			/**
-			 * The xsString value of the text data of this element. 
-			 */
-			xsString _value;
-		protected:
-			/**
-			 * Constructor
-			 */
-			domAuthor_email(DAE& dae) : daeElement(dae), _value() {}
-			/**
-			 * Destructor
-			 */
-			virtual ~domAuthor_email() {}
-			/**
-			 * Overloaded assignment operator
-			 */
-			virtual domAuthor_email &operator=( const domAuthor_email &cpy ) { (void)cpy; return *this; }
-
-		public: // STATIC METHODS
-			/**
-			 * Creates an instance of this class and returns a daeElementRef referencing it.
-			 * @return a daeElementRef referencing an instance of this object.
-			 */
-			static DLLSPEC daeElementRef create(DAE& dae);
-			/**
-			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-			 * @return A daeMetaElement describing this COLLADA element.
-			 */
-			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-		};
-
-		class domAuthor_website;
-
-		typedef daeSmartRef<domAuthor_website> domAuthor_websiteRef;
-		typedef daeTArray<domAuthor_websiteRef> domAuthor_website_Array;
-
-/**
- * Contains a URI reference (xs:anyURI) to author's website.  This element
- * has no attributes.   There may be only one author website.
- */
-		class domAuthor_website : public daeElement
-		{
-		public:
-			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTHOR_WEBSITE; }
-			static daeInt ID() { return 42; }
-			virtual daeInt typeID() const { return ID(); }
-
-
-		public:	//Accessors and Mutators
-			/**
-			 * Gets the value of this element.
-			 * @return Returns a xsAnyURI of the value.
-			 */
-			xsAnyURI &getValue() { return _value; }
-			/**
-			 * Gets the value of this element.
-			 * @return Returns a constant xsAnyURI of the value.
-			 */
-			const xsAnyURI &getValue() const { return _value; }
-			/**
-			 * Sets the _value of this element.
-			 * @param val The new value for this element.
-			 */
-			void setValue( const xsAnyURI &val ) { _value = val; }
-			/**
-			 * Sets the _value of this element.
-			 * @param val The new value for this element.
-			 */
-			void setValue( xsString val ) { _value = val; }
-
-		protected:  // Value
-			/**
-			 * The xsAnyURI value of the text data of this element. 
-			 */
-			xsAnyURI _value;
-		protected:
-			/**
-			 * Constructor
-			 */
-			domAuthor_website(DAE& dae) : daeElement(dae), _value(dae, *this) {}
-			/**
-			 * Destructor
-			 */
-			virtual ~domAuthor_website() {}
-			/**
-			 * Overloaded assignment operator
-			 */
-			virtual domAuthor_website &operator=( const domAuthor_website &cpy ) { (void)cpy; return *this; }
-
-		public: // STATIC METHODS
-			/**
-			 * Creates an instance of this class and returns a daeElementRef referencing it.
-			 * @return a daeElementRef referencing an instance of this object.
-			 */
-			static DLLSPEC daeElementRef create(DAE& dae);
-			/**
-			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-			 * @return A daeMetaElement describing this COLLADA element.
-			 */
-			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-		};
-
 		class domAuthoring_tool;
 
 		typedef daeSmartRef<domAuthoring_tool> domAuthoring_toolRef;
@@ -246,9 +118,14 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTHORING_TOOL; }
-			static daeInt ID() { return 43; }
+			static daeInt ID() { return 667; }
 			virtual daeInt typeID() const { return ID(); }
 
+		protected:  // Value
+			/**
+			 * The xsString value of the text data of this element. 
+			 */
+			xsString _value;
 
 		public:	//Accessors and Mutators
 			/**
@@ -262,11 +139,6 @@ public:
 			 */
 			void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-		protected:  // Value
-			/**
-			 * The xsString value of the text data of this element. 
-			 */
-			xsString _value;
 		protected:
 			/**
 			 * Constructor
@@ -308,9 +180,14 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMENTS; }
-			static daeInt ID() { return 44; }
+			static daeInt ID() { return 668; }
 			virtual daeInt typeID() const { return ID(); }
 
+		protected:  // Value
+			/**
+			 * The xsString value of the text data of this element. 
+			 */
+			xsString _value;
 
 		public:	//Accessors and Mutators
 			/**
@@ -324,11 +201,6 @@ public:
 			 */
 			void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-		protected:  // Value
-			/**
-			 * The xsString value of the text data of this element. 
-			 */
-			xsString _value;
 		protected:
 			/**
 			 * Constructor
@@ -370,9 +242,14 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COPYRIGHT; }
-			static daeInt ID() { return 45; }
+			static daeInt ID() { return 669; }
 			virtual daeInt typeID() const { return ID(); }
 
+		protected:  // Value
+			/**
+			 * The xsString value of the text data of this element. 
+			 */
+			xsString _value;
 
 		public:	//Accessors and Mutators
 			/**
@@ -386,11 +263,6 @@ public:
 			 */
 			void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-		protected:  // Value
-			/**
-			 * The xsString value of the text data of this element. 
-			 */
-			xsString _value;
 		protected:
 			/**
 			 * Constructor
@@ -432,9 +304,14 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE_DATA; }
-			static daeInt ID() { return 46; }
+			static daeInt ID() { return 670; }
 			virtual daeInt typeID() const { return ID(); }
 
+		protected:  // Value
+			/**
+			 * The xsAnyURI value of the text data of this element. 
+			 */
+			xsAnyURI _value;
 
 		public:	//Accessors and Mutators
 			/**
@@ -458,11 +335,6 @@ public:
 			 */
 			void setValue( xsString val ) { _value = val; }
 
-		protected:  // Value
-			/**
-			 * The xsAnyURI value of the text data of this element. 
-			 */
-			xsAnyURI _value;
 		protected:
 			/**
 			 * Constructor
@@ -500,17 +372,6 @@ public:
  */
 		domAuthorRef elemAuthor;
 /**
- * Contains a string with author's email address. String that compliant with
- * RFC 2822 section 3.4. This element has no attributes. There may be only
- * one author email address. @see domAuthor_email
- */
-		domAuthor_emailRef elemAuthor_email;
-/**
- * Contains a URI reference (xs:anyURI) to author's website.  This element
- * has no attributes.   There may be only one author website. @see domAuthor_website
- */
-		domAuthor_websiteRef elemAuthor_website;
-/**
  * The authoring_tool element contains a string with the authoring tool's
  * name. There may be only one authoring_tool element. @see domAuthoring_tool
  */
@@ -538,16 +399,6 @@ public:
 		 */
 		const domAuthorRef getAuthor() const { return elemAuthor; }
 		/**
-		 * Gets the author_email element.
-		 * @return a daeSmartRef to the author_email element.
-		 */
-		const domAuthor_emailRef getAuthor_email() const { return elemAuthor_email; }
-		/**
-		 * Gets the author_website element.
-		 * @return a daeSmartRef to the author_website element.
-		 */
-		const domAuthor_websiteRef getAuthor_website() const { return elemAuthor_website; }
-		/**
 		 * Gets the authoring_tool element.
 		 * @return a daeSmartRef to the authoring_tool element.
 		 */
@@ -571,7 +422,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domContributor(DAE& dae) : daeElement(dae), elemAuthor(), elemAuthor_email(), elemAuthor_website(), elemAuthoring_tool(), elemComments(), elemCopyright(), elemSource_data() {}
+		domContributor(DAE& dae) : daeElement(dae), elemAuthor(), elemAuthoring_tool(), elemComments(), elemCopyright(), elemSource_data() {}
 		/**
 		 * Destructor
 		 */
@@ -580,326 +431,6 @@ public:
 		 * Overloaded assignment operator
 		 */
 		virtual domContributor &operator=( const domContributor &cpy ) { (void)cpy; return *this; }
-
-	public: // STATIC METHODS
-		/**
-		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @return a daeElementRef referencing an instance of this object.
-		 */
-		static DLLSPEC daeElementRef create(DAE& dae);
-		/**
-		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-		 * @return A daeMetaElement describing this COLLADA element.
-		 */
-		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-	};
-
-	class domCoverage;
-
-	typedef daeSmartRef<domCoverage> domCoverageRef;
-	typedef daeTArray<domCoverageRef> domCoverage_Array;
-
-	class domCoverage : public daeElement
-	{
-	public:
-		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COVERAGE; }
-		static daeInt ID() { return 47; }
-		virtual daeInt typeID() const { return ID(); }
-	public:
-		class domGeographic_location;
-
-		typedef daeSmartRef<domGeographic_location> domGeographic_locationRef;
-		typedef daeTArray<domGeographic_locationRef> domGeographic_location_Array;
-
-/**
- * Specifies the location of the asset using the WGS84 coordinate system.
- */
-		class domGeographic_location : public daeElement
-		{
-		public:
-			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GEOGRAPHIC_LOCATION; }
-			static daeInt ID() { return 48; }
-			virtual daeInt typeID() const { return ID(); }
-		public:
-			class domLongitude;
-
-			typedef daeSmartRef<domLongitude> domLongitudeRef;
-			typedef daeTArray<domLongitudeRef> domLongitude_Array;
-
-			class domLongitude : public daeElement
-			{
-			public:
-				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LONGITUDE; }
-				static daeInt ID() { return 49; }
-				virtual daeInt typeID() const { return ID(); }
-
-
-			public:	//Accessors and Mutators
-				/**
-				 * Gets the value of this element.
-				 * @return a xsFloat of the value.
-				 */
-				xsFloat& getValue() { return _value; }
-				/**
-				 * Sets the _value of this element.
-				 * @param val The new value for this element.
-				 */
-				void setValue( const xsFloat& val ) { _value = val; }
-
-			protected:  // Value
-				/**
-				 * The xsFloat value of the text data of this element. 
-				 */
-				xsFloat _value;
-			protected:
-				/**
-				 * Constructor
-				 */
-				domLongitude(DAE& dae) : daeElement(dae), _value() {}
-				/**
-				 * Destructor
-				 */
-				virtual ~domLongitude() {}
-				/**
-				 * Overloaded assignment operator
-				 */
-				virtual domLongitude &operator=( const domLongitude &cpy ) { (void)cpy; return *this; }
-
-			public: // STATIC METHODS
-				/**
-				 * Creates an instance of this class and returns a daeElementRef referencing it.
-				 * @return a daeElementRef referencing an instance of this object.
-				 */
-				static DLLSPEC daeElementRef create(DAE& dae);
-				/**
-				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-				 * @return A daeMetaElement describing this COLLADA element.
-				 */
-				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-			};
-
-			class domLatitude;
-
-			typedef daeSmartRef<domLatitude> domLatitudeRef;
-			typedef daeTArray<domLatitudeRef> domLatitude_Array;
-
-			class domLatitude : public daeElement
-			{
-			public:
-				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LATITUDE; }
-				static daeInt ID() { return 50; }
-				virtual daeInt typeID() const { return ID(); }
-
-
-			public:	//Accessors and Mutators
-				/**
-				 * Gets the value of this element.
-				 * @return a xsFloat of the value.
-				 */
-				xsFloat& getValue() { return _value; }
-				/**
-				 * Sets the _value of this element.
-				 * @param val The new value for this element.
-				 */
-				void setValue( const xsFloat& val ) { _value = val; }
-
-			protected:  // Value
-				/**
-				 * The xsFloat value of the text data of this element. 
-				 */
-				xsFloat _value;
-			protected:
-				/**
-				 * Constructor
-				 */
-				domLatitude(DAE& dae) : daeElement(dae), _value() {}
-				/**
-				 * Destructor
-				 */
-				virtual ~domLatitude() {}
-				/**
-				 * Overloaded assignment operator
-				 */
-				virtual domLatitude &operator=( const domLatitude &cpy ) { (void)cpy; return *this; }
-
-			public: // STATIC METHODS
-				/**
-				 * Creates an instance of this class and returns a daeElementRef referencing it.
-				 * @return a daeElementRef referencing an instance of this object.
-				 */
-				static DLLSPEC daeElementRef create(DAE& dae);
-				/**
-				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-				 * @return A daeMetaElement describing this COLLADA element.
-				 */
-				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-			};
-
-			class domAltitude;
-
-			typedef daeSmartRef<domAltitude> domAltitudeRef;
-			typedef daeTArray<domAltitudeRef> domAltitude_Array;
-
-/**
- * Altitude is always given in meters.  If the mode is "absolute", then the
- * value is interpreted as meters from mean sea level.  If the mode is "relativeToGround"
- * then the value is interpreted as meters above the actual ground elevation
- * at that particular location.
- */
-			class domAltitude : public daeElement
-			{
-			public:
-				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALTITUDE; }
-				static daeInt ID() { return 51; }
-				virtual daeInt typeID() const { return ID(); }
-			protected:  // Attribute
-				domAltitude_mode attrMode;
-
-
-			public:	//Accessors and Mutators
-				/**
-				 * Gets the mode attribute.
-				 * @return Returns a domAltitude_mode of the mode attribute.
-				 */
-				domAltitude_mode getMode() const { return attrMode; }
-				/**
-				 * Sets the mode attribute.
-				 * @param atMode The new value for the mode attribute.
-				 */
-				void setMode( domAltitude_mode atMode ) { attrMode = atMode; _validAttributeArray[0] = true; }
-
-				/**
-				 * Gets the value of this element.
-				 * @return a xsFloat of the value.
-				 */
-				xsFloat& getValue() { return _value; }
-				/**
-				 * Sets the _value of this element.
-				 * @param val The new value for this element.
-				 */
-				void setValue( const xsFloat& val ) { _value = val; }
-
-			protected:  // Value
-				/**
-				 * The xsFloat value of the text data of this element. 
-				 */
-				xsFloat _value;
-			protected:
-				/**
-				 * Constructor
-				 */
-				domAltitude(DAE& dae) : daeElement(dae), attrMode(), _value() {}
-				/**
-				 * Destructor
-				 */
-				virtual ~domAltitude() {}
-				/**
-				 * Overloaded assignment operator
-				 */
-				virtual domAltitude &operator=( const domAltitude &cpy ) { (void)cpy; return *this; }
-
-			public: // STATIC METHODS
-				/**
-				 * Creates an instance of this class and returns a daeElementRef referencing it.
-				 * @return a daeElementRef referencing an instance of this object.
-				 */
-				static DLLSPEC daeElementRef create(DAE& dae);
-				/**
-				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-				 * @return A daeMetaElement describing this COLLADA element.
-				 */
-				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-			};
-
-
-
-		protected:  // Elements
-			domLongitudeRef elemLongitude;
-			domLatitudeRef elemLatitude;
-/**
- * Altitude is always given in meters.  If the mode is "absolute", then the
- * value is interpreted as meters from mean sea level.  If the mode is "relativeToGround"
- * then the value is interpreted as meters above the actual ground elevation
- * at that particular location. @see domAltitude
- */
-			domAltitudeRef elemAltitude;
-
-		public:	//Accessors and Mutators
-			/**
-			 * Gets the longitude element.
-			 * @return a daeSmartRef to the longitude element.
-			 */
-			const domLongitudeRef getLongitude() const { return elemLongitude; }
-			/**
-			 * Gets the latitude element.
-			 * @return a daeSmartRef to the latitude element.
-			 */
-			const domLatitudeRef getLatitude() const { return elemLatitude; }
-			/**
-			 * Gets the altitude element.
-			 * @return a daeSmartRef to the altitude element.
-			 */
-			const domAltitudeRef getAltitude() const { return elemAltitude; }
-		protected:
-			/**
-			 * Constructor
-			 */
-			domGeographic_location(DAE& dae) : daeElement(dae), elemLongitude(), elemLatitude(), elemAltitude() {}
-			/**
-			 * Destructor
-			 */
-			virtual ~domGeographic_location() {}
-			/**
-			 * Overloaded assignment operator
-			 */
-			virtual domGeographic_location &operator=( const domGeographic_location &cpy ) { (void)cpy; return *this; }
-
-		public: // STATIC METHODS
-			/**
-			 * Creates an instance of this class and returns a daeElementRef referencing it.
-			 * @return a daeElementRef referencing an instance of this object.
-			 */
-			static DLLSPEC daeElementRef create(DAE& dae);
-			/**
-			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-			 * @return A daeMetaElement describing this COLLADA element.
-			 */
-			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-		};
-
-
-
-	protected:  // Element
-/**
- * Specifies the location of the asset using the WGS84 coordinate system.
- * @see domGeographic_location
- */
-		domGeographic_locationRef elemGeographic_location;
-
-	public:	//Accessors and Mutators
-		/**
-		 * Gets the geographic_location element.
-		 * @return a daeSmartRef to the geographic_location element.
-		 */
-		const domGeographic_locationRef getGeographic_location() const { return elemGeographic_location; }
-	protected:
-		/**
-		 * Constructor
-		 */
-		domCoverage(DAE& dae) : daeElement(dae), elemGeographic_location() {}
-		/**
-		 * Destructor
-		 */
-		virtual ~domCoverage() {}
-		/**
-		 * Overloaded assignment operator
-		 */
-		virtual domCoverage &operator=( const domCoverage &cpy ) { (void)cpy; return *this; }
 
 	public: // STATIC METHODS
 		/**
@@ -929,9 +460,14 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CREATED; }
-		static daeInt ID() { return 52; }
+		static daeInt ID() { return 671; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The xsDateTime value of the text data of this element. 
+		 */
+		xsDateTime _value;
 
 	public:	//Accessors and Mutators
 		/**
@@ -945,11 +481,6 @@ public:
 		 */
 		void setValue( xsDateTime val ) { *(daeStringRef*)&_value = val; }
 
-	protected:  // Value
-		/**
-		 * The xsDateTime value of the text data of this element. 
-		 */
-		xsDateTime _value;
 	protected:
 		/**
 		 * Constructor
@@ -985,33 +516,33 @@ public:
 
 /**
  * The keywords element contains a list of words used as search criteria for
- * the parent element.  There may be only one keywords element.
+ * the parent element.  The keywords element may appear zero or more times.
  */
 	class domKeywords : public daeElement
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::KEYWORDS; }
-		static daeInt ID() { return 53; }
+		static daeInt ID() { return 672; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The xsString value of the text data of this element. 
+		 */
+		xsString _value;
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value of this element.
-		 * @return Returns a xsToken of the value.
+		 * @return Returns a xsString of the value.
 		 */
-		xsToken getValue() const { return _value; }
+		xsString getValue() const { return _value; }
 		/**
 		 * Sets the _value of this element.
 		 * @param val The new value for this element.
 		 */
-		void setValue( xsToken val ) { *(daeStringRef*)&_value = val; }
+		void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-	protected:  // Value
-		/**
-		 * The xsToken value of the text data of this element. 
-		 */
-		xsToken _value;
 	protected:
 		/**
 		 * Constructor
@@ -1054,9 +585,14 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIED; }
-		static daeInt ID() { return 54; }
+		static daeInt ID() { return 673; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The xsDateTime value of the text data of this element. 
+		 */
+		xsDateTime _value;
 
 	public:	//Accessors and Mutators
 		/**
@@ -1070,11 +606,6 @@ public:
 		 */
 		void setValue( xsDateTime val ) { *(daeStringRef*)&_value = val; }
 
-	protected:  // Value
-		/**
-		 * The xsDateTime value of the text data of this element. 
-		 */
-		xsDateTime _value;
 	protected:
 		/**
 		 * Constructor
@@ -1116,9 +647,14 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REVISION; }
-		static daeInt ID() { return 55; }
+		static daeInt ID() { return 674; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The xsString value of the text data of this element. 
+		 */
+		xsString _value;
 
 	public:	//Accessors and Mutators
 		/**
@@ -1132,11 +668,6 @@ public:
 		 */
 		void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-	protected:  // Value
-		/**
-		 * The xsString value of the text data of this element. 
-		 */
-		xsString _value;
 	protected:
 		/**
 		 * Constructor
@@ -1178,9 +709,14 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SUBJECT; }
-		static daeInt ID() { return 56; }
+		static daeInt ID() { return 675; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The xsString value of the text data of this element. 
+		 */
+		xsString _value;
 
 	public:	//Accessors and Mutators
 		/**
@@ -1194,11 +730,6 @@ public:
 		 */
 		void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-	protected:  // Value
-		/**
-		 * The xsString value of the text data of this element. 
-		 */
-		xsString _value;
 	protected:
 		/**
 		 * Constructor
@@ -1240,9 +771,14 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TITLE; }
-		static daeInt ID() { return 57; }
+		static daeInt ID() { return 676; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The xsString value of the text data of this element. 
+		 */
+		xsString _value;
 
 	public:	//Accessors and Mutators
 		/**
@@ -1256,11 +792,6 @@ public:
 		 */
 		void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-	protected:  // Value
-		/**
-		 * The xsString value of the text data of this element. 
-		 */
-		xsString _value;
 	protected:
 		/**
 		 * Constructor
@@ -1303,17 +834,17 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::UNIT; }
-		static daeInt ID() { return 58; }
+		static daeInt ID() { return 677; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 /**
  *  The meter attribute specifies the measurement with respect to the meter.
- * The default  value for the meter attribute is "1.0". 
+ * The default  value for the meter attribute is “1.0”. 
  */
 		domFloat attrMeter;
 /**
  *  The name attribute specifies the name of the unit. The default value for
- * the name  attribute is "meter". 
+ * the name  attribute is “meter”. 
  */
 		xsNMTOKEN attrName;
 
@@ -1384,27 +915,27 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::UP_AXIS; }
-		static daeInt ID() { return 59; }
+		static daeInt ID() { return 678; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The domUpAxisType value of the text data of this element. 
+		 */
+		domUpAxisType _value;
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value of this element.
-		 * @return a ColladaDOM150::domUp_axis of the value.
+		 * @return a domUpAxisType of the value.
 		 */
-		ColladaDOM150::domUp_axis& getValue() { return _value; }
+		domUpAxisType getValue() const { return _value; }
 		/**
 		 * Sets the _value of this element.
 		 * @param val The new value for this element.
 		 */
-		void setValue( const ColladaDOM150::domUp_axis& val ) { _value = val; }
+		void setValue( domUpAxisType val ) { _value = val; }
 
-	protected:  // Value
-		/**
-		 * The ColladaDOM150::domUp_axis value of the text data of this element. 
-		 */
-		ColladaDOM150::domUp_axis _value;
 	protected:
 		/**
 		 * Constructor
@@ -1441,7 +972,6 @@ protected:  // Elements
  * @see domContributor
  */
 	domContributor_Array elemContributor_array;
-	domCoverageRef elemCoverage;
 /**
  * The created element contains the date and time that the parent element
  * was created and is  represented in an ISO 8601 format.  The created element
@@ -1450,7 +980,8 @@ protected:  // Elements
 	domCreatedRef elemCreated;
 /**
  * The keywords element contains a list of words used as search criteria for
- * the parent element.  There may be only one keywords element. @see domKeywords
+ * the parent element.  The keywords element may appear zero or more times.
+ * @see domKeywords
  */
 	domKeywordsRef elemKeywords;
 /**
@@ -1488,7 +1019,6 @@ protected:  // Elements
  * Y-axis. The up_axis element may appear zero or one time. @see domUp_axis
  */
 	domUp_axisRef elemUp_axis;
-	domExtra_Array elemExtra_array;
 
 public:	//Accessors and Mutators
 	/**
@@ -1501,11 +1031,6 @@ public:	//Accessors and Mutators
 	 * @return Returns a constant reference to the array of contributor elements.
 	 */
 	const domContributor_Array &getContributor_array() const { return elemContributor_array; }
-	/**
-	 * Gets the coverage element.
-	 * @return a daeSmartRef to the coverage element.
-	 */
-	const domCoverageRef getCoverage() const { return elemCoverage; }
 	/**
 	 * Gets the created element.
 	 * @return a daeSmartRef to the created element.
@@ -1546,21 +1071,11 @@ public:	//Accessors and Mutators
 	 * @return a daeSmartRef to the up_axis element.
 	 */
 	const domUp_axisRef getUp_axis() const { return elemUp_axis; }
-	/**
-	 * Gets the extra element array.
-	 * @return Returns a reference to the array of extra elements.
-	 */
-	domExtra_Array &getExtra_array() { return elemExtra_array; }
-	/**
-	 * Gets the extra element array.
-	 * @return Returns a constant reference to the array of extra elements.
-	 */
-	const domExtra_Array &getExtra_array() const { return elemExtra_array; }
 protected:
 	/**
 	 * Constructor
 	 */
-	domAsset(DAE& dae) : daeElement(dae), elemContributor_array(), elemCoverage(), elemCreated(), elemKeywords(), elemModified(), elemRevision(), elemSubject(), elemTitle(), elemUnit(), elemUp_axis(), elemExtra_array() {}
+	domAsset(DAE& dae) : daeElement(dae), elemContributor_array(), elemCreated(), elemKeywords(), elemModified(), elemRevision(), elemSubject(), elemTitle(), elemUnit(), elemUp_axis() {}
 	/**
 	 * Destructor
 	 */
@@ -1585,5 +1100,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

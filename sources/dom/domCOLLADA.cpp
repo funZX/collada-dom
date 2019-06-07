@@ -1,3 +1,11 @@
+/*
+ * Copyright 2006 Sony Computer Entertainment Inc.
+ *
+ * Licensed under the MIT Open Source License, for details please see license.txt or the website
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ */
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domCOLLADA.h>
@@ -8,7 +16,7 @@
 #include <dae/daeMetaAny.h>
 #include <dae/daeMetaElementAttribute.h>
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 extern daeString COLLADA_VERSION;
 extern daeString COLLADA_NAMESPACE;
 
@@ -16,8 +24,6 @@ daeElementRef
 domCOLLADA::create(DAE& dae)
 {
     domCOLLADARef ref = new domCOLLADA(dae);
-    ref->attrXmlns.setContainer( (domCOLLADA*)ref );
-    ref->attrXml_base.setContainer( (domCOLLADA*)ref );
     ref->_meta = dae.getMeta(domCOLLADA::ID());
     ref->setAttribute("version", COLLADA_VERSION );
     ref->setAttribute("xmlns", COLLADA_NAMESPACE );
@@ -139,36 +145,6 @@ domCOLLADA::registerElement(DAE& dae)
     mea->setElementType( domLibrary_visual_scenes::registerElement(dae) );
     cm->appendChild( mea );
 
-    mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
-    mea->setName( "library_joints" );
-    mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_joints_array) );
-    mea->setElementType( domLibrary_joints::registerElement(dae) );
-    cm->appendChild( mea );
-
-    mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
-    mea->setName( "library_kinematics_models" );
-    mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_kinematics_models_array) );
-    mea->setElementType( domLibrary_kinematics_models::registerElement(dae) );
-    cm->appendChild( mea );
-
-    mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
-    mea->setName( "library_articulated_systems" );
-    mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_articulated_systems_array) );
-    mea->setElementType( domLibrary_articulated_systems::registerElement(dae) );
-    cm->appendChild( mea );
-
-    mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
-    mea->setName( "library_kinematics_scenes" );
-    mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_kinematics_scenes_array) );
-    mea->setElementType( domLibrary_kinematics_scenes::registerElement(dae) );
-    cm->appendChild( mea );
-
-    mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
-    mea->setName( "library_formulas" );
-    mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_formulas_array) );
-    mea->setElementType( domLibrary_formulas::registerElement(dae) );
-    cm->appendChild( mea );
-
     cm->setMaxOrdinal( 0 );
     cm->getParent()->appendChild( cm );
     cm = cm->getParent();
@@ -206,7 +182,7 @@ domCOLLADA::registerElement(DAE& dae)
     {
         daeMetaAttribute *ma = new daeMetaAttribute;
         ma->setName( "version" );
-        ma->setType( dae.getAtomicTypes().get("Version"));
+        ma->setType( dae.getAtomicTypes().get("VersionType"));
         ma->setOffset( daeOffsetOf( domCOLLADA, attrVersion ));
         ma->setContainer( meta );
         ma->setIsRequired( true );
@@ -258,28 +234,22 @@ domCOLLADA::domScene::registerElement(DAE& dae)
     mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
     mea->setName( "instance_physics_scene" );
     mea->setOffset( daeOffsetOf(domCOLLADA::domScene,elemInstance_physics_scene_array) );
-    mea->setElementType( domInstance_with_extra::registerElement(dae) );
+    mea->setElementType( domInstanceWithExtra::registerElement(dae) );
     cm->appendChild( mea );
 
     mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
     mea->setName( "instance_visual_scene" );
     mea->setOffset( daeOffsetOf(domCOLLADA::domScene,elemInstance_visual_scene) );
-    mea->setElementType( domInstance_with_extra::registerElement(dae) );
+    mea->setElementType( domInstanceWithExtra::registerElement(dae) );
     cm->appendChild( mea );
 
     mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
-    mea->setName( "instance_kinematics_scene" );
-    mea->setOffset( daeOffsetOf(domCOLLADA::domScene,elemInstance_kinematics_scene_array) );
-    mea->setElementType( domInstance_kinematics_scene::registerElement(dae) );
-    cm->appendChild( mea );
-
-    mea = new daeMetaElementArrayAttribute( meta, cm, 3, 0, -1 );
     mea->setName( "extra" );
     mea->setOffset( daeOffsetOf(domCOLLADA::domScene,elemExtra_array) );
     mea->setElementType( domExtra::registerElement(dae) );
     cm->appendChild( mea );
 
-    cm->setMaxOrdinal( 3 );
+    cm->setMaxOrdinal( 2 );
     meta->setCMRoot( cm );
 
     meta->setElementSize(sizeof(domCOLLADA::domScene));
@@ -288,4 +258,4 @@ domCOLLADA::domScene::registerElement(DAE& dae)
     return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

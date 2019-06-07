@@ -1,5 +1,13 @@
-#ifndef __dom150Idref_array_h__
-#define __dom150Idref_array_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141IDREF_array_h__
+#define __dom141IDREF_array_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -7,17 +15,17 @@
 
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The IDREF_array element declares the storage for a homogenous array of
  * ID reference values.
  */
-class domIdref_array : public daeElement
+class domIDREF_array : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::IDREF_ARRAY; }
-	static daeInt ID() { return 6; }
+	static daeInt ID() { return 604; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -29,13 +37,18 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The count attribute indicates the number of values in the array. Required
  * attribute. 
  */
 	domUint attrCount;
 
+protected:  // Value
+	/**
+	 * The xsIDREFS value of the text data of this element. 
+	 */
+	xsIDREFS _value;
 
 public:	//Accessors and Mutators
 	/**
@@ -47,20 +60,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the count attribute.
@@ -71,7 +84,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( domUint atCount ) { attrCount = atCount; }
+	void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the _value array.
@@ -89,24 +102,19 @@ public:	//Accessors and Mutators
 	 */
 	void setValue( const xsIDREFS &val ) { _value = val; }
 
-protected:  // Value
-	/**
-	 * The xsIDREFS value of the text data of this element. 
-	 */
-	xsIDREFS _value;
 protected:
 	/**
 	 * Constructor
 	 */
-	domIdref_array(DAE& dae) : daeElement(dae), attrId(), attrName(), attrCount(), _value(new xsIDREF(*this)) {}
+	domIDREF_array(DAE& dae) : daeElement(dae), attrId(), attrName(), attrCount(), _value(new xsIDREF(*this)) {}
 	/**
 	 * Destructor
 	 */
-	virtual ~domIdref_array() {}
+	virtual ~domIDREF_array() {}
 	/**
 	 * Overloaded assignment operator
 	 */
-	virtual domIdref_array &operator=( const domIdref_array &cpy ) { (void)cpy; return *this; }
+	virtual domIDREF_array &operator=( const domIDREF_array &cpy ) { (void)cpy; return *this; }
 
 public: // STATIC METHODS
 	/**
@@ -123,5 +131,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

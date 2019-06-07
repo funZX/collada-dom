@@ -1,27 +1,35 @@
-#ifndef __dom150Camera_h__
-#define __dom150Camera_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Camera_h__
+#define __dom141Camera_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domAsset.h>
-#include <dom/domTargetable_float.h>
-#include <dom/domTechnique.h>
 #include <dom/domExtra.h>
+#include <dom/domTechnique.h>
+#include <dom/domTargetableFloat.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The camera element declares a view into the scene hierarchy or scene graph.
- * The camera contains  elements that describe the camera's optics and imager.
+ * The camera contains  elements that describe the camera’s optics and imager.
  */
 class domCamera : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CAMERA; }
-	static daeInt ID() { return 86; }
+	static daeInt ID() { return 645; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domOptics;
@@ -37,7 +45,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::OPTICS; }
-		static daeInt ID() { return 87; }
+		static daeInt ID() { return 646; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domTechnique_common;
@@ -53,7 +61,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-			static daeInt ID() { return 88; }
+			static daeInt ID() { return 647; }
 			virtual daeInt typeID() const { return ID(); }
 		public:
 			class domOrthographic;
@@ -69,7 +77,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ORTHOGRAPHIC; }
-				static daeInt ID() { return 89; }
+				static daeInt ID() { return 648; }
 				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Elements
@@ -77,31 +85,31 @@ public:
  * The xmag element contains a floating point number describing the horizontal
  * magnification of the view. @see domXmag
  */
-				domTargetable_floatRef elemXmag;
+				domTargetableFloatRef elemXmag;
 /**
  * The ymag element contains a floating point number describing the vertical
  * magnification of the view.  It can also have a sid. @see domYmag
  */
-				domTargetable_floatRef elemYmag;
+				domTargetableFloatRef elemYmag;
 /**
  * The aspect_ratio element contains a floating point number describing the
  * aspect ratio of  the field of view. If the aspect_ratio element is not
  * present the aspect ratio is to be  calculated from the xmag or ymag elements
  * and the current viewport. @see domAspect_ratio
  */
-				domTargetable_floatRef elemAspect_ratio;
+				domTargetableFloatRef elemAspect_ratio;
 /**
  * The znear element contains a floating point number that describes the distance
  * to the near  clipping plane. The znear element must occur exactly once.
  * @see domZnear
  */
-				domTargetable_floatRef elemZnear;
+				domTargetableFloatRef elemZnear;
 /**
  * The zfar element contains a floating point number that describes the distance
  * to the far  clipping plane. The zfar element must occur exactly once. @see
  * domZfar
  */
-				domTargetable_floatRef elemZfar;
+				domTargetableFloatRef elemZfar;
 				/**
 				 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 				 */
@@ -122,27 +130,27 @@ public:
 				 * Gets the xmag element.
 				 * @return a daeSmartRef to the xmag element.
 				 */
-				const domTargetable_floatRef getXmag() const { return elemXmag; }
+				const domTargetableFloatRef getXmag() const { return elemXmag; }
 				/**
 				 * Gets the ymag element.
 				 * @return a daeSmartRef to the ymag element.
 				 */
-				const domTargetable_floatRef getYmag() const { return elemYmag; }
+				const domTargetableFloatRef getYmag() const { return elemYmag; }
 				/**
 				 * Gets the aspect_ratio element.
 				 * @return a daeSmartRef to the aspect_ratio element.
 				 */
-				const domTargetable_floatRef getAspect_ratio() const { return elemAspect_ratio; }
+				const domTargetableFloatRef getAspect_ratio() const { return elemAspect_ratio; }
 				/**
 				 * Gets the znear element.
 				 * @return a daeSmartRef to the znear element.
 				 */
-				const domTargetable_floatRef getZnear() const { return elemZnear; }
+				const domTargetableFloatRef getZnear() const { return elemZnear; }
 				/**
 				 * Gets the zfar element.
 				 * @return a daeSmartRef to the zfar element.
 				 */
-				const domTargetable_floatRef getZfar() const { return elemZfar; }
+				const domTargetableFloatRef getZfar() const { return elemZfar; }
 				/**
 				 * Gets the _contents array.
 				 * @return Returns a reference to the _contents element array.
@@ -194,7 +202,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PERSPECTIVE; }
-				static daeInt ID() { return 90; }
+				static daeInt ID() { return 649; }
 				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Elements
@@ -202,31 +210,31 @@ public:
  * The xfov element contains a floating point number describing the horizontal
  * field of view in degrees. @see domXfov
  */
-				domTargetable_floatRef elemXfov;
+				domTargetableFloatRef elemXfov;
 /**
  * The yfov element contains a floating point number describing the verticle
  * field of view in degrees. @see domYfov
  */
-				domTargetable_floatRef elemYfov;
+				domTargetableFloatRef elemYfov;
 /**
  * The aspect_ratio element contains a floating point number describing the
  * aspect ratio of the field  of view. If the aspect_ratio element is not
  * present the aspect ratio is to be calculated from the  xfov or yfov elements
  * and the current viewport. @see domAspect_ratio
  */
-				domTargetable_floatRef elemAspect_ratio;
+				domTargetableFloatRef elemAspect_ratio;
 /**
  * The znear element contains a floating point number that describes the distance
  * to the near  clipping plane. The znear element must occur exactly once.
  * @see domZnear
  */
-				domTargetable_floatRef elemZnear;
+				domTargetableFloatRef elemZnear;
 /**
  * The zfar element contains a floating point number that describes the distance
  * to the far  clipping plane. The zfar element must occur exactly once. @see
  * domZfar
  */
-				domTargetable_floatRef elemZfar;
+				domTargetableFloatRef elemZfar;
 				/**
 				 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 				 */
@@ -247,27 +255,27 @@ public:
 				 * Gets the xfov element.
 				 * @return a daeSmartRef to the xfov element.
 				 */
-				const domTargetable_floatRef getXfov() const { return elemXfov; }
+				const domTargetableFloatRef getXfov() const { return elemXfov; }
 				/**
 				 * Gets the yfov element.
 				 * @return a daeSmartRef to the yfov element.
 				 */
-				const domTargetable_floatRef getYfov() const { return elemYfov; }
+				const domTargetableFloatRef getYfov() const { return elemYfov; }
 				/**
 				 * Gets the aspect_ratio element.
 				 * @return a daeSmartRef to the aspect_ratio element.
 				 */
-				const domTargetable_floatRef getAspect_ratio() const { return elemAspect_ratio; }
+				const domTargetableFloatRef getAspect_ratio() const { return elemAspect_ratio; }
 				/**
 				 * Gets the znear element.
 				 * @return a daeSmartRef to the znear element.
 				 */
-				const domTargetable_floatRef getZnear() const { return elemZnear; }
+				const domTargetableFloatRef getZnear() const { return elemZnear; }
 				/**
 				 * Gets the zfar element.
 				 * @return a daeSmartRef to the zfar element.
 				 */
-				const domTargetable_floatRef getZfar() const { return elemZfar; }
+				const domTargetableFloatRef getZfar() const { return elemZfar; }
 				/**
 				 * Gets the _contents array.
 				 * @return Returns a reference to the _contents element array.
@@ -394,12 +402,12 @@ public:
  */
 		domTechnique_commonRef elemTechnique_common;
 /**
- * This element may contain any number of non-common profile techniques. @see
- * domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * @see domTechnique
  */
 		domTechnique_Array elemTechnique_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 
@@ -469,17 +477,17 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::IMAGER; }
-		static daeInt ID() { return 91; }
+		static daeInt ID() { return 650; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
 /**
- * This element may contain any number of non-common profile techniques. There
- * is no common technique for imager. @see domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * There is no common technique for imager.  @see domTechnique
  */
 		domTechnique_Array elemTechnique_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 
@@ -543,11 +551,11 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The camera element may contain an asset element. @see domAsset
+ *  The camera element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
@@ -561,7 +569,7 @@ protected:  // Elements
  */
 	domImagerRef elemImager;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -575,20 +583,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -644,5 +652,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

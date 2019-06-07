@@ -1,33 +1,38 @@
-#ifndef __dom150Profile_gles_h__
-#define __dom150Profile_gles_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Profile_GLES_h__
+#define __dom141Profile_GLES_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
+#include <dom/domFx_profile_abstract.h>
 #include <dom/domAsset.h>
-#include <dom/domGles_newparam.h>
-#include <dom/domFx_annotate.h>
-#include <dom/domGles_pipeline_settings.h>
-#include <dom/domFx_colortarget.h>
-#include <dom/domFx_depthtarget.h>
-#include <dom/domFx_stenciltarget.h>
-#include <dom/domFx_clearcolor.h>
-#include <dom/domFx_cleardepth.h>
-#include <dom/domFx_clearstencil.h>
+#include <dom/domImage.h>
 #include <dom/domExtra.h>
+#include <dom/domGles_newparam.h>
+#include <dom/domFx_annotate_common.h>
+#include <dom/domGles_basic_type_common.h>
+#include <dom/domGles_pipeline_settings.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * Opens a block of GLES platform-specific data types and technique declarations.
  */
-class domProfile_gles : public daeElement
+class domProfile_GLES : public domFx_profile_abstract
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_GLES; }
-	static daeInt ID() { return 273; }
+	static daeInt ID() { return 756; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique;
@@ -43,9 +48,82 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-		static daeInt ID() { return 274; }
+		static daeInt ID() { return 757; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
+		class domSetparam;
+
+		typedef daeSmartRef<domSetparam> domSetparamRef;
+		typedef daeTArray<domSetparamRef> domSetparam_Array;
+
+		class domSetparam : public daeElement
+		{
+		public:
+			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SETPARAM; }
+			static daeInt ID() { return 758; }
+			virtual daeInt typeID() const { return ID(); }
+		protected:  // Attribute
+			xsNCName attrRef;
+
+		protected:  // Elements
+			domFx_annotate_common_Array elemAnnotate_array;
+			domGles_basic_type_commonRef elemGles_basic_type_common;
+
+		public:	//Accessors and Mutators
+			/**
+			 * Gets the ref attribute.
+			 * @return Returns a xsNCName of the ref attribute.
+			 */
+			xsNCName getRef() const { return attrRef; }
+			/**
+			 * Sets the ref attribute.
+			 * @param atRef The new value for the ref attribute.
+			 */
+			void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[0] = true; }
+
+			/**
+			 * Gets the annotate element array.
+			 * @return Returns a reference to the array of annotate elements.
+			 */
+			domFx_annotate_common_Array &getAnnotate_array() { return elemAnnotate_array; }
+			/**
+			 * Gets the annotate element array.
+			 * @return Returns a constant reference to the array of annotate elements.
+			 */
+			const domFx_annotate_common_Array &getAnnotate_array() const { return elemAnnotate_array; }
+			/**
+			 * Gets the gles_basic_type_common element.
+			 * @return a daeSmartRef to the gles_basic_type_common element.
+			 */
+			const domGles_basic_type_commonRef getGles_basic_type_common() const { return elemGles_basic_type_common; }
+		protected:
+			/**
+			 * Constructor
+			 */
+			domSetparam(DAE& dae) : daeElement(dae), attrRef(), elemAnnotate_array(), elemGles_basic_type_common() {}
+			/**
+			 * Destructor
+			 */
+			virtual ~domSetparam() {}
+			/**
+			 * Overloaded assignment operator
+			 */
+			virtual domSetparam &operator=( const domSetparam &cpy ) { (void)cpy; return *this; }
+
+		public: // STATIC METHODS
+			/**
+			 * Creates an instance of this class and returns a daeElementRef referencing it.
+			 * @return a daeElementRef referencing an instance of this object.
+			 */
+			static DLLSPEC daeElementRef create(DAE& dae);
+			/**
+			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+			 * @return A daeMetaElement describing this COLLADA element.
+			 */
+			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+		};
+
 		class domPass;
 
 		typedef daeSmartRef<domPass> domPassRef;
@@ -59,48 +137,52 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PASS; }
-			static daeInt ID() { return 275; }
+			static daeInt ID() { return 759; }
 			virtual daeInt typeID() const { return ID(); }
 		public:
-			class domStates;
+			class domColor_target;
 
-			typedef daeSmartRef<domStates> domStatesRef;
-			typedef daeTArray<domStatesRef> domStates_Array;
+			typedef daeSmartRef<domColor_target> domColor_targetRef;
+			typedef daeTArray<domColor_targetRef> domColor_target_Array;
 
-			class domStates : public daeElement
+			class domColor_target : public daeElement
 			{
 			public:
-				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STATES; }
-				static daeInt ID() { return 276; }
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_TARGET; }
+				static daeInt ID() { return 760; }
 				virtual daeInt typeID() const { return ID(); }
 
-			protected:  // Element
-				domGles_pipeline_settings_Array elemGles_pipeline_settings_array;
+			protected:  // Value
+				/**
+				 * The domGles_rendertarget_common value of the text data of this element. 
+				 */
+				domGles_rendertarget_common _value;
 
 			public:	//Accessors and Mutators
 				/**
-				 * Gets the gles_pipeline_settings element array.
-				 * @return Returns a reference to the array of gles_pipeline_settings elements.
+				 * Gets the value of this element.
+				 * @return a domGles_rendertarget_common of the value.
 				 */
-				domGles_pipeline_settings_Array &getGles_pipeline_settings_array() { return elemGles_pipeline_settings_array; }
+				domGles_rendertarget_common getValue() const { return _value; }
 				/**
-				 * Gets the gles_pipeline_settings element array.
-				 * @return Returns a constant reference to the array of gles_pipeline_settings elements.
+				 * Sets the _value of this element.
+				 * @param val The new value for this element.
 				 */
-				const domGles_pipeline_settings_Array &getGles_pipeline_settings_array() const { return elemGles_pipeline_settings_array; }
+				void setValue( domGles_rendertarget_common val ) { _value = val; }
+
 			protected:
 				/**
 				 * Constructor
 				 */
-				domStates(DAE& dae) : daeElement(dae), elemGles_pipeline_settings_array() {}
+				domColor_target(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
-				virtual ~domStates() {}
+				virtual ~domColor_target() {}
 				/**
 				 * Overloaded assignment operator
 				 */
-				virtual domStates &operator=( const domStates &cpy ) { (void)cpy; return *this; }
+				virtual domColor_target &operator=( const domColor_target &cpy ) { (void)cpy; return *this; }
 
 			public: // STATIC METHODS
 				/**
@@ -116,166 +198,344 @@ public:
 				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 			};
 
-			class domEvaluate;
+			class domDepth_target;
 
-			typedef daeSmartRef<domEvaluate> domEvaluateRef;
-			typedef daeTArray<domEvaluateRef> domEvaluate_Array;
+			typedef daeSmartRef<domDepth_target> domDepth_targetRef;
+			typedef daeTArray<domDepth_targetRef> domDepth_target_Array;
 
-			class domEvaluate : public daeElement
+			class domDepth_target : public daeElement
 			{
 			public:
-				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EVALUATE; }
-				static daeInt ID() { return 277; }
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_TARGET; }
+				static daeInt ID() { return 761; }
 				virtual daeInt typeID() const { return ID(); }
-			public:
-				class domDraw;
 
-				typedef daeSmartRef<domDraw> domDrawRef;
-				typedef daeTArray<domDrawRef> domDraw_Array;
-
-				class domDraw : public daeElement
-				{
-				public:
-					virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DRAW; }
-					static daeInt ID() { return 278; }
-					virtual daeInt typeID() const { return ID(); }
-
-
-				public:	//Accessors and Mutators
-					/**
-					 * Gets the value of this element.
-					 * @return a domFx_draw of the value.
-					 */
-					domFx_draw& getValue() { return _value; }
-					/**
-					 * Sets the _value of this element.
-					 * @param val The new value for this element.
-					 */
-					void setValue( const domFx_draw& val ) { _value = val; }
-
-				protected:  // Value
-					/**
-					 * The domFx_draw value of the text data of this element. 
-					 */
-					domFx_draw _value;
-				protected:
-					/**
-					 * Constructor
-					 */
-					domDraw(DAE& dae) : daeElement(dae), _value() {}
-					/**
-					 * Destructor
-					 */
-					virtual ~domDraw() {}
-					/**
-					 * Overloaded assignment operator
-					 */
-					virtual domDraw &operator=( const domDraw &cpy ) { (void)cpy; return *this; }
-
-				public: // STATIC METHODS
-					/**
-					 * Creates an instance of this class and returns a daeElementRef referencing it.
-					 * @return a daeElementRef referencing an instance of this object.
-					 */
-					static DLLSPEC daeElementRef create(DAE& dae);
-					/**
-					 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-					 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-					 * @return A daeMetaElement describing this COLLADA element.
-					 */
-					static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-				};
-
-
-
-			protected:  // Elements
-				domFx_colortarget_Array elemColor_target_array;
-				domFx_depthtarget_Array elemDepth_target_array;
-				domFx_stenciltarget_Array elemStencil_target_array;
-				domFx_clearcolor_Array elemColor_clear_array;
-				domFx_cleardepth_Array elemDepth_clear_array;
-				domFx_clearstencil_Array elemStencil_clear_array;
-				domDrawRef elemDraw;
+			protected:  // Value
+				/**
+				 * The domGles_rendertarget_common value of the text data of this element. 
+				 */
+				domGles_rendertarget_common _value;
 
 			public:	//Accessors and Mutators
 				/**
-				 * Gets the color_target element array.
-				 * @return Returns a reference to the array of color_target elements.
+				 * Gets the value of this element.
+				 * @return a domGles_rendertarget_common of the value.
 				 */
-				domFx_colortarget_Array &getColor_target_array() { return elemColor_target_array; }
+				domGles_rendertarget_common getValue() const { return _value; }
 				/**
-				 * Gets the color_target element array.
-				 * @return Returns a constant reference to the array of color_target elements.
+				 * Sets the _value of this element.
+				 * @param val The new value for this element.
 				 */
-				const domFx_colortarget_Array &getColor_target_array() const { return elemColor_target_array; }
-				/**
-				 * Gets the depth_target element array.
-				 * @return Returns a reference to the array of depth_target elements.
-				 */
-				domFx_depthtarget_Array &getDepth_target_array() { return elemDepth_target_array; }
-				/**
-				 * Gets the depth_target element array.
-				 * @return Returns a constant reference to the array of depth_target elements.
-				 */
-				const domFx_depthtarget_Array &getDepth_target_array() const { return elemDepth_target_array; }
-				/**
-				 * Gets the stencil_target element array.
-				 * @return Returns a reference to the array of stencil_target elements.
-				 */
-				domFx_stenciltarget_Array &getStencil_target_array() { return elemStencil_target_array; }
-				/**
-				 * Gets the stencil_target element array.
-				 * @return Returns a constant reference to the array of stencil_target elements.
-				 */
-				const domFx_stenciltarget_Array &getStencil_target_array() const { return elemStencil_target_array; }
-				/**
-				 * Gets the color_clear element array.
-				 * @return Returns a reference to the array of color_clear elements.
-				 */
-				domFx_clearcolor_Array &getColor_clear_array() { return elemColor_clear_array; }
-				/**
-				 * Gets the color_clear element array.
-				 * @return Returns a constant reference to the array of color_clear elements.
-				 */
-				const domFx_clearcolor_Array &getColor_clear_array() const { return elemColor_clear_array; }
-				/**
-				 * Gets the depth_clear element array.
-				 * @return Returns a reference to the array of depth_clear elements.
-				 */
-				domFx_cleardepth_Array &getDepth_clear_array() { return elemDepth_clear_array; }
-				/**
-				 * Gets the depth_clear element array.
-				 * @return Returns a constant reference to the array of depth_clear elements.
-				 */
-				const domFx_cleardepth_Array &getDepth_clear_array() const { return elemDepth_clear_array; }
-				/**
-				 * Gets the stencil_clear element array.
-				 * @return Returns a reference to the array of stencil_clear elements.
-				 */
-				domFx_clearstencil_Array &getStencil_clear_array() { return elemStencil_clear_array; }
-				/**
-				 * Gets the stencil_clear element array.
-				 * @return Returns a constant reference to the array of stencil_clear elements.
-				 */
-				const domFx_clearstencil_Array &getStencil_clear_array() const { return elemStencil_clear_array; }
-				/**
-				 * Gets the draw element.
-				 * @return a daeSmartRef to the draw element.
-				 */
-				const domDrawRef getDraw() const { return elemDraw; }
+				void setValue( domGles_rendertarget_common val ) { _value = val; }
+
 			protected:
 				/**
 				 * Constructor
 				 */
-				domEvaluate(DAE& dae) : daeElement(dae), elemColor_target_array(), elemDepth_target_array(), elemStencil_target_array(), elemColor_clear_array(), elemDepth_clear_array(), elemStencil_clear_array(), elemDraw() {}
+				domDepth_target(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
-				virtual ~domEvaluate() {}
+				virtual ~domDepth_target() {}
 				/**
 				 * Overloaded assignment operator
 				 */
-				virtual domEvaluate &operator=( const domEvaluate &cpy ) { (void)cpy; return *this; }
+				virtual domDepth_target &operator=( const domDepth_target &cpy ) { (void)cpy; return *this; }
+
+			public: // STATIC METHODS
+				/**
+				 * Creates an instance of this class and returns a daeElementRef referencing it.
+				 * @return a daeElementRef referencing an instance of this object.
+				 */
+				static DLLSPEC daeElementRef create(DAE& dae);
+				/**
+				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+				 * @return A daeMetaElement describing this COLLADA element.
+				 */
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+			};
+
+			class domStencil_target;
+
+			typedef daeSmartRef<domStencil_target> domStencil_targetRef;
+			typedef daeTArray<domStencil_targetRef> domStencil_target_Array;
+
+			class domStencil_target : public daeElement
+			{
+			public:
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_TARGET; }
+				static daeInt ID() { return 762; }
+				virtual daeInt typeID() const { return ID(); }
+
+			protected:  // Value
+				/**
+				 * The domGles_rendertarget_common value of the text data of this element. 
+				 */
+				domGles_rendertarget_common _value;
+
+			public:	//Accessors and Mutators
+				/**
+				 * Gets the value of this element.
+				 * @return a domGles_rendertarget_common of the value.
+				 */
+				domGles_rendertarget_common getValue() const { return _value; }
+				/**
+				 * Sets the _value of this element.
+				 * @param val The new value for this element.
+				 */
+				void setValue( domGles_rendertarget_common val ) { _value = val; }
+
+			protected:
+				/**
+				 * Constructor
+				 */
+				domStencil_target(DAE& dae) : daeElement(dae), _value() {}
+				/**
+				 * Destructor
+				 */
+				virtual ~domStencil_target() {}
+				/**
+				 * Overloaded assignment operator
+				 */
+				virtual domStencil_target &operator=( const domStencil_target &cpy ) { (void)cpy; return *this; }
+
+			public: // STATIC METHODS
+				/**
+				 * Creates an instance of this class and returns a daeElementRef referencing it.
+				 * @return a daeElementRef referencing an instance of this object.
+				 */
+				static DLLSPEC daeElementRef create(DAE& dae);
+				/**
+				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+				 * @return A daeMetaElement describing this COLLADA element.
+				 */
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+			};
+
+			class domColor_clear;
+
+			typedef daeSmartRef<domColor_clear> domColor_clearRef;
+			typedef daeTArray<domColor_clearRef> domColor_clear_Array;
+
+			class domColor_clear : public daeElement
+			{
+			public:
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_CLEAR; }
+				static daeInt ID() { return 763; }
+				virtual daeInt typeID() const { return ID(); }
+
+			protected:  // Value
+				/**
+				 * The domFx_color_common value of the text data of this element. 
+				 */
+				domFx_color_common _value;
+
+			public:	//Accessors and Mutators
+				/**
+				 * Gets the _value array.
+				 * @return Returns a domFx_color_common reference of the _value array.
+				 */
+				domFx_color_common &getValue() { return _value; }
+				/**
+				 * Gets the _value array.
+				 * @return Returns a constant domFx_color_common reference of the _value array.
+				 */
+				const domFx_color_common &getValue() const { return _value; }
+				/**
+				 * Sets the _value array.
+				 * @param val The new value for the _value array.
+				 */
+				void setValue( const domFx_color_common &val ) { _value = val; }
+
+			protected:
+				/**
+				 * Constructor
+				 */
+				domColor_clear(DAE& dae) : daeElement(dae), _value() {}
+				/**
+				 * Destructor
+				 */
+				virtual ~domColor_clear() {}
+				/**
+				 * Overloaded assignment operator
+				 */
+				virtual domColor_clear &operator=( const domColor_clear &cpy ) { (void)cpy; return *this; }
+
+			public: // STATIC METHODS
+				/**
+				 * Creates an instance of this class and returns a daeElementRef referencing it.
+				 * @return a daeElementRef referencing an instance of this object.
+				 */
+				static DLLSPEC daeElementRef create(DAE& dae);
+				/**
+				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+				 * @return A daeMetaElement describing this COLLADA element.
+				 */
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+			};
+
+			class domDepth_clear;
+
+			typedef daeSmartRef<domDepth_clear> domDepth_clearRef;
+			typedef daeTArray<domDepth_clearRef> domDepth_clear_Array;
+
+			class domDepth_clear : public daeElement
+			{
+			public:
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_CLEAR; }
+				static daeInt ID() { return 764; }
+				virtual daeInt typeID() const { return ID(); }
+
+			protected:  // Value
+				/**
+				 * The domFloat value of the text data of this element. 
+				 */
+				domFloat _value;
+
+			public:	//Accessors and Mutators
+				/**
+				 * Gets the value of this element.
+				 * @return a domFloat of the value.
+				 */
+				domFloat getValue() const { return _value; }
+				/**
+				 * Sets the _value of this element.
+				 * @param val The new value for this element.
+				 */
+				void setValue( domFloat val ) { _value = val; }
+
+			protected:
+				/**
+				 * Constructor
+				 */
+				domDepth_clear(DAE& dae) : daeElement(dae), _value() {}
+				/**
+				 * Destructor
+				 */
+				virtual ~domDepth_clear() {}
+				/**
+				 * Overloaded assignment operator
+				 */
+				virtual domDepth_clear &operator=( const domDepth_clear &cpy ) { (void)cpy; return *this; }
+
+			public: // STATIC METHODS
+				/**
+				 * Creates an instance of this class and returns a daeElementRef referencing it.
+				 * @return a daeElementRef referencing an instance of this object.
+				 */
+				static DLLSPEC daeElementRef create(DAE& dae);
+				/**
+				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+				 * @return A daeMetaElement describing this COLLADA element.
+				 */
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+			};
+
+			class domStencil_clear;
+
+			typedef daeSmartRef<domStencil_clear> domStencil_clearRef;
+			typedef daeTArray<domStencil_clearRef> domStencil_clear_Array;
+
+			class domStencil_clear : public daeElement
+			{
+			public:
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_CLEAR; }
+				static daeInt ID() { return 765; }
+				virtual daeInt typeID() const { return ID(); }
+
+			protected:  // Value
+				/**
+				 * The xsByte value of the text data of this element. 
+				 */
+				xsByte _value;
+
+			public:	//Accessors and Mutators
+				/**
+				 * Gets the value of this element.
+				 * @return a xsByte of the value.
+				 */
+				xsByte getValue() const { return _value; }
+				/**
+				 * Sets the _value of this element.
+				 * @param val The new value for this element.
+				 */
+				void setValue( xsByte val ) { _value = val; }
+
+			protected:
+				/**
+				 * Constructor
+				 */
+				domStencil_clear(DAE& dae) : daeElement(dae), _value() {}
+				/**
+				 * Destructor
+				 */
+				virtual ~domStencil_clear() {}
+				/**
+				 * Overloaded assignment operator
+				 */
+				virtual domStencil_clear &operator=( const domStencil_clear &cpy ) { (void)cpy; return *this; }
+
+			public: // STATIC METHODS
+				/**
+				 * Creates an instance of this class and returns a daeElementRef referencing it.
+				 * @return a daeElementRef referencing an instance of this object.
+				 */
+				static DLLSPEC daeElementRef create(DAE& dae);
+				/**
+				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+				 * @return A daeMetaElement describing this COLLADA element.
+				 */
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+			};
+
+			class domDraw;
+
+			typedef daeSmartRef<domDraw> domDrawRef;
+			typedef daeTArray<domDrawRef> domDraw_Array;
+
+			class domDraw : public daeElement
+			{
+			public:
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DRAW; }
+				static daeInt ID() { return 766; }
+				virtual daeInt typeID() const { return ID(); }
+
+			protected:  // Value
+				/**
+				 * The domFx_draw_common value of the text data of this element. 
+				 */
+				domFx_draw_common _value;
+
+			public:	//Accessors and Mutators
+				/**
+				 * Gets the value of this element.
+				 * @return a domFx_draw_common of the value.
+				 */
+				domFx_draw_common getValue() const { return _value; }
+				/**
+				 * Sets the _value of this element.
+				 * @param val The new value for this element.
+				 */
+				void setValue( domFx_draw_common val ) { _value = val; }
+
+			protected:
+				/**
+				 * Constructor
+				 */
+				domDraw(DAE& dae) : daeElement(dae), _value() {}
+				/**
+				 * Destructor
+				 */
+				virtual ~domDraw() {}
+				/**
+				 * Overloaded assignment operator
+				 */
+				virtual domDraw &operator=( const domDraw &cpy ) { (void)cpy; return *this; }
 
 			public: // STATIC METHODS
 				/**
@@ -298,46 +558,101 @@ public:
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-			domSid attrSid;
+			xsNCName attrSid;
 
 		protected:  // Elements
-			domFx_annotate_Array elemAnnotate_array;
-			domStatesRef elemStates;
-			domEvaluateRef elemEvaluate;
+			domFx_annotate_common_Array elemAnnotate_array;
+			domColor_targetRef elemColor_target;
+			domDepth_targetRef elemDepth_target;
+			domStencil_targetRef elemStencil_target;
+			domColor_clearRef elemColor_clear;
+			domDepth_clearRef elemDepth_clear;
+			domStencil_clearRef elemStencil_clear;
+			domDrawRef elemDraw;
+			domGles_pipeline_settings_Array elemGles_pipeline_settings_array;
 			domExtra_Array elemExtra_array;
+			/**
+			 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
+			 */
+			daeElementRefArray _contents;
+			/**
+			 * Used to preserve order in elements that have a complex content model.
+			 */
+			daeUIntArray       _contentsOrder;
+
+			/**
+			 * Used to store information needed for some content model objects.
+			 */
+			daeTArray< daeCharArray * > _CMData;
+
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the sid attribute.
-			 * @return Returns a domSid of the sid attribute.
+			 * @return Returns a xsNCName of the sid attribute.
 			 */
-			domSid getSid() const { return attrSid; }
+			xsNCName getSid() const { return attrSid; }
 			/**
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the annotate element array.
 			 * @return Returns a reference to the array of annotate elements.
 			 */
-			domFx_annotate_Array &getAnnotate_array() { return elemAnnotate_array; }
+			domFx_annotate_common_Array &getAnnotate_array() { return elemAnnotate_array; }
 			/**
 			 * Gets the annotate element array.
 			 * @return Returns a constant reference to the array of annotate elements.
 			 */
-			const domFx_annotate_Array &getAnnotate_array() const { return elemAnnotate_array; }
+			const domFx_annotate_common_Array &getAnnotate_array() const { return elemAnnotate_array; }
 			/**
-			 * Gets the states element.
-			 * @return a daeSmartRef to the states element.
+			 * Gets the color_target element.
+			 * @return a daeSmartRef to the color_target element.
 			 */
-			const domStatesRef getStates() const { return elemStates; }
+			const domColor_targetRef getColor_target() const { return elemColor_target; }
 			/**
-			 * Gets the evaluate element.
-			 * @return a daeSmartRef to the evaluate element.
+			 * Gets the depth_target element.
+			 * @return a daeSmartRef to the depth_target element.
 			 */
-			const domEvaluateRef getEvaluate() const { return elemEvaluate; }
+			const domDepth_targetRef getDepth_target() const { return elemDepth_target; }
+			/**
+			 * Gets the stencil_target element.
+			 * @return a daeSmartRef to the stencil_target element.
+			 */
+			const domStencil_targetRef getStencil_target() const { return elemStencil_target; }
+			/**
+			 * Gets the color_clear element.
+			 * @return a daeSmartRef to the color_clear element.
+			 */
+			const domColor_clearRef getColor_clear() const { return elemColor_clear; }
+			/**
+			 * Gets the depth_clear element.
+			 * @return a daeSmartRef to the depth_clear element.
+			 */
+			const domDepth_clearRef getDepth_clear() const { return elemDepth_clear; }
+			/**
+			 * Gets the stencil_clear element.
+			 * @return a daeSmartRef to the stencil_clear element.
+			 */
+			const domStencil_clearRef getStencil_clear() const { return elemStencil_clear; }
+			/**
+			 * Gets the draw element.
+			 * @return a daeSmartRef to the draw element.
+			 */
+			const domDrawRef getDraw() const { return elemDraw; }
+			/**
+			 * Gets the gles_pipeline_settings element array.
+			 * @return Returns a reference to the array of gles_pipeline_settings elements.
+			 */
+			domGles_pipeline_settings_Array &getGles_pipeline_settings_array() { return elemGles_pipeline_settings_array; }
+			/**
+			 * Gets the gles_pipeline_settings element array.
+			 * @return Returns a constant reference to the array of gles_pipeline_settings elements.
+			 */
+			const domGles_pipeline_settings_Array &getGles_pipeline_settings_array() const { return elemGles_pipeline_settings_array; }
 			/**
 			 * Gets the extra element array.
 			 * @return Returns a reference to the array of extra elements.
@@ -348,15 +663,26 @@ public:
 			 * @return Returns a constant reference to the array of extra elements.
 			 */
 			const domExtra_Array &getExtra_array() const { return elemExtra_array; }
+			/**
+			 * Gets the _contents array.
+			 * @return Returns a reference to the _contents element array.
+			 */
+			daeElementRefArray &getContents() { return _contents; }
+			/**
+			 * Gets the _contents array.
+			 * @return Returns a constant reference to the _contents element array.
+			 */
+			const daeElementRefArray &getContents() const { return _contents; }
+
 		protected:
 			/**
 			 * Constructor
 			 */
-			domPass(DAE& dae) : daeElement(dae), attrSid(), elemAnnotate_array(), elemStates(), elemEvaluate(), elemExtra_array() {}
+			domPass(DAE& dae) : daeElement(dae), attrSid(), elemAnnotate_array(), elemColor_target(), elemDepth_target(), elemStencil_target(), elemColor_clear(), elemDepth_clear(), elemStencil_clear(), elemDraw(), elemGles_pipeline_settings_array(), elemExtra_array() {}
 			/**
 			 * Destructor
 			 */
-			virtual ~domPass() {}
+			virtual ~domPass() { daeElement::deleteCMDataArray(_CMData); }
 			/**
 			 * Overloaded assignment operator
 			 */
@@ -384,17 +710,34 @@ public:
  * of this element.  This value must be unique within the scope of the parent
  * element. 
  */
-		domSid attrSid;
+		xsNCName attrSid;
 
 	protected:  // Elements
 		domAssetRef elemAsset;
-		domFx_annotate_Array elemAnnotate_array;
+		domFx_annotate_common_Array elemAnnotate_array;
+		domImage_Array elemImage_array;
+		domGles_newparam_Array elemNewparam_array;
+		domSetparam_Array elemSetparam_array;
 /**
  * A static declaration of all the render states, shaders, and settings for
  * one rendering pipeline. @see domPass
  */
 		domPass_Array elemPass_array;
 		domExtra_Array elemExtra_array;
+		/**
+		 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
+		 */
+		daeElementRefArray _contents;
+		/**
+		 * Used to preserve order in elements that have a complex content model.
+		 */
+		daeUIntArray       _contentsOrder;
+
+		/**
+		 * Used to store information needed for some content model objects.
+		 */
+		daeTArray< daeCharArray * > _CMData;
+
 
 	public:	//Accessors and Mutators
 		/**
@@ -412,14 +755,14 @@ public:
 
 		/**
 		 * Gets the sid attribute.
-		 * @return Returns a domSid of the sid attribute.
+		 * @return Returns a xsNCName of the sid attribute.
 		 */
-		domSid getSid() const { return attrSid; }
+		xsNCName getSid() const { return attrSid; }
 		/**
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
+		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the asset element.
@@ -430,12 +773,42 @@ public:
 		 * Gets the annotate element array.
 		 * @return Returns a reference to the array of annotate elements.
 		 */
-		domFx_annotate_Array &getAnnotate_array() { return elemAnnotate_array; }
+		domFx_annotate_common_Array &getAnnotate_array() { return elemAnnotate_array; }
 		/**
 		 * Gets the annotate element array.
 		 * @return Returns a constant reference to the array of annotate elements.
 		 */
-		const domFx_annotate_Array &getAnnotate_array() const { return elemAnnotate_array; }
+		const domFx_annotate_common_Array &getAnnotate_array() const { return elemAnnotate_array; }
+		/**
+		 * Gets the image element array.
+		 * @return Returns a reference to the array of image elements.
+		 */
+		domImage_Array &getImage_array() { return elemImage_array; }
+		/**
+		 * Gets the image element array.
+		 * @return Returns a constant reference to the array of image elements.
+		 */
+		const domImage_Array &getImage_array() const { return elemImage_array; }
+		/**
+		 * Gets the newparam element array.
+		 * @return Returns a reference to the array of newparam elements.
+		 */
+		domGles_newparam_Array &getNewparam_array() { return elemNewparam_array; }
+		/**
+		 * Gets the newparam element array.
+		 * @return Returns a constant reference to the array of newparam elements.
+		 */
+		const domGles_newparam_Array &getNewparam_array() const { return elemNewparam_array; }
+		/**
+		 * Gets the setparam element array.
+		 * @return Returns a reference to the array of setparam elements.
+		 */
+		domSetparam_Array &getSetparam_array() { return elemSetparam_array; }
+		/**
+		 * Gets the setparam element array.
+		 * @return Returns a constant reference to the array of setparam elements.
+		 */
+		const domSetparam_Array &getSetparam_array() const { return elemSetparam_array; }
 		/**
 		 * Gets the pass element array.
 		 * @return Returns a reference to the array of pass elements.
@@ -456,15 +829,26 @@ public:
 		 * @return Returns a constant reference to the array of extra elements.
 		 */
 		const domExtra_Array &getExtra_array() const { return elemExtra_array; }
+		/**
+		 * Gets the _contents array.
+		 * @return Returns a reference to the _contents element array.
+		 */
+		daeElementRefArray &getContents() { return _contents; }
+		/**
+		 * Gets the _contents array.
+		 * @return Returns a constant reference to the _contents element array.
+		 */
+		const daeElementRefArray &getContents() const { return _contents; }
+
 	protected:
 		/**
 		 * Constructor
 		 */
-		domTechnique(DAE& dae) : daeElement(dae), attrId(), attrSid(), elemAsset(), elemAnnotate_array(), elemPass_array(), elemExtra_array() {}
+		domTechnique(DAE& dae) : daeElement(dae), attrId(), attrSid(), elemAsset(), elemAnnotate_array(), elemImage_array(), elemNewparam_array(), elemSetparam_array(), elemPass_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
-		virtual ~domTechnique() {}
+		virtual ~domTechnique() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -500,6 +884,7 @@ protected:  // Attributes
 
 protected:  // Elements
 	domAssetRef elemAsset;
+	domImage_Array elemImage_array;
 	domGles_newparam_Array elemNewparam_array;
 /**
  * Holds a description of the textures, samplers, shaders, parameters, and
@@ -507,6 +892,20 @@ protected:  // Elements
  */
 	domTechnique_Array elemTechnique_array;
 	domExtra_Array elemExtra_array;
+	/**
+	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
+	 */
+	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
+
+	/**
+	 * Used to store information needed for some content model objects.
+	 */
+	daeTArray< daeCharArray * > _CMData;
+
 
 public:	//Accessors and Mutators
 	/**
@@ -518,7 +917,7 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
@@ -531,13 +930,23 @@ public:	//Accessors and Mutators
 	 * Sets the platform attribute.
 	 * @param atPlatform The new value for the platform attribute.
 	 */
-	void setPlatform( xsNCName atPlatform ) { *(daeStringRef*)&attrPlatform = atPlatform;}
+	void setPlatform( xsNCName atPlatform ) { *(daeStringRef*)&attrPlatform = atPlatform; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
 	 * @return a daeSmartRef to the asset element.
 	 */
 	const domAssetRef getAsset() const { return elemAsset; }
+	/**
+	 * Gets the image element array.
+	 * @return Returns a reference to the array of image elements.
+	 */
+	domImage_Array &getImage_array() { return elemImage_array; }
+	/**
+	 * Gets the image element array.
+	 * @return Returns a constant reference to the array of image elements.
+	 */
+	const domImage_Array &getImage_array() const { return elemImage_array; }
 	/**
 	 * Gets the newparam element array.
 	 * @return Returns a reference to the array of newparam elements.
@@ -568,19 +977,30 @@ public:	//Accessors and Mutators
 	 * @return Returns a constant reference to the array of extra elements.
 	 */
 	const domExtra_Array &getExtra_array() const { return elemExtra_array; }
+	/**
+	 * Gets the _contents array.
+	 * @return Returns a reference to the _contents element array.
+	 */
+	daeElementRefArray &getContents() { return _contents; }
+	/**
+	 * Gets the _contents array.
+	 * @return Returns a constant reference to the _contents element array.
+	 */
+	const daeElementRefArray &getContents() const { return _contents; }
+
 protected:
 	/**
 	 * Constructor
 	 */
-	domProfile_gles(DAE& dae) : daeElement(dae), attrId(), attrPlatform(), elemAsset(), elemNewparam_array(), elemTechnique_array(), elemExtra_array() {}
+	domProfile_GLES(DAE& dae) : domFx_profile_abstract(dae), attrId(), attrPlatform(), elemAsset(), elemImage_array(), elemNewparam_array(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
-	virtual ~domProfile_gles() {}
+	virtual ~domProfile_GLES() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Overloaded assignment operator
 	 */
-	virtual domProfile_gles &operator=( const domProfile_gles &cpy ) { (void)cpy; return *this; }
+	virtual domProfile_GLES &operator=( const domProfile_GLES &cpy ) { (void)cpy; return *this; }
 
 public: // STATIC METHODS
 	/**
@@ -597,5 +1017,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

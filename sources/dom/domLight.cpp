@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domLight.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domLight::create(DAE& dae)
 {
@@ -75,7 +83,7 @@ domLight::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLight , attrName ));
 		ma->setContainer( meta );
 	
@@ -176,7 +184,7 @@ domLight::domTechnique_common::domAmbient::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "color" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domAmbient,elemColor) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 0 );
@@ -215,7 +223,7 @@ domLight::domTechnique_common::domDirectional::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "color" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domDirectional,elemColor) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 0 );
@@ -254,25 +262,25 @@ domLight::domTechnique_common::domPoint::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "color" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domPoint,elemColor) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "constant_attenuation" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domPoint,elemConstant_attenuation) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "linear_attenuation" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domPoint,elemLinear_attenuation) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 3, 0, 1 );
 	mea->setName( "quadratic_attenuation" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domPoint,elemQuadratic_attenuation) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 3 );
@@ -311,37 +319,37 @@ domLight::domTechnique_common::domSpot::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "color" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domSpot,elemColor) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "constant_attenuation" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domSpot,elemConstant_attenuation) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "linear_attenuation" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domSpot,elemLinear_attenuation) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 3, 0, 1 );
 	mea->setName( "quadratic_attenuation" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domSpot,elemQuadratic_attenuation) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 4, 0, 1 );
 	mea->setName( "falloff_angle" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domSpot,elemFalloff_angle) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 5, 0, 1 );
 	mea->setName( "falloff_exponent" );
 	mea->setOffset( daeOffsetOf(domLight::domTechnique_common::domSpot,elemFalloff_exponent) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 5 );
@@ -353,4 +361,4 @@ domLight::domTechnique_common::domSpot::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

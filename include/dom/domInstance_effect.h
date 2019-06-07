@@ -1,15 +1,23 @@
-#ifndef __dom150Instance_effect_h__
-#define __dom150Instance_effect_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Instance_effect_h__
+#define __dom141Instance_effect_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domFx_setparam.h>
 #include <dom/domExtra.h>
+#include <dom/domFx_basic_type_common.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The instance_effect element declares the instantiation of a COLLADA effect
@@ -19,7 +27,7 @@ class domInstance_effect : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_EFFECT; }
-	static daeInt ID() { return 117; }
+	static daeInt ID() { return 691; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_hint;
@@ -34,7 +42,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_HINT; }
-		static daeInt ID() { return 118; }
+		static daeInt ID() { return 692; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 /**
@@ -127,13 +135,13 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SETPARAM; }
-		static daeInt ID() { return 119; }
+		static daeInt ID() { return 693; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 		xsToken attrRef;
 
 	protected:  // Element
-		domFx_setparamRef elemFx_setparam;
+		domFx_basic_type_commonRef elemFx_basic_type_common;
 
 	public:	//Accessors and Mutators
 		/**
@@ -148,15 +156,15 @@ public:
 		void setRef( xsToken atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[0] = true; }
 
 		/**
-		 * Gets the fx_setparam element.
-		 * @return a daeSmartRef to the fx_setparam element.
+		 * Gets the fx_basic_type_common element.
+		 * @return a daeSmartRef to the fx_basic_type_common element.
 		 */
-		const domFx_setparamRef getFx_setparam() const { return elemFx_setparam; }
+		const domFx_basic_type_commonRef getFx_basic_type_common() const { return elemFx_basic_type_common; }
 	protected:
 		/**
 		 * Constructor
 		 */
-		domSetparam(DAE& dae) : daeElement(dae), attrRef(), elemFx_setparam() {}
+		domSetparam(DAE& dae) : daeElement(dae), attrRef(), elemFx_basic_type_common() {}
 		/**
 		 * Destructor
 		 */
@@ -184,9 +192,9 @@ public:
 protected:  // Attributes
 /**
  *  The url attribute refers to resource.  This may refer to a local resource
- * using a relative URL  fragment identifier that begins with the "#" character.
- * The url attribute may refer to an external  resource using an absolute
- * or relative URL. 
+ * using a relative URL  fragment identifier that begins with the “#”
+ * character. The url attribute may refer to an external  resource using an
+ * absolute or relative URL. 
  */
 	xsAnyURI attrUrl;
 /**
@@ -194,11 +202,11 @@ protected:  // Attributes
  * of this element. This  value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-	domSid attrSid;
+	xsNCName attrSid;
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
@@ -211,7 +219,7 @@ protected:  // Elements
  */
 	domSetparam_Array elemSetparam_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -230,34 +238,34 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 	/**
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( xsString atUrl ) { attrUrl = atUrl; }
+	void setUrl( xsString atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the technique_hint element array.
@@ -318,5 +326,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

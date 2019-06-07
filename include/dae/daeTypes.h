@@ -51,9 +51,8 @@ typedef daeChar daeFixedName[512];
 #include <dae/daeArray.h>
 #include <dae/daeArrayTypes.h>
 
-
-namespace ColladaDOM150 {}
-using namespace ColladaDOM150;
+namespace ColladaDOM141 {}
+using namespace ColladaDOM141;
 
 
 #endif //__DAE_TYPES_H__

@@ -1,5 +1,13 @@
-#ifndef __dom150Physics_scene_h__
-#define __dom150Physics_scene_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Physics_scene_h__
+#define __dom141Physics_scene_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -8,19 +16,19 @@
 #include <dom/domAsset.h>
 #include <dom/domInstance_force_field.h>
 #include <dom/domInstance_physics_model.h>
-#include <dom/domTargetable_float3.h>
-#include <dom/domTargetable_float.h>
 #include <dom/domTechnique.h>
 #include <dom/domExtra.h>
+#include <dom/domTargetableFloat3.h>
+#include <dom/domTargetableFloat.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 class domPhysics_scene : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHYSICS_SCENE; }
-	static daeInt ID() { return 413; }
+	static daeInt ID() { return 793; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_common;
@@ -36,30 +44,30 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static daeInt ID() { return 414; }
+		static daeInt ID() { return 794; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
 /**
  * The gravity vector to use for the physics_scene. @see domGravity
  */
-		domTargetable_float3Ref elemGravity;
+		domTargetableFloat3Ref elemGravity;
 /**
  * The time_step for the physics_scene. @see domTime_step
  */
-		domTargetable_floatRef elemTime_step;
+		domTargetableFloatRef elemTime_step;
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the gravity element.
 		 * @return a daeSmartRef to the gravity element.
 		 */
-		const domTargetable_float3Ref getGravity() const { return elemGravity; }
+		const domTargetableFloat3Ref getGravity() const { return elemGravity; }
 		/**
 		 * Gets the time_step element.
 		 * @return a daeSmartRef to the time_step element.
 		 */
-		const domTargetable_floatRef getTime_step() const { return elemTime_step; }
+		const domTargetableFloatRef getTime_step() const { return elemTime_step; }
 	protected:
 		/**
 		 * Constructor
@@ -99,19 +107,19 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The physics_scene element may contain an asset element. @see domAsset
+ *  The physics_scene element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
- * There may be any number of instance_force_field elements. @see domInstance_force_field
+ *  There may be any number of instance_force_field elements.  @see domInstance_force_field
  */
 	domInstance_force_field_Array elemInstance_force_field_array;
 /**
- * There may be any number of instance_physics_model elements. @see domInstance_physics_model
+ *  There may be any number of instance_physics_model elements.  @see domInstance_physics_model
  */
 	domInstance_physics_model_Array elemInstance_physics_model_array;
 /**
@@ -121,12 +129,12 @@ protected:  // Elements
  */
 	domTechnique_commonRef elemTechnique_common;
 /**
- * This element may contain any number of non-common profile techniques. @see
- * domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -140,20 +148,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -234,5 +242,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

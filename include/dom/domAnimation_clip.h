@@ -1,17 +1,24 @@
-#ifndef __dom150Animation_clip_h__
-#define __dom150Animation_clip_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Animation_clip_h__
+#define __dom141Animation_clip_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domAsset.h>
-#include <dom/domInstance_with_extra.h>
-#include <dom/domInstance_formula.h>
 #include <dom/domExtra.h>
+#include <dom/domInstanceWithExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The animation_clip element defines a section of the animation curves to
@@ -21,7 +28,7 @@ class domAnimation_clip : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANIMATION_CLIP; }
-	static daeInt ID() { return 476; }
+	static daeInt ID() { return 652; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -33,7 +40,7 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The start attribute is the time in seconds of the beginning of the clip.
  * This time is  the same as that used in the key-frame data and is used to
@@ -42,27 +49,26 @@ protected:  // Attributes
  * between two keyframes of a referenced animation, an  interpolated value
  * should be used.  The default value is 0.0.  Optional attribute. 
  */
-	domFloat attrStart;
+	xsDouble attrStart;
 /**
  *  The end attribute is the time in seconds of the end of the clip.  This
  * is used in the  same way as the start time.  If end is not specified, the
  * value is taken to be the end  time of the longest animation.  Optional
  * attribute. 
  */
-	domFloat attrEnd;
+	xsDouble attrEnd;
 
 protected:  // Elements
 /**
- * The animation_clip element may contain an asset element. @see domAsset
+ *  The animation_clip element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
  * The animation_clip must instance at least one animation element. @see domInstance_animation
  */
-	domInstance_with_extra_Array elemInstance_animation_array;
-	domInstance_formula_Array elemInstance_formula_array;
+	domInstanceWithExtra_Array elemInstance_animation_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -76,42 +82,42 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the start attribute.
-	 * @return Returns a domFloat of the start attribute.
+	 * @return Returns a xsDouble of the start attribute.
 	 */
-	domFloat getStart() const { return attrStart; }
+	xsDouble getStart() const { return attrStart; }
 	/**
 	 * Sets the start attribute.
 	 * @param atStart The new value for the start attribute.
 	 */
-	void setStart( domFloat atStart ) { attrStart = atStart; }
+	void setStart( xsDouble atStart ) { attrStart = atStart; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the end attribute.
-	 * @return Returns a domFloat of the end attribute.
+	 * @return Returns a xsDouble of the end attribute.
 	 */
-	domFloat getEnd() const { return attrEnd; }
+	xsDouble getEnd() const { return attrEnd; }
 	/**
 	 * Sets the end attribute.
 	 * @param atEnd The new value for the end attribute.
 	 */
-	void setEnd( domFloat atEnd ) { attrEnd = atEnd; }
+	void setEnd( xsDouble atEnd ) { attrEnd = atEnd; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -122,22 +128,12 @@ public:	//Accessors and Mutators
 	 * Gets the instance_animation element array.
 	 * @return Returns a reference to the array of instance_animation elements.
 	 */
-	domInstance_with_extra_Array &getInstance_animation_array() { return elemInstance_animation_array; }
+	domInstanceWithExtra_Array &getInstance_animation_array() { return elemInstance_animation_array; }
 	/**
 	 * Gets the instance_animation element array.
 	 * @return Returns a constant reference to the array of instance_animation elements.
 	 */
-	const domInstance_with_extra_Array &getInstance_animation_array() const { return elemInstance_animation_array; }
-	/**
-	 * Gets the instance_formula element array.
-	 * @return Returns a reference to the array of instance_formula elements.
-	 */
-	domInstance_formula_Array &getInstance_formula_array() { return elemInstance_formula_array; }
-	/**
-	 * Gets the instance_formula element array.
-	 * @return Returns a constant reference to the array of instance_formula elements.
-	 */
-	const domInstance_formula_Array &getInstance_formula_array() const { return elemInstance_formula_array; }
+	const domInstanceWithExtra_Array &getInstance_animation_array() const { return elemInstance_animation_array; }
 	/**
 	 * Gets the extra element array.
 	 * @return Returns a reference to the array of extra elements.
@@ -152,7 +148,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domAnimation_clip(DAE& dae) : daeElement(dae), attrId(), attrName(), attrStart(), attrEnd(), elemAsset(), elemInstance_animation_array(), elemInstance_formula_array(), elemExtra_array() {}
+	domAnimation_clip(DAE& dae) : daeElement(dae), attrId(), attrName(), attrStart(), attrEnd(), elemAsset(), elemInstance_animation_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -177,5 +173,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domSource.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domSource::create(DAE& dae)
 {
@@ -42,15 +50,9 @@ domSource::registerElement(DAE& dae)
 	cm = new daeMetaChoice( meta, cm, 0, 1, 0, 1 );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
-	mea->setName( "token_array" );
-	mea->setOffset( daeOffsetOf(domSource,elemToken_array) );
-	mea->setElementType( domToken_array::registerElement(dae) );
-	cm->appendChild( mea );
-
-	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "IDREF_array" );
 	mea->setOffset( daeOffsetOf(domSource,elemIDREF_array) );
-	mea->setElementType( domIdref_array::registerElement(dae) );
+	mea->setElementType( domIDREF_array::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
@@ -75,12 +77,6 @@ domSource::registerElement(DAE& dae)
 	mea->setName( "int_array" );
 	mea->setOffset( daeOffsetOf(domSource,elemInt_array) );
 	mea->setElementType( domInt_array::registerElement(dae) );
-	cm->appendChild( mea );
-
-	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
-	mea->setName( "SIDREF_array" );
-	mea->setOffset( daeOffsetOf(domSource,elemSIDREF_array) );
-	mea->setElementType( domSidref_array::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 0 );
@@ -122,7 +118,7 @@ domSource::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domSource , attrName ));
 		ma->setContainer( meta );
 	
@@ -174,4 +170,4 @@ domSource::domTechnique_common::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

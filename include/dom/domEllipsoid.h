@@ -1,5 +1,13 @@
-#ifndef __dom150Ellipsoid_h__
-#define __dom150Ellipsoid_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Ellipsoid_h__
+#define __dom141Ellipsoid_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -7,13 +15,13 @@
 
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 class domEllipsoid : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ELLIPSOID; }
-	static daeInt ID() { return 287; }
+	static daeInt ID() { return 773; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domSize;
@@ -25,27 +33,32 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SIZE; }
-		static daeInt ID() { return 288; }
+		static daeInt ID() { return 774; }
 		virtual daeInt typeID() const { return ID(); }
-
-
-	public:	//Accessors and Mutators
-		/**
-		 * Gets the value of this element.
-		 * @return a domFloat3 of the value.
-		 */
-		domFloat3& getValue() { return _value; }
-		/**
-		 * Sets the _value of this element.
-		 * @param val The new value for this element.
-		 */
-		void setValue( const domFloat3& val ) { _value = val; }
 
 	protected:  // Value
 		/**
 		 * The domFloat3 value of the text data of this element. 
 		 */
 		domFloat3 _value;
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the _value array.
+		 * @return Returns a domFloat3 reference of the _value array.
+		 */
+		domFloat3 &getValue() { return _value; }
+		/**
+		 * Gets the _value array.
+		 * @return Returns a constant domFloat3 reference of the _value array.
+		 */
+		const domFloat3 &getValue() const { return _value; }
+		/**
+		 * Sets the _value array.
+		 * @param val The new value for the _value array.
+		 */
+		void setValue( const domFloat3 &val ) { _value = val; }
+
 	protected:
 		/**
 		 * Constructor
@@ -114,5 +127,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

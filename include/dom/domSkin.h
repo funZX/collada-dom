@@ -1,17 +1,25 @@
-#ifndef __dom150Skin_h__
-#define __dom150Skin_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Skin_h__
+#define __dom141Skin_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domSource.h>
-#include <dom/domInput_local.h>
 #include <dom/domExtra.h>
-#include <dom/domInput_local_offset.h>
+#include <dom/domInputLocal.h>
+#include <dom/domInputLocalOffset.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The skin element contains vertex and primitive information sufficient to
@@ -21,7 +29,7 @@ class domSkin : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SKIN; }
-	static daeInt ID() { return 329; }
+	static daeInt ID() { return 656; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domBind_shape_matrix;
@@ -39,27 +47,32 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND_SHAPE_MATRIX; }
-		static daeInt ID() { return 330; }
+		static daeInt ID() { return 657; }
 		virtual daeInt typeID() const { return ID(); }
-
-
-	public:	//Accessors and Mutators
-		/**
-		 * Gets the value of this element.
-		 * @return a domFloat4x4 of the value.
-		 */
-		domFloat4x4& getValue() { return _value; }
-		/**
-		 * Sets the _value of this element.
-		 * @param val The new value for this element.
-		 */
-		void setValue( const domFloat4x4& val ) { _value = val; }
 
 	protected:  // Value
 		/**
 		 * The domFloat4x4 value of the text data of this element. 
 		 */
 		domFloat4x4 _value;
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the _value array.
+		 * @return Returns a domFloat4x4 reference of the _value array.
+		 */
+		domFloat4x4 &getValue() { return _value; }
+		/**
+		 * Gets the _value array.
+		 * @return Returns a constant domFloat4x4 reference of the _value array.
+		 */
+		const domFloat4x4 &getValue() const { return _value; }
+		/**
+		 * Sets the _value array.
+		 * @param val The new value for the _value array.
+		 */
+		void setValue( const domFloat4x4 &val ) { _value = val; }
+
 	protected:
 		/**
 		 * Constructor
@@ -102,7 +115,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::JOINTS; }
-		static daeInt ID() { return 331; }
+		static daeInt ID() { return 658; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
@@ -110,9 +123,9 @@ public:
  * The input element must occur at least twice. These inputs are local inputs.
  * @see domInput
  */
-		domInput_local_Array elemInput_array;
+		domInputLocal_Array elemInput_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 
@@ -121,12 +134,12 @@ public:
 		 * Gets the input element array.
 		 * @return Returns a reference to the array of input elements.
 		 */
-		domInput_local_Array &getInput_array() { return elemInput_array; }
+		domInputLocal_Array &getInput_array() { return elemInput_array; }
 		/**
 		 * Gets the input element array.
 		 * @return Returns a constant reference to the array of input elements.
 		 */
-		const domInput_local_Array &getInput_array() const { return elemInput_array; }
+		const domInputLocal_Array &getInput_array() const { return elemInput_array; }
 		/**
 		 * Gets the extra element array.
 		 * @return Returns a reference to the array of extra elements.
@@ -178,7 +191,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VERTEX_WEIGHTS; }
-		static daeInt ID() { return 332; }
+		static daeInt ID() { return 659; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domVcount;
@@ -194,27 +207,32 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VCOUNT; }
-			static daeInt ID() { return 333; }
+			static daeInt ID() { return 660; }
 			virtual daeInt typeID() const { return ID(); }
-
-
-		public:	//Accessors and Mutators
-			/**
-			 * Gets the value of this element.
-			 * @return a domList_of_uints of the value.
-			 */
-			domList_of_uints& getValue() { return _value; }
-			/**
-			 * Sets the _value of this element.
-			 * @param val The new value for this element.
-			 */
-			void setValue( const domList_of_uints& val ) { _value = val; }
 
 		protected:  // Value
 			/**
-			 * The domList_of_uints value of the text data of this element. 
+			 * The domListOfUInts value of the text data of this element. 
 			 */
-			domList_of_uints _value;
+			domListOfUInts _value;
+
+		public:	//Accessors and Mutators
+			/**
+			 * Gets the _value array.
+			 * @return Returns a domListOfUInts reference of the _value array.
+			 */
+			domListOfUInts &getValue() { return _value; }
+			/**
+			 * Gets the _value array.
+			 * @return Returns a constant domListOfUInts reference of the _value array.
+			 */
+			const domListOfUInts &getValue() const { return _value; }
+			/**
+			 * Sets the _value array.
+			 * @param val The new value for the _value array.
+			 */
+			void setValue( const domListOfUInts &val ) { _value = val; }
+
 		protected:
 			/**
 			 * Constructor
@@ -250,35 +268,40 @@ public:
 
 /**
  * The v element describes which bones and attributes are associated with
- * each vertex.  An index  of -1 into the array of joints refers to the bind
- * shape.  Weights should be normalized before use. The v element must occur
- * zero or one times.
+ * each vertex.  An index  of –1 into the array of joints refers to the
+ * bind shape.  Weights should be normalized before use. The v element must
+ * occur zero or one times.
  */
 		class domV : public daeElement
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::V; }
-			static daeInt ID() { return 334; }
+			static daeInt ID() { return 661; }
 			virtual daeInt typeID() const { return ID(); }
-
-
-		public:	//Accessors and Mutators
-			/**
-			 * Gets the value of this element.
-			 * @return a domList_of_ints of the value.
-			 */
-			domList_of_ints& getValue() { return _value; }
-			/**
-			 * Sets the _value of this element.
-			 * @param val The new value for this element.
-			 */
-			void setValue( const domList_of_ints& val ) { _value = val; }
 
 		protected:  // Value
 			/**
-			 * The domList_of_ints value of the text data of this element. 
+			 * The domListOfInts value of the text data of this element. 
 			 */
-			domList_of_ints _value;
+			domListOfInts _value;
+
+		public:	//Accessors and Mutators
+			/**
+			 * Gets the _value array.
+			 * @return Returns a domListOfInts reference of the _value array.
+			 */
+			domListOfInts &getValue() { return _value; }
+			/**
+			 * Gets the _value array.
+			 * @return Returns a constant domListOfInts reference of the _value array.
+			 */
+			const domListOfInts &getValue() const { return _value; }
+			/**
+			 * Sets the _value array.
+			 * @param val The new value for the _value array.
+			 */
+			void setValue( const domListOfInts &val ) { _value = val; }
+
 		protected:
 			/**
 			 * Constructor
@@ -319,7 +342,7 @@ public:
 /**
  * The input element must occur at least twice. @see domInput
  */
-		domInput_local_offset_Array elemInput_array;
+		domInputLocalOffset_Array elemInput_array;
 /**
  * The vcount element contains a list of integers describing the number of
  * influences for each vertex. The vcount element may occur once. @see domVcount
@@ -327,13 +350,13 @@ public:
 		domVcountRef elemVcount;
 /**
  * The v element describes which bones and attributes are associated with
- * each vertex.  An index  of -1 into the array of joints refers to the bind
- * shape.  Weights should be normalized before use. The v element must occur
- * zero or one times. @see domV
+ * each vertex.  An index  of –1 into the array of joints refers to the
+ * bind shape.  Weights should be normalized before use. The v element must
+ * occur zero or one times. @see domV
  */
 		domVRef elemV;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 
@@ -353,12 +376,12 @@ public:
 		 * Gets the input element array.
 		 * @return Returns a reference to the array of input elements.
 		 */
-		domInput_local_offset_Array &getInput_array() { return elemInput_array; }
+		domInputLocalOffset_Array &getInput_array() { return elemInput_array; }
 		/**
 		 * Gets the input element array.
 		 * @return Returns a constant reference to the array of input elements.
 		 */
-		const domInput_local_offset_Array &getInput_array() const { return elemInput_array; }
+		const domInputLocalOffset_Array &getInput_array() const { return elemInput_array; }
 		/**
 		 * Gets the vcount element.
 		 * @return a daeSmartRef to the vcount element.
@@ -425,7 +448,7 @@ protected:  // Elements
  */
 	domBind_shape_matrixRef elemBind_shape_matrix;
 /**
- * The skin element must contain at least three source elements. @see domSource
+ *  The skin element must contain at least three source elements.  @see domSource
  */
 	domSource_Array elemSource_array;
 /**
@@ -440,7 +463,7 @@ protected:  // Elements
  */
 	domVertex_weightsRef elemVertex_weights;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -459,12 +482,12 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; }
+	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[0] = true; }
 	/**
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( xsString atSource ) { attrSource = atSource; }
+	void setSource( xsString atSource ) { attrSource = atSource; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the bind_shape_matrix element.
@@ -530,5 +553,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

@@ -1,5 +1,13 @@
-#ifndef __dom150Cylinder_h__
-#define __dom150Cylinder_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Cylinder_h__
+#define __dom141Cylinder_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -8,7 +16,7 @@
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * A cylinder primitive that is centered on, and aligned with. the local Y
@@ -18,7 +26,7 @@ class domCylinder : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CYLINDER; }
-	static daeInt ID() { return 289; }
+	static daeInt ID() { return 775; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domHeight;
@@ -33,27 +41,27 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HEIGHT; }
-		static daeInt ID() { return 290; }
+		static daeInt ID() { return 776; }
 		virtual daeInt typeID() const { return ID(); }
-
-
-	public:	//Accessors and Mutators
-		/**
-		 * Gets the value of this element.
-		 * @return a domFloat of the value.
-		 */
-		domFloat& getValue() { return _value; }
-		/**
-		 * Sets the _value of this element.
-		 * @param val The new value for this element.
-		 */
-		void setValue( const domFloat& val ) { _value = val; }
 
 	protected:  // Value
 		/**
 		 * The domFloat value of the text data of this element. 
 		 */
 		domFloat _value;
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the value of this element.
+		 * @return a domFloat of the value.
+		 */
+		domFloat getValue() const { return _value; }
+		/**
+		 * Sets the _value of this element.
+		 * @param val The new value for this element.
+		 */
+		void setValue( domFloat val ) { _value = val; }
+
 	protected:
 		/**
 		 * Constructor
@@ -94,27 +102,32 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS; }
-		static daeInt ID() { return 291; }
+		static daeInt ID() { return 777; }
 		virtual daeInt typeID() const { return ID(); }
-
-
-	public:	//Accessors and Mutators
-		/**
-		 * Gets the value of this element.
-		 * @return a domFloat2 of the value.
-		 */
-		domFloat2& getValue() { return _value; }
-		/**
-		 * Sets the _value of this element.
-		 * @param val The new value for this element.
-		 */
-		void setValue( const domFloat2& val ) { _value = val; }
 
 	protected:  // Value
 		/**
 		 * The domFloat2 value of the text data of this element. 
 		 */
 		domFloat2 _value;
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the _value array.
+		 * @return Returns a domFloat2 reference of the _value array.
+		 */
+		domFloat2 &getValue() { return _value; }
+		/**
+		 * Gets the _value array.
+		 * @return Returns a constant domFloat2 reference of the _value array.
+		 */
+		const domFloat2 &getValue() const { return _value; }
+		/**
+		 * Sets the _value array.
+		 * @param val The new value for the _value array.
+		 */
+		void setValue( const domFloat2 &val ) { _value = val; }
+
 	protected:
 		/**
 		 * Constructor
@@ -156,7 +169,7 @@ protected:  // Elements
  */
 	domRadiusRef elemRadius;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -210,5 +223,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

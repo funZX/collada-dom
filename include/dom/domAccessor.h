@@ -1,5 +1,13 @@
-#ifndef __dom150Accessor_h__
-#define __dom150Accessor_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Accessor_h__
+#define __dom141Accessor_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -8,20 +16,19 @@
 #include <dom/domParam.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The accessor element declares an access pattern to one of the array elements:
- * float_array,  int_array, Name_array, bool_array, token_array, and IDREF_array.
- * The accessor element describes access  to arrays that are organized in
- * either an interleaved or non-interleaved manner, depending  on the offset
- * and stride attributes.
+ * float_array,  int_array, Name_array, bool_array, and IDREF_array. The accessor
+ * element describes access  to arrays that are organized in either an interleaved
+ * or non-interleaved manner, depending  on the offset and stride attributes.
  */
 class domAccessor : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ACCESSOR; }
-	static daeInt ID() { return 12; }
+	static daeInt ID() { return 609; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -48,7 +55,7 @@ protected:  // Attributes
 
 protected:  // Element
 /**
- * The accessor element may have any number of param elements. @see domParam
+ *  The accessor element may have any number of param elements.  @see domParam
  */
 	domParam_Array elemParam_array;
 
@@ -62,7 +69,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( domUint atCount ) { attrCount = atCount; }
+	void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the offset attribute.
@@ -73,7 +80,7 @@ public:	//Accessors and Mutators
 	 * Sets the offset attribute.
 	 * @param atOffset The new value for the offset attribute.
 	 */
-	void setOffset( domUint atOffset ) { attrOffset = atOffset; }
+	void setOffset( domUint atOffset ) { attrOffset = atOffset; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -89,12 +96,12 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; }
+	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[2] = true; }
 	/**
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( xsString atSource ) { attrSource = atSource; }
+	void setSource( xsString atSource ) { attrSource = atSource; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the stride attribute.
@@ -105,7 +112,7 @@ public:	//Accessors and Mutators
 	 * Sets the stride attribute.
 	 * @param atStride The new value for the stride attribute.
 	 */
-	void setStride( domUint atStride ) { attrStride = atStride; }
+	void setStride( domUint atStride ) { attrStride = atStride; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the param element array.
@@ -146,5 +153,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

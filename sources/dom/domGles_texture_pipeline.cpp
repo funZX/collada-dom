@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domGles_texture_pipeline.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domGles_texture_pipeline::create(DAE& dae)
 {
@@ -36,13 +44,13 @@ domGles_texture_pipeline::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "texcombiner" );
 	mea->setOffset( daeOffsetOf(domGles_texture_pipeline,elemTexcombiner_array) );
-	mea->setElementType( domGles_texcombiner_command::registerElement(dae) );
+	mea->setElementType( domGles_texcombiner_command_type::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "texenv" );
 	mea->setOffset( daeOffsetOf(domGles_texture_pipeline,elemTexenv_array) );
-	mea->setElementType( domGles_texenv_command::registerElement(dae) );
+	mea->setElementType( domGles_texenv_command_type::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
@@ -62,7 +70,7 @@ domGles_texture_pipeline::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texture_pipeline , attrSid ));
 		ma->setContainer( meta );
 	
@@ -75,4 +83,4 @@ domGles_texture_pipeline::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domCg_setparam.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domCg_setparam::create(DAE& dae)
 {
@@ -31,25 +39,58 @@ domCg_setparam::registerElement(DAE& dae)
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
-	mea->setName( "cg_param" );
-	mea->setOffset( daeOffsetOf(domCg_setparam,elemCg_param) );
-	mea->setElementType( domCg_param::registerElement(dae) );
+	mea->setName( "cg_param_type" );
+	mea->setOffset( daeOffsetOf(domCg_setparam,elemCg_param_type) );
+	mea->setElementType( domCg_param_type::registerElement(dae) );
 	cm->appendChild( new daeMetaGroup( mea, meta, cm, 0, 1, 1 ) );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "usertype" );
+	mea->setOffset( daeOffsetOf(domCg_setparam,elemUsertype) );
+	mea->setElementType( domCg_setuser_type::registerElement(dae) );
+	cm->appendChild( mea );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "array" );
+	mea->setOffset( daeOffsetOf(domCg_setparam,elemArray) );
+	mea->setElementType( domCg_setarray_type::registerElement(dae) );
+	cm->appendChild( mea );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "connect_param" );
+	mea->setOffset( daeOffsetOf(domCg_setparam,elemConnect_param) );
+	mea->setElementType( domCg_connect_param::registerElement(dae) );
+	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 0 );
 	meta->setCMRoot( cm );	
+	// Ordered list of sub-elements
+	meta->addContents(daeOffsetOf(domCg_setparam,_contents));
+	meta->addContentsOrder(daeOffsetOf(domCg_setparam,_contentsOrder));
 
+	meta->addCMDataArray(daeOffsetOf(domCg_setparam,_CMData), 1);
 	//	Add attribute: ref
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("Cg_identifier"));
 		ma->setOffset( daeOffsetOf( domCg_setparam , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
+	
+		meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: program
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "program" );
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domCg_setparam , attrProgram ));
+		ma->setContainer( meta );
 	
 		meta->appendAttribute(ma);
 	}
@@ -60,4 +101,4 @@ domCg_setparam::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

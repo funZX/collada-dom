@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domVertices.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domVertices::create(DAE& dae)
 {
@@ -36,7 +44,7 @@ domVertices::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domVertices,elemInput_array) );
-	mea->setElementType( domInput_local::registerElement(dae) );
+	mea->setElementType( domInputLocal::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
@@ -64,7 +72,7 @@ domVertices::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVertices , attrName ));
 		ma->setContainer( meta );
 	
@@ -77,4 +85,4 @@ domVertices::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

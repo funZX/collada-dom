@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domLinestrips.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domLinestrips::create(DAE& dae)
 {
@@ -36,7 +44,7 @@ domLinestrips::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domLinestrips,elemInput_array) );
-	mea->setElementType( domInput_local_offset::registerElement(dae) );
+	mea->setElementType( domInputLocalOffset::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
@@ -58,7 +66,7 @@ domLinestrips::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLinestrips , attrName ));
 		ma->setContainer( meta );
 	
@@ -94,4 +102,4 @@ domLinestrips::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

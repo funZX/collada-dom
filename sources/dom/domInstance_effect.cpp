@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domInstance_effect.h>
@@ -9,12 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domInstance_effect::create(DAE& dae)
 {
 	domInstance_effectRef ref = new domInstance_effect(dae);
-	ref->attrUrl.setContainer( (domInstance_effect*)ref );
 	return ref;
 }
 
@@ -71,7 +78,7 @@ domInstance_effect::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect , attrSid ));
 		ma->setContainer( meta );
 	
@@ -82,7 +89,7 @@ domInstance_effect::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect , attrName ));
 		ma->setContainer( meta );
 	
@@ -183,9 +190,9 @@ domInstance_effect::domSetparam::registerElement(DAE& dae)
 	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
-	mea->setName( "fx_setparam" );
-	mea->setOffset( daeOffsetOf(domInstance_effect::domSetparam,elemFx_setparam) );
-	mea->setElementType( domFx_setparam::registerElement(dae) );
+	mea->setName( "fx_basic_type_common" );
+	mea->setOffset( daeOffsetOf(domInstance_effect::domSetparam,elemFx_basic_type_common) );
+	mea->setElementType( domFx_basic_type_common::registerElement(dae) );
 	cm->appendChild( new daeMetaGroup( mea, meta, cm, 0, 1, 1 ) );
 
 	cm->setMaxOrdinal( 0 );
@@ -209,4 +216,4 @@ domInstance_effect::domSetparam::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

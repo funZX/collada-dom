@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domInstance_node.h>
@@ -9,12 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domInstance_node::create(DAE& dae)
 {
 	domInstance_nodeRef ref = new domInstance_node(dae);
-	ref->attrProxy.setContainer( (domInstance_node*)ref );
 	return ref;
 }
 
@@ -34,17 +41,11 @@ domInstance_node::registerElement(DAE& dae)
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
-
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domInstance_node,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-
-	cm->setMaxOrdinal( 0 );
-	cm->getParent()->appendChild( cm );
-	cm = cm->getParent();
 
 	cm->setMaxOrdinal( 0 );
 	meta->setCMRoot( cm );	
@@ -65,7 +66,7 @@ domInstance_node::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_node , attrSid ));
 		ma->setContainer( meta );
 	
@@ -76,19 +77,8 @@ domInstance_node::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_node , attrName ));
-		ma->setContainer( meta );
-	
-		meta->appendAttribute(ma);
-	}
-
-	//	Add attribute: proxy
-	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "proxy" );
-		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
-		ma->setOffset( daeOffsetOf( domInstance_node , attrProxy ));
 		ma->setContainer( meta );
 	
 		meta->appendAttribute(ma);
@@ -100,4 +90,4 @@ domInstance_node::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

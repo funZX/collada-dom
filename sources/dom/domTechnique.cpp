@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domTechnique.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domTechnique::create(DAE& dae)
 {
@@ -45,7 +53,17 @@ domTechnique::registerElement(DAE& dae)
 	meta->addContents(daeOffsetOf(domTechnique,_contents));
 	meta->addContentsOrder(daeOffsetOf(domTechnique,_contentsOrder));
 
-
+	//	Add attribute: xmlns
+	{
+		daeMetaAttribute* ma = new daeMetaAttribute;
+		ma->setName( "xmlns" );
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
+		ma->setOffset( daeOffsetOf( domTechnique , attrXmlns ));
+		ma->setContainer( meta );
+		//ma->setIsRequired( true );
+		meta->appendAttribute(ma);
+	}
+    
 	//	Add attribute: profile
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -64,4 +82,4 @@ domTechnique::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

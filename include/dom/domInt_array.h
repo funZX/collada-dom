@@ -1,5 +1,13 @@
-#ifndef __dom150Int_array_h__
-#define __dom150Int_array_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Int_array_h__
+#define __dom141Int_array_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -7,7 +15,7 @@
 
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The int_array element declares the storage for a homogenous array of integer
@@ -17,7 +25,7 @@ class domInt_array : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT_ARRAY; }
-	static daeInt ID() { return 10; }
+	static daeInt ID() { return 608; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -29,7 +37,7 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The count attribute indicates the number of values in the array. Required
  * attribute. 
@@ -37,7 +45,7 @@ protected:  // Attributes
 	domUint attrCount;
 /**
  *  The minInclusive attribute indicates the smallest integer value that can
- * be contained in  the array. The default value is -2147483648. Optional
+ * be contained in  the array. The default value is –2147483648. Optional
  * attribute. 
  */
 	xsInteger attrMinInclusive;
@@ -47,6 +55,11 @@ protected:  // Attributes
  */
 	xsInteger attrMaxInclusive;
 
+protected:  // Value
+	/**
+	 * The domListOfInts value of the text data of this element. 
+	 */
+	domListOfInts _value;
 
 public:	//Accessors and Mutators
 	/**
@@ -58,20 +71,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the count attribute.
@@ -82,7 +95,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( domUint atCount ) { attrCount = atCount; }
+	void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the minInclusive attribute.
@@ -93,7 +106,7 @@ public:	//Accessors and Mutators
 	 * Sets the minInclusive attribute.
 	 * @param atMinInclusive The new value for the minInclusive attribute.
 	 */
-	void setMinInclusive( xsInteger atMinInclusive ) { attrMinInclusive = atMinInclusive; }
+	void setMinInclusive( xsInteger atMinInclusive ) { attrMinInclusive = atMinInclusive; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the maxInclusive attribute.
@@ -104,24 +117,24 @@ public:	//Accessors and Mutators
 	 * Sets the maxInclusive attribute.
 	 * @param atMaxInclusive The new value for the maxInclusive attribute.
 	 */
-	void setMaxInclusive( xsInteger atMaxInclusive ) { attrMaxInclusive = atMaxInclusive; }
+	void setMaxInclusive( xsInteger atMaxInclusive ) { attrMaxInclusive = atMaxInclusive; _validAttributeArray[4] = true; }
 
 	/**
-	 * Gets the value of this element.
-	 * @return a domList_of_ints of the value.
+	 * Gets the _value array.
+	 * @return Returns a domListOfInts reference of the _value array.
 	 */
-	domList_of_ints& getValue() { return _value; }
+	domListOfInts &getValue() { return _value; }
 	/**
-	 * Sets the _value of this element.
-	 * @param val The new value for this element.
+	 * Gets the _value array.
+	 * @return Returns a constant domListOfInts reference of the _value array.
 	 */
-	void setValue( const domList_of_ints& val ) { _value = val; }
+	const domListOfInts &getValue() const { return _value; }
+	/**
+	 * Sets the _value array.
+	 * @param val The new value for the _value array.
+	 */
+	void setValue( const domListOfInts &val ) { _value = val; }
 
-protected:  // Value
-	/**
-	 * The domList_of_ints value of the text data of this element. 
-	 */
-	domList_of_ints _value;
 protected:
 	/**
 	 * Constructor
@@ -151,5 +164,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

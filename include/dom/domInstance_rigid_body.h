@@ -1,27 +1,37 @@
-#ifndef __dom150Instance_rigid_body_h__
-#define __dom150Instance_rigid_body_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Instance_rigid_body_h__
+#define __dom141Instance_rigid_body_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domTargetable_float.h>
-#include <dom/domTranslate.h>
-#include <dom/domRotate.h>
-#include <dom/domTargetable_float3.h>
+#include <dom/domTechnique.h>
+#include <dom/domExtra.h>
 #include <dom/domInstance_physics_material.h>
 #include <dom/domPhysics_material.h>
+#include <dom/domTargetableFloat.h>
+#include <dom/domTranslate.h>
+#include <dom/domRotate.h>
+#include <dom/domTargetableFloat3.h>
 #include <dom/domInstance_geometry.h>
 #include <dom/domPlane.h>
 #include <dom/domBox.h>
 #include <dom/domSphere.h>
 #include <dom/domCylinder.h>
+#include <dom/domTapered_cylinder.h>
 #include <dom/domCapsule.h>
-#include <dom/domExtra.h>
-#include <dom/domTechnique.h>
+#include <dom/domTapered_capsule.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * This element allows instancing a rigid_body within an instance_physics_model.
@@ -30,7 +40,7 @@ class domInstance_rigid_body : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_RIGID_BODY; }
-	static daeInt ID() { return 402; }
+	static daeInt ID() { return 703; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_common;
@@ -46,7 +56,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static daeInt ID() { return 403; }
+		static daeInt ID() { return 704; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domAngular_velocity;
@@ -62,27 +72,32 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANGULAR_VELOCITY; }
-			static daeInt ID() { return 404; }
+			static daeInt ID() { return 705; }
 			virtual daeInt typeID() const { return ID(); }
-
-
-		public:	//Accessors and Mutators
-			/**
-			 * Gets the value of this element.
-			 * @return a domFloat3 of the value.
-			 */
-			domFloat3& getValue() { return _value; }
-			/**
-			 * Sets the _value of this element.
-			 * @param val The new value for this element.
-			 */
-			void setValue( const domFloat3& val ) { _value = val; }
 
 		protected:  // Value
 			/**
 			 * The domFloat3 value of the text data of this element. 
 			 */
 			domFloat3 _value;
+
+		public:	//Accessors and Mutators
+			/**
+			 * Gets the _value array.
+			 * @return Returns a domFloat3 reference of the _value array.
+			 */
+			domFloat3 &getValue() { return _value; }
+			/**
+			 * Gets the _value array.
+			 * @return Returns a constant domFloat3 reference of the _value array.
+			 */
+			const domFloat3 &getValue() const { return _value; }
+			/**
+			 * Sets the _value array.
+			 * @param val The new value for the _value array.
+			 */
+			void setValue( const domFloat3 &val ) { _value = val; }
+
 		protected:
 			/**
 			 * Constructor
@@ -123,27 +138,32 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VELOCITY; }
-			static daeInt ID() { return 405; }
+			static daeInt ID() { return 706; }
 			virtual daeInt typeID() const { return ID(); }
-
-
-		public:	//Accessors and Mutators
-			/**
-			 * Gets the value of this element.
-			 * @return a domFloat3 of the value.
-			 */
-			domFloat3& getValue() { return _value; }
-			/**
-			 * Sets the _value of this element.
-			 * @param val The new value for this element.
-			 */
-			void setValue( const domFloat3& val ) { _value = val; }
 
 		protected:  // Value
 			/**
 			 * The domFloat3 value of the text data of this element. 
 			 */
 			domFloat3 _value;
+
+		public:	//Accessors and Mutators
+			/**
+			 * Gets the _value array.
+			 * @return Returns a domFloat3 reference of the _value array.
+			 */
+			domFloat3 &getValue() { return _value; }
+			/**
+			 * Gets the _value array.
+			 * @return Returns a constant domFloat3 reference of the _value array.
+			 */
+			const domFloat3 &getValue() const { return _value; }
+			/**
+			 * Sets the _value array.
+			 * @param val The new value for the _value array.
+			 */
+			void setValue( const domFloat3 &val ) { _value = val; }
+
 		protected:
 			/**
 			 * Constructor
@@ -181,7 +201,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DYNAMIC; }
-			static daeInt ID() { return 406; }
+			static daeInt ID() { return 707; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attribute
 /**
@@ -189,37 +209,37 @@ public:
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-			domSid attrSid;
+			xsNCName attrSid;
 
+		protected:  // Value
+			/**
+			 * The domBool value of the text data of this element. 
+			 */
+			domBool _value;
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the sid attribute.
-			 * @return Returns a domSid of the sid attribute.
+			 * @return Returns a xsNCName of the sid attribute.
 			 */
-			domSid getSid() const { return attrSid; }
+			xsNCName getSid() const { return attrSid; }
 			/**
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
-			 * @return a xsBoolean of the value.
+			 * @return a domBool of the value.
 			 */
-			xsBoolean& getValue() { return _value; }
+			domBool getValue() const { return _value; }
 			/**
 			 * Sets the _value of this element.
 			 * @param val The new value for this element.
 			 */
-			void setValue( const xsBoolean& val ) { _value = val; }
+			void setValue( domBool val ) { _value = val; }
 
-		protected:  // Value
-			/**
-			 * The xsBoolean value of the text data of this element. 
-			 */
-			xsBoolean _value;
 		protected:
 			/**
 			 * Constructor
@@ -257,7 +277,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASS_FRAME; }
-			static daeInt ID() { return 407; }
+			static daeInt ID() { return 708; }
 			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Elements
@@ -347,7 +367,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHAPE; }
-			static daeInt ID() { return 408; }
+			static daeInt ID() { return 709; }
 			virtual daeInt typeID() const { return ID(); }
 		public:
 			class domHollow;
@@ -359,7 +379,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HOLLOW; }
-				static daeInt ID() { return 409; }
+				static daeInt ID() { return 710; }
 				virtual daeInt typeID() const { return ID(); }
 			protected:  // Attribute
 /**
@@ -367,37 +387,37 @@ public:
  * of this element. This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-				domSid attrSid;
+				xsNCName attrSid;
 
+			protected:  // Value
+				/**
+				 * The domBool value of the text data of this element. 
+				 */
+				domBool _value;
 
 			public:	//Accessors and Mutators
 				/**
 				 * Gets the sid attribute.
-				 * @return Returns a domSid of the sid attribute.
+				 * @return Returns a xsNCName of the sid attribute.
 				 */
-				domSid getSid() const { return attrSid; }
+				xsNCName getSid() const { return attrSid; }
 				/**
 				 * Sets the sid attribute.
 				 * @param atSid The new value for the sid attribute.
 				 */
-				void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
+				void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 				/**
 				 * Gets the value of this element.
-				 * @return a xsBoolean of the value.
+				 * @return a domBool of the value.
 				 */
-				xsBoolean& getValue() { return _value; }
+				domBool getValue() const { return _value; }
 				/**
 				 * Sets the _value of this element.
 				 * @param val The new value for this element.
 				 */
-				void setValue( const xsBoolean& val ) { _value = val; }
+				void setValue( domBool val ) { _value = val; }
 
-			protected:  // Value
-				/**
-				 * The xsBoolean value of the text data of this element. 
-				 */
-				xsBoolean _value;
 			protected:
 				/**
 				 * Constructor
@@ -430,8 +450,8 @@ public:
 
 		protected:  // Elements
 			domHollowRef elemHollow;
-			domTargetable_floatRef elemMass;
-			domTargetable_floatRef elemDensity;
+			domTargetableFloatRef elemMass;
+			domTargetableFloatRef elemDensity;
 			domInstance_physics_materialRef elemInstance_physics_material;
 			domPhysics_materialRef elemPhysics_material;
 			domInstance_geometryRef elemInstance_geometry;
@@ -439,11 +459,13 @@ public:
 			domBoxRef elemBox;
 			domSphereRef elemSphere;
 			domCylinderRef elemCylinder;
+			domTapered_cylinderRef elemTapered_cylinder;
 			domCapsuleRef elemCapsule;
+			domTapered_capsuleRef elemTapered_capsule;
 			domTranslate_Array elemTranslate_array;
 			domRotate_Array elemRotate_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 			domExtra_Array elemExtra_array;
 			/**
@@ -471,12 +493,12 @@ public:
 			 * Gets the mass element.
 			 * @return a daeSmartRef to the mass element.
 			 */
-			const domTargetable_floatRef getMass() const { return elemMass; }
+			const domTargetableFloatRef getMass() const { return elemMass; }
 			/**
 			 * Gets the density element.
 			 * @return a daeSmartRef to the density element.
 			 */
-			const domTargetable_floatRef getDensity() const { return elemDensity; }
+			const domTargetableFloatRef getDensity() const { return elemDensity; }
 			/**
 			 * Gets the instance_physics_material element.
 			 * @return a daeSmartRef to the instance_physics_material element.
@@ -513,10 +535,20 @@ public:
 			 */
 			const domCylinderRef getCylinder() const { return elemCylinder; }
 			/**
+			 * Gets the tapered_cylinder element.
+			 * @return a daeSmartRef to the tapered_cylinder element.
+			 */
+			const domTapered_cylinderRef getTapered_cylinder() const { return elemTapered_cylinder; }
+			/**
 			 * Gets the capsule element.
 			 * @return a daeSmartRef to the capsule element.
 			 */
 			const domCapsuleRef getCapsule() const { return elemCapsule; }
+			/**
+			 * Gets the tapered_capsule element.
+			 * @return a daeSmartRef to the tapered_capsule element.
+			 */
+			const domTapered_capsuleRef getTapered_capsule() const { return elemTapered_capsule; }
 			/**
 			 * Gets the translate element array.
 			 * @return Returns a reference to the array of translate elements.
@@ -562,7 +594,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domShape(DAE& dae) : daeElement(dae), elemHollow(), elemMass(), elemDensity(), elemInstance_physics_material(), elemPhysics_material(), elemInstance_geometry(), elemPlane(), elemBox(), elemSphere(), elemCylinder(), elemCapsule(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+			domShape(DAE& dae) : daeElement(dae), elemHollow(), elemMass(), elemDensity(), elemInstance_physics_material(), elemPhysics_material(), elemInstance_geometry(), elemPlane(), elemBox(), elemSphere(), elemCylinder(), elemTapered_cylinder(), elemCapsule(), elemTapered_capsule(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 			/**
 			 * Destructor
 			 */
@@ -601,9 +633,9 @@ public:
  */
 		domVelocityRef elemVelocity;
 		domDynamicRef elemDynamic;
-		domTargetable_floatRef elemMass;
+		domTargetableFloatRef elemMass;
 		domMass_frameRef elemMass_frame;
-		domTargetable_float3Ref elemInertia;
+		domTargetableFloat3Ref elemInertia;
 		domInstance_physics_materialRef elemInstance_physics_material;
 		domPhysics_materialRef elemPhysics_material;
 		domShape_Array elemShape_array;
@@ -642,7 +674,7 @@ public:
 		 * Gets the mass element.
 		 * @return a daeSmartRef to the mass element.
 		 */
-		const domTargetable_floatRef getMass() const { return elemMass; }
+		const domTargetableFloatRef getMass() const { return elemMass; }
 		/**
 		 * Gets the mass_frame element.
 		 * @return a daeSmartRef to the mass_frame element.
@@ -652,7 +684,7 @@ public:
 		 * Gets the inertia element.
 		 * @return a daeSmartRef to the inertia element.
 		 */
-		const domTargetable_float3Ref getInertia() const { return elemInertia; }
+		const domTargetableFloat3Ref getInertia() const { return elemInertia; }
 		/**
 		 * Gets the instance_physics_material element.
 		 * @return a daeSmartRef to the instance_physics_material element.
@@ -724,11 +756,11 @@ protected:  // Attributes
  * of this element. This  value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-	domSid attrSid;
+	xsNCName attrSid;
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The target attribute indicates which node is influenced by this rigid_body
  * instance.  Required attribute 
@@ -743,12 +775,12 @@ protected:  // Elements
  */
 	domTechnique_commonRef elemTechnique_common;
 /**
- * This element may contain any number of non-common profile techniques. @see
- * domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -762,29 +794,29 @@ public:	//Accessors and Mutators
 	 * Sets the body attribute.
 	 * @param atBody The new value for the body attribute.
 	 */
-	void setBody( xsNCName atBody ) { *(daeStringRef*)&attrBody = atBody;}
+	void setBody( xsNCName atBody ) { *(daeStringRef*)&attrBody = atBody; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the target attribute.
@@ -800,12 +832,12 @@ public:	//Accessors and Mutators
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget; }
+	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget; _validAttributeArray[3] = true; }
 	/**
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( xsString atTarget ) { attrTarget = atTarget; }
+	void setTarget( xsString atTarget ) { attrTarget = atTarget; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the technique_common element.
@@ -861,5 +893,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

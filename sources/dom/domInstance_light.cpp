@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domInstance_light.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domInstance_light::create(DAE& dae)
 {
@@ -33,17 +41,11 @@ domInstance_light::registerElement(DAE& dae)
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
-
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domInstance_light,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-
-	cm->setMaxOrdinal( 0 );
-	cm->getParent()->appendChild( cm );
-	cm = cm->getParent();
 
 	cm->setMaxOrdinal( 0 );
 	meta->setCMRoot( cm );	
@@ -64,7 +66,7 @@ domInstance_light::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_light , attrSid ));
 		ma->setContainer( meta );
 	
@@ -75,7 +77,7 @@ domInstance_light::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_light , attrName ));
 		ma->setContainer( meta );
 	
@@ -88,4 +90,4 @@ domInstance_light::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

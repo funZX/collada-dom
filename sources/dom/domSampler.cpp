@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domSampler.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domSampler::create(DAE& dae)
 {
@@ -36,7 +44,7 @@ domSampler::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domSampler,elemInput_array) );
-	mea->setElementType( domInput_local::registerElement(dae) );
+	mea->setElementType( domInputLocal::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 0 );
@@ -53,32 +61,10 @@ domSampler::registerElement(DAE& dae)
 		meta->appendAttribute(ma);
 	}
 
-	//	Add attribute: pre_behavior
-	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "pre_behavior" );
-		ma->setType( dae.getAtomicTypes().get("Sampler_behavior"));
-		ma->setOffset( daeOffsetOf( domSampler , attrPre_behavior ));
-		ma->setContainer( meta );
-	
-		meta->appendAttribute(ma);
-	}
-
-	//	Add attribute: post_behavior
-	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "post_behavior" );
-		ma->setType( dae.getAtomicTypes().get("Sampler_behavior"));
-		ma->setOffset( daeOffsetOf( domSampler , attrPost_behavior ));
-		ma->setContainer( meta );
-	
-		meta->appendAttribute(ma);
-	}
-
 	meta->setElementSize(sizeof(domSampler));
 	meta->validate();
 
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

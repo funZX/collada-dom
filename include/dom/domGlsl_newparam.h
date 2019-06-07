@@ -1,22 +1,27 @@
-#ifndef __dom150Glsl_newparam_h__
-#define __dom150Glsl_newparam_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Glsl_newparam_h__
+#define __dom141Glsl_newparam_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domGlsl_value.h>
-#include <dom/domFx_annotate.h>
+#include <dom/domGlsl_param_type.h>
+#include <dom/domFx_annotate_common.h>
+#include <dom/domGlsl_newarray_type.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
-class domGlsl_newparam : public daeElement
+class domGlsl_newparam_complexType 
 {
-public:
-	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_NEWPARAM; }
-	static daeInt ID() { return 228; }
-	virtual daeInt typeID() const { return ID(); }
 public:
 	class domSemantic;
 
@@ -27,9 +32,14 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
-		static daeInt ID() { return 229; }
+		static daeInt ID() { return 108; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The xsNCName value of the text data of this element. 
+		 */
+		xsNCName _value;
 
 	public:	//Accessors and Mutators
 		/**
@@ -43,11 +53,6 @@ public:
 		 */
 		void setValue( xsNCName val ) { *(daeStringRef*)&_value = val; }
 
-	protected:  // Value
-		/**
-		 * The xsNCName value of the text data of this element. 
-		 */
-		xsNCName _value;
 	protected:
 		/**
 		 * Constructor
@@ -85,27 +90,27 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIER; }
-		static daeInt ID() { return 230; }
+		static daeInt ID() { return 109; }
 		virtual daeInt typeID() const { return ID(); }
 
+	protected:  // Value
+		/**
+		 * The domFx_modifier_enum_common value of the text data of this element. 
+		 */
+		domFx_modifier_enum_common _value;
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value of this element.
-		 * @return a domFx_modifier of the value.
+		 * @return a domFx_modifier_enum_common of the value.
 		 */
-		domFx_modifier& getValue() { return _value; }
+		domFx_modifier_enum_common getValue() const { return _value; }
 		/**
 		 * Sets the _value of this element.
 		 * @param val The new value for this element.
 		 */
-		void setValue( const domFx_modifier& val ) { _value = val; }
+		void setValue( domFx_modifier_enum_common val ) { _value = val; }
 
-	protected:  // Value
-		/**
-		 * The domFx_modifier value of the text data of this element. 
-		 */
-		domFx_modifier _value;
 	protected:
 		/**
 		 * Constructor
@@ -136,36 +141,51 @@ public:
 
 
 protected:  // Attribute
-	domSid attrSid;
+	domGlsl_identifier attrSid;
 
 protected:  // Elements
-	domFx_annotate_Array elemAnnotate_array;
+	domFx_annotate_common_Array elemAnnotate_array;
 	domSemanticRef elemSemantic;
 	domModifierRef elemModifier;
-	domGlsl_valueRef elemGlsl_value;
+	domGlsl_param_typeRef elemGlsl_param_type;
+	domGlsl_newarray_typeRef elemArray;
+	/**
+	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
+	 */
+	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
+
+	/**
+	 * Used to store information needed for some content model objects.
+	 */
+	daeTArray< daeCharArray * > _CMData;
+
 
 public:	//Accessors and Mutators
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a domGlsl_identifier of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	domGlsl_identifier getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( domGlsl_identifier atSid ) { attrSid = atSid; }
 
 	/**
 	 * Gets the annotate element array.
 	 * @return Returns a reference to the array of annotate elements.
 	 */
-	domFx_annotate_Array &getAnnotate_array() { return elemAnnotate_array; }
+	domFx_annotate_common_Array &getAnnotate_array() { return elemAnnotate_array; }
 	/**
 	 * Gets the annotate element array.
 	 * @return Returns a constant reference to the array of annotate elements.
 	 */
-	const domFx_annotate_Array &getAnnotate_array() const { return elemAnnotate_array; }
+	const domFx_annotate_common_Array &getAnnotate_array() const { return elemAnnotate_array; }
 	/**
 	 * Gets the semantic element.
 	 * @return a daeSmartRef to the semantic element.
@@ -177,15 +197,68 @@ public:	//Accessors and Mutators
 	 */
 	const domModifierRef getModifier() const { return elemModifier; }
 	/**
-	 * Gets the glsl_value element.
-	 * @return a daeSmartRef to the glsl_value element.
+	 * Gets the glsl_param_type element.
+	 * @return a daeSmartRef to the glsl_param_type element.
 	 */
-	const domGlsl_valueRef getGlsl_value() const { return elemGlsl_value; }
+	const domGlsl_param_typeRef getGlsl_param_type() const { return elemGlsl_param_type; }
+	/**
+	 * Gets the array element.
+	 * @return a daeSmartRef to the array element.
+	 */
+	const domGlsl_newarray_typeRef getArray() const { return elemArray; }
+	/**
+	 * Gets the _contents array.
+	 * @return Returns a reference to the _contents element array.
+	 */
+	daeElementRefArray &getContents() { return _contents; }
+	/**
+	 * Gets the _contents array.
+	 * @return Returns a constant reference to the _contents element array.
+	 */
+	const daeElementRefArray &getContents() const { return _contents; }
+
 protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_newparam(DAE& dae) : daeElement(dae), attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemGlsl_value() {}
+	domGlsl_newparam_complexType(DAE& dae, daeElement* elt) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemGlsl_param_type(), elemArray() {}
+	/**
+	 * Destructor
+	 */
+	virtual ~domGlsl_newparam_complexType() { daeElement::deleteCMDataArray(_CMData); }
+	/**
+	 * Overloaded assignment operator
+	 */
+	virtual domGlsl_newparam_complexType &operator=( const domGlsl_newparam_complexType &cpy ) { (void)cpy; return *this; }
+};
+
+/**
+ * An element of type domGlsl_newparam_complexType.
+ */
+class domGlsl_newparam : public daeElement, public domGlsl_newparam_complexType
+{
+public:
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_NEWPARAM; }
+	static daeInt ID() { return 110; }
+	virtual daeInt typeID() const { return ID(); }
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a domGlsl_identifier of the sid attribute.
+	 */
+	domGlsl_identifier getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( domGlsl_identifier atSid ) { attrSid = atSid; _validAttributeArray[0] = true; }
+
+protected:
+	/**
+	 * Constructor
+	 */
+	domGlsl_newparam(DAE& dae) : daeElement(dae), domGlsl_newparam_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */
@@ -210,5 +283,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

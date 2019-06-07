@@ -1,5 +1,13 @@
-#ifndef __dom150Instance_rigid_constraint_h__
-#define __dom150Instance_rigid_constraint_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Instance_rigid_constraint_h__
+#define __dom141Instance_rigid_constraint_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -8,7 +16,7 @@
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * This element allows instancing a rigid_constraint within an instance_physics_model.
@@ -17,7 +25,7 @@ class domInstance_rigid_constraint : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_RIGID_CONSTRAINT; }
-	static daeInt ID() { return 113; }
+	static daeInt ID() { return 711; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -30,15 +38,15 @@ protected:  // Attributes
  * of this element. This  value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-	domSid attrSid;
+	xsNCName attrSid;
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Element
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -52,29 +60,29 @@ public:	//Accessors and Mutators
 	 * Sets the constraint attribute.
 	 * @param atConstraint The new value for the constraint attribute.
 	 */
-	void setConstraint( xsNCName atConstraint ) { *(daeStringRef*)&attrConstraint = atConstraint;}
+	void setConstraint( xsNCName atConstraint ) { *(daeStringRef*)&attrConstraint = atConstraint; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the extra element array.
@@ -115,5 +123,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

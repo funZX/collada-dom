@@ -1,5 +1,13 @@
-#ifndef __dom150Extra_h__
-#define __dom150Extra_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Extra_h__
+#define __dom141Extra_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -9,7 +17,7 @@
 #include <dom/domTechnique.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The extra element declares additional information regarding its parent
@@ -19,7 +27,7 @@ class domExtra : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EXTRA; }
-	static daeInt ID() { return 26; }
+	static daeInt ID() { return 679; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -31,7 +39,7 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The type attribute indicates the type of the value data. This text string
  * must be understood by  the application. Optional attribute. 
@@ -40,12 +48,12 @@ protected:  // Attributes
 
 protected:  // Elements
 /**
- * The extra element may contain an asset element. @see domAsset
+ *  The extra element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
- * This element must contain at least one non-common profile technique. @see
- * domTechnique
+ *  This element must contain at least one non-common profile technique. 
+ * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
 
@@ -59,20 +67,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the type attribute.
@@ -83,7 +91,7 @@ public:	//Accessors and Mutators
 	 * Sets the type attribute.
 	 * @param atType The new value for the type attribute.
 	 */
-	void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType;}
+	void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -129,5 +137,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

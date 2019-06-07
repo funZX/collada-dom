@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domInstance_physics_model.h>
@@ -9,13 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domInstance_physics_model::create(DAE& dae)
 {
 	domInstance_physics_modelRef ref = new domInstance_physics_model(dae);
-	ref->attrUrl.setContainer( (domInstance_physics_model*)ref );
-	ref->attrParent.setContainer( (domInstance_physics_model*)ref );
 	return ref;
 }
 
@@ -78,7 +84,7 @@ domInstance_physics_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_physics_model , attrSid ));
 		ma->setContainer( meta );
 	
@@ -89,7 +95,7 @@ domInstance_physics_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_physics_model , attrName ));
 		ma->setContainer( meta );
 	
@@ -113,4 +119,4 @@ domInstance_physics_model::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

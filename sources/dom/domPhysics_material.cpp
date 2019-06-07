@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domPhysics_material.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domPhysics_material::create(DAE& dae)
 {
@@ -75,7 +83,7 @@ domPhysics_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPhysics_material , attrName ));
 		ma->setContainer( meta );
 	
@@ -115,19 +123,19 @@ domPhysics_material::domTechnique_common::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "dynamic_friction" );
 	mea->setOffset( daeOffsetOf(domPhysics_material::domTechnique_common,elemDynamic_friction) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "restitution" );
 	mea->setOffset( daeOffsetOf(domPhysics_material::domTechnique_common,elemRestitution) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "static_friction" );
 	mea->setOffset( daeOffsetOf(domPhysics_material::domTechnique_common,elemStatic_friction) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 2 );
@@ -139,4 +147,4 @@ domPhysics_material::domTechnique_common::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

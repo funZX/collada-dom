@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domNode.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domNode::create(DAE& dae)
 {
@@ -145,7 +153,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domNode , attrName ));
 		ma->setContainer( meta );
 	
@@ -156,7 +164,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domNode , attrSid ));
 		ma->setContainer( meta );
 	
@@ -167,7 +175,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
-		ma->setType( dae.getAtomicTypes().get("Node_enum"));
+		ma->setType( dae.getAtomicTypes().get("NodeType"));
 		ma->setOffset( daeOffsetOf( domNode , attrType ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "NODE");
@@ -179,7 +187,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "layer" );
-		ma->setType( dae.getAtomicTypes().get("List_of_names"));
+		ma->setType( dae.getAtomicTypes().get("ListOfNames"));
 		ma->setOffset( daeOffsetOf( domNode , attrLayer ));
 		ma->setContainer( meta );
 	
@@ -192,4 +200,4 @@ domNode::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

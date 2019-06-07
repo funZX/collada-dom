@@ -1,5 +1,13 @@
-#ifndef __dom150Technique_h__
-#define __dom150Technique_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Technique_h__
+#define __dom141Technique_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -7,12 +15,12 @@
 
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The technique element declares the information used to process some portion
  * of the content. Each  technique conforms to an associated profile. Techniques
- * generally act as a "switch". If more than  one is present for a particular
+ * generally act as a “switch”. If more than  one is present for a particular
  * portion of content, on import, one or the other is picked, but  usually
  * not both. Selection should be based on which profile the importing application
  * can support. Techniques contain application data and programs, making them
@@ -22,9 +30,13 @@ class domTechnique : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-	static daeInt ID() { return 25; }
+	static daeInt ID() { return 680; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attribute
+	/**
+	 * This element may specify its own xmlns.
+	 */
+	xsAnyURI attrXmlns;
 /**
  *  The profile attribute indicates the type of profile. This is a vendor
  * defined character  string that indicates the platform or capability target
@@ -45,6 +57,23 @@ protected:  // Element
 
 public:	//Accessors and Mutators
 	/**
+	 * Gets the xmlns attribute.
+	 * @return Returns a xsAnyURI reference of the xmlns attribute.
+	 */
+	xsAnyURI &getXmlns() { return attrXmlns; }
+	/**
+	 * Gets the xmlns attribute.
+	 * @return Returns a constant xsAnyURI reference of the xmlns attribute.
+	 */
+	const xsAnyURI &getXmlns() const { return attrXmlns; }
+	/**
+	 * Sets the xmlns attribute.
+	 * @param xmlns The new value for the xmlns attribute.
+	 */
+	void setXmlns( const xsAnyURI &xmlns ) { attrXmlns = xmlns;
+	 _validAttributeArray[0] = true; }
+
+	/**
 	 * Gets the profile attribute.
 	 * @return Returns a xsNMTOKEN of the profile attribute.
 	 */
@@ -53,7 +82,7 @@ public:	//Accessors and Mutators
 	 * Sets the profile attribute.
 	 * @param atProfile The new value for the profile attribute.
 	 */
-	void setProfile( xsNMTOKEN atProfile ) { *(daeStringRef*)&attrProfile = atProfile;}
+	void setProfile( xsNMTOKEN atProfile ) { *(daeStringRef*)&attrProfile = atProfile; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the _contents array.
@@ -70,7 +99,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTechnique(DAE& dae) : daeElement(dae), attrProfile() {}
+	domTechnique(DAE& dae) : daeElement(dae), attrXmlns(dae, *this), attrProfile() {}
 	/**
 	 * Destructor
 	 */
@@ -95,5 +124,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

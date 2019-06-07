@@ -1,32 +1,82 @@
-#ifndef __dom150Instance_physics_material_h__
-#define __dom150Instance_physics_material_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Instance_physics_material_h__
+#define __dom141Instance_physics_material_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domInstance_with_extra.h>
+#include <dom/domInstanceWithExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
-#include <dom/domInstance_with_extra.h>
 /**
  * The instance_physics_material element declares the instantiation of a COLLADA
  * physics_material  resource.
  */
-class domInstance_physics_material : public domInstance_with_extra
+class domInstance_physics_material : public daeElement, public domInstanceWithExtra_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_PHYSICS_MATERIAL; }
-	static daeInt ID() { return 112; }
+	static daeInt ID() { return 701; }
 	virtual daeInt typeID() const { return ID(); }
+
+	/**
+	 * Gets the url attribute.
+	 * @return Returns a xsAnyURI reference of the url attribute.
+	 */
+	xsAnyURI &getUrl() { return attrUrl; }
+	/**
+	 * Gets the url attribute.
+	 * @return Returns a constant xsAnyURI reference of the url attribute.
+	 */
+	const xsAnyURI &getUrl() const { return attrUrl; }
+	/**
+	 * Sets the url attribute.
+	 * @param atUrl The new value for the url attribute.
+	 */
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
+	/**
+	 * Sets the url attribute.
+	 * @param atUrl The new value for the url attribute.
+	 */
+	void setUrl( xsString atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
+
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
+
+	/**
+	 * Gets the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
+	 */
+	xsNCName getName() const { return attrName; }
+	/**
+	 * Sets the name attribute.
+	 * @param atName The new value for the name attribute.
+	 */
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_physics_material(DAE& dae) : domInstance_with_extra(dae) {}
+	domInstance_physics_material(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */
@@ -51,5 +101,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

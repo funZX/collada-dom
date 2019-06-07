@@ -1,14 +1,22 @@
-#ifndef __dom150Sampler_h__
-#define __dom150Sampler_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Sampler_h__
+#define __dom141Sampler_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domInput_local.h>
+#include <dom/domInputLocal.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The sampler element declares an N-dimensional function used for animation.
@@ -19,30 +27,22 @@ class domSampler : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLER; }
-	static daeInt ID() { return 24; }
+	static daeInt ID() { return 654; }
 	virtual daeInt typeID() const { return ID(); }
-protected:  // Attributes
+protected:  // Attribute
 /**
  *  The id attribute is a text string containing the unique identifier of
  * this element. This value  must be unique within the instance document.
  * Optional attribute. 
  */
 	xsID attrId;
-/**
- *  Indicates what the sampled value should be before the first key. 
- */
-	domSampler_behavior attrPre_behavior;
-/**
- *  Indicates what the sampled value should be after the last key. 
- */
-	domSampler_behavior attrPost_behavior;
 
 protected:  // Element
 /**
  * The input element must occur at least one time. These inputs are local
  * inputs. @see domInput
  */
-	domInput_local_Array elemInput_array;
+	domInputLocal_Array elemInput_array;
 
 public:	//Accessors and Mutators
 	/**
@@ -54,47 +54,25 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
-
-	/**
-	 * Gets the pre_behavior attribute.
-	 * @return Returns a domSampler_behavior of the pre_behavior attribute.
-	 */
-	domSampler_behavior getPre_behavior() const { return attrPre_behavior; }
-	/**
-	 * Sets the pre_behavior attribute.
-	 * @param atPre_behavior The new value for the pre_behavior attribute.
-	 */
-	void setPre_behavior( domSampler_behavior atPre_behavior ) { attrPre_behavior = atPre_behavior; }
-
-	/**
-	 * Gets the post_behavior attribute.
-	 * @return Returns a domSampler_behavior of the post_behavior attribute.
-	 */
-	domSampler_behavior getPost_behavior() const { return attrPost_behavior; }
-	/**
-	 * Sets the post_behavior attribute.
-	 * @param atPost_behavior The new value for the post_behavior attribute.
-	 */
-	void setPost_behavior( domSampler_behavior atPost_behavior ) { attrPost_behavior = atPost_behavior; }
 
 	/**
 	 * Gets the input element array.
 	 * @return Returns a reference to the array of input elements.
 	 */
-	domInput_local_Array &getInput_array() { return elemInput_array; }
+	domInputLocal_Array &getInput_array() { return elemInput_array; }
 	/**
 	 * Gets the input element array.
 	 * @return Returns a constant reference to the array of input elements.
 	 */
-	const domInput_local_Array &getInput_array() const { return elemInput_array; }
+	const domInputLocal_Array &getInput_array() const { return elemInput_array; }
 protected:
 	/**
 	 * Constructor
 	 */
-	domSampler(DAE& dae) : daeElement(dae), attrId(), attrPre_behavior(), attrPost_behavior(), elemInput_array() {}
+	domSampler(DAE& dae) : daeElement(dae), attrId(), elemInput_array() {}
 	/**
 	 * Destructor
 	 */
@@ -119,5 +97,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

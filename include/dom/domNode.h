@@ -1,5 +1,13 @@
-#ifndef __dom150Node_h__
-#define __dom150Node_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Node_h__
+#define __dom141Node_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -21,7 +29,7 @@
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * Nodes embody the hierarchical relationship of elements in the scene.
@@ -30,7 +38,7 @@ class domNode : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NODE; }
-	static daeInt ID() { return 386; }
+	static daeInt ID() { return 681; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -42,84 +50,85 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The sid attribute is a text string value containing the sub-identifier
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-	domSid attrSid;
+	xsNCName attrSid;
 /**
  *  The type attribute indicates the type of the node element. The default
- * value is "NODE".  Optional attribute. 
+ * value is “NODE”.  Optional attribute. 
  */
-	domNode_enum attrType;
+	domNodeType attrType;
 /**
  *  The layer attribute indicates the names of the layers to which this node
- * belongs.  For example,  a value of "foreground glowing" indicates that
- * this node belongs to both the 'foreground' layer  and the 'glowing' layer.
- * The default value is empty, indicating that the node doesn't belong to
- * any layer.  Optional attribute. 
+ * belongs.  For example,  a value of “foreground glowing” indicates that
+ * this node belongs to both the ‘foreground’ layer  and the ‘glowing’
+ * layer.  The default value is empty, indicating that the node doesn’t
+ * belong to  any layer.  Optional attribute. 
  */
-	domList_of_names attrLayer;
+	domListOfNames attrLayer;
 
 protected:  // Elements
 /**
- * The node element may contain an asset element. @see domAsset
+ *  The node element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
- * The node element may contain any number of lookat elements. @see domLookat
+ *  The node element may contain any number of lookat elements.  @see domLookat
  */
 	domLookat_Array elemLookat_array;
 /**
- * The node element may contain any number of matrix elements. @see domMatrix
+ *  The node element may contain any number of matrix elements.  @see domMatrix
  */
 	domMatrix_Array elemMatrix_array;
 /**
- * The node element may contain any number of rotate elements. @see domRotate
+ *  The node element may contain any number of rotate elements.  @see domRotate
  */
 	domRotate_Array elemRotate_array;
 /**
- * The node element may contain any number of scale elements. @see domScale
+ *  The node element may contain any number of scale elements.  @see domScale
  */
 	domScale_Array elemScale_array;
 /**
- * The node element may contain any number of skew elements. @see domSkew
+ *  The node element may contain any number of skew elements.  @see domSkew
  */
 	domSkew_Array elemSkew_array;
 /**
- * The node element may contain any number of translate elements. @see domTranslate
+ *  The node element may contain any number of translate elements.  @see domTranslate
  */
 	domTranslate_Array elemTranslate_array;
 /**
- * The node element may instance any number of camera objects. @see domInstance_camera
+ *  The node element may instance any number of camera objects.  @see domInstance_camera
  */
 	domInstance_camera_Array elemInstance_camera_array;
 /**
- * The node element may instance any number of controller objects. @see domInstance_controller
+ *  The node element may instance any number of controller objects.  @see
+ * domInstance_controller
  */
 	domInstance_controller_Array elemInstance_controller_array;
 /**
- * The node element may instance any number of geometry objects. @see domInstance_geometry
+ *  The node element may instance any number of geometry objects.  @see domInstance_geometry
  */
 	domInstance_geometry_Array elemInstance_geometry_array;
 /**
- * The node element may instance any number of light objects. @see domInstance_light
+ *  The node element may instance any number of light objects.  @see domInstance_light
  */
 	domInstance_light_Array elemInstance_light_array;
 /**
- * The node element may instance any number of node elements or hierarchies
- * objects. @see domInstance_node
+ *  The node element may instance any number of node elements or hierarchies
+ * objects.  @see domInstance_node
  */
 	domInstance_node_Array elemInstance_node_array;
 /**
- * The node element may be hierarchical and be the parent of any number of
- * other node elements. @see domNode
+ *  The node element may be hierarchical and be the parent of any number of
+ * other node elements.  @see domNode
  */
 	domNode_Array elemNode_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 	/**
@@ -147,53 +156,58 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the type attribute.
-	 * @return Returns a domNode_enum of the type attribute.
+	 * @return Returns a domNodeType of the type attribute.
 	 */
-	domNode_enum getType() const { return attrType; }
+	domNodeType getType() const { return attrType; }
 	/**
 	 * Sets the type attribute.
 	 * @param atType The new value for the type attribute.
 	 */
-	void setType( domNode_enum atType ) { attrType = atType; }
+	void setType( domNodeType atType ) { attrType = atType; _validAttributeArray[3] = true; }
 
 	/**
-	 * Gets the layer attribute.
-	 * @return Returns a domList_of_names of the layer attribute.
+	 * Gets the layer array attribute.
+	 * @return Returns a domListOfNames reference of the layer array attribute.
 	 */
-	domList_of_names getLayer() const { return attrLayer; }
+	domListOfNames &getLayer() { return attrLayer; }
 	/**
-	 * Sets the layer attribute.
-	 * @param atLayer The new value for the layer attribute.
+	 * Gets the layer array attribute.
+	 * @return Returns a constant domListOfNames reference of the layer array attribute.
 	 */
-	void setLayer( domList_of_names atLayer ) { attrLayer = atLayer; }
+	const domListOfNames &getLayer() const { return attrLayer; }
+	/**
+	 * Sets the layer array attribute.
+	 * @param atLayer The new value for the layer array attribute.
+	 */
+	void setLayer( const domListOfNames &atLayer ) { attrLayer = atLayer; _validAttributeArray[4] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -370,5 +384,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

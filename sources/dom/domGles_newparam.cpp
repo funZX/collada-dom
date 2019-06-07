@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domGles_newparam.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domGles_newparam::create(DAE& dae)
 {
@@ -36,7 +44,7 @@ domGles_newparam::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "annotate" );
 	mea->setOffset( daeOffsetOf(domGles_newparam,elemAnnotate_array) );
-	mea->setElementType( domFx_annotate::registerElement(dae) );
+	mea->setElementType( domFx_annotate_common::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
@@ -52,9 +60,9 @@ domGles_newparam::registerElement(DAE& dae)
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 3, 1, 1 );
-	mea->setName( "gles_param" );
-	mea->setOffset( daeOffsetOf(domGles_newparam,elemGles_param) );
-	mea->setElementType( domGles_param::registerElement(dae) );
+	mea->setName( "gles_basic_type_common" );
+	mea->setOffset( daeOffsetOf(domGles_newparam,elemGles_basic_type_common) );
+	mea->setElementType( domGles_basic_type_common::registerElement(dae) );
 	cm->appendChild( new daeMetaGroup( mea, meta, cm, 3, 1, 1 ) );
 
 	cm->setMaxOrdinal( 3 );
@@ -64,7 +72,7 @@ domGles_newparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_newparam , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -138,7 +146,7 @@ domGles_newparam::domModifier::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("Fx_modifier"));
+		ma->setType( dae.getAtomicTypes().get("Fx_modifier_enum_common"));
 		ma->setOffset( daeOffsetOf( domGles_newparam::domModifier , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -150,4 +158,4 @@ domGles_newparam::domModifier::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

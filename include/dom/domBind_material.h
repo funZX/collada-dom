@@ -1,17 +1,25 @@
-#ifndef __dom150Bind_material_h__
-#define __dom150Bind_material_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Bind_material_h__
+#define __dom141Bind_material_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domParam.h>
-#include <dom/domInstance_material.h>
 #include <dom/domTechnique.h>
 #include <dom/domExtra.h>
+#include <dom/domInstance_material.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * Bind a specific material to a piece of geometry, binding varying and uniform
@@ -21,7 +29,7 @@ class domBind_material : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND_MATERIAL; }
-	static daeInt ID() { return 106; }
+	static daeInt ID() { return 686; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_common;
@@ -37,13 +45,13 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static daeInt ID() { return 107; }
+		static daeInt ID() { return 687; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Element
 /**
- * The instance_material element specifies the information needed to bind
- * a geometry to a material. This element must appear at least once. @see
+ *  The instance_material element specifies the information needed to bind
+ * a geometry to a material. This element must appear at least once.  @see
  * domInstance_material
  */
 		domInstance_material_Array elemInstance_material_array;
@@ -91,7 +99,7 @@ public:
 
 protected:  // Elements
 /**
- * The bind_material element may contain any number of param elements. @see
+ *  The bind_material element may contain any number of param elements.  @see
  * domParam
  */
 	domParam_Array elemParam_array;
@@ -102,12 +110,12 @@ protected:  // Elements
  */
 	domTechnique_commonRef elemTechnique_common;
 /**
- * This element may contain any number of non-common profile techniques. @see
- * domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -176,5 +184,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

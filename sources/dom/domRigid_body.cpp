@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domRigid_body.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domRigid_body::create(DAE& dae)
 {
@@ -54,22 +62,11 @@ domRigid_body::registerElement(DAE& dae)
 	cm->setMaxOrdinal( 2 );
 	meta->setCMRoot( cm );	
 
-	//	Add attribute: id
-	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "id" );
-		ma->setType( dae.getAtomicTypes().get("xsID"));
-		ma->setOffset( daeOffsetOf( domRigid_body , attrId ));
-		ma->setContainer( meta );
-	
-		meta->appendAttribute(ma);
-	}
-
 	//	Add attribute: sid
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_body , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -81,7 +78,7 @@ domRigid_body::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_body , attrName ));
 		ma->setContainer( meta );
 	
@@ -127,7 +124,7 @@ domRigid_body::domTechnique_common::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "mass" );
 	mea->setOffset( daeOffsetOf(domRigid_body::domTechnique_common,elemMass) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
@@ -139,7 +136,7 @@ domRigid_body::domTechnique_common::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 3, 0, 1 );
 	mea->setName( "inertia" );
 	mea->setOffset( daeOffsetOf(domRigid_body::domTechnique_common,elemInertia) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm = new daeMetaChoice( meta, cm, 0, 4, 0, 1 );
@@ -203,7 +200,7 @@ domRigid_body::domTechnique_common::domDynamic::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domRigid_body::domTechnique_common::domDynamic , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -213,7 +210,7 @@ domRigid_body::domTechnique_common::domDynamic::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_body::domTechnique_common::domDynamic , attrSid ));
 		ma->setContainer( meta );
 	
@@ -308,13 +305,13 @@ domRigid_body::domTechnique_common::domShape::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "mass" );
 	mea->setOffset( daeOffsetOf(domRigid_body::domTechnique_common::domShape,elemMass) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "density" );
 	mea->setOffset( daeOffsetOf(domRigid_body::domTechnique_common::domShape,elemDensity) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm = new daeMetaChoice( meta, cm, 0, 3, 0, 1 );
@@ -368,9 +365,21 @@ domRigid_body::domTechnique_common::domShape::registerElement(DAE& dae)
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "tapered_cylinder" );
+	mea->setOffset( daeOffsetOf(domRigid_body::domTechnique_common::domShape,elemTapered_cylinder) );
+	mea->setElementType( domTapered_cylinder::registerElement(dae) );
+	cm->appendChild( mea );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "capsule" );
 	mea->setOffset( daeOffsetOf(domRigid_body::domTechnique_common::domShape,elemCapsule) );
 	mea->setElementType( domCapsule::registerElement(dae) );
+	cm->appendChild( mea );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "tapered_capsule" );
+	mea->setOffset( daeOffsetOf(domRigid_body::domTechnique_common::domShape,elemTapered_capsule) );
+	mea->setElementType( domTapered_capsule::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 0 );
@@ -438,7 +447,7 @@ domRigid_body::domTechnique_common::domShape::domHollow::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domRigid_body::domTechnique_common::domShape::domHollow , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -448,7 +457,7 @@ domRigid_body::domTechnique_common::domShape::domHollow::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_body::domTechnique_common::domShape::domHollow , attrSid ));
 		ma->setContainer( meta );
 	
@@ -461,4 +470,4 @@ domRigid_body::domTechnique_common::domShape::domHollow::registerElement(DAE& da
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

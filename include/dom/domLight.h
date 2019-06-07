@@ -1,18 +1,26 @@
-#ifndef __dom150Light_h__
-#define __dom150Light_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Light_h__
+#define __dom141Light_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domAsset.h>
-#include <dom/domTargetable_float3.h>
-#include <dom/domTargetable_float.h>
 #include <dom/domTechnique.h>
 #include <dom/domExtra.h>
+#include <dom/domTargetableFloat3.h>
+#include <dom/domTargetableFloat.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The light element declares a light source that illuminates the scene. Light
@@ -23,7 +31,7 @@ class domLight : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT; }
-	static daeInt ID() { return 92; }
+	static daeInt ID() { return 638; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_common;
@@ -39,7 +47,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static daeInt ID() { return 93; }
+		static daeInt ID() { return 639; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domAmbient;
@@ -56,7 +64,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AMBIENT; }
-			static daeInt ID() { return 94; }
+			static daeInt ID() { return 640; }
 			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Element
@@ -64,14 +72,14 @@ public:
  * The color element contains three floating point numbers specifying the
  * color of the light. The color element must occur exactly once. @see domColor
  */
-			domTargetable_float3Ref elemColor;
+			domTargetableFloat3Ref elemColor;
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the color element.
 			 * @return a daeSmartRef to the color element.
 			 */
-			const domTargetable_float3Ref getColor() const { return elemColor; }
+			const domTargetableFloat3Ref getColor() const { return elemColor; }
 		protected:
 			/**
 			 * Constructor
@@ -108,7 +116,7 @@ public:
 /**
  * The directional element declares the parameters required to describe a
  * directional light source.   A directional light is one that lights everything
- * from the same direction, regardless of location.   The light's default
+ * from the same direction, regardless of location.   The light’s default
  * direction vector in local coordinates is [0,0,-1], pointing down the -Z
  * axis.  The actual direction of the light is defined by the transform of
  * the node where the light is  instantiated.
@@ -117,7 +125,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DIRECTIONAL; }
-			static daeInt ID() { return 95; }
+			static daeInt ID() { return 641; }
 			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Element
@@ -125,14 +133,14 @@ public:
  * The color element contains three floating point numbers specifying the
  * color of the light. The color element must occur exactly once. @see domColor
  */
-			domTargetable_float3Ref elemColor;
+			domTargetableFloat3Ref elemColor;
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the color element.
 			 * @return a daeSmartRef to the color element.
 			 */
-			const domTargetable_float3Ref getColor() const { return elemColor; }
+			const domTargetableFloat3Ref getColor() const { return elemColor; }
 		protected:
 			/**
 			 * Constructor
@@ -177,7 +185,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT; }
-			static daeInt ID() { return 96; }
+			static daeInt ID() { return 642; }
 			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Elements
@@ -185,47 +193,47 @@ public:
  * The color element contains three floating point numbers specifying the
  * color of the light. The color element must occur exactly once. @see domColor
  */
-			domTargetable_float3Ref elemColor;
+			domTargetableFloat3Ref elemColor;
 /**
  * The constant_attenuation is used to calculate the total attenuation of
  * this light given a distance.  The equation used is A = constant_attenuation
  * + Dist*linear_attenuation + Dist^2*quadratic_attenuation. @see domConstant_attenuation
  */
-			domTargetable_floatRef elemConstant_attenuation;
+			domTargetableFloatRef elemConstant_attenuation;
 /**
  * The linear_attenuation is used to calculate the total attenuation of this
  * light given a distance.  The equation used is A = constant_attenuation
  * + Dist*linear_attenuation + Dist^2*quadratic_attenuation. @see domLinear_attenuation
  */
-			domTargetable_floatRef elemLinear_attenuation;
+			domTargetableFloatRef elemLinear_attenuation;
 /**
  * The quadratic_attenuation is used to calculate the total attenuation of
  * this light given a distance.  The equation used is A = constant_attenuation
  * + Dist*linear_attenuation + Dist^2*quadratic_attenuation. @see domQuadratic_attenuation
  */
-			domTargetable_floatRef elemQuadratic_attenuation;
+			domTargetableFloatRef elemQuadratic_attenuation;
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the color element.
 			 * @return a daeSmartRef to the color element.
 			 */
-			const domTargetable_float3Ref getColor() const { return elemColor; }
+			const domTargetableFloat3Ref getColor() const { return elemColor; }
 			/**
 			 * Gets the constant_attenuation element.
 			 * @return a daeSmartRef to the constant_attenuation element.
 			 */
-			const domTargetable_floatRef getConstant_attenuation() const { return elemConstant_attenuation; }
+			const domTargetableFloatRef getConstant_attenuation() const { return elemConstant_attenuation; }
 			/**
 			 * Gets the linear_attenuation element.
 			 * @return a daeSmartRef to the linear_attenuation element.
 			 */
-			const domTargetable_floatRef getLinear_attenuation() const { return elemLinear_attenuation; }
+			const domTargetableFloatRef getLinear_attenuation() const { return elemLinear_attenuation; }
 			/**
 			 * Gets the quadratic_attenuation element.
 			 * @return a daeSmartRef to the quadratic_attenuation element.
 			 */
-			const domTargetable_floatRef getQuadratic_attenuation() const { return elemQuadratic_attenuation; }
+			const domTargetableFloatRef getQuadratic_attenuation() const { return elemQuadratic_attenuation; }
 		protected:
 			/**
 			 * Constructor
@@ -267,7 +275,7 @@ public:
  * angle increases away from the direction of the light source. The intensity
  * of a spot light source  is also attenuated as the distance to the light
  * source increases. The position of the light is  defined by the transform
- * of the node in which it is instantiated. The light's default direction
+ * of the node in which it is instantiated. The light’s default direction
  * vector in local coordinates is [0,0,-1], pointing down the -Z axis. The
  * actual direction of the  light is defined by the transform of the node
  * where the light is instantiated.
@@ -276,7 +284,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPOT; }
-			static daeInt ID() { return 97; }
+			static daeInt ID() { return 643; }
 			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Elements
@@ -284,67 +292,67 @@ public:
  * The color element contains three floating point numbers specifying the
  * color of the light. The color element must occur exactly once. @see domColor
  */
-			domTargetable_float3Ref elemColor;
+			domTargetableFloat3Ref elemColor;
 /**
  * The constant_attenuation is used to calculate the total attenuation of
  * this light given a distance.  The equation used is A = constant_attenuation
  * + Dist*linear_attenuation + Dist^2*quadratic_attenuation. @see domConstant_attenuation
  */
-			domTargetable_floatRef elemConstant_attenuation;
+			domTargetableFloatRef elemConstant_attenuation;
 /**
  * The linear_attenuation is used to calculate the total attenuation of this
  * light given a distance.  The equation used is A = constant_attenuation
  * + Dist*linear_attenuation + Dist^2*quadratic_attenuation. @see domLinear_attenuation
  */
-			domTargetable_floatRef elemLinear_attenuation;
+			domTargetableFloatRef elemLinear_attenuation;
 /**
  * The quadratic_attenuation is used to calculate the total attenuation of
  * this light given a distance.  The equation used is A = constant_attenuation
  * + Dist*linear_attenuation + Dist^2*quadratic_attenuation. @see domQuadratic_attenuation
  */
-			domTargetable_floatRef elemQuadratic_attenuation;
+			domTargetableFloatRef elemQuadratic_attenuation;
 /**
  * The falloff_angle is used to specify the amount of attenuation based on
  * the direction of the light. @see domFalloff_angle
  */
-			domTargetable_floatRef elemFalloff_angle;
+			domTargetableFloatRef elemFalloff_angle;
 /**
  * The falloff_exponent is used to specify the amount of attenuation based
  * on the direction of the light. @see domFalloff_exponent
  */
-			domTargetable_floatRef elemFalloff_exponent;
+			domTargetableFloatRef elemFalloff_exponent;
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the color element.
 			 * @return a daeSmartRef to the color element.
 			 */
-			const domTargetable_float3Ref getColor() const { return elemColor; }
+			const domTargetableFloat3Ref getColor() const { return elemColor; }
 			/**
 			 * Gets the constant_attenuation element.
 			 * @return a daeSmartRef to the constant_attenuation element.
 			 */
-			const domTargetable_floatRef getConstant_attenuation() const { return elemConstant_attenuation; }
+			const domTargetableFloatRef getConstant_attenuation() const { return elemConstant_attenuation; }
 			/**
 			 * Gets the linear_attenuation element.
 			 * @return a daeSmartRef to the linear_attenuation element.
 			 */
-			const domTargetable_floatRef getLinear_attenuation() const { return elemLinear_attenuation; }
+			const domTargetableFloatRef getLinear_attenuation() const { return elemLinear_attenuation; }
 			/**
 			 * Gets the quadratic_attenuation element.
 			 * @return a daeSmartRef to the quadratic_attenuation element.
 			 */
-			const domTargetable_floatRef getQuadratic_attenuation() const { return elemQuadratic_attenuation; }
+			const domTargetableFloatRef getQuadratic_attenuation() const { return elemQuadratic_attenuation; }
 			/**
 			 * Gets the falloff_angle element.
 			 * @return a daeSmartRef to the falloff_angle element.
 			 */
-			const domTargetable_floatRef getFalloff_angle() const { return elemFalloff_angle; }
+			const domTargetableFloatRef getFalloff_angle() const { return elemFalloff_angle; }
 			/**
 			 * Gets the falloff_exponent element.
 			 * @return a daeSmartRef to the falloff_exponent element.
 			 */
-			const domTargetable_floatRef getFalloff_exponent() const { return elemFalloff_exponent; }
+			const domTargetableFloatRef getFalloff_exponent() const { return elemFalloff_exponent; }
 		protected:
 			/**
 			 * Constructor
@@ -385,7 +393,7 @@ public:
 /**
  * The directional element declares the parameters required to describe a
  * directional light source.   A directional light is one that lights everything
- * from the same direction, regardless of location.   The light's default
+ * from the same direction, regardless of location.   The light’s default
  * direction vector in local coordinates is [0,0,-1], pointing down the -Z
  * axis.  The actual direction of the light is defined by the transform of
  * the node where the light is  instantiated. @see domDirectional
@@ -408,7 +416,7 @@ public:
  * angle increases away from the direction of the light source. The intensity
  * of a spot light source  is also attenuated as the distance to the light
  * source increases. The position of the light is  defined by the transform
- * of the node in which it is instantiated. The light's default direction
+ * of the node in which it is instantiated. The light’s default direction
  * vector in local coordinates is [0,0,-1], pointing down the -Z axis. The
  * actual direction of the  light is defined by the transform of the node
  * where the light is instantiated. @see domSpot
@@ -500,11 +508,11 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The light element may contain an asset element. @see domAsset
+ *  The light element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
@@ -513,12 +521,12 @@ protected:  // Elements
  */
 	domTechnique_commonRef elemTechnique_common;
 /**
- * This element may contain any number of non-common profile techniques. @see
- * domTechnique
+ *  This element may contain any number of non-common profile techniques.
+ * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -532,20 +540,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -606,5 +614,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

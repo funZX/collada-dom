@@ -1,5 +1,13 @@
-#ifndef __dom150Param_h__
-#define __dom150Param_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Param_h__
+#define __dom141Param_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -7,7 +15,7 @@
 
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The param element declares parametric information regarding its parent
@@ -17,19 +25,19 @@ class domParam : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
-	static daeInt ID() { return 11; }
+	static daeInt ID() { return 610; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The sid attribute is a text string value containing the sub-identifier
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-	domSid attrSid;
+	xsNCName attrSid;
 /**
  *  The semantic attribute is the user-defined meaning of the parameter. Optional
  * attribute. 
@@ -41,29 +49,34 @@ protected:  // Attributes
  */
 	xsNMTOKEN attrType;
 
+protected:  // Value
+	/**
+	 * The xsString value of the text data of this element. 
+	 */
+	xsString _value;
 
 public:	//Accessors and Mutators
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
 	 */
-	domSid getSid() const { return attrSid; }
+	xsNCName getSid() const { return attrSid; }
 	/**
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the semantic attribute.
@@ -74,7 +87,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;}
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the type attribute.
@@ -85,7 +98,7 @@ public:	//Accessors and Mutators
 	 * Sets the type attribute.
 	 * @param atType The new value for the type attribute.
 	 */
-	void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType;}
+	void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the value of this element.
@@ -98,11 +111,6 @@ public:	//Accessors and Mutators
 	 */
 	void setValue( xsString val ) { *(daeStringRef*)&_value = val; }
 
-protected:  // Value
-	/**
-	 * The xsString value of the text data of this element. 
-	 */
-	xsString _value;
 protected:
 	/**
 	 * Constructor
@@ -132,5 +140,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

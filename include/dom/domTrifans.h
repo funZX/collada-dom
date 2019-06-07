@@ -1,16 +1,24 @@
-#ifndef __dom150Trifans_h__
-#define __dom150Trifans_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Trifans_h__
+#define __dom141Trifans_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domInput_local_offset.h>
 #include <dom/domP.h>
 #include <dom/domExtra.h>
+#include <dom/domInputLocalOffset.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The trifans element provides the information needed to bind vertex attributes
@@ -23,13 +31,13 @@ class domTrifans : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TRIFANS; }
-	static daeInt ID() { return 36; }
+	static daeInt ID() { return 626; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 /**
  *  The count attribute indicates the number of triangle fan primitives. Required
  * attribute. 
@@ -48,27 +56,27 @@ protected:  // Elements
  * The input element may occur any number of times. This input is a local
  * input with the  offset and set attributes. @see domInput
  */
-	domInput_local_offset_Array elemInput_array;
+	domInputLocalOffset_Array elemInput_array;
 /**
- * The trifans element may have any number of p elements. @see domP
+ *  The trifans element may have any number of p elements.  @see domP
  */
 	domP_Array elemP_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
 public:	//Accessors and Mutators
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the count attribute.
@@ -79,7 +87,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( domUint atCount ) { attrCount = atCount; }
+	void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the material attribute.
@@ -90,18 +98,18 @@ public:	//Accessors and Mutators
 	 * Sets the material attribute.
 	 * @param atMaterial The new value for the material attribute.
 	 */
-	void setMaterial( xsNCName atMaterial ) { *(daeStringRef*)&attrMaterial = atMaterial;}
+	void setMaterial( xsNCName atMaterial ) { *(daeStringRef*)&attrMaterial = atMaterial; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the input element array.
 	 * @return Returns a reference to the array of input elements.
 	 */
-	domInput_local_offset_Array &getInput_array() { return elemInput_array; }
+	domInputLocalOffset_Array &getInput_array() { return elemInput_array; }
 	/**
 	 * Gets the input element array.
 	 * @return Returns a constant reference to the array of input elements.
 	 */
-	const domInput_local_offset_Array &getInput_array() const { return elemInput_array; }
+	const domInputLocalOffset_Array &getInput_array() const { return elemInput_array; }
 	/**
 	 * Gets the p element array.
 	 * @return Returns a reference to the array of p elements.
@@ -151,5 +159,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

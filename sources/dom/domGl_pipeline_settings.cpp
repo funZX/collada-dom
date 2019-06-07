@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domGl_pipeline_settings.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domGl_pipeline_settings::create(DAE& dae)
 {
@@ -323,6 +331,24 @@ domGl_pipeline_settings::registerElement(DAE& dae)
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "clear_color" );
+	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemClear_color) );
+	mea->setElementType( domGl_pipeline_settings::domClear_color::registerElement(dae) );
+	cm->appendChild( mea );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "clear_stencil" );
+	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemClear_stencil) );
+	mea->setElementType( domGl_pipeline_settings::domClear_stencil::registerElement(dae) );
+	cm->appendChild( mea );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "clear_depth" );
+	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemClear_depth) );
+	mea->setElementType( domGl_pipeline_settings::domClear_depth::registerElement(dae) );
+	cm->appendChild( mea );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "color_mask" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemColor_mask) );
 	mea->setElementType( domGl_pipeline_settings::domColor_mask::registerElement(dae) );
@@ -488,6 +514,12 @@ domGl_pipeline_settings::registerElement(DAE& dae)
 	mea->setName( "alpha_test_enable" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemAlpha_test_enable) );
 	mea->setElementType( domGl_pipeline_settings::domAlpha_test_enable::registerElement(dae) );
+	cm->appendChild( mea );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "auto_normal_enable" );
+	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemAuto_normal_enable) );
+	mea->setElementType( domGl_pipeline_settings::domAuto_normal_enable::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
@@ -658,6 +690,12 @@ domGl_pipeline_settings::registerElement(DAE& dae)
 	mea->setElementType( domGl_pipeline_settings::domStencil_test_enable::registerElement(dae) );
 	cm->appendChild( mea );
 
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "gl_hook_abstract" );
+	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemGl_hook_abstract) );
+	mea->setElementType( domGl_hook_abstract::registerElement(dae) );
+	cm->appendChild( mea );
+
 	cm->setMaxOrdinal( 0 );
 	meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
@@ -741,7 +779,7 @@ domGl_pipeline_settings::domAlpha_func::domFunc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_func"));
+		ma->setType( dae.getAtomicTypes().get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domAlpha_func::domFunc , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ALWAYS");
@@ -793,7 +831,7 @@ domGl_pipeline_settings::domAlpha_func::domValue::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_alpha_value"));
+		ma->setType( dae.getAtomicTypes().get("Gl_alpha_value_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domAlpha_func::domValue , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0.0");
@@ -890,7 +928,7 @@ domGl_pipeline_settings::domBlend_func::domSrc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_func::domSrc , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ONE");
@@ -942,7 +980,7 @@ domGl_pipeline_settings::domBlend_func::domDest::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_func::domDest , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ZERO");
@@ -1051,7 +1089,7 @@ domGl_pipeline_settings::domBlend_func_separate::domSrc_rgb::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_func_separate::domSrc_rgb , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ONE");
@@ -1103,7 +1141,7 @@ domGl_pipeline_settings::domBlend_func_separate::domDest_rgb::registerElement(DA
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_func_separate::domDest_rgb , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ZERO");
@@ -1155,7 +1193,7 @@ domGl_pipeline_settings::domBlend_func_separate::domSrc_alpha::registerElement(D
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_func_separate::domSrc_alpha , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ONE");
@@ -1207,7 +1245,7 @@ domGl_pipeline_settings::domBlend_func_separate::domDest_alpha::registerElement(
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_func_separate::domDest_alpha , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ZERO");
@@ -1259,7 +1297,7 @@ domGl_pipeline_settings::domBlend_equation::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend_equation"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_equation_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_equation , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FUNC_ADD");
@@ -1356,7 +1394,7 @@ domGl_pipeline_settings::domBlend_equation_separate::domRgb::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend_equation"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_equation_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_equation_separate::domRgb , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FUNC_ADD");
@@ -1408,7 +1446,7 @@ domGl_pipeline_settings::domBlend_equation_separate::domAlpha::registerElement(D
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_blend_equation"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_equation_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_equation_separate::domAlpha , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FUNC_ADD");
@@ -1505,7 +1543,7 @@ domGl_pipeline_settings::domColor_material::domFace::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_face"));
+		ma->setType( dae.getAtomicTypes().get("Gl_face_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domColor_material::domFace , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FRONT_AND_BACK");
@@ -1557,7 +1595,7 @@ domGl_pipeline_settings::domColor_material::domMode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_material"));
+		ma->setType( dae.getAtomicTypes().get("Gl_material_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domColor_material::domMode , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "AMBIENT_AND_DIFFUSE");
@@ -1609,7 +1647,7 @@ domGl_pipeline_settings::domCull_face::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_face"));
+		ma->setType( dae.getAtomicTypes().get("Gl_face_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domCull_face , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "BACK");
@@ -1661,7 +1699,7 @@ domGl_pipeline_settings::domDepth_func::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_func"));
+		ma->setType( dae.getAtomicTypes().get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domDepth_func , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ALWAYS");
@@ -1713,7 +1751,7 @@ domGl_pipeline_settings::domFog_mode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_fog"));
+		ma->setType( dae.getAtomicTypes().get("Gl_fog_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domFog_mode , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "EXP");
@@ -1765,7 +1803,7 @@ domGl_pipeline_settings::domFog_coord_src::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_fog_coord_src"));
+		ma->setType( dae.getAtomicTypes().get("Gl_fog_coord_src_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domFog_coord_src , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FOG_COORDINATE");
@@ -1817,7 +1855,7 @@ domGl_pipeline_settings::domFront_face::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_front_face"));
+		ma->setType( dae.getAtomicTypes().get("Gl_front_face_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domFront_face , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "CCW");
@@ -1869,7 +1907,7 @@ domGl_pipeline_settings::domLight_model_color_control::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_light_model_color_control"));
+		ma->setType( dae.getAtomicTypes().get("Gl_light_model_color_control_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_model_color_control , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "SINGLE_COLOR");
@@ -1921,7 +1959,7 @@ domGl_pipeline_settings::domLogic_op::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_logic_op"));
+		ma->setType( dae.getAtomicTypes().get("Gl_logic_op_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLogic_op , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "COPY");
@@ -2018,7 +2056,7 @@ domGl_pipeline_settings::domPolygon_mode::domFace::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_face"));
+		ma->setType( dae.getAtomicTypes().get("Gl_face_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPolygon_mode::domFace , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FRONT_AND_BACK");
@@ -2070,7 +2108,7 @@ domGl_pipeline_settings::domPolygon_mode::domMode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_polygon_mode"));
+		ma->setType( dae.getAtomicTypes().get("Gl_polygon_mode_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPolygon_mode::domMode , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FILL");
@@ -2122,7 +2160,7 @@ domGl_pipeline_settings::domShade_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_shade_model"));
+		ma->setType( dae.getAtomicTypes().get("Gl_shade_model_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domShade_model , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "SMOOTH");
@@ -2225,7 +2263,7 @@ domGl_pipeline_settings::domStencil_func::domFunc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_func"));
+		ma->setType( dae.getAtomicTypes().get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_func::domFunc , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ALWAYS");
@@ -2432,7 +2470,7 @@ domGl_pipeline_settings::domStencil_op::domFail::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op"));
+		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_op::domFail , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -2484,7 +2522,7 @@ domGl_pipeline_settings::domStencil_op::domZfail::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op"));
+		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_op::domZfail , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -2536,7 +2574,7 @@ domGl_pipeline_settings::domStencil_op::domZpass::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op"));
+		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_op::domZpass , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -2645,7 +2683,7 @@ domGl_pipeline_settings::domStencil_func_separate::domFront::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_func"));
+		ma->setType( dae.getAtomicTypes().get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_func_separate::domFront , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ALWAYS");
@@ -2697,7 +2735,7 @@ domGl_pipeline_settings::domStencil_func_separate::domBack::registerElement(DAE&
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_func"));
+		ma->setType( dae.getAtomicTypes().get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_func_separate::domBack , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ALWAYS");
@@ -2910,7 +2948,7 @@ domGl_pipeline_settings::domStencil_op_separate::domFace::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_face"));
+		ma->setType( dae.getAtomicTypes().get("Gl_face_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_op_separate::domFace , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FRONT_AND_BACK");
@@ -2962,7 +3000,7 @@ domGl_pipeline_settings::domStencil_op_separate::domFail::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op"));
+		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_op_separate::domFail , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -3014,7 +3052,7 @@ domGl_pipeline_settings::domStencil_op_separate::domZfail::registerElement(DAE& 
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op"));
+		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_op_separate::domZfail , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -3066,7 +3104,7 @@ domGl_pipeline_settings::domStencil_op_separate::domZpass::registerElement(DAE& 
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op"));
+		ma->setType( dae.getAtomicTypes().get("Gl_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_op_separate::domZpass , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -3163,7 +3201,7 @@ domGl_pipeline_settings::domStencil_mask_separate::domFace::registerElement(DAE&
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("Gl_face"));
+		ma->setType( dae.getAtomicTypes().get("Gl_face_type"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_mask_separate::domFace , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "FRONT_AND_BACK");
@@ -3267,7 +3305,7 @@ domGl_pipeline_settings::domLight_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -3292,7 +3330,7 @@ domGl_pipeline_settings::domLight_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_enable , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3356,7 +3394,7 @@ domGl_pipeline_settings::domLight_ambient::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_ambient , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3420,7 +3458,7 @@ domGl_pipeline_settings::domLight_diffuse::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_diffuse , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3484,7 +3522,7 @@ domGl_pipeline_settings::domLight_specular::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_specular , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3548,7 +3586,7 @@ domGl_pipeline_settings::domLight_position::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_position , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3612,7 +3650,7 @@ domGl_pipeline_settings::domLight_constant_attenuation::registerElement(DAE& dae
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_constant_attenuation , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3676,7 +3714,7 @@ domGl_pipeline_settings::domLight_linear_attenuation::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_linear_attenuation , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3740,7 +3778,7 @@ domGl_pipeline_settings::domLight_quadratic_attenuation::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_quadratic_attenuation , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3804,7 +3842,7 @@ domGl_pipeline_settings::domLight_spot_cutoff::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_spot_cutoff , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3868,7 +3906,7 @@ domGl_pipeline_settings::domLight_spot_direction::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_spot_direction , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3932,7 +3970,7 @@ domGl_pipeline_settings::domLight_spot_exponent::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_lights_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_spot_exponent , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -3973,7 +4011,7 @@ domGl_pipeline_settings::domTexture1D::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings::domTexture1D,elemValue) );
-	mea->setElementType( domFx_sampler1D::registerElement(dae) );
+	mea->setElementType( domGl_sampler1D::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
@@ -3993,7 +4031,7 @@ domGl_pipeline_settings::domTexture1D::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture1D , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -4070,7 +4108,7 @@ domGl_pipeline_settings::domTexture2D::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings::domTexture2D,elemValue) );
-	mea->setElementType( domFx_sampler2D::registerElement(dae) );
+	mea->setElementType( domGl_sampler2D::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
@@ -4090,7 +4128,7 @@ domGl_pipeline_settings::domTexture2D::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture2D , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -4167,7 +4205,7 @@ domGl_pipeline_settings::domTexture3D::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings::domTexture3D,elemValue) );
-	mea->setElementType( domFx_sampler3D::registerElement(dae) );
+	mea->setElementType( domGl_sampler3D::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
@@ -4187,7 +4225,7 @@ domGl_pipeline_settings::domTexture3D::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture3D , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -4264,7 +4302,7 @@ domGl_pipeline_settings::domTextureCUBE::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings::domTextureCUBE,elemValue) );
-	mea->setElementType( domFx_samplerCUBE::registerElement(dae) );
+	mea->setElementType( domGl_samplerCUBE::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
@@ -4284,7 +4322,7 @@ domGl_pipeline_settings::domTextureCUBE::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureCUBE , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -4361,7 +4399,7 @@ domGl_pipeline_settings::domTextureRECT::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings::domTextureRECT,elemValue) );
-	mea->setElementType( domFx_samplerRECT::registerElement(dae) );
+	mea->setElementType( domGl_samplerRECT::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
@@ -4381,7 +4419,7 @@ domGl_pipeline_settings::domTextureRECT::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureRECT , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -4458,7 +4496,7 @@ domGl_pipeline_settings::domTextureDEPTH::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings::domTextureDEPTH,elemValue) );
-	mea->setElementType( domFx_samplerDEPTH::registerElement(dae) );
+	mea->setElementType( domGl_samplerDEPTH::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
@@ -4478,7 +4516,7 @@ domGl_pipeline_settings::domTextureDEPTH::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureDEPTH , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -4553,7 +4591,7 @@ domGl_pipeline_settings::domTexture1D_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture1D_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4578,7 +4616,7 @@ domGl_pipeline_settings::domTexture1D_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture1D_enable , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -4616,7 +4654,7 @@ domGl_pipeline_settings::domTexture2D_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture2D_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4641,7 +4679,7 @@ domGl_pipeline_settings::domTexture2D_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture2D_enable , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -4679,7 +4717,7 @@ domGl_pipeline_settings::domTexture3D_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture3D_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4704,7 +4742,7 @@ domGl_pipeline_settings::domTexture3D_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture3D_enable , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -4742,7 +4780,7 @@ domGl_pipeline_settings::domTextureCUBE_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureCUBE_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4767,7 +4805,7 @@ domGl_pipeline_settings::domTextureCUBE_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureCUBE_enable , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -4805,7 +4843,7 @@ domGl_pipeline_settings::domTextureRECT_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureRECT_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4830,7 +4868,7 @@ domGl_pipeline_settings::domTextureRECT_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureRECT_enable , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -4868,7 +4906,7 @@ domGl_pipeline_settings::domTextureDEPTH_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureDEPTH_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4893,7 +4931,7 @@ domGl_pipeline_settings::domTextureDEPTH_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTextureDEPTH_enable , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -4955,7 +4993,7 @@ domGl_pipeline_settings::domTexture_env_color::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture_env_color , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -4993,7 +5031,7 @@ domGl_pipeline_settings::domTexture_env_mode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("String"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture_env_mode , attrValue ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -5017,7 +5055,7 @@ domGl_pipeline_settings::domTexture_env_mode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_texture_image_units_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_TEXTURE_IMAGE_UNITS_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture_env_mode , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -5080,7 +5118,7 @@ domGl_pipeline_settings::domClip_plane::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_clip_planes_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_CLIP_PLANES_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClip_plane , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -5118,7 +5156,7 @@ domGl_pipeline_settings::domClip_plane_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClip_plane_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -5143,7 +5181,7 @@ domGl_pipeline_settings::domClip_plane_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( dae.getAtomicTypes().get("Gl_max_clip_planes_index"));
+		ma->setType( dae.getAtomicTypes().get("GL_MAX_CLIP_PLANES_index"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClip_plane_enable , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -5203,6 +5241,162 @@ domGl_pipeline_settings::domBlend_color::registerElement(DAE& dae)
 	}
 
 	meta->setElementSize(sizeof(domGl_pipeline_settings::domBlend_color));
+	meta->validate();
+
+	return meta;
+}
+
+daeElementRef
+domGl_pipeline_settings::domClear_color::create(DAE& dae)
+{
+	domGl_pipeline_settings::domClear_colorRef ref = new domGl_pipeline_settings::domClear_color(dae);
+	return ref;
+}
+
+
+daeMetaElement *
+domGl_pipeline_settings::domClear_color::registerElement(DAE& dae)
+{
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "clear_color" );
+	meta->registerClass(domGl_pipeline_settings::domClear_color::create);
+
+	meta->setIsInnerClass( true );
+
+	//	Add attribute: value
+	{
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
+		ma->setName( "value" );
+		ma->setType( dae.getAtomicTypes().get("Float4"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClear_color , attrValue ));
+		ma->setContainer( meta );
+		ma->setDefaultString( "0 0 0 0");
+		ma->setIsRequired( false );
+	
+		meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: param
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "param" );
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClear_color , attrParam ));
+		ma->setContainer( meta );
+		ma->setIsRequired( false );
+	
+		meta->appendAttribute(ma);
+	}
+
+	meta->setElementSize(sizeof(domGl_pipeline_settings::domClear_color));
+	meta->validate();
+
+	return meta;
+}
+
+daeElementRef
+domGl_pipeline_settings::domClear_stencil::create(DAE& dae)
+{
+	domGl_pipeline_settings::domClear_stencilRef ref = new domGl_pipeline_settings::domClear_stencil(dae);
+	return ref;
+}
+
+
+daeMetaElement *
+domGl_pipeline_settings::domClear_stencil::registerElement(DAE& dae)
+{
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "clear_stencil" );
+	meta->registerClass(domGl_pipeline_settings::domClear_stencil::create);
+
+	meta->setIsInnerClass( true );
+
+	//	Add attribute: value
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "value" );
+		ma->setType( dae.getAtomicTypes().get("Int"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClear_stencil , attrValue ));
+		ma->setContainer( meta );
+		ma->setDefaultString( "0");
+		ma->setIsRequired( false );
+	
+		meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: param
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "param" );
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClear_stencil , attrParam ));
+		ma->setContainer( meta );
+		ma->setIsRequired( false );
+	
+		meta->appendAttribute(ma);
+	}
+
+	meta->setElementSize(sizeof(domGl_pipeline_settings::domClear_stencil));
+	meta->validate();
+
+	return meta;
+}
+
+daeElementRef
+domGl_pipeline_settings::domClear_depth::create(DAE& dae)
+{
+	domGl_pipeline_settings::domClear_depthRef ref = new domGl_pipeline_settings::domClear_depth(dae);
+	return ref;
+}
+
+
+daeMetaElement *
+domGl_pipeline_settings::domClear_depth::registerElement(DAE& dae)
+{
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "clear_depth" );
+	meta->registerClass(domGl_pipeline_settings::domClear_depth::create);
+
+	meta->setIsInnerClass( true );
+
+	//	Add attribute: value
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "value" );
+		ma->setType( dae.getAtomicTypes().get("Float"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClear_depth , attrValue ));
+		ma->setContainer( meta );
+		ma->setDefaultString( "1");
+		ma->setIsRequired( false );
+	
+		meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: param
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "param" );
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClear_depth , attrParam ));
+		ma->setContainer( meta );
+		ma->setIsRequired( false );
+	
+		meta->appendAttribute(ma);
+	}
+
+	meta->setElementSize(sizeof(domGl_pipeline_settings::domClear_depth));
 	meta->validate();
 
 	return meta;
@@ -5336,7 +5530,7 @@ domGl_pipeline_settings::domDepth_mask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domDepth_mask , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "true");
@@ -5700,7 +5894,7 @@ domGl_pipeline_settings::domLighting_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLighting_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -6635,7 +6829,7 @@ domGl_pipeline_settings::domAlpha_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domAlpha_test_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -6657,6 +6851,58 @@ domGl_pipeline_settings::domAlpha_test_enable::registerElement(DAE& dae)
 	}
 
 	meta->setElementSize(sizeof(domGl_pipeline_settings::domAlpha_test_enable));
+	meta->validate();
+
+	return meta;
+}
+
+daeElementRef
+domGl_pipeline_settings::domAuto_normal_enable::create(DAE& dae)
+{
+	domGl_pipeline_settings::domAuto_normal_enableRef ref = new domGl_pipeline_settings::domAuto_normal_enable(dae);
+	return ref;
+}
+
+
+daeMetaElement *
+domGl_pipeline_settings::domAuto_normal_enable::registerElement(DAE& dae)
+{
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "auto_normal_enable" );
+	meta->registerClass(domGl_pipeline_settings::domAuto_normal_enable::create);
+
+	meta->setIsInnerClass( true );
+
+	//	Add attribute: value
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "value" );
+		ma->setType( dae.getAtomicTypes().get("Bool"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domAuto_normal_enable , attrValue ));
+		ma->setContainer( meta );
+		ma->setDefaultString( "false");
+		ma->setIsRequired( false );
+	
+		meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: param
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "param" );
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domAuto_normal_enable , attrParam ));
+		ma->setContainer( meta );
+		ma->setIsRequired( false );
+	
+		meta->appendAttribute(ma);
+	}
+
+	meta->setElementSize(sizeof(domGl_pipeline_settings::domAuto_normal_enable));
 	meta->validate();
 
 	return meta;
@@ -6687,7 +6933,7 @@ domGl_pipeline_settings::domBlend_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -6739,7 +6985,7 @@ domGl_pipeline_settings::domColor_logic_op_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domColor_logic_op_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -6791,7 +7037,7 @@ domGl_pipeline_settings::domColor_material_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domColor_material_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "true");
@@ -6843,7 +7089,7 @@ domGl_pipeline_settings::domCull_face_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domCull_face_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -6895,7 +7141,7 @@ domGl_pipeline_settings::domDepth_bounds_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domDepth_bounds_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -6947,7 +7193,7 @@ domGl_pipeline_settings::domDepth_clamp_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domDepth_clamp_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -6999,7 +7245,7 @@ domGl_pipeline_settings::domDepth_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domDepth_test_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7051,7 +7297,7 @@ domGl_pipeline_settings::domDither_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domDither_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "true");
@@ -7103,7 +7349,7 @@ domGl_pipeline_settings::domFog_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domFog_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7155,7 +7401,7 @@ domGl_pipeline_settings::domLight_model_local_viewer_enable::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_model_local_viewer_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7207,7 +7453,7 @@ domGl_pipeline_settings::domLight_model_two_side_enable::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_model_two_side_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7259,7 +7505,7 @@ domGl_pipeline_settings::domLine_smooth_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLine_smooth_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7311,7 +7557,7 @@ domGl_pipeline_settings::domLine_stipple_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLine_stipple_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7363,7 +7609,7 @@ domGl_pipeline_settings::domLogic_op_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLogic_op_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7415,7 +7661,7 @@ domGl_pipeline_settings::domMultisample_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domMultisample_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7467,7 +7713,7 @@ domGl_pipeline_settings::domNormalize_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domNormalize_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7519,7 +7765,7 @@ domGl_pipeline_settings::domPoint_smooth_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPoint_smooth_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7571,7 +7817,7 @@ domGl_pipeline_settings::domPolygon_offset_fill_enable::registerElement(DAE& dae
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPolygon_offset_fill_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7623,7 +7869,7 @@ domGl_pipeline_settings::domPolygon_offset_line_enable::registerElement(DAE& dae
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPolygon_offset_line_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7675,7 +7921,7 @@ domGl_pipeline_settings::domPolygon_offset_point_enable::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPolygon_offset_point_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7727,7 +7973,7 @@ domGl_pipeline_settings::domPolygon_smooth_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPolygon_smooth_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7779,7 +8025,7 @@ domGl_pipeline_settings::domPolygon_stipple_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPolygon_stipple_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7831,7 +8077,7 @@ domGl_pipeline_settings::domRescale_normal_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domRescale_normal_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7883,7 +8129,7 @@ domGl_pipeline_settings::domSample_alpha_to_coverage_enable::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domSample_alpha_to_coverage_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7935,7 +8181,7 @@ domGl_pipeline_settings::domSample_alpha_to_one_enable::registerElement(DAE& dae
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domSample_alpha_to_one_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -7987,7 +8233,7 @@ domGl_pipeline_settings::domSample_coverage_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domSample_coverage_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -8039,7 +8285,7 @@ domGl_pipeline_settings::domScissor_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domScissor_test_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -8091,7 +8337,7 @@ domGl_pipeline_settings::domStencil_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domStencil_test_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -8118,4 +8364,4 @@ domGl_pipeline_settings::domStencil_test_enable::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

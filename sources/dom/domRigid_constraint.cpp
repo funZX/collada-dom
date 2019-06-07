@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domRigid_constraint.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domRigid_constraint::create(DAE& dae)
 {
@@ -70,7 +78,7 @@ domRigid_constraint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -82,7 +90,7 @@ domRigid_constraint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint , attrName ));
 		ma->setContainer( meta );
 	
@@ -99,7 +107,6 @@ daeElementRef
 domRigid_constraint::domRef_attachment::create(DAE& dae)
 {
 	domRigid_constraint::domRef_attachmentRef ref = new domRigid_constraint::domRef_attachment(dae);
-	ref->attrRigid_body.setContainer( (domRigid_constraint::domRef_attachment*)ref );
 	return ref;
 }
 
@@ -118,8 +125,6 @@ domRigid_constraint::domRef_attachment::registerElement(DAE& dae)
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
-
 	cm = new daeMetaChoice( meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
@@ -134,17 +139,13 @@ domRigid_constraint::domRef_attachment::registerElement(DAE& dae)
 	mea->setElementType( domRotate::registerElement(dae) );
 	cm->appendChild( mea );
 
-	cm->setMaxOrdinal( 0 );
-	cm->getParent()->appendChild( cm );
-	cm = cm->getParent();
-
-	mea = new daeMetaElementArrayAttribute( meta, cm, 3001, 0, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domRef_attachment,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
 
-	cm->setMaxOrdinal( 3001 );
+	cm->setMaxOrdinal( 3000 );
 	meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
 	meta->addContents(daeOffsetOf(domRigid_constraint::domRef_attachment,_contents));
@@ -172,7 +173,6 @@ daeElementRef
 domRigid_constraint::domAttachment::create(DAE& dae)
 {
 	domRigid_constraint::domAttachmentRef ref = new domRigid_constraint::domAttachment(dae);
-	ref->attrRigid_body.setContainer( (domRigid_constraint::domAttachment*)ref );
 	return ref;
 }
 
@@ -191,8 +191,6 @@ domRigid_constraint::domAttachment::registerElement(DAE& dae)
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
-
 	cm = new daeMetaChoice( meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
@@ -207,17 +205,13 @@ domRigid_constraint::domAttachment::registerElement(DAE& dae)
 	mea->setElementType( domRotate::registerElement(dae) );
 	cm->appendChild( mea );
 
-	cm->setMaxOrdinal( 0 );
-	cm->getParent()->appendChild( cm );
-	cm = cm->getParent();
-
-	mea = new daeMetaElementArrayAttribute( meta, cm, 3001, 0, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domAttachment,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
 
-	cm->setMaxOrdinal( 3001 );
+	cm->setMaxOrdinal( 3000 );
 	meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
 	meta->addContents(daeOffsetOf(domRigid_constraint::domAttachment,_contents));
@@ -322,7 +316,7 @@ domRigid_constraint::domTechnique_common::domEnabled::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domTechnique_common::domEnabled , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -332,7 +326,7 @@ domRigid_constraint::domTechnique_common::domEnabled::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domTechnique_common::domEnabled , attrSid ));
 		ma->setContainer( meta );
 	
@@ -369,7 +363,7 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domTechnique_common::domInterpenetrate , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -379,7 +373,7 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domTechnique_common::domInterpenetrate , attrSid ));
 		ma->setContainer( meta );
 	
@@ -464,13 +458,13 @@ domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::re
 	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "min" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist,elemMin) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "max" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist,elemMax) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 1 );
@@ -509,13 +503,13 @@ domRigid_constraint::domTechnique_common::domLimits::domLinear::registerElement(
 	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "min" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domLimits::domLinear,elemMin) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "max" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domLimits::domLinear,elemMax) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 1 );
@@ -599,19 +593,19 @@ domRigid_constraint::domTechnique_common::domSpring::domAngular::registerElement
 	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "stiffness" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domSpring::domAngular,elemStiffness) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "damping" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domSpring::domAngular,elemDamping) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "target_value" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domSpring::domAngular,elemTarget_value) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 2 );
@@ -650,19 +644,19 @@ domRigid_constraint::domTechnique_common::domSpring::domLinear::registerElement(
 	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "stiffness" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domSpring::domLinear,elemStiffness) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "damping" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domSpring::domLinear,elemDamping) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "target_value" );
 	mea->setOffset( daeOffsetOf(domRigid_constraint::domTechnique_common::domSpring::domLinear,elemTarget_value) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 2 );
@@ -674,4 +668,4 @@ domRigid_constraint::domTechnique_common::domSpring::domLinear::registerElement(
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

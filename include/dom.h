@@ -11,7 +11,9 @@
 class DAE;
 class daeMetaElement;
 
-namespace ColladaDOM150 {
+
+
+namespace ColladaDOM141 {
 extern DLLSPEC daeString COLLADA_VERSION;
 extern DLLSPEC daeString COLLADA_NAMESPACE;
 
@@ -24,5 +26,4 @@ DLLSPEC daeMetaElement* registerDomElements(DAE& dae);
 DLLSPEC daeInt colladaTypeCount();
 
 }
-
 #endif // __DOM_INTERFACE__

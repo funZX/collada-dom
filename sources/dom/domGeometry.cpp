@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domGeometry.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domGeometry::create(DAE& dae)
 {
@@ -59,12 +67,6 @@ domGeometry::registerElement(DAE& dae)
 	mea->setElementType( domSpline::registerElement(dae) );
 	cm->appendChild( mea );
 
-	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
-	mea->setName( "brep" );
-	mea->setOffset( daeOffsetOf(domGeometry,elemBrep) );
-	mea->setElementType( domBrep::registerElement(dae) );
-	cm->appendChild( mea );
-
 	cm->setMaxOrdinal( 0 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
@@ -97,7 +99,7 @@ domGeometry::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGeometry , attrName ));
 		ma->setContainer( meta );
 	
@@ -110,4 +112,4 @@ domGeometry::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

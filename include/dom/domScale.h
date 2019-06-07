@@ -1,34 +1,50 @@
-#ifndef __dom150Scale_h__
-#define __dom150Scale_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Scale_h__
+#define __dom141Scale_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domTargetable_float3.h>
+#include <dom/domTargetableFloat3.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
-#include <dom/domTargetable_float3.h>
 /**
  * The scale element contains a mathematical vector that represents the relative
  * proportions of the  X, Y and Z axes of a coordinated system.
  */
-class domScale : public domTargetable_float3
+class domScale : public daeElement, public domTargetableFloat3_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCALE; }
-	static daeInt ID() { return 16; }
+	static daeInt ID() { return 632; }
 	virtual daeInt typeID() const { return ID(); }
 
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
-public:	//Accessors and Mutators
 protected:
 	/**
 	 * Constructor
 	 */
-	domScale(DAE& dae) : domTargetable_float3(dae) {}
+	domScale(DAE& dae) : daeElement(dae), domTargetableFloat3_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */
@@ -53,5 +69,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

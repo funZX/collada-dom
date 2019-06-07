@@ -1,16 +1,24 @@
-#ifndef __dom150Morph_h__
-#define __dom150Morph_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Morph_h__
+#define __dom141Morph_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domSource.h>
-#include <dom/domInput_local.h>
 #include <dom/domExtra.h>
+#include <dom/domInputLocal.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The morph element describes the data required to blend between sets of
@@ -21,7 +29,7 @@ class domMorph : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MORPH; }
-	static daeInt ID() { return 343; }
+	static daeInt ID() { return 662; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTargets;
@@ -37,7 +45,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TARGETS; }
-		static daeInt ID() { return 344; }
+		static daeInt ID() { return 663; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
@@ -45,9 +53,9 @@ public:
  * The input element must occur at least twice. These inputs are local inputs.
  * @see domInput
  */
-		domInput_local_Array elemInput_array;
+		domInputLocal_Array elemInput_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 
@@ -56,12 +64,12 @@ public:
 		 * Gets the input element array.
 		 * @return Returns a reference to the array of input elements.
 		 */
-		domInput_local_Array &getInput_array() { return elemInput_array; }
+		domInputLocal_Array &getInput_array() { return elemInput_array; }
 		/**
 		 * Gets the input element array.
 		 * @return Returns a constant reference to the array of input elements.
 		 */
-		const domInput_local_Array &getInput_array() const { return elemInput_array; }
+		const domInputLocal_Array &getInput_array() const { return elemInput_array; }
 		/**
 		 * Gets the extra element array.
 		 * @return Returns a reference to the array of extra elements.
@@ -107,7 +115,7 @@ protected:  // Attributes
  * accepted values are  NORMALIZED, and RELATIVE. The default value if not
  * specified is NORMALIZED.  Optional attribute. 
  */
-	domMorph_method attrMethod;
+	domMorphMethodType attrMethod;
 /**
  *  The source attribute indicates the base mesh. Required attribute. 
  */
@@ -115,7 +123,7 @@ protected:  // Attributes
 
 protected:  // Elements
 /**
- * The morph element must contain at least two source elements. @see domSource
+ *  The morph element must contain at least two source elements.  @see domSource
  */
 	domSource_Array elemSource_array;
 /**
@@ -124,21 +132,21 @@ protected:  // Elements
  */
 	domTargetsRef elemTargets;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
 public:	//Accessors and Mutators
 	/**
 	 * Gets the method attribute.
-	 * @return Returns a domMorph_method of the method attribute.
+	 * @return Returns a domMorphMethodType of the method attribute.
 	 */
-	domMorph_method getMethod() const { return attrMethod; }
+	domMorphMethodType getMethod() const { return attrMethod; }
 	/**
 	 * Sets the method attribute.
 	 * @param atMethod The new value for the method attribute.
 	 */
-	void setMethod( domMorph_method atMethod ) { attrMethod = atMethod; }
+	void setMethod( domMorphMethodType atMethod ) { attrMethod = atMethod; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -154,12 +162,12 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; }
+	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[1] = true; }
 	/**
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( xsString atSource ) { attrSource = atSource; }
+	void setSource( xsString atSource ) { attrSource = atSource; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the source element array.
@@ -215,5 +223,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

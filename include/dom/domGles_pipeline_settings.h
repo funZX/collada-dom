@@ -1,5 +1,13 @@
-#ifndef __dom150Gles_pipeline_settings_h__
-#define __dom150Gles_pipeline_settings_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Gles_pipeline_settings_h__
+#define __dom141Gles_pipeline_settings_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -8,7 +16,7 @@
 #include <dom/domGles_texture_pipeline.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * A group that contains the renderstates available for the GLES profile.
@@ -17,7 +25,7 @@ class domGles_pipeline_settings : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_PIPELINE_SETTINGS; }
-	static daeInt ID() { return 855; }
+	static daeInt ID() { return 488; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domAlpha_func;
@@ -29,7 +37,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA_FUNC; }
-		static daeInt ID() { return 856; }
+		static daeInt ID() { return 489; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domFunc;
@@ -41,24 +49,24 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FUNC; }
-			static daeInt ID() { return 857; }
+			static daeInt ID() { return 490; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
-			domGl_func attrValue;
+			domGl_func_type attrValue;
 			xsNCName attrParam;
 
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the value attribute.
-			 * @return Returns a domGl_func of the value attribute.
+			 * @return Returns a domGl_func_type of the value attribute.
 			 */
-			domGl_func getValue() const { return attrValue; }
+			domGl_func_type getValue() const { return attrValue; }
 			/**
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_func atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+			void setValue( domGl_func_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -108,24 +116,24 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VALUE; }
-			static daeInt ID() { return 858; }
+			static daeInt ID() { return 491; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
-			domGl_alpha_value attrValue;
+			domGl_alpha_value_type attrValue;
 			xsNCName attrParam;
 
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the value attribute.
-			 * @return Returns a domGl_alpha_value of the value attribute.
+			 * @return Returns a domGl_alpha_value_type of the value attribute.
 			 */
-			domGl_alpha_value getValue() const { return attrValue; }
+			domGl_alpha_value_type getValue() const { return attrValue; }
 			/**
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_alpha_value atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+			void setValue( domGl_alpha_value_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -220,7 +228,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_FUNC; }
-		static daeInt ID() { return 859; }
+		static daeInt ID() { return 492; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domSrc;
@@ -232,24 +240,24 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SRC; }
-			static daeInt ID() { return 860; }
+			static daeInt ID() { return 493; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
-			domGl_blend attrValue;
+			domGl_blend_type attrValue;
 			xsNCName attrParam;
 
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the value attribute.
-			 * @return Returns a domGl_blend of the value attribute.
+			 * @return Returns a domGl_blend_type of the value attribute.
 			 */
-			domGl_blend getValue() const { return attrValue; }
+			domGl_blend_type getValue() const { return attrValue; }
 			/**
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -299,24 +307,24 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEST; }
-			static daeInt ID() { return 861; }
+			static daeInt ID() { return 494; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
-			domGl_blend attrValue;
+			domGl_blend_type attrValue;
 			xsNCName attrParam;
 
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the value attribute.
-			 * @return Returns a domGl_blend of the value attribute.
+			 * @return Returns a domGl_blend_type of the value attribute.
 			 */
-			domGl_blend getValue() const { return attrValue; }
+			domGl_blend_type getValue() const { return attrValue; }
 			/**
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -402,6 +410,212 @@ public:
 		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
+	class domClear_color;
+
+	typedef daeSmartRef<domClear_color> domClear_colorRef;
+	typedef daeTArray<domClear_colorRef> domClear_color_Array;
+
+	class domClear_color : public daeElement
+	{
+	public:
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_COLOR; }
+		static daeInt ID() { return 495; }
+		virtual daeInt typeID() const { return ID(); }
+	protected:  // Attributes
+		domFloat4 attrValue;
+		xsNCName attrParam;
+
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
+		 */
+		domFloat4 &getValue() { return attrValue; }
+		/**
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
+		 */
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+
+		/**
+		 * Gets the param attribute.
+		 * @return Returns a xsNCName of the param attribute.
+		 */
+		xsNCName getParam() const { return attrParam; }
+		/**
+		 * Sets the param attribute.
+		 * @param atParam The new value for the param attribute.
+		 */
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
+
+	protected:
+		/**
+		 * Constructor
+		 */
+		domClear_color(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
+		/**
+		 * Destructor
+		 */
+		virtual ~domClear_color() {}
+		/**
+		 * Overloaded assignment operator
+		 */
+		virtual domClear_color &operator=( const domClear_color &cpy ) { (void)cpy; return *this; }
+
+	public: // STATIC METHODS
+		/**
+		 * Creates an instance of this class and returns a daeElementRef referencing it.
+		 * @return a daeElementRef referencing an instance of this object.
+		 */
+		static DLLSPEC daeElementRef create(DAE& dae);
+		/**
+		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+		 * @return A daeMetaElement describing this COLLADA element.
+		 */
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+	};
+
+	class domClear_stencil;
+
+	typedef daeSmartRef<domClear_stencil> domClear_stencilRef;
+	typedef daeTArray<domClear_stencilRef> domClear_stencil_Array;
+
+	class domClear_stencil : public daeElement
+	{
+	public:
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_STENCIL; }
+		static daeInt ID() { return 496; }
+		virtual daeInt typeID() const { return ID(); }
+	protected:  // Attributes
+		domInt attrValue;
+		xsNCName attrParam;
+
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the value attribute.
+		 * @return Returns a domInt of the value attribute.
+		 */
+		domInt getValue() const { return attrValue; }
+		/**
+		 * Sets the value attribute.
+		 * @param atValue The new value for the value attribute.
+		 */
+		void setValue( domInt atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+
+		/**
+		 * Gets the param attribute.
+		 * @return Returns a xsNCName of the param attribute.
+		 */
+		xsNCName getParam() const { return attrParam; }
+		/**
+		 * Sets the param attribute.
+		 * @param atParam The new value for the param attribute.
+		 */
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
+
+	protected:
+		/**
+		 * Constructor
+		 */
+		domClear_stencil(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
+		/**
+		 * Destructor
+		 */
+		virtual ~domClear_stencil() {}
+		/**
+		 * Overloaded assignment operator
+		 */
+		virtual domClear_stencil &operator=( const domClear_stencil &cpy ) { (void)cpy; return *this; }
+
+	public: // STATIC METHODS
+		/**
+		 * Creates an instance of this class and returns a daeElementRef referencing it.
+		 * @return a daeElementRef referencing an instance of this object.
+		 */
+		static DLLSPEC daeElementRef create(DAE& dae);
+		/**
+		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+		 * @return A daeMetaElement describing this COLLADA element.
+		 */
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+	};
+
+	class domClear_depth;
+
+	typedef daeSmartRef<domClear_depth> domClear_depthRef;
+	typedef daeTArray<domClear_depthRef> domClear_depth_Array;
+
+	class domClear_depth : public daeElement
+	{
+	public:
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_DEPTH; }
+		static daeInt ID() { return 497; }
+		virtual daeInt typeID() const { return ID(); }
+	protected:  // Attributes
+		domFloat attrValue;
+		xsNCName attrParam;
+
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the value attribute.
+		 * @return Returns a domFloat of the value attribute.
+		 */
+		domFloat getValue() const { return attrValue; }
+		/**
+		 * Sets the value attribute.
+		 * @param atValue The new value for the value attribute.
+		 */
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+
+		/**
+		 * Gets the param attribute.
+		 * @return Returns a xsNCName of the param attribute.
+		 */
+		xsNCName getParam() const { return attrParam; }
+		/**
+		 * Sets the param attribute.
+		 * @param atParam The new value for the param attribute.
+		 */
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
+
+	protected:
+		/**
+		 * Constructor
+		 */
+		domClear_depth(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
+		/**
+		 * Destructor
+		 */
+		virtual ~domClear_depth() {}
+		/**
+		 * Overloaded assignment operator
+		 */
+		virtual domClear_depth &operator=( const domClear_depth &cpy ) { (void)cpy; return *this; }
+
+	public: // STATIC METHODS
+		/**
+		 * Creates an instance of this class and returns a daeElementRef referencing it.
+		 * @return a daeElementRef referencing an instance of this object.
+		 */
+		static DLLSPEC daeElementRef create(DAE& dae);
+		/**
+		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+		 * @return A daeMetaElement describing this COLLADA element.
+		 */
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+	};
+
 	class domClip_plane;
 
 	typedef daeSmartRef<domClip_plane> domClip_planeRef;
@@ -411,25 +625,30 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLIP_PLANE; }
-		static daeInt ID() { return 862; }
+		static daeInt ID() { return 498; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool4 attrValue;
 		xsNCName attrParam;
-		domGles_max_clip_planes_index attrIndex;
+		domGLES_MAX_CLIP_PLANES_index attrIndex;
 
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domBool4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domBool4 reference of the value array attribute.
 		 */
-		domBool4 getValue() const { return attrValue; }
+		domBool4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domBool4 reference of the value array attribute.
 		 */
-		void setValue( domBool4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domBool4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domBool4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -444,14 +663,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_clip_planes_index of the index attribute.
+		 * @return Returns a domGLES_MAX_CLIP_PLANES_index of the index attribute.
 		 */
-		domGles_max_clip_planes_index getIndex() const { return attrIndex; }
+		domGLES_MAX_CLIP_PLANES_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_clip_planes_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_CLIP_PLANES_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -490,7 +709,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MASK; }
-		static daeInt ID() { return 863; }
+		static daeInt ID() { return 499; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool4 attrValue;
@@ -499,15 +718,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domBool4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domBool4 reference of the value array attribute.
 		 */
-		domBool4 getValue() const { return attrValue; }
+		domBool4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domBool4 reference of the value array attribute.
 		 */
-		void setValue( domBool4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domBool4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domBool4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -557,24 +781,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CULL_FACE; }
-		static daeInt ID() { return 864; }
+		static daeInt ID() { return 500; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		domGl_face attrValue;
+		domGl_face_type attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a domGl_face of the value attribute.
+		 * @return Returns a domGl_face_type of the value attribute.
 		 */
-		domGl_face getValue() const { return attrValue; }
+		domGl_face_type getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_face atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domGl_face_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -624,24 +848,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_FUNC; }
-		static daeInt ID() { return 865; }
+		static daeInt ID() { return 501; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		domGl_func attrValue;
+		domGl_func_type attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a domGl_func of the value attribute.
+		 * @return Returns a domGl_func_type of the value attribute.
 		 */
-		domGl_func getValue() const { return attrValue; }
+		domGl_func_type getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_func atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domGl_func_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -691,24 +915,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_MASK; }
-		static daeInt ID() { return 866; }
+		static daeInt ID() { return 502; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -758,7 +982,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_RANGE; }
-		static daeInt ID() { return 867; }
+		static daeInt ID() { return 503; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat2 attrValue;
@@ -767,15 +991,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat2 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat2 reference of the value array attribute.
 		 */
-		domFloat2 getValue() const { return attrValue; }
+		domFloat2 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat2 reference of the value array attribute.
 		 */
-		void setValue( domFloat2 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat2 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat2 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -825,7 +1054,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_COLOR; }
-		static daeInt ID() { return 868; }
+		static daeInt ID() { return 504; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -834,15 +1063,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -892,7 +1126,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_DENSITY; }
-		static daeInt ID() { return 869; }
+		static daeInt ID() { return 505; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -959,24 +1193,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_MODE; }
-		static daeInt ID() { return 870; }
+		static daeInt ID() { return 506; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		domGl_fog attrValue;
+		domGl_fog_type attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a domGl_fog of the value attribute.
+		 * @return Returns a domGl_fog_type of the value attribute.
 		 */
-		domGl_fog getValue() const { return attrValue; }
+		domGl_fog_type getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_fog atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domGl_fog_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1026,7 +1260,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_START; }
-		static daeInt ID() { return 871; }
+		static daeInt ID() { return 507; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -1093,7 +1327,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_END; }
-		static daeInt ID() { return 872; }
+		static daeInt ID() { return 508; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -1160,24 +1394,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FRONT_FACE; }
-		static daeInt ID() { return 873; }
+		static daeInt ID() { return 509; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		domGl_front_face attrValue;
+		domGl_front_face_type attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a domGl_front_face of the value attribute.
+		 * @return Returns a domGl_front_face_type of the value attribute.
 		 */
-		domGl_front_face getValue() const { return attrValue; }
+		domGl_front_face_type getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_front_face atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domGl_front_face_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1218,6 +1452,68 @@ public:
 		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
+	class domTexture_pipeline;
+
+	typedef daeSmartRef<domTexture_pipeline> domTexture_pipelineRef;
+	typedef daeTArray<domTexture_pipelineRef> domTexture_pipeline_Array;
+
+	class domTexture_pipeline : public daeElement
+	{
+	public:
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_PIPELINE; }
+		static daeInt ID() { return 510; }
+		virtual daeInt typeID() const { return ID(); }
+	protected:  // Attribute
+		xsNCName attrParam;
+
+	protected:  // Element
+		domGles_texture_pipelineRef elemValue;
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the param attribute.
+		 * @return Returns a xsNCName of the param attribute.
+		 */
+		xsNCName getParam() const { return attrParam; }
+		/**
+		 * Sets the param attribute.
+		 * @param atParam The new value for the param attribute.
+		 */
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[0] = true; }
+
+		/**
+		 * Gets the value element.
+		 * @return a daeSmartRef to the value element.
+		 */
+		const domGles_texture_pipelineRef getValue() const { return elemValue; }
+	protected:
+		/**
+		 * Constructor
+		 */
+		domTexture_pipeline(DAE& dae) : daeElement(dae), attrParam(), elemValue() {}
+		/**
+		 * Destructor
+		 */
+		virtual ~domTexture_pipeline() {}
+		/**
+		 * Overloaded assignment operator
+		 */
+		virtual domTexture_pipeline &operator=( const domTexture_pipeline &cpy ) { (void)cpy; return *this; }
+
+	public: // STATIC METHODS
+		/**
+		 * Creates an instance of this class and returns a daeElementRef referencing it.
+		 * @return a daeElementRef referencing an instance of this object.
+		 */
+		static DLLSPEC daeElementRef create(DAE& dae);
+		/**
+		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+		 * @return A daeMetaElement describing this COLLADA element.
+		 */
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+	};
+
 	class domLogic_op;
 
 	typedef daeSmartRef<domLogic_op> domLogic_opRef;
@@ -1227,24 +1523,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LOGIC_OP; }
-		static daeInt ID() { return 874; }
+		static daeInt ID() { return 511; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		domGl_logic_op attrValue;
+		domGl_logic_op_type attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a domGl_logic_op of the value attribute.
+		 * @return Returns a domGl_logic_op_type of the value attribute.
 		 */
-		domGl_logic_op getValue() const { return attrValue; }
+		domGl_logic_op_type getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_logic_op atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domGl_logic_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1294,25 +1590,30 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_AMBIENT; }
-		static daeInt ID() { return 875; }
+		static daeInt ID() { return 512; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1327,14 +1628,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -1373,25 +1674,30 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_DIFFUSE; }
-		static daeInt ID() { return 876; }
+		static daeInt ID() { return 513; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1406,14 +1712,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -1452,25 +1758,30 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPECULAR; }
-		static daeInt ID() { return 877; }
+		static daeInt ID() { return 514; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1485,14 +1796,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -1531,25 +1842,30 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_POSITION; }
-		static daeInt ID() { return 878; }
+		static daeInt ID() { return 515; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1564,14 +1880,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -1610,12 +1926,12 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_CONSTANT_ATTENUATION; }
-		static daeInt ID() { return 879; }
+		static daeInt ID() { return 516; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
@@ -1643,14 +1959,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -1680,21 +1996,21 @@ public:
 		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
-	class domLight_linear_attenuation;
+	class domLight_linear_attenutation;
 
-	typedef daeSmartRef<domLight_linear_attenuation> domLight_linear_attenuationRef;
-	typedef daeTArray<domLight_linear_attenuationRef> domLight_linear_attenuation_Array;
+	typedef daeSmartRef<domLight_linear_attenutation> domLight_linear_attenutationRef;
+	typedef daeTArray<domLight_linear_attenutationRef> domLight_linear_attenutation_Array;
 
-	class domLight_linear_attenuation : public daeElement
+	class domLight_linear_attenutation : public daeElement
 	{
 	public:
-		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_LINEAR_ATTENUATION; }
-		static daeInt ID() { return 880; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_LINEAR_ATTENUTATION; }
+		static daeInt ID() { return 517; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
@@ -1722,28 +2038,28 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
 		 * Constructor
 		 */
-		domLight_linear_attenuation(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
+		domLight_linear_attenutation(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
-		virtual ~domLight_linear_attenuation() {}
+		virtual ~domLight_linear_attenutation() {}
 		/**
 		 * Overloaded assignment operator
 		 */
-		virtual domLight_linear_attenuation &operator=( const domLight_linear_attenuation &cpy ) { (void)cpy; return *this; }
+		virtual domLight_linear_attenutation &operator=( const domLight_linear_attenutation &cpy ) { (void)cpy; return *this; }
 
 	public: // STATIC METHODS
 		/**
@@ -1768,12 +2084,12 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_QUADRATIC_ATTENUATION; }
-		static daeInt ID() { return 881; }
+		static daeInt ID() { return 518; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
@@ -1801,14 +2117,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -1847,12 +2163,12 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_CUTOFF; }
-		static daeInt ID() { return 882; }
+		static daeInt ID() { return 519; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
@@ -1880,14 +2196,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -1926,25 +2242,30 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_DIRECTION; }
-		static daeInt ID() { return 883; }
+		static daeInt ID() { return 520; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat3 attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat3 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat3 reference of the value array attribute.
 		 */
-		domFloat3 getValue() const { return attrValue; }
+		domFloat3 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat3 reference of the value array attribute.
 		 */
-		void setValue( domFloat3 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat3 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat3 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1959,14 +2280,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -2005,12 +2326,12 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_EXPONENT; }
-		static daeInt ID() { return 884; }
+		static daeInt ID() { return 521; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
@@ -2038,14 +2359,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -2084,7 +2405,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_AMBIENT; }
-		static daeInt ID() { return 885; }
+		static daeInt ID() { return 522; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -2093,15 +2414,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -2151,7 +2477,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_WIDTH; }
-		static daeInt ID() { return 886; }
+		static daeInt ID() { return 523; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -2218,7 +2544,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_AMBIENT; }
-		static daeInt ID() { return 887; }
+		static daeInt ID() { return 524; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -2227,15 +2553,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -2285,7 +2616,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_DIFFUSE; }
-		static daeInt ID() { return 888; }
+		static daeInt ID() { return 525; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -2294,15 +2625,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -2352,7 +2688,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_EMISSION; }
-		static daeInt ID() { return 889; }
+		static daeInt ID() { return 526; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -2361,15 +2697,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -2419,7 +2760,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_SHININESS; }
-		static daeInt ID() { return 890; }
+		static daeInt ID() { return 527; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -2486,7 +2827,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_SPECULAR; }
-		static daeInt ID() { return 891; }
+		static daeInt ID() { return 528; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -2495,15 +2836,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4 reference of the value array attribute.
 		 */
-		domFloat4 getValue() const { return attrValue; }
+		domFloat4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -2553,7 +2899,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODEL_VIEW_MATRIX; }
-		static daeInt ID() { return 892; }
+		static daeInt ID() { return 529; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4x4 attrValue;
@@ -2562,15 +2908,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4x4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4x4 reference of the value array attribute.
 		 */
-		domFloat4x4 getValue() const { return attrValue; }
+		domFloat4x4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4x4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4x4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4x4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4x4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -2620,7 +2971,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_DISTANCE_ATTENUATION; }
-		static daeInt ID() { return 893; }
+		static daeInt ID() { return 530; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat3 attrValue;
@@ -2629,15 +2980,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat3 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat3 reference of the value array attribute.
 		 */
-		domFloat3 getValue() const { return attrValue; }
+		domFloat3 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat3 reference of the value array attribute.
 		 */
-		void setValue( domFloat3 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat3 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat3 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -2687,7 +3043,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_FADE_THRESHOLD_SIZE; }
-		static daeInt ID() { return 894; }
+		static daeInt ID() { return 531; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -2754,7 +3110,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE; }
-		static daeInt ID() { return 895; }
+		static daeInt ID() { return 532; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -2821,7 +3177,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE_MIN; }
-		static daeInt ID() { return 896; }
+		static daeInt ID() { return 533; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -2888,7 +3244,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE_MAX; }
-		static daeInt ID() { return 897; }
+		static daeInt ID() { return 534; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
@@ -2955,7 +3311,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET; }
-		static daeInt ID() { return 898; }
+		static daeInt ID() { return 535; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat2 attrValue;
@@ -2964,15 +3320,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat2 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat2 reference of the value array attribute.
 		 */
-		domFloat2 getValue() const { return attrValue; }
+		domFloat2 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat2 reference of the value array attribute.
 		 */
-		void setValue( domFloat2 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat2 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat2 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -3022,7 +3383,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROJECTION_MATRIX; }
-		static daeInt ID() { return 899; }
+		static daeInt ID() { return 536; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4x4 attrValue;
@@ -3031,15 +3392,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domFloat4x4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domFloat4x4 reference of the value array attribute.
 		 */
-		domFloat4x4 getValue() const { return attrValue; }
+		domFloat4x4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domFloat4x4 reference of the value array attribute.
 		 */
-		void setValue( domFloat4x4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domFloat4x4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domFloat4x4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -3089,7 +3455,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCISSOR; }
-		static daeInt ID() { return 900; }
+		static daeInt ID() { return 537; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domInt4 attrValue;
@@ -3098,15 +3464,20 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the value attribute.
-		 * @return Returns a domInt4 of the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a domInt4 reference of the value array attribute.
 		 */
-		domInt4 getValue() const { return attrValue; }
+		domInt4 &getValue() { return attrValue; }
 		/**
-		 * Sets the value attribute.
-		 * @param atValue The new value for the value attribute.
+		 * Gets the value array attribute.
+		 * @return Returns a constant domInt4 reference of the value array attribute.
 		 */
-		void setValue( domInt4 atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		const domInt4 &getValue() const { return attrValue; }
+		/**
+		 * Sets the value array attribute.
+		 * @param atValue The new value for the value array attribute.
+		 */
+		void setValue( const domInt4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -3156,24 +3527,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHADE_MODEL; }
-		static daeInt ID() { return 901; }
+		static daeInt ID() { return 538; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		domGl_shade_model attrValue;
+		domGl_shade_model_type attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a domGl_shade_model of the value attribute.
+		 * @return Returns a domGl_shade_model_type of the value attribute.
 		 */
-		domGl_shade_model getValue() const { return attrValue; }
+		domGl_shade_model_type getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_shade_model atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domGl_shade_model_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -3223,7 +3594,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_FUNC; }
-		static daeInt ID() { return 902; }
+		static daeInt ID() { return 539; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domFunc;
@@ -3235,24 +3606,24 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FUNC; }
-			static daeInt ID() { return 903; }
+			static daeInt ID() { return 540; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
-			domGl_func attrValue;
+			domGl_func_type attrValue;
 			xsNCName attrParam;
 
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the value attribute.
-			 * @return Returns a domGl_func of the value attribute.
+			 * @return Returns a domGl_func_type of the value attribute.
 			 */
-			domGl_func getValue() const { return attrValue; }
+			domGl_func_type getValue() const { return attrValue; }
 			/**
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_func atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+			void setValue( domGl_func_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3302,7 +3673,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF; }
-			static daeInt ID() { return 904; }
+			static daeInt ID() { return 541; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
@@ -3369,7 +3740,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASK; }
-			static daeInt ID() { return 905; }
+			static daeInt ID() { return 542; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
@@ -3487,7 +3858,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_MASK; }
-		static daeInt ID() { return 906; }
+		static daeInt ID() { return 543; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domInt attrValue;
@@ -3554,7 +3925,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_OP; }
-		static daeInt ID() { return 907; }
+		static daeInt ID() { return 544; }
 		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domFail;
@@ -3566,24 +3937,24 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FAIL; }
-			static daeInt ID() { return 908; }
+			static daeInt ID() { return 545; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
-			domGles_stencil_op attrValue;
+			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
 
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the value attribute.
-			 * @return Returns a domGles_stencil_op of the value attribute.
+			 * @return Returns a domGles_stencil_op_type of the value attribute.
 			 */
-			domGles_stencil_op getValue() const { return attrValue; }
+			domGles_stencil_op_type getValue() const { return attrValue; }
 			/**
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGles_stencil_op atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+			void setValue( domGles_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3633,24 +4004,24 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZFAIL; }
-			static daeInt ID() { return 909; }
+			static daeInt ID() { return 546; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
-			domGles_stencil_op attrValue;
+			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
 
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the value attribute.
-			 * @return Returns a domGles_stencil_op of the value attribute.
+			 * @return Returns a domGles_stencil_op_type of the value attribute.
 			 */
-			domGles_stencil_op getValue() const { return attrValue; }
+			domGles_stencil_op_type getValue() const { return attrValue; }
 			/**
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGles_stencil_op atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+			void setValue( domGles_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3700,24 +4071,24 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZPASS; }
-			static daeInt ID() { return 910; }
+			static daeInt ID() { return 547; }
 			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
-			domGles_stencil_op attrValue;
+			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
 
 
 		public:	//Accessors and Mutators
 			/**
 			 * Gets the value attribute.
-			 * @return Returns a domGles_stencil_op of the value attribute.
+			 * @return Returns a domGles_stencil_op_type of the value attribute.
 			 */
-			domGles_stencil_op getValue() const { return attrValue; }
+			domGles_stencil_op_type getValue() const { return attrValue; }
 			/**
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGles_stencil_op atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+			void setValue( domGles_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3809,55 +4180,6 @@ public:
 		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
-	class domTexture_pipeline;
-
-	typedef daeSmartRef<domTexture_pipeline> domTexture_pipelineRef;
-	typedef daeTArray<domTexture_pipelineRef> domTexture_pipeline_Array;
-
-	class domTexture_pipeline : public daeElement
-	{
-	public:
-		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_PIPELINE; }
-		static daeInt ID() { return 911; }
-		virtual daeInt typeID() const { return ID(); }
-
-	protected:  // Element
-		domGles_texture_pipelineRef elemValue;
-
-	public:	//Accessors and Mutators
-		/**
-		 * Gets the value element.
-		 * @return a daeSmartRef to the value element.
-		 */
-		const domGles_texture_pipelineRef getValue() const { return elemValue; }
-	protected:
-		/**
-		 * Constructor
-		 */
-		domTexture_pipeline(DAE& dae) : daeElement(dae), elemValue() {}
-		/**
-		 * Destructor
-		 */
-		virtual ~domTexture_pipeline() {}
-		/**
-		 * Overloaded assignment operator
-		 */
-		virtual domTexture_pipeline &operator=( const domTexture_pipeline &cpy ) { (void)cpy; return *this; }
-
-	public: // STATIC METHODS
-		/**
-		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @return a daeElementRef referencing an instance of this object.
-		 */
-		static DLLSPEC daeElementRef create(DAE& dae);
-		/**
-		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
-		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
-		 * @return A daeMetaElement describing this COLLADA element.
-		 */
-		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
-	};
-
 	class domAlpha_test_enable;
 
 	typedef daeSmartRef<domAlpha_test_enable> domAlpha_test_enableRef;
@@ -3867,24 +4189,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA_TEST_ENABLE; }
-		static daeInt ID() { return 912; }
+		static daeInt ID() { return 548; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -3934,24 +4256,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_ENABLE; }
-		static daeInt ID() { return 913; }
+		static daeInt ID() { return 549; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4001,25 +4323,25 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLIP_PLANE_ENABLE; }
-		static daeInt ID() { return 914; }
+		static daeInt ID() { return 550; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
-		domGles_max_clip_planes_index attrIndex;
+		domGLES_MAX_CLIP_PLANES_index attrIndex;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4034,14 +4356,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_clip_planes_index of the index attribute.
+		 * @return Returns a domGLES_MAX_CLIP_PLANES_index of the index attribute.
 		 */
-		domGles_max_clip_planes_index getIndex() const { return attrIndex; }
+		domGLES_MAX_CLIP_PLANES_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_clip_planes_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_CLIP_PLANES_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4080,24 +4402,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_LOGIC_OP_ENABLE; }
-		static daeInt ID() { return 915; }
+		static daeInt ID() { return 551; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4147,24 +4469,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MATERIAL_ENABLE; }
-		static daeInt ID() { return 916; }
+		static daeInt ID() { return 552; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4214,24 +4536,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CULL_FACE_ENABLE; }
-		static daeInt ID() { return 917; }
+		static daeInt ID() { return 553; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4281,24 +4603,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_TEST_ENABLE; }
-		static daeInt ID() { return 918; }
+		static daeInt ID() { return 554; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4348,24 +4670,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DITHER_ENABLE; }
-		static daeInt ID() { return 919; }
+		static daeInt ID() { return 555; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4415,24 +4737,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_ENABLE; }
-		static daeInt ID() { return 920; }
+		static daeInt ID() { return 556; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4473,6 +4795,73 @@ public:
 		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
+	class domTexture_pipeline_enable;
+
+	typedef daeSmartRef<domTexture_pipeline_enable> domTexture_pipeline_enableRef;
+	typedef daeTArray<domTexture_pipeline_enableRef> domTexture_pipeline_enable_Array;
+
+	class domTexture_pipeline_enable : public daeElement
+	{
+	public:
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_PIPELINE_ENABLE; }
+		static daeInt ID() { return 557; }
+		virtual daeInt typeID() const { return ID(); }
+	protected:  // Attributes
+		domBool attrValue;
+		xsNCName attrParam;
+
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the value attribute.
+		 * @return Returns a domBool of the value attribute.
+		 */
+		domBool getValue() const { return attrValue; }
+		/**
+		 * Sets the value attribute.
+		 * @param atValue The new value for the value attribute.
+		 */
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+
+		/**
+		 * Gets the param attribute.
+		 * @return Returns a xsNCName of the param attribute.
+		 */
+		xsNCName getParam() const { return attrParam; }
+		/**
+		 * Sets the param attribute.
+		 * @param atParam The new value for the param attribute.
+		 */
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
+
+	protected:
+		/**
+		 * Constructor
+		 */
+		domTexture_pipeline_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
+		/**
+		 * Destructor
+		 */
+		virtual ~domTexture_pipeline_enable() {}
+		/**
+		 * Overloaded assignment operator
+		 */
+		virtual domTexture_pipeline_enable &operator=( const domTexture_pipeline_enable &cpy ) { (void)cpy; return *this; }
+
+	public: // STATIC METHODS
+		/**
+		 * Creates an instance of this class and returns a daeElementRef referencing it.
+		 * @return a daeElementRef referencing an instance of this object.
+		 */
+		static DLLSPEC daeElementRef create(DAE& dae);
+		/**
+		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+		 * @return A daeMetaElement describing this COLLADA element.
+		 */
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
+	};
+
 	class domLight_enable;
 
 	typedef daeSmartRef<domLight_enable> domLight_enableRef;
@@ -4482,25 +4871,25 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_ENABLE; }
-		static daeInt ID() { return 921; }
+		static daeInt ID() { return 558; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
-		domGles_max_lights_index attrIndex;
+		domGLES_MAX_LIGHTS_index attrIndex;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4515,14 +4904,14 @@ public:
 
 		/**
 		 * Gets the index attribute.
-		 * @return Returns a domGles_max_lights_index of the index attribute.
+		 * @return Returns a domGLES_MAX_LIGHTS_index of the index attribute.
 		 */
-		domGles_max_lights_index getIndex() const { return attrIndex; }
+		domGLES_MAX_LIGHTS_index getIndex() const { return attrIndex; }
 		/**
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGles_max_lights_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
+		void setIndex( domGLES_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4561,24 +4950,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHTING_ENABLE; }
-		static daeInt ID() { return 922; }
+		static daeInt ID() { return 559; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4628,24 +5017,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_TWO_SIDE_ENABLE; }
-		static daeInt ID() { return 923; }
+		static daeInt ID() { return 560; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4695,24 +5084,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_SMOOTH_ENABLE; }
-		static daeInt ID() { return 924; }
+		static daeInt ID() { return 561; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4762,24 +5151,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MULTISAMPLE_ENABLE; }
-		static daeInt ID() { return 925; }
+		static daeInt ID() { return 562; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4829,24 +5218,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NORMALIZE_ENABLE; }
-		static daeInt ID() { return 926; }
+		static daeInt ID() { return 563; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4896,24 +5285,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SMOOTH_ENABLE; }
-		static daeInt ID() { return 927; }
+		static daeInt ID() { return 564; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4963,24 +5352,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET_FILL_ENABLE; }
-		static daeInt ID() { return 928; }
+		static daeInt ID() { return 565; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -5030,24 +5419,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RESCALE_NORMAL_ENABLE; }
-		static daeInt ID() { return 929; }
+		static daeInt ID() { return 566; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -5097,24 +5486,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_COVERAGE_ENABLE; }
-		static daeInt ID() { return 930; }
+		static daeInt ID() { return 567; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -5164,24 +5553,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_ONE_ENABLE; }
-		static daeInt ID() { return 931; }
+		static daeInt ID() { return 568; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -5231,24 +5620,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_COVERAGE_ENABLE; }
-		static daeInt ID() { return 932; }
+		static daeInt ID() { return 569; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -5298,24 +5687,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCISSOR_TEST_ENABLE; }
-		static daeInt ID() { return 933; }
+		static daeInt ID() { return 570; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -5365,24 +5754,24 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_TEST_ENABLE; }
-		static daeInt ID() { return 934; }
+		static daeInt ID() { return 571; }
 		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
-		xsBoolean attrValue;
+		domBool attrValue;
 		xsNCName attrParam;
 
 
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value attribute.
-		 * @return Returns a xsBoolean of the value attribute.
+		 * @return Returns a domBool of the value attribute.
 		 */
-		xsBoolean getValue() const { return attrValue; }
+		domBool getValue() const { return attrValue; }
 		/**
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( xsBoolean atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -5428,6 +5817,9 @@ public:
 protected:  // Elements
 	domAlpha_funcRef elemAlpha_func;
 	domBlend_funcRef elemBlend_func;
+	domClear_colorRef elemClear_color;
+	domClear_stencilRef elemClear_stencil;
+	domClear_depthRef elemClear_depth;
 	domClip_planeRef elemClip_plane;
 	domColor_maskRef elemColor_mask;
 	domCull_faceRef elemCull_face;
@@ -5440,13 +5832,14 @@ protected:  // Elements
 	domFog_startRef elemFog_start;
 	domFog_endRef elemFog_end;
 	domFront_faceRef elemFront_face;
+	domTexture_pipelineRef elemTexture_pipeline;
 	domLogic_opRef elemLogic_op;
 	domLight_ambientRef elemLight_ambient;
 	domLight_diffuseRef elemLight_diffuse;
 	domLight_specularRef elemLight_specular;
 	domLight_positionRef elemLight_position;
 	domLight_constant_attenuationRef elemLight_constant_attenuation;
-	domLight_linear_attenuationRef elemLight_linear_attenuation;
+	domLight_linear_attenutationRef elemLight_linear_attenutation;
 	domLight_quadratic_attenuationRef elemLight_quadratic_attenuation;
 	domLight_spot_cutoffRef elemLight_spot_cutoff;
 	domLight_spot_directionRef elemLight_spot_direction;
@@ -5471,7 +5864,6 @@ protected:  // Elements
 	domStencil_funcRef elemStencil_func;
 	domStencil_maskRef elemStencil_mask;
 	domStencil_opRef elemStencil_op;
-	domTexture_pipelineRef elemTexture_pipeline;
 	domAlpha_test_enableRef elemAlpha_test_enable;
 	domBlend_enableRef elemBlend_enable;
 	domClip_plane_enableRef elemClip_plane_enable;
@@ -5481,6 +5873,7 @@ protected:  // Elements
 	domDepth_test_enableRef elemDepth_test_enable;
 	domDither_enableRef elemDither_enable;
 	domFog_enableRef elemFog_enable;
+	domTexture_pipeline_enableRef elemTexture_pipeline_enable;
 	domLight_enableRef elemLight_enable;
 	domLighting_enableRef elemLighting_enable;
 	domLight_model_two_side_enableRef elemLight_model_two_side_enable;
@@ -5521,6 +5914,21 @@ public:	//Accessors and Mutators
 	 * @return a daeSmartRef to the blend_func element.
 	 */
 	const domBlend_funcRef getBlend_func() const { return elemBlend_func; }
+	/**
+	 * Gets the clear_color element.
+	 * @return a daeSmartRef to the clear_color element.
+	 */
+	const domClear_colorRef getClear_color() const { return elemClear_color; }
+	/**
+	 * Gets the clear_stencil element.
+	 * @return a daeSmartRef to the clear_stencil element.
+	 */
+	const domClear_stencilRef getClear_stencil() const { return elemClear_stencil; }
+	/**
+	 * Gets the clear_depth element.
+	 * @return a daeSmartRef to the clear_depth element.
+	 */
+	const domClear_depthRef getClear_depth() const { return elemClear_depth; }
 	/**
 	 * Gets the clip_plane element.
 	 * @return a daeSmartRef to the clip_plane element.
@@ -5582,6 +5990,11 @@ public:	//Accessors and Mutators
 	 */
 	const domFront_faceRef getFront_face() const { return elemFront_face; }
 	/**
+	 * Gets the texture_pipeline element.
+	 * @return a daeSmartRef to the texture_pipeline element.
+	 */
+	const domTexture_pipelineRef getTexture_pipeline() const { return elemTexture_pipeline; }
+	/**
 	 * Gets the logic_op element.
 	 * @return a daeSmartRef to the logic_op element.
 	 */
@@ -5612,10 +6025,10 @@ public:	//Accessors and Mutators
 	 */
 	const domLight_constant_attenuationRef getLight_constant_attenuation() const { return elemLight_constant_attenuation; }
 	/**
-	 * Gets the light_linear_attenuation element.
-	 * @return a daeSmartRef to the light_linear_attenuation element.
+	 * Gets the light_linear_attenutation element.
+	 * @return a daeSmartRef to the light_linear_attenutation element.
 	 */
-	const domLight_linear_attenuationRef getLight_linear_attenuation() const { return elemLight_linear_attenuation; }
+	const domLight_linear_attenutationRef getLight_linear_attenutation() const { return elemLight_linear_attenutation; }
 	/**
 	 * Gets the light_quadratic_attenuation element.
 	 * @return a daeSmartRef to the light_quadratic_attenuation element.
@@ -5737,11 +6150,6 @@ public:	//Accessors and Mutators
 	 */
 	const domStencil_opRef getStencil_op() const { return elemStencil_op; }
 	/**
-	 * Gets the texture_pipeline element.
-	 * @return a daeSmartRef to the texture_pipeline element.
-	 */
-	const domTexture_pipelineRef getTexture_pipeline() const { return elemTexture_pipeline; }
-	/**
 	 * Gets the alpha_test_enable element.
 	 * @return a daeSmartRef to the alpha_test_enable element.
 	 */
@@ -5786,6 +6194,11 @@ public:	//Accessors and Mutators
 	 * @return a daeSmartRef to the fog_enable element.
 	 */
 	const domFog_enableRef getFog_enable() const { return elemFog_enable; }
+	/**
+	 * Gets the texture_pipeline_enable element.
+	 * @return a daeSmartRef to the texture_pipeline_enable element.
+	 */
+	const domTexture_pipeline_enableRef getTexture_pipeline_enable() const { return elemTexture_pipeline_enable; }
 	/**
 	 * Gets the light_enable element.
 	 * @return a daeSmartRef to the light_enable element.
@@ -5871,7 +6284,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_pipeline_settings(DAE& dae) : daeElement(dae), elemAlpha_func(), elemBlend_func(), elemClip_plane(), elemColor_mask(), elemCull_face(), elemDepth_func(), elemDepth_mask(), elemDepth_range(), elemFog_color(), elemFog_density(), elemFog_mode(), elemFog_start(), elemFog_end(), elemFront_face(), elemLogic_op(), elemLight_ambient(), elemLight_diffuse(), elemLight_specular(), elemLight_position(), elemLight_constant_attenuation(), elemLight_linear_attenuation(), elemLight_quadratic_attenuation(), elemLight_spot_cutoff(), elemLight_spot_direction(), elemLight_spot_exponent(), elemLight_model_ambient(), elemLine_width(), elemMaterial_ambient(), elemMaterial_diffuse(), elemMaterial_emission(), elemMaterial_shininess(), elemMaterial_specular(), elemModel_view_matrix(), elemPoint_distance_attenuation(), elemPoint_fade_threshold_size(), elemPoint_size(), elemPoint_size_min(), elemPoint_size_max(), elemPolygon_offset(), elemProjection_matrix(), elemScissor(), elemShade_model(), elemStencil_func(), elemStencil_mask(), elemStencil_op(), elemTexture_pipeline(), elemAlpha_test_enable(), elemBlend_enable(), elemClip_plane_enable(), elemColor_logic_op_enable(), elemColor_material_enable(), elemCull_face_enable(), elemDepth_test_enable(), elemDither_enable(), elemFog_enable(), elemLight_enable(), elemLighting_enable(), elemLight_model_two_side_enable(), elemLine_smooth_enable(), elemMultisample_enable(), elemNormalize_enable(), elemPoint_smooth_enable(), elemPolygon_offset_fill_enable(), elemRescale_normal_enable(), elemSample_alpha_to_coverage_enable(), elemSample_alpha_to_one_enable(), elemSample_coverage_enable(), elemScissor_test_enable(), elemStencil_test_enable() {}
+	domGles_pipeline_settings(DAE& dae) : daeElement(dae), elemAlpha_func(), elemBlend_func(), elemClear_color(), elemClear_stencil(), elemClear_depth(), elemClip_plane(), elemColor_mask(), elemCull_face(), elemDepth_func(), elemDepth_mask(), elemDepth_range(), elemFog_color(), elemFog_density(), elemFog_mode(), elemFog_start(), elemFog_end(), elemFront_face(), elemTexture_pipeline(), elemLogic_op(), elemLight_ambient(), elemLight_diffuse(), elemLight_specular(), elemLight_position(), elemLight_constant_attenuation(), elemLight_linear_attenutation(), elemLight_quadratic_attenuation(), elemLight_spot_cutoff(), elemLight_spot_direction(), elemLight_spot_exponent(), elemLight_model_ambient(), elemLine_width(), elemMaterial_ambient(), elemMaterial_diffuse(), elemMaterial_emission(), elemMaterial_shininess(), elemMaterial_specular(), elemModel_view_matrix(), elemPoint_distance_attenuation(), elemPoint_fade_threshold_size(), elemPoint_size(), elemPoint_size_min(), elemPoint_size_max(), elemPolygon_offset(), elemProjection_matrix(), elemScissor(), elemShade_model(), elemStencil_func(), elemStencil_mask(), elemStencil_op(), elemAlpha_test_enable(), elemBlend_enable(), elemClip_plane_enable(), elemColor_logic_op_enable(), elemColor_material_enable(), elemCull_face_enable(), elemDepth_test_enable(), elemDither_enable(), elemFog_enable(), elemTexture_pipeline_enable(), elemLight_enable(), elemLighting_enable(), elemLight_model_two_side_enable(), elemLine_smooth_enable(), elemMultisample_enable(), elemNormalize_enable(), elemPoint_smooth_enable(), elemPolygon_offset_fill_enable(), elemRescale_normal_enable(), elemSample_alpha_to_coverage_enable(), elemSample_alpha_to_one_enable(), elemSample_coverage_enable(), elemScissor_test_enable(), elemStencil_test_enable() {}
 	/**
 	 * Destructor
 	 */
@@ -5896,5 +6309,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

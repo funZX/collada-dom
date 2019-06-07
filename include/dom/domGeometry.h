@@ -1,5 +1,13 @@
-#ifndef __dom150Geometry_h__
-#define __dom150Geometry_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Geometry_h__
+#define __dom141Geometry_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -9,11 +17,10 @@
 #include <dom/domConvex_mesh.h>
 #include <dom/domMesh.h>
 #include <dom/domSpline.h>
-#include <dom/domBrep.h>
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * Geometry describes the visual shape and appearance of an object in the
@@ -25,7 +32,7 @@ class domGeometry : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GEOMETRY; }
-	static daeInt ID() { return 364; }
+	static daeInt ID() { return 613; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -37,25 +44,24 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The geometry element may contain an asset element. @see domAsset
+ *  The geometry element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
- * The geometry element may contain only one mesh or convex_mesh. @see domConvex_mesh
+ *  The geometry element may contain only one mesh or convex_mesh.  @see domConvex_mesh
  */
 	domConvex_meshRef elemConvex_mesh;
 /**
- * The geometry element may contain only one mesh or convex_mesh. @see domMesh
+ *  The geometry element may contain only one mesh or convex_mesh.  @see domMesh
  */
 	domMeshRef elemMesh;
 	domSplineRef elemSpline;
-	domBrepRef elemBrep;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 	/**
@@ -83,20 +89,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -118,11 +124,6 @@ public:	//Accessors and Mutators
 	 * @return a daeSmartRef to the spline element.
 	 */
 	const domSplineRef getSpline() const { return elemSpline; }
-	/**
-	 * Gets the brep element.
-	 * @return a daeSmartRef to the brep element.
-	 */
-	const domBrepRef getBrep() const { return elemBrep; }
 	/**
 	 * Gets the extra element array.
 	 * @return Returns a reference to the array of extra elements.
@@ -148,7 +149,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGeometry(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemConvex_mesh(), elemMesh(), elemSpline(), elemBrep(), elemExtra_array() {}
+	domGeometry(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemConvex_mesh(), elemMesh(), elemSpline(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -173,5 +174,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

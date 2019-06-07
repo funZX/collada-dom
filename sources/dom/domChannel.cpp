@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domChannel.h>
@@ -9,12 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domChannel::create(DAE& dae)
 {
 	domChannelRef ref = new domChannel(dae);
-	ref->attrSource.setContainer( (domChannel*)ref );
 	return ref;
 }
 
@@ -35,7 +42,7 @@ domChannel::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( dae.getAtomicTypes().get("Urifragment"));
+		ma->setType( dae.getAtomicTypes().get("URIFragmentType"));
 		ma->setOffset( daeOffsetOf( domChannel , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -61,4 +68,4 @@ domChannel::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

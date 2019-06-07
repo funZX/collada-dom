@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domGlsl_newparam.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domGlsl_newparam::create(DAE& dae)
 {
@@ -36,7 +44,7 @@ domGlsl_newparam::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "annotate" );
 	mea->setOffset( daeOffsetOf(domGlsl_newparam,elemAnnotate_array) );
-	mea->setElementType( domFx_annotate::registerElement(dae) );
+	mea->setElementType( domFx_annotate_common::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
@@ -51,20 +59,36 @@ domGlsl_newparam::registerElement(DAE& dae)
 	mea->setElementType( domGlsl_newparam::domModifier::registerElement(dae) );
 	cm->appendChild( mea );
 
-	mea = new daeMetaElementAttribute( meta, cm, 3, 1, 1 );
-	mea->setName( "glsl_value" );
-	mea->setOffset( daeOffsetOf(domGlsl_newparam,elemGlsl_value) );
-	mea->setElementType( domGlsl_value::registerElement(dae) );
-	cm->appendChild( new daeMetaGroup( mea, meta, cm, 3, 1, 1 ) );
+	cm = new daeMetaChoice( meta, cm, 0, 3, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "glsl_param_type" );
+	mea->setOffset( daeOffsetOf(domGlsl_newparam,elemGlsl_param_type) );
+	mea->setElementType( domGlsl_param_type::registerElement(dae) );
+	cm->appendChild( new daeMetaGroup( mea, meta, cm, 0, 1, 1 ) );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
+	mea->setName( "array" );
+	mea->setOffset( daeOffsetOf(domGlsl_newparam,elemArray) );
+	mea->setElementType( domGlsl_newarray_type::registerElement(dae) );
+	cm->appendChild( mea );
+
+	cm->setMaxOrdinal( 0 );
+	cm->getParent()->appendChild( cm );
+	cm = cm->getParent();
 
 	cm->setMaxOrdinal( 3 );
 	meta->setCMRoot( cm );	
+	// Ordered list of sub-elements
+	meta->addContents(daeOffsetOf(domGlsl_newparam,_contents));
+	meta->addContentsOrder(daeOffsetOf(domGlsl_newparam,_contentsOrder));
 
+	meta->addCMDataArray(daeOffsetOf(domGlsl_newparam,_CMData), 1);
 	//	Add attribute: sid
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_identifier"));
 		ma->setOffset( daeOffsetOf( domGlsl_newparam , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -138,7 +162,7 @@ domGlsl_newparam::domModifier::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("Fx_modifier"));
+		ma->setType( dae.getAtomicTypes().get("Fx_modifier_enum_common"));
 		ma->setOffset( daeOffsetOf( domGlsl_newparam::domModifier , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -150,4 +174,4 @@ domGlsl_newparam::domModifier::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

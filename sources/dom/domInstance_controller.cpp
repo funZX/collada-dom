@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domInstance_controller.h>
@@ -9,12 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domInstance_controller::create(DAE& dae)
 {
 	domInstance_controllerRef ref = new domInstance_controller(dae);
-	ref->attrUrl.setContainer( (domInstance_controller*)ref );
 	return ref;
 }
 
@@ -71,7 +78,7 @@ domInstance_controller::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_controller , attrSid ));
 		ma->setContainer( meta );
 	
@@ -82,7 +89,7 @@ domInstance_controller::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_controller , attrName ));
 		ma->setContainer( meta );
 	
@@ -99,7 +106,6 @@ daeElementRef
 domInstance_controller::domSkeleton::create(DAE& dae)
 {
 	domInstance_controller::domSkeletonRef ref = new domInstance_controller::domSkeleton(dae);
-	ref->_value.setContainer( (domInstance_controller::domSkeleton*)ref );
 	return ref;
 }
 
@@ -132,4 +138,4 @@ domInstance_controller::domSkeleton::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

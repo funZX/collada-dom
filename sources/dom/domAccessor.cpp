@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domAccessor.h>
@@ -9,12 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domAccessor::create(DAE& dae)
 {
 	domAccessorRef ref = new domAccessor(dae);
-	ref->attrSource.setContainer( (domAccessor*)ref );
 	return ref;
 }
 
@@ -74,7 +81,6 @@ domAccessor::registerElement(DAE& dae)
 		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domAccessor , attrSource ));
 		ma->setContainer( meta );
-		ma->setIsRequired( true );
 	
 		meta->appendAttribute(ma);
 	}
@@ -97,4 +103,4 @@ domAccessor::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

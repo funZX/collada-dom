@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domSpline.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domSpline::create(DAE& dae)
 {
@@ -58,7 +66,7 @@ domSpline::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "closed" );
-		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domSpline , attrClosed ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -99,7 +107,7 @@ domSpline::domControl_vertices::registerElement(DAE& dae)
 	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domSpline::domControl_vertices,elemInput_array) );
-	mea->setElementType( domInput_local::registerElement(dae) );
+	mea->setElementType( domInputLocal::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
@@ -117,4 +125,4 @@ domSpline::domControl_vertices::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

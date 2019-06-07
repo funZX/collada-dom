@@ -1,5 +1,13 @@
-#ifndef __dom150Library_physics_scenes_h__
-#define __dom150Library_physics_scenes_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Library_physics_scenes_h__
+#define __dom141Library_physics_scenes_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -10,7 +18,7 @@
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The library_physics_scenes element declares a module of physics_scene elements.
@@ -19,7 +27,7 @@ class domLibrary_physics_scenes : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIBRARY_PHYSICS_SCENES; }
-	static daeInt ID() { return 415; }
+	static daeInt ID() { return 725; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -31,19 +39,20 @@ protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.
  */
-	xsToken attrName;
+	xsNCName attrName;
 
 protected:  // Elements
 /**
- * The library_physics_scenes element may contain an asset element. @see domAsset
+ *  The library_physics_scenes element may contain an asset element.  @see
+ * domAsset
  */
 	domAssetRef elemAsset;
 /**
- * There must be at least one physics_scene element. @see domPhysics_scene
+ *  There must be at least one physics_scene element.  @see domPhysics_scene
  */
 	domPhysics_scene_Array elemPhysics_scene_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -57,20 +66,20 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
 		if( _document != NULL ) _document->changeElementID( this, attrId );
 	}
 
 	/**
 	 * Gets the name attribute.
-	 * @return Returns a xsToken of the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
 	 */
-	xsToken getName() const { return attrName; }
+	xsNCName getName() const { return attrName; }
 	/**
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsToken atName ) { *(daeStringRef*)&attrName = atName;}
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.
@@ -126,5 +135,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

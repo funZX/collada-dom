@@ -1,5 +1,13 @@
-#ifndef __dom150COLLADA_h__
-#define __dom150COLLADA_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141COLLADA_h__
+#define __dom141COLLADA_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -21,17 +29,11 @@
 #include <dom/domLibrary_physics_models.h>
 #include <dom/domLibrary_physics_scenes.h>
 #include <dom/domLibrary_visual_scenes.h>
-#include <dom/domLibrary_joints.h>
-#include <dom/domLibrary_kinematics_models.h>
-#include <dom/domLibrary_articulated_systems.h>
-#include <dom/domLibrary_kinematics_scenes.h>
-#include <dom/domLibrary_formulas.h>
-#include <dom/domInstance_with_extra.h>
-#include <dom/domInstance_kinematics_scene.h>
 #include <dom/domExtra.h>
+#include <dom/domInstanceWithExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The COLLADA element declares the root of the document that comprises some
@@ -41,7 +43,7 @@ class domCOLLADA : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLLADA; }
-	static daeInt ID() { return 966; }
+	static daeInt ID() { return 602; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domScene;
@@ -60,7 +62,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCENE; }
-		static daeInt ID() { return 967; }
+		static daeInt ID() { return 603; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
@@ -69,16 +71,15 @@ public:
  * physics_scene resource. The instance_physics_scene element may appear any
  * number of times. @see domInstance_physics_scene
  */
-		domInstance_with_extra_Array elemInstance_physics_scene_array;
+		domInstanceWithExtra_Array elemInstance_physics_scene_array;
 /**
  * The instance_visual_scene element declares the instantiation of a COLLADA
  * visual_scene resource. The instance_visual_scene element may only appear
  * once. @see domInstance_visual_scene
  */
-		domInstance_with_extraRef elemInstance_visual_scene;
-		domInstance_kinematics_scene_Array elemInstance_kinematics_scene_array;
+		domInstanceWithExtraRef elemInstance_visual_scene;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 
@@ -87,27 +88,17 @@ public:
 		 * Gets the instance_physics_scene element array.
 		 * @return Returns a reference to the array of instance_physics_scene elements.
 		 */
-		domInstance_with_extra_Array &getInstance_physics_scene_array() { return elemInstance_physics_scene_array; }
+		domInstanceWithExtra_Array &getInstance_physics_scene_array() { return elemInstance_physics_scene_array; }
 		/**
 		 * Gets the instance_physics_scene element array.
 		 * @return Returns a constant reference to the array of instance_physics_scene elements.
 		 */
-		const domInstance_with_extra_Array &getInstance_physics_scene_array() const { return elemInstance_physics_scene_array; }
+		const domInstanceWithExtra_Array &getInstance_physics_scene_array() const { return elemInstance_physics_scene_array; }
 		/**
 		 * Gets the instance_visual_scene element.
 		 * @return a daeSmartRef to the instance_visual_scene element.
 		 */
-		const domInstance_with_extraRef getInstance_visual_scene() const { return elemInstance_visual_scene; }
-		/**
-		 * Gets the instance_kinematics_scene element array.
-		 * @return Returns a reference to the array of instance_kinematics_scene elements.
-		 */
-		domInstance_kinematics_scene_Array &getInstance_kinematics_scene_array() { return elemInstance_kinematics_scene_array; }
-		/**
-		 * Gets the instance_kinematics_scene element array.
-		 * @return Returns a constant reference to the array of instance_kinematics_scene elements.
-		 */
-		const domInstance_kinematics_scene_Array &getInstance_kinematics_scene_array() const { return elemInstance_kinematics_scene_array; }
+		const domInstanceWithExtraRef getInstance_visual_scene() const { return elemInstance_visual_scene; }
 		/**
 		 * Gets the extra element array.
 		 * @return Returns a reference to the array of extra elements.
@@ -122,7 +113,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domScene(DAE& dae) : daeElement(dae), elemInstance_physics_scene_array(), elemInstance_visual_scene(), elemInstance_kinematics_scene_array(), elemExtra_array() {}
+		domScene(DAE& dae) : daeElement(dae), elemInstance_physics_scene_array(), elemInstance_visual_scene(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -156,7 +147,7 @@ protected:  // Attributes
  *  The version attribute is the COLLADA schema revision with which the instance
  * document  conforms. Required Attribute. 
  */
-	domVersion attrVersion;
+	domVersionType attrVersion;
 /**
  *  The xml:base attribute allows you to define the base URI for this COLLADA
  * document. See http://www.w3.org/TR/xmlbase/ for more information. 
@@ -165,89 +156,84 @@ protected:  // Attributes
 
 protected:  // Elements
 /**
- * The COLLADA element must contain an asset element. @see domAsset
+ *  The COLLADA element must contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**
- * The COLLADA element may contain any number of library_animations elements.
+ *  The COLLADA element may contain any number of library_animations elements.
  * @see domLibrary_animations
  */
 	domLibrary_animations_Array elemLibrary_animations_array;
 /**
- * The COLLADA element may contain any number of library_animation_clips elements.
- * @see domLibrary_animation_clips
+ *  The COLLADA element may contain any number of library_animation_clips
+ * elements.  @see domLibrary_animation_clips
  */
 	domLibrary_animation_clips_Array elemLibrary_animation_clips_array;
 /**
- * The COLLADA element may contain any number of library_cameras elements.
+ *  The COLLADA element may contain any number of library_cameras elements.
  * @see domLibrary_cameras
  */
 	domLibrary_cameras_Array elemLibrary_cameras_array;
 /**
- * The COLLADA element may contain any number of library_controllerss elements.
+ *  The COLLADA element may contain any number of library_controllerss elements.
  * @see domLibrary_controllers
  */
 	domLibrary_controllers_Array elemLibrary_controllers_array;
 /**
- * The COLLADA element may contain any number of library_geometriess elements.
+ *  The COLLADA element may contain any number of library_geometriess elements.
  * @see domLibrary_geometries
  */
 	domLibrary_geometries_Array elemLibrary_geometries_array;
 /**
- * The COLLADA element may contain any number of library_effects elements.
+ *  The COLLADA element may contain any number of library_effects elements.
  * @see domLibrary_effects
  */
 	domLibrary_effects_Array elemLibrary_effects_array;
 /**
- * The COLLADA element may contain any number of library_force_fields elements.
+ *  The COLLADA element may contain any number of library_force_fields elements.
  * @see domLibrary_force_fields
  */
 	domLibrary_force_fields_Array elemLibrary_force_fields_array;
 /**
- * The COLLADA element may contain any number of library_images elements.
+ *  The COLLADA element may contain any number of library_images elements.
  * @see domLibrary_images
  */
 	domLibrary_images_Array elemLibrary_images_array;
 /**
- * The COLLADA element may contain any number of library_lights elements.
+ *  The COLLADA element may contain any number of library_lights elements.
  * @see domLibrary_lights
  */
 	domLibrary_lights_Array elemLibrary_lights_array;
 /**
- * The COLLADA element may contain any number of library_materials elements.
+ *  The COLLADA element may contain any number of library_materials elements.
  * @see domLibrary_materials
  */
 	domLibrary_materials_Array elemLibrary_materials_array;
 /**
- * The COLLADA element may contain any number of library_nodes elements. @see
- * domLibrary_nodes
+ *  The COLLADA element may contain any number of library_nodes elements.
+ * @see domLibrary_nodes
  */
 	domLibrary_nodes_Array elemLibrary_nodes_array;
 /**
- * The COLLADA element may contain any number of library_materials elements.
+ *  The COLLADA element may contain any number of library_materials elements.
  * @see domLibrary_physics_materials
  */
 	domLibrary_physics_materials_Array elemLibrary_physics_materials_array;
 /**
- * The COLLADA element may contain any number of library_physics_models elements.
+ *  The COLLADA element may contain any number of library_physics_models elements.
  * @see domLibrary_physics_models
  */
 	domLibrary_physics_models_Array elemLibrary_physics_models_array;
 /**
- * The COLLADA element may contain any number of library_physics_scenes elements.
+ *  The COLLADA element may contain any number of library_physics_scenes elements.
  * @see domLibrary_physics_scenes
  */
 	domLibrary_physics_scenes_Array elemLibrary_physics_scenes_array;
 /**
- * The COLLADA element may contain any number of library_visual_scenes elements.
+ *  The COLLADA element may contain any number of library_visual_scenes elements.
  * @see domLibrary_visual_scenes
  */
 	domLibrary_visual_scenes_Array elemLibrary_visual_scenes_array;
-	domLibrary_joints_Array elemLibrary_joints_array;
-	domLibrary_kinematics_models_Array elemLibrary_kinematics_models_array;
-	domLibrary_articulated_systems_Array elemLibrary_articulated_systems_array;
-	domLibrary_kinematics_scenes_Array elemLibrary_kinematics_scenes_array;
-	domLibrary_formulas_Array elemLibrary_formulas_array;
 /**
  * The scene embodies the entire set of information that can be visualized
  * from the  contents of a COLLADA resource. The scene element declares the
@@ -257,7 +243,7 @@ protected:  // Elements
  */
 	domSceneRef elemScene;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 	/**
@@ -295,14 +281,14 @@ public:	//Accessors and Mutators
 
 	/**
 	 * Gets the version attribute.
-	 * @return Returns a domVersion of the version attribute.
+	 * @return Returns a domVersionType of the version attribute.
 	 */
-	domVersion getVersion() const { return attrVersion; }
+	domVersionType getVersion() const { return attrVersion; }
 	/**
 	 * Sets the version attribute.
 	 * @param atVersion The new value for the version attribute.
 	 */
-	void setVersion( domVersion atVersion ) { attrVersion = atVersion; _validAttributeArray[1] = true; }
+	void setVersion( domVersionType atVersion ) { attrVersion = atVersion; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the xml_base attribute.
@@ -481,56 +467,6 @@ public:	//Accessors and Mutators
 	 */
 	const domLibrary_visual_scenes_Array &getLibrary_visual_scenes_array() const { return elemLibrary_visual_scenes_array; }
 	/**
-	 * Gets the library_joints element array.
-	 * @return Returns a reference to the array of library_joints elements.
-	 */
-	domLibrary_joints_Array &getLibrary_joints_array() { return elemLibrary_joints_array; }
-	/**
-	 * Gets the library_joints element array.
-	 * @return Returns a constant reference to the array of library_joints elements.
-	 */
-	const domLibrary_joints_Array &getLibrary_joints_array() const { return elemLibrary_joints_array; }
-	/**
-	 * Gets the library_kinematics_models element array.
-	 * @return Returns a reference to the array of library_kinematics_models elements.
-	 */
-	domLibrary_kinematics_models_Array &getLibrary_kinematics_models_array() { return elemLibrary_kinematics_models_array; }
-	/**
-	 * Gets the library_kinematics_models element array.
-	 * @return Returns a constant reference to the array of library_kinematics_models elements.
-	 */
-	const domLibrary_kinematics_models_Array &getLibrary_kinematics_models_array() const { return elemLibrary_kinematics_models_array; }
-	/**
-	 * Gets the library_articulated_systems element array.
-	 * @return Returns a reference to the array of library_articulated_systems elements.
-	 */
-	domLibrary_articulated_systems_Array &getLibrary_articulated_systems_array() { return elemLibrary_articulated_systems_array; }
-	/**
-	 * Gets the library_articulated_systems element array.
-	 * @return Returns a constant reference to the array of library_articulated_systems elements.
-	 */
-	const domLibrary_articulated_systems_Array &getLibrary_articulated_systems_array() const { return elemLibrary_articulated_systems_array; }
-	/**
-	 * Gets the library_kinematics_scenes element array.
-	 * @return Returns a reference to the array of library_kinematics_scenes elements.
-	 */
-	domLibrary_kinematics_scenes_Array &getLibrary_kinematics_scenes_array() { return elemLibrary_kinematics_scenes_array; }
-	/**
-	 * Gets the library_kinematics_scenes element array.
-	 * @return Returns a constant reference to the array of library_kinematics_scenes elements.
-	 */
-	const domLibrary_kinematics_scenes_Array &getLibrary_kinematics_scenes_array() const { return elemLibrary_kinematics_scenes_array; }
-	/**
-	 * Gets the library_formulas element array.
-	 * @return Returns a reference to the array of library_formulas elements.
-	 */
-	domLibrary_formulas_Array &getLibrary_formulas_array() { return elemLibrary_formulas_array; }
-	/**
-	 * Gets the library_formulas element array.
-	 * @return Returns a constant reference to the array of library_formulas elements.
-	 */
-	const domLibrary_formulas_Array &getLibrary_formulas_array() const { return elemLibrary_formulas_array; }
-	/**
 	 * Gets the scene element.
 	 * @return a daeSmartRef to the scene element.
 	 */
@@ -560,7 +496,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCOLLADA(DAE& dae) : daeElement(dae), attrXmlns(dae, *this), attrVersion(), attrXml_base(dae, *this), elemAsset(), elemLibrary_animations_array(), elemLibrary_animation_clips_array(), elemLibrary_cameras_array(), elemLibrary_controllers_array(), elemLibrary_geometries_array(), elemLibrary_effects_array(), elemLibrary_force_fields_array(), elemLibrary_images_array(), elemLibrary_lights_array(), elemLibrary_materials_array(), elemLibrary_nodes_array(), elemLibrary_physics_materials_array(), elemLibrary_physics_models_array(), elemLibrary_physics_scenes_array(), elemLibrary_visual_scenes_array(), elemLibrary_joints_array(), elemLibrary_kinematics_models_array(), elemLibrary_articulated_systems_array(), elemLibrary_kinematics_scenes_array(), elemLibrary_formulas_array(), elemScene(), elemExtra_array() {}
+	domCOLLADA(DAE& dae) : daeElement(dae), attrXmlns(dae, *this), attrVersion(), attrXml_base(dae, *this), elemAsset(), elemLibrary_animations_array(), elemLibrary_animation_clips_array(), elemLibrary_cameras_array(), elemLibrary_controllers_array(), elemLibrary_geometries_array(), elemLibrary_effects_array(), elemLibrary_force_fields_array(), elemLibrary_images_array(), elemLibrary_lights_array(), elemLibrary_materials_array(), elemLibrary_nodes_array(), elemLibrary_physics_materials_array(), elemLibrary_physics_models_array(), elemLibrary_physics_scenes_array(), elemLibrary_visual_scenes_array(), elemScene(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -585,5 +521,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

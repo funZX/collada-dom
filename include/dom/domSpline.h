@@ -1,16 +1,24 @@
-#ifndef __dom150Spline_h__
-#define __dom150Spline_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Spline_h__
+#define __dom141Spline_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
 #include <dom/domSource.h>
-#include <dom/domInput_local.h>
 #include <dom/domExtra.h>
+#include <dom/domInputLocal.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The spline element contains control vertex information sufficient to describe
@@ -20,7 +28,7 @@ class domSpline : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPLINE; }
-	static daeInt ID() { return 337; }
+	static daeInt ID() { return 615; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domControl_vertices;
@@ -36,7 +44,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONTROL_VERTICES; }
-		static daeInt ID() { return 338; }
+		static daeInt ID() { return 616; }
 		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
@@ -44,9 +52,9 @@ public:
  * The input element must occur at least one time. These inputs are local
  * inputs. @see domInput
  */
-		domInput_local_Array elemInput_array;
+		domInputLocal_Array elemInput_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 
@@ -55,12 +63,12 @@ public:
 		 * Gets the input element array.
 		 * @return Returns a reference to the array of input elements.
 		 */
-		domInput_local_Array &getInput_array() { return elemInput_array; }
+		domInputLocal_Array &getInput_array() { return elemInput_array; }
 		/**
 		 * Gets the input element array.
 		 * @return Returns a constant reference to the array of input elements.
 		 */
-		const domInput_local_Array &getInput_array() const { return elemInput_array; }
+		const domInputLocal_Array &getInput_array() const { return elemInput_array; }
 		/**
 		 * Gets the extra element array.
 		 * @return Returns a reference to the array of extra elements.
@@ -101,11 +109,11 @@ public:
 
 
 protected:  // Attribute
-	xsBoolean attrClosed;
+	domBool attrClosed;
 
 protected:  // Elements
 /**
- * The mesh element must contain one or more source elements. @see domSource
+ *  The mesh element must contain one or more source elements.  @see domSource
  */
 	domSource_Array elemSource_array;
 /**
@@ -114,21 +122,21 @@ protected:  // Elements
  */
 	domControl_verticesRef elemControl_vertices;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
 public:	//Accessors and Mutators
 	/**
 	 * Gets the closed attribute.
-	 * @return Returns a xsBoolean of the closed attribute.
+	 * @return Returns a domBool of the closed attribute.
 	 */
-	xsBoolean getClosed() const { return attrClosed; }
+	domBool getClosed() const { return attrClosed; }
 	/**
 	 * Sets the closed attribute.
 	 * @param atClosed The new value for the closed attribute.
 	 */
-	void setClosed( xsBoolean atClosed ) { attrClosed = atClosed; }
+	void setClosed( domBool atClosed ) { attrClosed = atClosed; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the source element array.
@@ -184,5 +192,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

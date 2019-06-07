@@ -1,5 +1,13 @@
-#ifndef __dom150Channel_h__
-#define __dom150Channel_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Channel_h__
+#define __dom141Channel_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -7,7 +15,7 @@
 
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The channel element declares an output channel of an animation.
@@ -16,7 +24,7 @@ class domChannel : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CHANNEL; }
-	static daeInt ID() { return 23; }
+	static daeInt ID() { return 653; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
@@ -24,7 +32,7 @@ protected:  // Attributes
  * expression.  The sampler must be declared within the same document. Required
  * attribute. 
  */
-	domUrifragment attrSource;
+	domURIFragmentType attrSource;
 /**
  *  The target attribute indicates the location of the element bound to the
  * output of the sampler.  This text string is a path-name following a simple
@@ -36,14 +44,24 @@ protected:  // Attributes
 public:	//Accessors and Mutators
 	/**
 	 * Gets the source attribute.
-	 * @return Returns a domUrifragment of the source attribute.
+	 * @return Returns a domURIFragmentType reference of the source attribute.
 	 */
-	domUrifragment getSource() const { return attrSource; }
+	domURIFragmentType &getSource() { return attrSource; }
+	/**
+	 * Gets the source attribute.
+	 * @return Returns a constant domURIFragmentType reference of the source attribute.
+	 */
+	const domURIFragmentType &getSource() const { return attrSource; }
 	/**
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( domUrifragment atSource ) { attrSource = atSource; }
+	void setSource( const domURIFragmentType &atSource ) { attrSource = atSource; _validAttributeArray[0] = true; }
+	/**
+	 * Sets the source attribute.
+	 * @param atSource The new value for the source attribute.
+	 */
+	void setSource( xsString atSource ) { attrSource = atSource; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the target attribute.
@@ -54,7 +72,7 @@ public:	//Accessors and Mutators
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( xsToken atTarget ) { *(daeStringRef*)&attrTarget = atTarget;}
+	void setTarget( xsToken atTarget ) { *(daeStringRef*)&attrTarget = atTarget; _validAttributeArray[1] = true; }
 
 protected:
 	/**
@@ -85,5 +103,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

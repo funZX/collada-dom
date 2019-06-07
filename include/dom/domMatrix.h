@@ -1,5 +1,13 @@
-#ifndef __dom150Matrix_h__
-#define __dom150Matrix_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Matrix_h__
+#define __dom141Matrix_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -7,7 +15,7 @@
 
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * Matrix transformations embody mathematical changes to points within a coordinate
@@ -18,7 +26,7 @@ class domMatrix : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATRIX; }
-	static daeInt ID() { return 15; }
+	static daeInt ID() { return 630; }
 	virtual daeInt typeID() const { return ID(); }
 protected:  // Attribute
 /**
@@ -26,37 +34,42 @@ protected:  // Attribute
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
-	domSid attrSid;
-
-
-public:	//Accessors and Mutators
-	/**
-	 * Gets the sid attribute.
-	 * @return Returns a domSid of the sid attribute.
-	 */
-	domSid getSid() const { return attrSid; }
-	/**
-	 * Sets the sid attribute.
-	 * @param atSid The new value for the sid attribute.
-	 */
-	void setSid( domSid atSid ) { *(daeStringRef*)&attrSid = atSid;}
-
-	/**
-	 * Gets the value of this element.
-	 * @return a domFloat4x4 of the value.
-	 */
-	domFloat4x4& getValue() { return _value; }
-	/**
-	 * Sets the _value of this element.
-	 * @param val The new value for this element.
-	 */
-	void setValue( const domFloat4x4& val ) { _value = val; }
+	xsNCName attrSid;
 
 protected:  // Value
 	/**
 	 * The domFloat4x4 value of the text data of this element. 
 	 */
 	domFloat4x4 _value;
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
+
+	/**
+	 * Gets the _value array.
+	 * @return Returns a domFloat4x4 reference of the _value array.
+	 */
+	domFloat4x4 &getValue() { return _value; }
+	/**
+	 * Gets the _value array.
+	 * @return Returns a constant domFloat4x4 reference of the _value array.
+	 */
+	const domFloat4x4 &getValue() const { return _value; }
+	/**
+	 * Sets the _value array.
+	 * @param val The new value for the _value array.
+	 */
+	void setValue( const domFloat4x4 &val ) { _value = val; }
+
 protected:
 	/**
 	 * Constructor
@@ -86,5 +99,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

@@ -1,5 +1,13 @@
-#ifndef __dom150Mesh_h__
-#define __dom150Mesh_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Mesh_h__
+#define __dom141Mesh_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -17,7 +25,7 @@
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * The mesh element contains vertex and primitive information sufficient to
@@ -27,48 +35,49 @@ class domMesh : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MESH; }
-	static daeInt ID() { return 336; }
+	static daeInt ID() { return 614; }
 	virtual daeInt typeID() const { return ID(); }
 
 protected:  // Elements
 /**
- * The mesh element must contain one or more source elements. @see domSource
+ *  The mesh element must contain one or more source elements.  @see domSource
  */
 	domSource_Array elemSource_array;
 /**
- * The mesh element must contain one vertices element. @see domVertices
+ *  The mesh element must contain one vertices element.  @see domVertices
  */
 	domVerticesRef elemVertices;
 /**
- * The mesh element may contain any number of lines elements. @see domLines
+ *  The mesh element may contain any number of lines elements.  @see domLines
  */
 	domLines_Array elemLines_array;
 /**
- * The mesh element may contain any number of linestrips elements. @see domLinestrips
+ *  The mesh element may contain any number of linestrips elements.  @see
+ * domLinestrips
  */
 	domLinestrips_Array elemLinestrips_array;
 /**
- * The mesh element may contain any number of polygons elements. @see domPolygons
+ *  The mesh element may contain any number of polygons elements.  @see domPolygons
  */
 	domPolygons_Array elemPolygons_array;
 /**
- * The mesh element may contain any number of polylist elements. @see domPolylist
+ *  The mesh element may contain any number of polylist elements.  @see domPolylist
  */
 	domPolylist_Array elemPolylist_array;
 /**
- * The mesh element may contain any number of triangles elements. @see domTriangles
+ *  The mesh element may contain any number of triangles elements.  @see domTriangles
  */
 	domTriangles_Array elemTriangles_array;
 /**
- * The mesh element may contain any number of trifans elements. @see domTrifans
+ *  The mesh element may contain any number of trifans elements.  @see domTrifans
  */
 	domTrifans_Array elemTrifans_array;
 /**
- * The mesh element may contain any number of tristrips elements. @see domTristrips
+ *  The mesh element may contain any number of tristrips elements.  @see domTristrips
  */
 	domTristrips_Array elemTristrips_array;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 	/**
@@ -222,5 +231,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif

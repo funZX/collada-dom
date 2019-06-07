@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domFloat_array.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domFloat_array::create(DAE& dae)
 {
@@ -33,7 +41,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("List_of_floats"));
+		ma->setType( dae.getAtomicTypes().get("ListOfFloats"));
 		ma->setOffset( daeOffsetOf( domFloat_array , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +62,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrName ));
 		ma->setContainer( meta );
 	
@@ -77,7 +85,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "digits" );
-		ma->setType( dae.getAtomicTypes().get("Digits"));
+		ma->setType( dae.getAtomicTypes().get("xsShort"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrDigits ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "6");
@@ -89,7 +97,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "magnitude" );
-		ma->setType( dae.getAtomicTypes().get("Magnitude"));
+		ma->setType( dae.getAtomicTypes().get("xsShort"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrMagnitude ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "38");
@@ -103,4 +111,4 @@ domFloat_array::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

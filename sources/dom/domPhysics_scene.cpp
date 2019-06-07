@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domPhysics_scene.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domPhysics_scene::create(DAE& dae)
 {
@@ -87,7 +95,7 @@ domPhysics_scene::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPhysics_scene , attrName ));
 		ma->setContainer( meta );
 	
@@ -127,13 +135,13 @@ domPhysics_scene::domTechnique_common::registerElement(DAE& dae)
 	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "gravity" );
 	mea->setOffset( daeOffsetOf(domPhysics_scene::domTechnique_common,elemGravity) );
-	mea->setElementType( domTargetable_float3::registerElement(dae) );
+	mea->setElementType( domTargetableFloat3::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "time_step" );
 	mea->setOffset( daeOffsetOf(domPhysics_scene::domTechnique_common,elemTime_step) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 1 );
@@ -145,4 +153,4 @@ domPhysics_scene::domTechnique_common::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

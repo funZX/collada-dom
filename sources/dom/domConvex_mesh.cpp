@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domConvex_mesh.h>
@@ -9,12 +17,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domConvex_mesh::create(DAE& dae)
 {
 	domConvex_meshRef ref = new domConvex_mesh(dae);
-	ref->attrConvex_hull_of.setContainer( (domConvex_mesh*)ref );
 	return ref;
 }
 
@@ -124,4 +131,4 @@ domConvex_mesh::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

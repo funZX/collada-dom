@@ -1,3 +1,11 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
 #include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domCamera.h>
@@ -9,7 +17,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 daeElementRef
 domCamera::create(DAE& dae)
 {
@@ -75,7 +83,7 @@ domCamera::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( dae.getAtomicTypes().get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCamera , attrName ));
 		ma->setContainer( meta );
 	
@@ -219,7 +227,7 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement(DAE&
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "xmag" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,elemXmag) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm = new daeMetaChoice( meta, cm, 1, 1, 0, 1 );
@@ -227,13 +235,13 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement(DAE&
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "ymag" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,elemYmag) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "aspect_ratio" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,elemAspect_ratio) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 0 );
@@ -249,13 +257,13 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement(DAE&
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "ymag" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,elemYmag) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "aspect_ratio" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,elemAspect_ratio) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 1 );
@@ -269,13 +277,13 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement(DAE&
 	mea = new daeMetaElementAttribute( meta, cm, 1, 1, 1 );
 	mea->setName( "znear" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,elemZnear) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 1, 1 );
 	mea->setName( "zfar" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,elemZfar) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 2 );
@@ -322,7 +330,7 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement(DAE& 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "xfov" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,elemXfov) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm = new daeMetaChoice( meta, cm, 1, 1, 0, 1 );
@@ -330,13 +338,13 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement(DAE& 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "yfov" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,elemYfov) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "aspect_ratio" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,elemAspect_ratio) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 0 );
@@ -352,13 +360,13 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement(DAE& 
 	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "yfov" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,elemYfov) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "aspect_ratio" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,elemAspect_ratio) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 1 );
@@ -372,13 +380,13 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement(DAE& 
 	mea = new daeMetaElementAttribute( meta, cm, 1, 1, 1 );
 	mea->setName( "znear" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,elemZnear) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	mea = new daeMetaElementAttribute( meta, cm, 2, 1, 1 );
 	mea->setName( "zfar" );
 	mea->setOffset( daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,elemZfar) );
-	mea->setElementType( domTargetable_float::registerElement(dae) );
+	mea->setElementType( domTargetableFloat::registerElement(dae) );
 	cm->appendChild( mea );
 
 	cm->setMaxOrdinal( 2 );
@@ -439,4 +447,4 @@ domCamera::domImager::registerElement(DAE& dae)
 	return meta;
 }
 
-} // ColladaDOM150
+} // ColladaDOM141

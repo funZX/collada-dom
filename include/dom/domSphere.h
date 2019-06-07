@@ -1,5 +1,13 @@
-#ifndef __dom150Sphere_h__
-#define __dom150Sphere_h__
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
+
+#ifndef __dom141Sphere_h__
+#define __dom141Sphere_h__
 
 #include <dae/daeDocument.h>
 #include <dom/domTypes.h>
@@ -8,7 +16,7 @@
 #include <dom/domExtra.h>
 
 class DAE;
-namespace ColladaDOM150 {
+namespace ColladaDOM141 {
 
 /**
  * A centered sphere primitive.
@@ -17,7 +25,7 @@ class domSphere : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPHERE; }
-	static daeInt ID() { return 285; }
+	static daeInt ID() { return 771; }
 	virtual daeInt typeID() const { return ID(); }
 public:
 	class domRadius;
@@ -32,27 +40,27 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS; }
-		static daeInt ID() { return 286; }
+		static daeInt ID() { return 772; }
 		virtual daeInt typeID() const { return ID(); }
-
-
-	public:	//Accessors and Mutators
-		/**
-		 * Gets the value of this element.
-		 * @return a domFloat of the value.
-		 */
-		domFloat& getValue() { return _value; }
-		/**
-		 * Sets the _value of this element.
-		 * @param val The new value for this element.
-		 */
-		void setValue( const domFloat& val ) { _value = val; }
 
 	protected:  // Value
 		/**
 		 * The domFloat value of the text data of this element. 
 		 */
 		domFloat _value;
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the value of this element.
+		 * @return a domFloat of the value.
+		 */
+		domFloat getValue() const { return _value; }
+		/**
+		 * Sets the _value of this element.
+		 * @param val The new value for this element.
+		 */
+		void setValue( domFloat val ) { _value = val; }
+
 	protected:
 		/**
 		 * Constructor
@@ -89,7 +97,7 @@ protected:  // Elements
  */
 	domRadiusRef elemRadius;
 /**
- * The extra element may appear any number of times. @see domExtra
+ *  The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 
@@ -138,5 +146,5 @@ public: // STATIC METHODS
 };
 
 
-} // ColladaDOM150
+} // ColladaDOM141
 #endif
